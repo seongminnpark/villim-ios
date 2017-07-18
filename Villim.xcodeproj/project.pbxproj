@@ -1,0 +1,777 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E0F067F1F1E017B0023E229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F067E1F1E017B0023E229 /* AppDelegate.swift */; };
+		3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06801F1E017B0023E229 /* ViewController.swift */; };
+		3E0F06841F1E017B0023E229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06821F1E017B0023E229 /* Main.storyboard */; };
+		3E0F06861F1E017B0023E229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06851F1E017B0023E229 /* Assets.xcassets */; };
+		3E0F06891F1E017B0023E229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */; };
+		3E0F06941F1E017B0023E229 /* VillimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06931F1E017B0023E229 /* VillimTests.swift */; };
+		3E0F069F1F1E017B0023E229 /* VillimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F069E1F1E017B0023E229 /* VillimUITests.swift */; };
+		3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */; };
+		3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */; };
+		3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */; };
+		3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */; };
+		3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */; };
+		3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B11F1E02CE0023E229 /* TabBarController.swift */; };
+		3E0F06BD1F1E02CE0023E229 /* VillimKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */; };
+		3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B31F1E02CE0023E229 /* VillimSession.swift */; };
+		3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B41F1E02CE0023E229 /* VillimUser.swift */; };
+		3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */; };
+		3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */; };
+		3E0F06C31F1E05100023E229 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06C21F1E05100023E229 /* Localizable.strings */; };
+		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
+		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
+		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		3E0F06901F1E017B0023E229 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E0F06731F1E017A0023E229 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E0F067A1F1E017B0023E229;
+			remoteInfo = Villim;
+		};
+		3E0F069B1F1E017B0023E229 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3E0F06731F1E017A0023E229 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3E0F067A1F1E017B0023E229;
+			remoteInfo = Villim;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillimUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillimTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		38935575BE308A988440909F /* Pods_Villim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Villim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E0F067B1F1E017B0023E229 /* Villim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Villim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E0F067E1F1E017B0023E229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		3E0F06801F1E017B0023E229 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		3E0F06831F1E017B0023E229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		3E0F06851F1E017B0023E229 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3E0F06881F1E017B0023E229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		3E0F068A1F1E017B0023E229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E0F068F1F1E017B0023E229 /* VillimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VillimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E0F06931F1E017B0023E229 /* VillimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillimTests.swift; sourceTree = "<group>"; };
+		3E0F06951F1E017B0023E229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E0F069A1F1E017B0023E229 /* VillimUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VillimUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E0F069E1F1E017B0023E229 /* VillimUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillimUITests.swift; sourceTree = "<group>"; };
+		3E0F06A01F1E017B0023E229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
+		3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyKeyViewController.swift; sourceTree = "<group>"; };
+		3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		3E0F06B11F1E02CE0023E229 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimKeys.swift; sourceTree = "<group>"; };
+		3E0F06B31F1E02CE0023E229 /* VillimSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimSession.swift; sourceTree = "<group>"; };
+		3E0F06B41F1E02CE0023E229 /* VillimUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimUser.swift; sourceTree = "<group>"; };
+		3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimUtils.swift; sourceTree = "<group>"; };
+		3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitListViewController.swift; sourceTree = "<group>"; };
+		3E0F06C21F1E05100023E229 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
+		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
+		90CC74E62EFF4C4EE38B0683 /* Pods-VillimUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E6A5E6EF013C2E90FD4833CA /* Pods-VillimTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.debug.xcconfig"; sourceTree = "<group>"; };
+		F95D5D512ABF4A37A15212BB /* Pods-Villim.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.release.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E0F06781F1E017B0023E229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E0F068C1F1E017B0023E229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E0F06971F1E017B0023E229 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E0F06721F1E017A0023E229 = {
+			isa = PBXGroup;
+			children = (
+				3E0F067D1F1E017B0023E229 /* Villim */,
+				3E0F06921F1E017B0023E229 /* VillimTests */,
+				3E0F069D1F1E017B0023E229 /* VillimUITests */,
+				3E0F067C1F1E017B0023E229 /* Products */,
+				C1679486B5684F74D38F41BC /* Pods */,
+				72E66BF35CB215CD0E5917AD /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		3E0F067C1F1E017B0023E229 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F067B1F1E017B0023E229 /* Villim.app */,
+				3E0F068F1F1E017B0023E229 /* VillimTests.xctest */,
+				3E0F069A1F1E017B0023E229 /* VillimUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E0F067D1F1E017B0023E229 /* Villim */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F06C21F1E05100023E229 /* Localizable.strings */,
+				3E0F067E1F1E017B0023E229 /* AppDelegate.swift */,
+				3E0F06801F1E017B0023E229 /* ViewController.swift */,
+				3E0F06821F1E017B0023E229 /* Main.storyboard */,
+				3E0F06851F1E017B0023E229 /* Assets.xcassets */,
+				3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */,
+				3E0F068A1F1E017B0023E229 /* Info.plist */,
+				3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */,
+				3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */,
+				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
+				3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */,
+				3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */,
+				3E0F06B11F1E02CE0023E229 /* TabBarController.swift */,
+				3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */,
+				3E0F06B31F1E02CE0023E229 /* VillimSession.swift */,
+				3E0F06B41F1E02CE0023E229 /* VillimUser.swift */,
+				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
+				3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */,
+			);
+			path = Villim;
+			sourceTree = "<group>";
+		};
+		3E0F06921F1E017B0023E229 /* VillimTests */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F06931F1E017B0023E229 /* VillimTests.swift */,
+				3E0F06951F1E017B0023E229 /* Info.plist */,
+			);
+			path = VillimTests;
+			sourceTree = "<group>";
+		};
+		3E0F069D1F1E017B0023E229 /* VillimUITests */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F069E1F1E017B0023E229 /* VillimUITests.swift */,
+				3E0F06A01F1E017B0023E229 /* Info.plist */,
+			);
+			path = VillimUITests;
+			sourceTree = "<group>";
+		};
+		72E66BF35CB215CD0E5917AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				38935575BE308A988440909F /* Pods_Villim.framework */,
+				114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */,
+				0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C1679486B5684F74D38F41BC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */,
+				F95D5D512ABF4A37A15212BB /* Pods-Villim.release.xcconfig */,
+				E6A5E6EF013C2E90FD4833CA /* Pods-VillimTests.debug.xcconfig */,
+				5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */,
+				3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */,
+				90CC74E62EFF4C4EE38B0683 /* Pods-VillimUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E0F067A1F1E017B0023E229 /* Villim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E0F06A31F1E017B0023E229 /* Build configuration list for PBXNativeTarget "Villim" */;
+			buildPhases = (
+				4AD9C23375AB99F961A03F73 /* [CP] Check Pods Manifest.lock */,
+				3E0F06771F1E017B0023E229 /* Sources */,
+				3E0F06781F1E017B0023E229 /* Frameworks */,
+				3E0F06791F1E017B0023E229 /* Resources */,
+				38220099E540B6E0EF6EDE6C /* [CP] Embed Pods Frameworks */,
+				E1D518B1B6B567F446CEF2FC /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Villim;
+			productName = Villim;
+			productReference = 3E0F067B1F1E017B0023E229 /* Villim.app */;
+			productType = "com.apple.product-type.application";
+		};
+		3E0F068E1F1E017B0023E229 /* VillimTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E0F06A61F1E017B0023E229 /* Build configuration list for PBXNativeTarget "VillimTests" */;
+			buildPhases = (
+				583DF9CD396B9821C4AC6785 /* [CP] Check Pods Manifest.lock */,
+				3E0F068B1F1E017B0023E229 /* Sources */,
+				3E0F068C1F1E017B0023E229 /* Frameworks */,
+				3E0F068D1F1E017B0023E229 /* Resources */,
+				78690C117CAC7643E4144825 /* [CP] Embed Pods Frameworks */,
+				516532F58235B72810A7EBB0 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E0F06911F1E017B0023E229 /* PBXTargetDependency */,
+			);
+			name = VillimTests;
+			productName = VillimTests;
+			productReference = 3E0F068F1F1E017B0023E229 /* VillimTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		3E0F06991F1E017B0023E229 /* VillimUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E0F06A91F1E017B0023E229 /* Build configuration list for PBXNativeTarget "VillimUITests" */;
+			buildPhases = (
+				6CFC7931D17B620521701CD5 /* [CP] Check Pods Manifest.lock */,
+				3E0F06961F1E017B0023E229 /* Sources */,
+				3E0F06971F1E017B0023E229 /* Frameworks */,
+				3E0F06981F1E017B0023E229 /* Resources */,
+				3E99D492ACD1B9D3360CFA33 /* [CP] Embed Pods Frameworks */,
+				7B83138E4B5AACF90D3B73C1 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				3E0F069C1F1E017B0023E229 /* PBXTargetDependency */,
+			);
+			name = VillimUITests;
+			productName = VillimUITests;
+			productReference = 3E0F069A1F1E017B0023E229 /* VillimUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E0F06731F1E017A0023E229 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = Villim;
+				TargetAttributes = {
+					3E0F067A1F1E017B0023E229 = {
+						CreatedOnToolsVersion = 8.3.3;
+						DevelopmentTeam = CE5FHKV2L9;
+						ProvisioningStyle = Automatic;
+					};
+					3E0F068E1F1E017B0023E229 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3E0F067A1F1E017B0023E229;
+					};
+					3E0F06991F1E017B0023E229 = {
+						CreatedOnToolsVersion = 8.3.3;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 3E0F067A1F1E017B0023E229;
+					};
+				};
+			};
+			buildConfigurationList = 3E0F06761F1E017A0023E229 /* Build configuration list for PBXProject "Villim" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 3E0F06721F1E017A0023E229;
+			productRefGroup = 3E0F067C1F1E017B0023E229 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E0F067A1F1E017B0023E229 /* Villim */,
+				3E0F068E1F1E017B0023E229 /* VillimTests */,
+				3E0F06991F1E017B0023E229 /* VillimUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E0F06791F1E017B0023E229 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0F06891F1E017B0023E229 /* LaunchScreen.storyboard in Resources */,
+				3E0F06C31F1E05100023E229 /* Localizable.strings in Resources */,
+				3E0F06861F1E017B0023E229 /* Assets.xcassets in Resources */,
+				3E0F06841F1E017B0023E229 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E0F068D1F1E017B0023E229 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E0F06981F1E017B0023E229 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38220099E540B6E0EF6EDE6C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Villim/Pods-Villim-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E99D492ACD1B9D3360CFA33 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4AD9C23375AB99F961A03F73 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		516532F58235B72810A7EBB0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		583DF9CD396B9821C4AC6785 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		6CFC7931D17B620521701CD5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		78690C117CAC7643E4144825 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7B83138E4B5AACF90D3B73C1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1D518B1B6B567F446CEF2FC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Villim/Pods-Villim-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E0F06771F1E017B0023E229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */,
+				3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */,
+				3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */,
+				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
+				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
+				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
+				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
+				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
+				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
+				3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */,
+				3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */,
+				3E0F067F1F1E017B0023E229 /* AppDelegate.swift in Sources */,
+				3E0F06BD1F1E02CE0023E229 /* VillimKeys.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E0F068B1F1E017B0023E229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0F06941F1E017B0023E229 /* VillimTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		3E0F06961F1E017B0023E229 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E0F069F1F1E017B0023E229 /* VillimUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		3E0F06911F1E017B0023E229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E0F067A1F1E017B0023E229 /* Villim */;
+			targetProxy = 3E0F06901F1E017B0023E229 /* PBXContainerItemProxy */;
+		};
+		3E0F069C1F1E017B0023E229 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 3E0F067A1F1E017B0023E229 /* Villim */;
+			targetProxy = 3E0F069B1F1E017B0023E229 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3E0F06821F1E017B0023E229 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E0F06831F1E017B0023E229 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E0F06881F1E017B0023E229 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E0F06A11F1E017B0023E229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3E0F06A21F1E017B0023E229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E0F06A41F1E017B0023E229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CE5FHKV2L9;
+				INFOPLIST_FILE = Villim/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.Villim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		3E0F06A51F1E017B0023E229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F95D5D512ABF4A37A15212BB /* Pods-Villim.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CE5FHKV2L9;
+				INFOPLIST_FILE = Villim/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.Villim;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		3E0F06A71F1E017B0023E229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E6A5E6EF013C2E90FD4833CA /* Pods-VillimTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = VillimTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.VillimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Villim.app/Villim";
+			};
+			name = Debug;
+		};
+		3E0F06A81F1E017B0023E229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = VillimTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.VillimTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Villim.app/Villim";
+			};
+			name = Release;
+		};
+		3E0F06AA1F1E017B0023E229 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = VillimUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.VillimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Villim;
+			};
+			name = Debug;
+		};
+		3E0F06AB1F1E017B0023E229 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 90CC74E62EFF4C4EE38B0683 /* Pods-VillimUITests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = VillimUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.VillimUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = Villim;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E0F06761F1E017A0023E229 /* Build configuration list for PBXProject "Villim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0F06A11F1E017B0023E229 /* Debug */,
+				3E0F06A21F1E017B0023E229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E0F06A31F1E017B0023E229 /* Build configuration list for PBXNativeTarget "Villim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0F06A41F1E017B0023E229 /* Debug */,
+				3E0F06A51F1E017B0023E229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E0F06A61F1E017B0023E229 /* Build configuration list for PBXNativeTarget "VillimTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0F06A71F1E017B0023E229 /* Debug */,
+				3E0F06A81F1E017B0023E229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E0F06A91F1E017B0023E229 /* Build configuration list for PBXNativeTarget "VillimUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E0F06AA1F1E017B0023E229 /* Debug */,
+				3E0F06AB1F1E017B0023E229 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 3E0F06731F1E017A0023E229 /* Project object */;
+}

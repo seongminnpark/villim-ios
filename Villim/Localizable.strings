@@ -1,0 +1,29 @@
+/*
+ Localizable.strings
+ Villim
+ 
+ Created by Seongmin Park on 7/11/17.
+ Copyright © 2017 Villim. All rights reserved.
+ */
+
+"discover" = "숙소 찾기";
+"my_key" = "내 열쇠";
+"visit_list" = "방문 목록";
+"profile" = "프로필";
+
+"login" = "로그인";
+"logout" = "로그아웃";
+"faq" = "FAQ";
+"settings" = "환경 설정";
+"privacy_policy" = "개인정보 보호 및 이용약관";
+"edit_profile" = "프로필 보기 및 수정";
+
+"email" = "이메일";
+"password" = "비밀번호";
+"login_title_main" = "전세계의 집이 나의 집!";
+"login_title_secondary" = "언제 어디서나 쉽고 빠르게 방을 빌리세요.";
+"forgot_password" = "비밀번호를 잊으셨나요?";
+"signup" = "회원 가입";
+"next" = "다음";
+"empty_field" = "모든 항목을 작성해주세요.";
+"server_unavailable" = "서버가 불안정합니다.";
