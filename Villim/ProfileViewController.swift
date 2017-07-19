@@ -118,6 +118,9 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         case NSLocalizedString("login", comment: ""):
             launchLoginViewController()
             break
+        case NSLocalizedString("logout", comment: ""):
+            logout()
+            break
         case NSLocalizedString("faq", comment: ""):
             break
         case NSLocalizedString("settings", comment: ""):
@@ -138,9 +141,14 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         //        self.present(loginViewController, animated: true, completion: nil)
     }
     
+    public func logout() {
+        VillimSession.setLoggedIn(loggedIn: false)
+        populateViews()
+    }
+    
     public func onLogin(success: Bool) {
         if success {
-            populateViews() 
+            populateViews()
         }
     }
     
