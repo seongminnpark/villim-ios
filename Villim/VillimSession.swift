@@ -16,15 +16,14 @@ class VillimSession {
     
     /* Logged in */
     public static func setLoggedIn(loggedIn:Bool) {
-    
         if (!loggedIn) {
             /* Clear user defaults */
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
             }
-            
-            defaults.set(loggedIn, forKey: KEY_LOGGED_IN)
         }
+        defaults.set(loggedIn, forKey: KEY_LOGGED_IN)
+        defaults.synchronize()
     }
     
     public static func getLoggedIn() -> Bool {

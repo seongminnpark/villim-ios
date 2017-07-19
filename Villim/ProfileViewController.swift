@@ -16,34 +16,61 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     private var profileImageView : UIImageView!
     private var profileTableViewController : ProfileTableViewController!
     
+    private let loggedOutTableViewItems = [NSLocalizedString("login", comment: ""),
+                                           NSLocalizedString("faq", comment: ""),
+                                           NSLocalizedString("settings", comment: ""),
+                                           NSLocalizedString("privacy_policy", comment: "")]
+    private let loggedInTableViewItems = [NSLocalizedString("logout", comment: ""),
+                                          NSLocalizedString("edit_profile", comment: ""),
+                                          NSLocalizedString("faq", comment: ""),
+                                          NSLocalizedString("settings", comment: ""),
+                                          NSLocalizedString("privacy_policy", comment: "")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        print(VillimSession.getLoggedIn())
         self.view.backgroundColor = UIColor.white
         self.title = NSLocalizedString("profile", comment: "")
         
         /* Add Title */
         profileTitle = UILabel()
-        profileTitle.text = self.title
         self.view.addSubview(profileTitle!)
         
         /* Add profile image view */
         profileImageView = UIImageView()
-        profileImageView.image = #imageLiteral(resourceName: "icon_profile")
         self.view.addSubview(profileImageView!)
         
         /* Populate tableview */
         profileTableViewController = ProfileTableViewController()
         profileTableViewController.itemSelectedListener = self
         self.view.addSubview(profileTableViewController.view)
-        profileTableViewController.profileTableViewItems = [NSLocalizedString("login", comment: ""),
-                                                            NSLocalizedString("faq", comment: ""),
-                                                            NSLocalizedString("settings", comment: ""),
-                                                            NSLocalizedString("privacy_policy", comment: "")]
         
+        populateViews()
         makeConstraints()
         
+    }
+    
+    func populateViews() {
+        if VillimSession.getLoggedIn() {
+            
+            /* Update name */
+            profileTitle.text = VillimSession.getFullName()
+            
+            /* Load profile photo */
+            let url = URL(string: VillimSession.getProfilePicUrl())
+            Nuke.loadImage(with: url!, into: profileImageView)
+            
+            /* Populate tableview */
+            profileTableViewController.profileTableViewItems = loggedInTableViewItems
+            profileTableViewController.tableView.reloadData()
+            
+        } else {
+            profileTitle.text = self.title
+            profileImageView.image = #imageLiteral(resourceName: "icon_profile")
+            profileTableViewController.profileTableViewItems = loggedOutTableViewItems
+            profileTableViewController.tableView.reloadData()
+        }
     }
     
     func makeConstraints() {
@@ -113,9 +140,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     public func onLogin(success: Bool) {
         if success {
-            profileTitle.text = VillimSession.getFullName()
-            let url = URL(string: VillimSession.getProfilePicUrl())
-            Nuke.loadImage(with: url!, into: profileImageView)
+            populateViews() 
         }
     }
     

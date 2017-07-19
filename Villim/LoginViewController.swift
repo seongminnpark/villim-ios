@@ -248,6 +248,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     let user : VillimUser = VillimUser.init(userInfo:responseData[VillimKeys.KEY_USER_INFO])
+                    VillimSession.setLoggedIn(loggedIn: true)
                     VillimSession.updateUserSession(user: user)
                     self.loginListener.onLogin(success: true)
                     self.navigationController?.popViewController(animated: true)
