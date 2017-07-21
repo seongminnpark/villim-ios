@@ -240,7 +240,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             VillimKeys.KEY_PASSWORD : passwordField.text!
             ] as [String : Any]
         
-        let url = VillimUtils.buildPostURL(endpoint: VillimKeys.LOGIN_URL)
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.LOGIN_URL)
         
         Alamofire.request(url, method:.post, parameters:parameters,encoding: JSONEncoding.default).responseJSON { response in
             switch response.result {
@@ -253,7 +253,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.loginListener.onLogin(success: true)
                     self.navigationController?.popViewController(animated: true)
                 } else {
-                    self.showErrorMessage(message: responseData[VillimKeys.KEY_SUCCESS].stringValue)
+                    self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
                 self.showErrorMessage(message: error.localizedDescription)

@@ -98,7 +98,15 @@ class VillimHouse {
 //        self.lockPc = jsonObject.optInt(KEY_LOCK_PC);
     }
 
-    
+    public static func getFeaturedHouseArray(jsonHouses:[JSON]) -> [VillimHouse] {
+        var houses : [VillimHouse] = []
+        
+        for jsonHouse in jsonHouses {
+            houses.append(VillimHouse(hosueInfo: jsonHouse))
+        }
+        
+        return houses
+    }
     
     public func getInvalidDates() -> [Date] {
     

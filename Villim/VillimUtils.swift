@@ -14,7 +14,7 @@ class VillimUtils {
     public static let themeColorHighlighted = UIColor(red: 139.0/255.0, green: 0/255.0, blue: 0/255.0, alpha:1.0)
     public static let loadingIndicatorSize : CGFloat = 150.0
     
-    public static func buildPostURL(endpoint:String) -> String {
+    public static func buildURL(endpoint:String) -> String {
         return VillimKeys.SERVER_SCHEME + "://" + VillimKeys.SERVER_HOST + "/" + endpoint
     }
     
