@@ -41,6 +41,42 @@ class HouseTableViewCell: UITableViewCell {
     }
     
 
+    func makeConstraints() {
+        
+        houseThumbnail?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview().dividedBy(2)
+            make.height.equalToSuperview()
+            make.left.equalToSuperview()
+        }
+        
+        houseName?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview().dividedBy(2)
+            make.height.equalTo(30)
+            make.right.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        
+        houseRating.snp.makeConstraints{ (make) -> Void in
+            make.height.equalTo(30)
+            make.top.equalTo(houseName.snp.bottom)
+            make.left.equalTo(self.snp.centerX)
+        }
+        
+        houseReviewCount.snp.makeConstraints{ (make) -> Void in
+            make.height.equalTo(30)
+            make.top.equalTo(houseName.snp.bottom)
+            make.right.equalToSuperview()
+        }
+        
+        houseRent.snp.makeConstraints{ (make) -> Void in
+            make.width.equalToSuperview().dividedBy(2)
+            make.height.equalTo(30)
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+    }
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
