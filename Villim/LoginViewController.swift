@@ -242,7 +242,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         
         let url = VillimUtils.buildURL(endpoint: VillimKeys.LOGIN_URL)
         
-        Alamofire.request(url, method:.post, parameters:parameters,encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request(url, method:.post, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)

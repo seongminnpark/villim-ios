@@ -74,13 +74,14 @@ class DiscoverViewController: ViewController {
         
         showLoadingIndicator()
         
-        let parameters = [
-            VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
-            ] as [String : Any]
+//        let parameters = [
+//            VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
+//            ] as [String : Any]
+        let parameters = [:] as [String : Any]
         
         let url = VillimUtils.buildURL(endpoint: VillimKeys.FEATURED_HOUSES_URL)
         
-        Alamofire.request(url, method:.get, parameters:parameters,encoding: JSONEncoding.default).responseJSON { response in
+        Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
@@ -94,7 +95,6 @@ class DiscoverViewController: ViewController {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
-                print(url)
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
             self.hideLoadingIndicator()
