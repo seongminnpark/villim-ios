@@ -44,15 +44,15 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Toaster.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>1FB3581F4855FB816F0C4899ED1A6026</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2E446BFD54C15D2606CD572E63447280</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,7 +62,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6119F47BFE03A2A8FFA2EB0029949EFD</key>
+		<key>5EF749DCC111FDF123D9EFFB86BC6794</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>66081DDAAD2D7E372D74F9B68314B707</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -72,12 +77,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BBF1BFCB7D510F175DF5844F822CADD7</key>
+		<key>8E0779CBE7F458454962E3DB4A089293</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>BD67DB6C2F0C6A220C517BC99F1953EE</key>
+		<key>975BA11C77C26761CB9D64C4F14F078A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BBF1BFCB7D510F175DF5844F822CADD7</key>
 		<dict>
 			<key>primary</key>
 			<true/>

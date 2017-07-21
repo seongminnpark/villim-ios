@@ -10,12 +10,12 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
+import Toaster
 
 class DiscoverViewController: ViewController {
     
     var houses : [VillimHouse] = []
     var discoverTableViewController : DiscoverTableViewController!
-    var errorMessage       : UILabel!
     var loadingIndicator   : NVActivityIndicatorView!
 
     override func viewDidLoad() {
@@ -27,10 +27,6 @@ class DiscoverViewController: ViewController {
         self.tabBarItem.title = self.title
         
         discoverTableViewController = DiscoverTableViewController()
-        
-        /* Error message */
-        errorMessage = UILabel()
-        self.view.addSubview(errorMessage)
         
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
@@ -117,12 +113,11 @@ class DiscoverViewController: ViewController {
     }
     
     private func showErrorMessage(message:String) {
-        errorMessage.isHidden = false
-        errorMessage.text = message
+        Toast(text: message, duration: Delay.long)
     }
     
     private func hideErrorMessage() {
-        errorMessage.isHidden = true
+        ToastCenter.default.cancelAll()
     }
 
     

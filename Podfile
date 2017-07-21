@@ -11,6 +11,7 @@ target 'Villim' do
   pod 'SwiftyJSON'
   pod 'NVActivityIndicatorView'
   pod 'Nuke', '~> 5.0'
+  pod 'Toaster'
 
   target 'VillimTests' do
     inherit! :search_paths
