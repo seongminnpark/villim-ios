@@ -29,16 +29,15 @@ class VillimUtils {
     }
     
     public static func datesBetween(startDate:Date, endDate:Date, includeEdges:Bool) -> [Date] {
-        var date1 = startDate;
-        var date2 = endDate;
+        var currDate = startDate;
         
         var dates = [Date]();
         
         if includeEdges { dates.append(startDate) }
         
-        while date1 < date2 {
-            dates.append(date1)
-            date1 = Calendar(identifier: .gregorian).date(byAdding: .date, value: 1, to: date1)
+        while currDate < endDate {
+            dates.append(currDate)
+            currDate = Calendar.current.date(byAdding: .day, value: 1, to: currDate)!
         }
         
         if includeEdges { dates.append(endDate) }

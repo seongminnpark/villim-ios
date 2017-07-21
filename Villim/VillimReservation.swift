@@ -21,7 +21,15 @@ class VillimReservation {
     var reservationCode : String
     
     init() {
-        
+        self.reservationId = 0
+        self.houseId = 0
+        self.hostId = 0
+        self.guestId = 0
+        self.startDate = Date()
+        self.endDate = Date()
+        self.reservationTime = ""
+        self.reservationStatus = 0
+        self.reservationCode = ""
     }
     
 }

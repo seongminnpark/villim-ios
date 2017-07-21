@@ -9,6 +9,7 @@
 import UIKit
 
 class HouseTableViewCell: UITableViewCell {
+    
     var houseThumbnail: UIImageView!
     var houseName: UILabel!
     var houseRating: UILabel!
