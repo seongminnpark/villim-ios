@@ -26,7 +26,9 @@ class DiscoverViewController: ViewController {
         self.title = "숙소 찾기"
         self.tabBarItem.title = self.title
         
+        /* Featured houses list */
         discoverTableViewController = DiscoverTableViewController()
+        self.view.addSubview(discoverTableViewController.view)
         
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
@@ -61,9 +63,9 @@ class DiscoverViewController: ViewController {
     
         /* Tableview */
         discoverTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalTo(self.view)
+            make.width.equalToSuperview()
             make.top.equalTo(topOffset)
-            make.bottom.equalTo(self.view)
+            make.bottom.equalToSuperview()
         }
         
     }
@@ -92,7 +94,8 @@ class DiscoverViewController: ViewController {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
-                self.showErrorMessage(message: error.localizedDescription)
+                print(url)
+                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
             self.hideLoadingIndicator()
         }
@@ -113,12 +116,21 @@ class DiscoverViewController: ViewController {
     }
     
     private func showErrorMessage(message:String) {
-        Toast(text: message, duration: Delay.long)
+        let toast = Toast(text: message, duration: Delay.long)
+        
+        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
+            
+        toast.show()
     }
     
     private func hideErrorMessage() {
         ToastCenter.default.cancelAll()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        hideErrorMessage()
+    }
     
 }

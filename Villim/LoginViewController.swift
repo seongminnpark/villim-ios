@@ -256,7 +256,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
-                self.showErrorMessage(message: error.localizedDescription)
+                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
                 self.loginListener.onLogin(success: false)
             }
             self.hideLoadingIndicator()
@@ -279,6 +279,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     private func hideErrorMessage() {
         errorMessage.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        hideErrorMessage()
     }
     
 }
