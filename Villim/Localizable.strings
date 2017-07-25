@@ -27,3 +27,8 @@
 "next" = "다음";
 "empty_field" = "모든 항목을 작성해주세요.";
 "server_unavailable" = "서버가 불안정합니다.";
+
+"status_pending" = "대기중";
+"status_confirmed" = "확인 완료";
+"status_done" = "완료";
+

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3E0954071F21FDBB000240FA /* DiscoverTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0954061F21FDBB000240FA /* DiscoverTableViewController.swift */; };
+		3E0954091F274B2D000240FA /* VisitTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0954081F274B2D000240FA /* VisitTableViewController.swift */; };
+		3E09540B1F27683A000240FA /* VillimVisit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E09540A1F27683A000240FA /* VillimVisit.swift */; };
 		3E0F067F1F1E017B0023E229 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F067E1F1E017B0023E229 /* AppDelegate.swift */; };
 		3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06801F1E017B0023E229 /* ViewController.swift */; };
 		3E0F06841F1E017B0023E229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06821F1E017B0023E229 /* Main.storyboard */; };
@@ -57,6 +59,8 @@
 		114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VillimTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		38935575BE308A988440909F /* Pods_Villim.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Villim.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0954061F21FDBB000240FA /* DiscoverTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverTableViewController.swift; sourceTree = "<group>"; };
+		3E0954081F274B2D000240FA /* VisitTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitTableViewController.swift; sourceTree = "<group>"; };
+		3E09540A1F27683A000240FA /* VillimVisit.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimVisit.swift; sourceTree = "<group>"; };
 		3E0F067B1F1E017B0023E229 /* Villim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Villim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0F067E1F1E017B0023E229 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E0F06801F1E017B0023E229 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -154,6 +158,7 @@
 				3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */,
 				3E0F068A1F1E017B0023E229 /* Info.plist */,
 				3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */,
+				3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */,
 				3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */,
 				3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */,
 				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
@@ -163,11 +168,12 @@
 				3E0F06B31F1E02CE0023E229 /* VillimSession.swift */,
 				3E0F06B41F1E02CE0023E229 /* VillimUser.swift */,
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
-				3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */,
 				3E8543871F21DF9200525F7A /* VillimHouse.swift */,
+				3E09540A1F27683A000240FA /* VillimVisit.swift */,
 				3E8543891F21E0F700525F7A /* VillimReservation.swift */,
 				3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */,
 				3E0954061F21FDBB000240FA /* DiscoverTableViewController.swift */,
+				3E0954081F274B2D000240FA /* VisitTableViewController.swift */,
 			);
 			path = Villim;
 			sourceTree = "<group>";
@@ -499,8 +505,10 @@
 				3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,
 				3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */,
+				3E09540B1F27683A000240FA /* VillimVisit.swift in Sources */,
 				3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */,
 				3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */,
+				3E0954091F274B2D000240FA /* VisitTableViewController.swift in Sources */,
 				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,

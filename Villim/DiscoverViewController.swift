@@ -51,7 +51,7 @@ class DiscoverViewController: ViewController {
     }
     
     func populateViews() {
-        discoverTableViewController.houses = houses
+        discoverTableViewController.houses = self.houses
         discoverTableViewController.tableView.reloadData()
     }
     
@@ -87,7 +87,7 @@ class DiscoverViewController: ViewController {
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
-                    self.houses = VillimHouse.getFeaturedHouseArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
+                    self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
                     
                     self.discoverTableViewController.houses = self.houses
                     self.discoverTableViewController.tableView.reloadData()
