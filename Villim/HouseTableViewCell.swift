@@ -15,25 +15,30 @@ class HouseTableViewCell: UITableViewCell {
     var houseRating: UILabel!
     var houseReviewCount: UILabel!
     var houseRent: UILabel!
+    var imageDim: UIView!
     
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
         houseThumbnail = UIImageView()
-        self.addSubview(houseThumbnail)
+        self.contentView.addSubview(houseThumbnail)
         
         houseName = UILabel()
-        self.addSubview(houseName)
+        self.contentView.addSubview(houseName)
         
         houseRating = UILabel()
-        self.addSubview(houseRating)
+        self.contentView.addSubview(houseRating)
         
         houseReviewCount = UILabel()
-        self.addSubview(houseReviewCount)
+        self.contentView.addSubview(houseReviewCount)
         
         houseRent = UILabel()
-        self.addSubview(houseRent)
+        self.contentView.addSubview(houseRent)
+        
+        imageDim = UIView()
+        imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        self.contentView.addSubview(imageDim)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -74,6 +79,10 @@ class HouseTableViewCell: UITableViewCell {
             make.right.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+        imageDim.snp.makeConstraints{ (make) -> Void in
+            make.width.height.top.left.equalTo(houseThumbnail)
+        }
     }
     
     
@@ -82,10 +91,16 @@ class HouseTableViewCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+         super.setSelected(highlighted, animated: animated)
+        
+        /* Logic to dim imageview */
+        if highlighted {
+            imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.2)
+        } else {
+            imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
+        }
     }
-
+    
 }

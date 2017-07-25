@@ -15,15 +15,14 @@ class DiscoverTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
-
+        
         /* Initialize tableview */
         self.tableView = UITableView()
+        self.tableView.register(HouseTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
+        self.tableView.rowHeight = 150
     }
 
     override func didReceiveMemoryWarning() {
@@ -55,8 +54,14 @@ class DiscoverTableViewController: UITableViewController {
         cell.houseRating.text = house.houseName
         cell.houseReviewCount.text = house.houseName
         cell.houseRent.text = house.houseName
-
+        cell.makeConstraints()
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let currentCell = tableView.cellForRow(at: indexPath)! as! HouseTableViewCell
+
     }
 
 }
