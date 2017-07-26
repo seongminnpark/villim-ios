@@ -10,9 +10,41 @@ import UIKit
 
 class HouseGenericTableViewCell: UITableViewCell {
 
-    func makeConstraints() {
+    var title   : UILabel!
+    var content : UILabel!
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
+        super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
+        
+        title = UILabel()
+        self.contentView.addSubview(title)
+        
+        content = UILabel()
+        self.contentView.addSubview(content)
         
     }
+    
+    required init(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    func makeConstraints() {
+        
+        title?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(100)
+            make.height.equalToSuperview()
+            make.left.equalToSuperview()
+        }
+        
+        content?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(100)
+            make.top.equalToSuperview()
+            make.right.equalToSuperview()
+        }
+        
+    }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
