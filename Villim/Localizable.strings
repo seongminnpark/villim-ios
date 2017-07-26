@@ -48,6 +48,9 @@
 
 "house_description" = "방 설명";
 
+"amenity" = "시설";
+"review" = "후기";
+
 "bedsheet" = "침대시트";
 "wifi" = "무선 인터넷";
 "tv" = "TV";
@@ -69,3 +72,6 @@
 
 "no_amenity" = "제공된 시설이 없습니다.";
 "amenity_see_more_format" = "+%d개";
+
+"review_see_more_format" = "+%d개 후기 더보기";
+"no_review" = "아직 작성된 후기가 없습니다.";

@@ -140,6 +140,7 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseAmenitiesCell() -> HouseAmenitiesTableViewCell {
         let cell : HouseAmenitiesTableViewCell = HouseAmenitiesTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"hosue_amenities")
 
+        cell.title.text = NSLocalizedString("amenity", comment: "")
         cell.amenities = house.amenityIds
         
         cell.populateViews()
@@ -150,6 +151,16 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseReviewCell() -> HouseReviewTableViewCell {
         let cell : HouseReviewTableViewCell = HouseReviewTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_review")
 
+        cell.title.text = NSLocalizedString("amenity", comment: "")
+        
+        cell.houseReviewCount   = self.house.houseReviewCount
+        cell.houseReviewRating  = self.house.houseRating
+        cell.lastReviewRating   = self.lastReviewRating
+        cell.lastReviewContent  = self.lastReviewContent
+        cell.lastReviewReviewer = self.lastReviewReviewer
+        cell.lastReviewRating   = self.lastReviewRating
+        
+        cell.populateViews()
         cell.makeConstraints()
         return cell
     }

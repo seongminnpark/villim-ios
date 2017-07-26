@@ -58,8 +58,12 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
             profileTitle.text = VillimSession.getFullName()
             
             /* Load profile photo */
-            let url = URL(string: VillimSession.getProfilePicUrl())
-            Nuke.loadImage(with: url!, into: profileImageView)
+            if VillimSession.getProfilePicUrl().isEmpty {
+                profileImageView.image = #imageLiteral(resourceName: "img_default")
+            } else {
+                let url = URL(string: VillimSession.getProfilePicUrl())
+                Nuke.loadImage(with: url!, into: profileImageView)
+            }
             
             /* Populate tableview */
             profileTableViewController.profileTableViewItems = loggedInTableViewItems
