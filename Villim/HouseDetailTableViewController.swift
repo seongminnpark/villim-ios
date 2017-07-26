@@ -120,7 +120,9 @@ class HouseDetailTableViewController: UITableViewController {
     
     func setupHouseDescriptionCell() -> HouseDescriptionTableViewCell {
         let cell : HouseDescriptionTableViewCell = HouseDescriptionTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_description")
-
+        
+        cell.houseDescription.text = house.description
+        
         cell.makeConstraints()
         return cell
     }
@@ -128,6 +130,9 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseGenericCell(title:String, content:String) -> HouseGenericTableViewCell {
         let cell : HouseGenericTableViewCell = HouseGenericTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_generic")
 
+        cell.title.text   = title
+        cell.content.text = content
+        
         cell.makeConstraints()
         return cell
     }

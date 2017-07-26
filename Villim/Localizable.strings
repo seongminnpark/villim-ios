@@ -46,6 +46,6 @@
 "bed_count_format" = "침대 %d개";
 "bathroom_count_format" = "욕실 %d개";
 
-
+"house_description" = "방 설명";
 
 
