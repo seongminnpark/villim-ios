@@ -88,8 +88,8 @@ class HouseDetailTableViewController: UITableViewController {
         let url = URL(string: house.hostProfilePicUrl)
         Nuke.loadImage(with: url!, into: cell.hostImage)
         
-        cell.hostName.text = house.hostName
-        cell.hostRating.text = "\(house.hostRating)"
+        cell.hostName.text        = house.hostName
+        cell.hostRating.text      = "\(house.hostRating)"
         cell.hostReviewCount.text = String(format: NSLocalizedString("review_count_format", comment: ""), house.hostReviewCount)
         
         cell.makeConstraints()
@@ -99,8 +99,8 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseHeaderCell() -> HouseHeaderTableViewCell {
         let cell : HouseHeaderTableViewCell = HouseHeaderTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_header")
 
-        cell.houseName.text = house.houseName
-        cell.houseAddr.text = house.addrFull
+        cell.houseName.text    = house.houseName
+        cell.houseAddress.text = house.addrFull
         
         cell.makeConstraints()
         return cell
@@ -109,6 +109,11 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseInfographicCell() -> HouseInfographicTableViewCell {
         let cell : HouseInfographicTableViewCell = HouseInfographicTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_infographic")
 
+        cell.guestCountLabel.text    = String(format: NSLocalizedString("guest_count_format", comment: ""), house.numGuest)
+        cell.roomCountLabel.text     = String(format: NSLocalizedString("room_count_format", comment: ""), house.numBedroom)
+        cell.bedCountLabel.text      = String(format: NSLocalizedString("bed_count_format", comment: ""), house.numBed)
+        cell.bathroomCountLabel.text = String(format: NSLocalizedString("bathroom_count_format", comment: ""), house.numBathroom)
+        
         cell.makeConstraints()
         return cell
     }

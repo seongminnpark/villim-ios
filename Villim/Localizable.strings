@@ -40,3 +40,12 @@
 "strict" = "엄격";
 
 "review_count_format" = "후기 %d개";
+
+"guest_count_format" = "인원 %d명";
+"room_count_format" = "방 %d개";
+"bed_count_format" = "침대 %d개";
+"bathroom_count_format" = "욕실 %d개";
+
+
+
+

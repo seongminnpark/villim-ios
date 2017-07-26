@@ -11,7 +11,7 @@ import UIKit
 class HouseHeaderTableViewCell: UITableViewCell {
 
     var houseName        : UILabel!
-    var hosueAddress      : UILabel!
+    var houseAddress      : UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
@@ -19,8 +19,8 @@ class HouseHeaderTableViewCell: UITableViewCell {
         houseName = UILabel()
         self.contentView.addSubview(houseName)
         
-        hosueAddress = UILabel()
-        self.contentView.addSubview(hosueAddress)
+        houseAddress = UILabel()
+        self.contentView.addSubview(houseAddress)
         
     }
     
@@ -38,7 +38,7 @@ class HouseHeaderTableViewCell: UITableViewCell {
             make.top.equalToSuperview()
         }
         
-        hosueAddress?.snp.makeConstraints { (make) -> Void in
+        houseAddress?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview()
             make.height.equalTo(30)
             make.top.equalTo(houseName.snp.bottom)

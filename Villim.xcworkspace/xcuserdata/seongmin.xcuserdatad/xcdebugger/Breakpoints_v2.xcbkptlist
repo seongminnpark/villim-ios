@@ -435,5 +435,98 @@
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/HouseInfographicTableViewCell.swift"
+            timestampString = "522782600.301503"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "1"
+            endingLineNumber = "1"
+            landmarkName = "makeConstraints()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.HouseInfographicTableViewCell.__deallocating_deinit"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/HouseInfographicTableViewCell.swift"
+                  timestampString = "522782600.310339"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.HouseInfographicTableViewCell.init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; Villim.HouseInfographicTableViewCell"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/HouseInfographicTableViewCell.swift"
+                  timestampString = "522782600.311655"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "116">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.HouseInfographicTableViewCell.__allocating_init (style : __C.UITableViewCellStyle, reuseIdentifier : Swift.Optional&lt;Swift.String&gt;) -&gt; Villim.HouseInfographicTableViewCell"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/HouseInfographicTableViewCell.swift"
+                  timestampString = "522782600.312944"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.HouseInfographicTableViewCell.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Villim.HouseInfographicTableViewCell&gt;"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/HouseInfographicTableViewCell.swift"
+                  timestampString = "522782600.314227"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.HouseInfographicTableViewCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;Villim.HouseInfographicTableViewCell&gt;"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/HouseInfographicTableViewCell.swift"
+                  timestampString = "522782600.315628"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "11"
+                  endingLineNumber = "11"
+                  offsetFromSymbolStart = "124">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
