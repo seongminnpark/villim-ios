@@ -42,6 +42,7 @@
 		3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0513C1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift */; };
 		3EB0513F1F28F25000EBBBCE /* HouseReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */; };
 		3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */; };
+		3EB051431F292ADB00EBBBCE /* VillimAmenity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051421F292ADB00EBBBCE /* VillimAmenity.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -109,6 +110,7 @@
 		3EB0513C1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseAmenitiesTableViewCell.swift; sourceTree = "<group>"; };
 		3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseReviewTableViewCell.swift; sourceTree = "<group>"; };
 		3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseMapTableViewCell.swift; sourceTree = "<group>"; };
+		3EB051421F292ADB00EBBBCE /* VillimAmenity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimAmenity.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				3E8543871F21DF9200525F7A /* VillimHouse.swift */,
 				3E09540A1F27683A000240FA /* VillimVisit.swift */,
 				3E8543891F21E0F700525F7A /* VillimReservation.swift */,
+				3EB051421F292ADB00EBBBCE /* VillimAmenity.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,
 				3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */,
+				3EB051431F292ADB00EBBBCE /* VillimAmenity.swift in Sources */,
 				3E09540B1F27683A000240FA /* VillimVisit.swift in Sources */,
 				3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */,
 				3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */,

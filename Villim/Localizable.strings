@@ -48,4 +48,21 @@
 
 "house_description" = "방 설명";
 
-
+"bedsheet" = "침대시트";
+"wifi" = "무선 인터넷";
+"tv" = "TV";
+"cutlery" = "취사도구/식기";
+"iron" = "다리미";
+"desk" = "책상/작업공간";
+"towel" = "수건";
+"air_conditioner" = "에어컨"
+"computer" = "컴퓨터";
+"fridge" = "냉장고";
+"hair_dryer" = "헤어드라이기";
+"smoke_detector" = "연기 감지기";
+"first_aid" = "비품";
+"heating" = "난방";
+"cooking_electronics" = "취사 가전제품";
+"washer" = "세탁기";
+"closet" = "옷장/서랍장";
+"fire_extinguisher" = "소화기";
