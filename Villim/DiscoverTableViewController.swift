@@ -9,9 +9,14 @@
 import UIKit
 import Nuke
 
+protocol DiscoverTableViewItemSelectedListener {
+    func discoverItemSelected(position:Int)
+}
+
 class DiscoverTableViewController: UITableViewController {
 
-    var houses : [VillimHouse] = []
+    var itemSelectedListener : DiscoverTableViewItemSelectedListener!
+    var houses   : [VillimHouse] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +65,7 @@ class DiscoverTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let currentCell = tableView.cellForRow(at: indexPath)! as! HouseTableViewCell
-
+        itemSelectedListener.discoverItemSelected(position: indexPath.row)
     }
 
 }
