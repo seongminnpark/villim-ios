@@ -16,6 +16,8 @@ import Toaster
 
 class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     
+    static let MAX_AMENITY_ICONS = 6
+    
     var house : VillimHouse! = nil
     var lastReviewContent : String = ""
     var lastReviewReviewer : String = ""

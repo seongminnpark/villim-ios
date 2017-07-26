@@ -140,6 +140,9 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseAmenitiesCell() -> HouseAmenitiesTableViewCell {
         let cell : HouseAmenitiesTableViewCell = HouseAmenitiesTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"hosue_amenities")
 
+        cell.amenities = house.amenityIds
+        
+        cell.populateViews()
         cell.makeConstraints()
         return cell
     }

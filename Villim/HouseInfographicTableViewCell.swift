@@ -40,7 +40,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
     
         /* Number of guests */
         guestContainer = UIView()
-        stackView.addSubview(guestContainer)
+        stackView.addArrangedSubview(guestContainer)
         
         guestCountLabel = UILabel()
         guestContainer.addSubview(guestCountLabel)
@@ -50,6 +50,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         
         /* Number of rooms */
         roomContainer = UIView()
+        stackView.addArrangedSubview(roomContainer)
         
         roomCountLabel = UILabel()
         roomContainer.addSubview(roomCountLabel)
@@ -59,6 +60,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         
         /* Number of beds */
         bedContainer = UIView()
+        stackView.addArrangedSubview(bedContainer)
         
         bedCountLabel = UILabel()
         bedContainer.addSubview(bedCountLabel)
@@ -68,6 +70,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         
         /* Number of bathrooms */
         bathroomContainer = UIView()
+        stackView.addArrangedSubview(bathroomContainer)
         
         bathroomCountLabel = UILabel()
         bathroomContainer.addSubview(bathroomCountLabel)
@@ -93,7 +96,6 @@ class HouseInfographicTableViewCell: UITableViewCell {
             make.top.equalToSuperview()
             make.left.equalToSuperview()
         }
-
         
         /* Number of guests */
         guestCountImage?.snp.makeConstraints { (make) -> Void in

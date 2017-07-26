@@ -10,18 +10,21 @@ import UIKit
 
 class HouseReviewTableViewCell: UITableViewCell {
 
-    var title   : UILabel!
-    var content : UILabel!
+    var title     : UILabel!
+    var stackView : UIStackView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
         title = UILabel()
+        title.text = NSLocalizedString("amenities", comment: "")
         self.contentView.addSubview(title)
         
-        content = UILabel()
-        self.contentView.addSubview(content)
-        
+        stackView = UIStackView()
+        stackView.axis = UILayoutConstraintAxis.horizontal
+        stackView.distribution = UIStackViewDistribution.fillEqually
+        stackView.alignment = UIStackViewAlignment.center
+        self.contentView.addSubview(stackView)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -29,22 +32,21 @@ class HouseReviewTableViewCell: UITableViewCell {
     }
     
     
+    func populateViews() {
+
+    }
+    
     func makeConstraints() {
         
         title?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
-            make.height.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
+            make.top.equalToSuperview()
             make.left.equalToSuperview()
         }
-        
-        content?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
-            make.top.equalToSuperview()
-            make.right.equalToSuperview()
-        }
-        
     }
     
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
