@@ -362,11 +362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "522770601.99727"
+            timestampString = "522780559.461421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "112"
-            endingLineNumber = "112"
+            startingLineNumber = "123"
+            endingLineNumber = "123"
             landmarkName = "sendHouseInfoRequest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "522770601.99727"
+            timestampString = "522780559.461421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "122"
-            endingLineNumber = "122"
+            startingLineNumber = "139"
+            endingLineNumber = "139"
             landmarkName = "sendHouseInfoRequest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "522770601.99727"
+            timestampString = "522780559.461421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "populateView()"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,13 +410,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "522770601.99727"
+            timestampString = "522780559.461421"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/HouseDetailTableViewController.swift"
+            timestampString = "522780578.132377"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "98"
+            endingLineNumber = "98"
+            landmarkName = "HouseDetailTableViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

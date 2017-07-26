@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Nuke
 
 protocol HouseDetailScrollListener {
     func onScroll(contentOffset:CGPoint)
@@ -16,6 +17,10 @@ class HouseDetailTableViewController: UITableViewController {
 
     var houseDetailScrollListener : HouseDetailScrollListener!
     var house : VillimHouse!
+    var lastReviewContent : String!
+    var lastReviewReviewer : String!
+    var lastReviewProfilePictureUrl : String!
+    var lastReviewRating : Float!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,14 +55,92 @@ class HouseDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
+    
+        switch row {
+        case 0:
+            return setupHostInfoCell()
+        case 1:
+            return setupHouseHeaderCell()
+        case 2:
+            return setupHouseInfographicCell()
+        case 3:
+            return setupHouseDescriptionCell()
+        case 4:
+            return setupHouseGenericCell(title: NSLocalizedString("price_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
+        case 5:
+            return setupHouseAmenitiesCell()
+        case 6:
+            return setupHouseReviewCell()
+        case 7:
+            return setupMapCell()
+        case 8:
+            return setupHouseGenericCell(title: NSLocalizedString("house_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
+        case 9:
+            return setupHouseGenericCell(title: NSLocalizedString("cancellation_policy", comment: ""), content: NSLocalizedString("strict", comment: ""))
+        default:
+            return setupHostInfoCell()
+        }
+    }
+    
+    func setupHostInfoCell() -> HostInfoTableViewCell {
+        let cell : HostInfoTableViewCell = HostInfoTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"host_info")
         
-        let cell : HouseTableViewCell = HouseTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"cell")
+        let url = URL(string: house.hostProfilePicUrl)
+        Nuke.loadImage(with: url!, into: cell.hostImage)
         
-        let url = URL(string: house.houseThumbnailUrl)
-        cell.houseName.text = house.houseName
-        cell.houseRating.text = house.houseName
-        cell.houseReviewCount.text = house.houseName
-        cell.houseRent.text = house.houseName
+        cell.hostName.text = house.hostName
+        cell.hostRating.text = "\(house.hostRating)"
+        cell.hostReviewCount.text = String(format: NSLocalizedString("review_count_format", comment: ""), house.hostReviewCount)
+        
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupHouseHeaderCell() -> HouseHeaderTableViewCell {
+        let cell : HouseHeaderTableViewCell = HouseHeaderTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_header")
+
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupHouseInfographicCell() -> HouseInfographicTableViewCell {
+        let cell : HouseInfographicTableViewCell = HouseInfographicTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_infographic")
+
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupHouseDescriptionCell() -> HouseDescriptionTableViewCell {
+        let cell : HouseDescriptionTableViewCell = HouseDescriptionTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_description")
+
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupHouseGenericCell(title:String, content:String) -> HouseGenericTableViewCell {
+        let cell : HouseGenericTableViewCell = HouseGenericTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_generic")
+
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupHouseAmenitiesCell() -> HouseAmenitiesTableViewCell {
+        let cell : HouseAmenitiesTableViewCell = HouseAmenitiesTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"hosue_amenities")
+
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupHouseReviewCell() -> HouseReviewTableViewCell {
+        let cell : HouseReviewTableViewCell = HouseReviewTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_review")
+
+        cell.makeConstraints()
+        return cell
+    }
+    
+    func setupMapCell() -> HouseMapTableViewCell {
+        let cell : HouseMapTableViewCell = HouseMapTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_map")
+
         cell.makeConstraints()
         return cell
     }

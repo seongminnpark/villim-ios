@@ -10,6 +10,10 @@ import UIKit
 
 class HouseAmenitiesTableViewCell: UITableViewCell {
 
+    func makeConstraints() {
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

@@ -17,6 +17,11 @@ import Toaster
 class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     
     var house : VillimHouse! = nil
+    var lastReviewContent : String = ""
+    var lastReviewReviewer : String = ""
+    var lastReviewProfilePictureUrl : String = ""
+    var lastReviewRating : Float = 0
+    
     var houseDetailTableViewController : HouseDetailTableViewController!
     
     var houseImageView : UIImageView!
@@ -109,9 +114,21 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     self.house = VillimHouse.init(houseInfo: responseData[VillimKeys.KEY_HOUSE_INFO])
-                    
-//                    self.discoverTableViewController.houses = self.houses
-//                    self.discoverTableViewController.tableView.reloadData()
+                    self.lastReviewContent =
+                        responseData[VillimKeys.KEY_REVIEW_LAST_CONTENT].exists() ? responseData[VillimKeys.KEY_REVIEW_LAST_CONTENT].stringValue : ""
+                    self.lastReviewReviewer =
+                        responseData[VillimKeys.KEY_REVIEW_LAST_REVIEWER].exists() ? responseData[VillimKeys.KEY_REVIEW_LAST_REVIEWER].stringValue : ""
+                    self.lastReviewProfilePictureUrl =
+                        responseData[VillimKeys.KEY_REVIEW_LAST_PROFILE_PIC_URL].exists() ? responseData[VillimKeys.KEY_REVIEW_LAST_PROFILE_PIC_URL].stringValue : ""
+                    self.lastReviewRating =
+                        responseData[VillimKeys.KEY_REVIEW_LAST_RATING].exists() ? responseData[VillimKeys.KEY_REVIEW_LAST_RATING].floatValue : 0.0
+
+                    self.houseDetailTableViewController.house = self.house
+                    self.houseDetailTableViewController.lastReviewContent = self.lastReviewContent
+                    self.houseDetailTableViewController.lastReviewReviewer = self.lastReviewReviewer
+                    self.houseDetailTableViewController.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
+                    self.houseDetailTableViewController.lastReviewRating = self.lastReviewRating
+                    self.houseDetailTableViewController.tableView.reloadData()
                     
                     self.populateView()
                     

@@ -32,3 +32,11 @@
 "status_confirmed" = "확인 완료";
 "status_done" = "완료";
 
+"price_policy" = "가격 정책";
+"house_policy" = "숙소 이용규칙";
+"cancellation_policy" = "환불 정책";
+
+"read" = "읽기";
+"strict" = "엄격";
+
+"review_count_format" = "후기 %d개";
