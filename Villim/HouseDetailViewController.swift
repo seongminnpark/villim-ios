@@ -14,19 +14,31 @@ import NVActivityIndicatorView
 import Toaster
 
 
-class HouseDetailViewController: UIViewController {
+class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     
     var house : VillimHouse! = nil
+    var houseDetailTableViewController : HouseDetailTableViewController!
     
     var houseImageView : UIImageView!
     
-    var loadingIndicator   : NVActivityIndicatorView!
-
+    var loadingIndicator : NVActivityIndicatorView!
+    
+    let originalHouseImageViewHeight : CGFloat! = 300
+    var navControllerHeight : CGFloat!
+    var statusBarHeight : CGFloat!
+    var topOffset : CGFloat!
+    var prevContentOffset : CGFloat!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
+        
+        navControllerHeight = self.navigationController!.navigationBar.frame.height
+        statusBarHeight = UIApplication.shared.statusBarFrame.height
+        topOffset = navControllerHeight + statusBarHeight
+        prevContentOffset = 0
         
         /* Remove title */
         
@@ -41,6 +53,12 @@ class HouseDetailViewController: UIViewController {
         /* House ImageView */
         houseImageView = UIImageView()
         self.view.addSubview(houseImageView!)
+        
+        /* House Table View */
+        houseDetailTableViewController = HouseDetailTableViewController()
+        houseDetailTableViewController.houseDetailScrollListener = self
+        houseDetailTableViewController.house = self.house
+        self.view.addSubview(houseDetailTableViewController.view)
         
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
@@ -64,8 +82,15 @@ class HouseDetailViewController: UIViewController {
         /* House ImageView */
         houseImageView?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(self.view)
-            make.height.equalTo(200)
+            make.height.equalTo(originalHouseImageViewHeight)
             make.top.equalTo(self.view)
+        }
+        
+        /* Tableview */
+        houseDetailTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
+            make.width.equalToSuperview()
+            make.top.equalTo(houseImageView.snp.bottom)
+            make.bottom.equalToSuperview()
         }
     }
     
@@ -83,7 +108,6 @@ class HouseDetailViewController: UIViewController {
             case .success:
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
-                    print(responseData)
                     self.house = VillimHouse.init(houseInfo: responseData[VillimKeys.KEY_HOUSE_INFO])
                     
 //                    self.discoverTableViewController.houses = self.houses
@@ -106,6 +130,24 @@ class HouseDetailViewController: UIViewController {
         let url = URL(string: house.houseThumbnailUrl)
         Nuke.loadImage(with: url!, into: self.houseImageView)
         
+    }
+    
+    func onScroll(contentOffset:CGPoint) {
+        let contentVector = contentOffset.y - prevContentOffset
+        prevContentOffset = contentOffset.y
+        let newHeight = houseImageView.bounds.height - contentVector
+        
+        print(newHeight, houseImageView.bounds.height, contentOffset.y)
+        if originalHouseImageViewHeight >= newHeight && newHeight >= topOffset {
+            houseImageView?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(newHeight)
+            }
+
+//            houseImageView.frame = CGRect(x: houseImageView.frame.origin.x, y:houseImageView.frame.origin.y, width:houseImageView.bounds.width, height:newHeight);
+            print("newHeight: \(houseImageView.bounds.height)")
+            print("------------------------------------------")
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
