@@ -34,6 +34,14 @@
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
 		3EB0512C1F28801500EBBBCE /* HouseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */; };
 		3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */; };
+		3EB051301F28F13400EBBBCE /* HostInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512F1F28F13400EBBBCE /* HostInfoTableViewCell.swift */; };
+		3EB051351F28F19900EBBBCE /* HouseHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051341F28F19900EBBBCE /* HouseHeaderTableViewCell.swift */; };
+		3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051361F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift */; };
+		3EB051391F28F1CE00EBBBCE /* HouseDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051381F28F1CE00EBBBCE /* HouseDescriptionTableViewCell.swift */; };
+		3EB0513B1F28F20900EBBBCE /* HouseGenericTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0513A1F28F20900EBBBCE /* HouseGenericTableViewCell.swift */; };
+		3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0513C1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift */; };
+		3EB0513F1F28F25000EBBBCE /* HouseReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */; };
+		3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -93,6 +101,14 @@
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
 		3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDetailViewController.swift; sourceTree = "<group>"; };
 		3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDetailTableViewController.swift; sourceTree = "<group>"; };
+		3EB0512F1F28F13400EBBBCE /* HostInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostInfoTableViewCell.swift; sourceTree = "<group>"; };
+		3EB051341F28F19900EBBBCE /* HouseHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		3EB051361F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseInfographicTableViewCell.swift; sourceTree = "<group>"; };
+		3EB051381F28F1CE00EBBBCE /* HouseDescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDescriptionTableViewCell.swift; sourceTree = "<group>"; };
+		3EB0513A1F28F20900EBBBCE /* HouseGenericTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseGenericTableViewCell.swift; sourceTree = "<group>"; };
+		3EB0513C1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseAmenitiesTableViewCell.swift; sourceTree = "<group>"; };
+		3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseReviewTableViewCell.swift; sourceTree = "<group>"; };
+		3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseMapTableViewCell.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -154,6 +170,9 @@
 		3E0F067D1F1E017B0023E229 /* Villim */ = {
 			isa = PBXGroup;
 			children = (
+				3EB051331F28F16A00EBBBCE /* Models */,
+				3EB051321F28F15400EBBBCE /* TableViewControllers */,
+				3EB051311F28F13F00EBBBCE /* TableViewCells */,
 				3E0F06C21F1E05100023E229 /* Localizable.strings */,
 				3E0F067E1F1E017B0023E229 /* AppDelegate.swift */,
 				3E0F06801F1E017B0023E229 /* ViewController.swift */,
@@ -169,17 +188,7 @@
 				3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */,
 				3E0F06B11F1E02CE0023E229 /* TabBarController.swift */,
 				3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */,
-				3E0F06B31F1E02CE0023E229 /* VillimSession.swift */,
-				3E0F06B41F1E02CE0023E229 /* VillimUser.swift */,
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
-				3E8543871F21DF9200525F7A /* VillimHouse.swift */,
-				3E09540A1F27683A000240FA /* VillimVisit.swift */,
-				3E8543891F21E0F700525F7A /* VillimReservation.swift */,
-				3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */,
-				3E0954061F21FDBB000240FA /* DiscoverTableViewController.swift */,
-				3E0954081F274B2D000240FA /* VisitTableViewController.swift */,
-				3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */,
-				3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */,
 			);
 			path = Villim;
 			sourceTree = "<group>";
@@ -200,6 +209,45 @@
 				3E0F06A01F1E017B0023E229 /* Info.plist */,
 			);
 			path = VillimUITests;
+			sourceTree = "<group>";
+		};
+		3EB051311F28F13F00EBBBCE /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */,
+				3EB0512F1F28F13400EBBBCE /* HostInfoTableViewCell.swift */,
+				3EB051341F28F19900EBBBCE /* HouseHeaderTableViewCell.swift */,
+				3EB051361F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift */,
+				3EB051381F28F1CE00EBBBCE /* HouseDescriptionTableViewCell.swift */,
+				3EB0513A1F28F20900EBBBCE /* HouseGenericTableViewCell.swift */,
+				3EB0513C1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift */,
+				3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */,
+				3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+		3EB051321F28F15400EBBBCE /* TableViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */,
+				3E0954061F21FDBB000240FA /* DiscoverTableViewController.swift */,
+				3E0954081F274B2D000240FA /* VisitTableViewController.swift */,
+				3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */,
+			);
+			name = TableViewControllers;
+			sourceTree = "<group>";
+		};
+		3EB051331F28F16A00EBBBCE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E0F06B31F1E02CE0023E229 /* VillimSession.swift */,
+				3E0F06B41F1E02CE0023E229 /* VillimUser.swift */,
+				3E8543871F21DF9200525F7A /* VillimHouse.swift */,
+				3E09540A1F27683A000240FA /* VillimVisit.swift */,
+				3E8543891F21E0F700525F7A /* VillimReservation.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		72E66BF35CB215CD0E5917AD /* Frameworks */ = {
@@ -510,6 +558,7 @@
 			files = (
 				3EB0512C1F28801500EBBBCE /* HouseDetailViewController.swift in Sources */,
 				3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */,
+				3EB0513F1F28F25000EBBBCE /* HouseReviewTableViewCell.swift in Sources */,
 				3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,
 				3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */,
@@ -517,14 +566,21 @@
 				3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */,
 				3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */,
 				3E0954091F274B2D000240FA /* VisitTableViewController.swift in Sources */,
+				3EB0513B1F28F20900EBBBCE /* HouseGenericTableViewCell.swift in Sources */,
 				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
+				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
+				3EB051351F28F19900EBBBCE /* HouseHeaderTableViewCell.swift in Sources */,
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
+				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,
+				3EB051301F28F13400EBBBCE /* HostInfoTableViewCell.swift in Sources */,
+				3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */,
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
 				3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */,
 				3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */,
+				3EB051391F28F1CE00EBBBCE /* HouseDescriptionTableViewCell.swift in Sources */,
 				3E0954071F21FDBB000240FA /* DiscoverTableViewController.swift in Sources */,
 				3E0F067F1F1E017B0023E229 /* AppDelegate.swift in Sources */,
 				3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */,
