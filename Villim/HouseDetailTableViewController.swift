@@ -99,6 +99,9 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseHeaderCell() -> HouseHeaderTableViewCell {
         let cell : HouseHeaderTableViewCell = HouseHeaderTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_header")
 
+        cell.houseName.text = house.houseName
+        cell.houseAddr.text = house.addrFull
+        
         cell.makeConstraints()
         return cell
     }
