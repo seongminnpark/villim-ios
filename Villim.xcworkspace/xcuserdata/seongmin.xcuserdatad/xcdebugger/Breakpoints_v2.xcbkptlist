@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailTableViewController.swift"
-            timestampString = "522810603.749996"
+            timestampString = "522850589.64436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "104"
+            endingLineNumber = "104"
             landmarkName = "HouseDetailTableViewController"
             landmarkType = "3">
          </BreakpointContent>
