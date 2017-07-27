@@ -90,7 +90,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         guestContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
             make.height.equalTo(CONTAINER_HEIGHT)
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(-(CONTAINER_SEPARATION * 1.5 + CONTAINER_WIDTH * 2))
         }
         guestCountImage?.snp.makeConstraints { (make) -> Void in
@@ -108,7 +108,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         roomContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
             make.height.equalTo(CONTAINER_HEIGHT)
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(-(CONTAINER_SEPARATION * 0.5 + CONTAINER_WIDTH))
         }
         roomCountImage?.snp.makeConstraints { (make) -> Void in
@@ -126,7 +126,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         bedContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
             make.height.equalTo(CONTAINER_HEIGHT)
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(CONTAINER_SEPARATION * 0.5)
         }
         bedCountImage?.snp.makeConstraints { (make) -> Void in
@@ -144,7 +144,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         bathroomContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
             make.height.equalTo(CONTAINER_HEIGHT)
-            make.top.equalToSuperview()
+            make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(CONTAINER_SEPARATION * 1.5 + CONTAINER_WIDTH)
         }
         bathroomCountImage?.snp.makeConstraints { (make) -> Void in
