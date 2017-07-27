@@ -11,36 +11,33 @@ import Nuke
 
 class HouseInfographicTableViewCell: UITableViewCell {
 
-    var stackView           : UIStackView!
+    let CONTAINER_WIDTH      = 80.0
+    let CONTAINER_HEIGHT     = 100.0
+    let CONTAINER_SEPARATION = 10.0
+    let ICON_HEIGHT          = 30
     
-    var guestContainer      : UIView!
-    var guestCountLabel     : UILabel!
-    var guestCountImage     : UIImageView!
+    var guestContainer     : UIView!
+    var guestCountLabel    : UILabel!
+    var guestCountImage    : UIImageView!
     
     var roomContainer      : UIView!
-    var roomCountLabel      : UILabel!
-    var roomCountImage      : UIImageView!
+    var roomCountLabel     : UILabel!
+    var roomCountImage     : UIImageView!
     
-    var bedContainer        : UIView!
-    var bedCountLabel       : UILabel!
-    var bedCountImage       : UIImageView!
+    var bedContainer       : UIView!
+    var bedCountLabel      : UILabel!
+    var bedCountImage      : UIImageView!
     
-    var bathroomContainer   : UIView!
-    var bathroomCountLabel  : UILabel!
-    var bathroomCountImage  : UIImageView!
+    var bathroomContainer  : UIView!
+    var bathroomCountLabel : UILabel!
+    var bathroomCountImage : UIImageView!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
-        stackView = UIStackView()
-        stackView.axis = UILayoutConstraintAxis.horizontal
-        stackView.distribution = UIStackViewDistribution.fillEqually
-        stackView.alignment = UIStackViewAlignment.center
-        self.contentView.addSubview(stackView)
-    
         /* Number of guests */
         guestContainer = UIView()
-        stackView.addArrangedSubview(guestContainer)
+        self.contentView.addSubview(guestContainer)
         
         guestCountLabel = UILabel()
         guestContainer.addSubview(guestCountLabel)
@@ -50,7 +47,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         
         /* Number of rooms */
         roomContainer = UIView()
-        stackView.addArrangedSubview(roomContainer)
+        self.contentView.addSubview(roomContainer)
         
         roomCountLabel = UILabel()
         roomContainer.addSubview(roomCountLabel)
@@ -60,7 +57,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         
         /* Number of beds */
         bedContainer = UIView()
-        stackView.addArrangedSubview(bedContainer)
+        self.contentView.addSubview(bedContainer)
         
         bedCountLabel = UILabel()
         bedContainer.addSubview(bedCountLabel)
@@ -70,7 +67,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
         
         /* Number of bathrooms */
         bathroomContainer = UIView()
-        stackView.addArrangedSubview(bathroomContainer)
+        self.contentView.addSubview(bathroomContainer)
         
         bathroomCountLabel = UILabel()
         bathroomContainer.addSubview(bathroomCountLabel)
@@ -78,9 +75,8 @@ class HouseInfographicTableViewCell: UITableViewCell {
         bathroomCountImage = UIImageView()
         bathroomContainer.addSubview(bathroomCountImage)
         
-        makeConstraints()
         populateViews()
-        
+        makeConstraints()
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -90,64 +86,80 @@ class HouseInfographicTableViewCell: UITableViewCell {
     
     func makeConstraints() {
         
-        stackView?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalToSuperview()
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
-        }
-        
         /* Number of guests */
-        guestCountImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
+        guestContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.height.equalTo(CONTAINER_HEIGHT)
             make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalTo(self.contentView.snp.centerX).offset(-(CONTAINER_SEPARATION * 1.5 + CONTAINER_WIDTH * 2))
+        }
+        guestCountImage?.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(ICON_HEIGHT)
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         guestCountLabel?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalTo(guestCountImage.snp.bottom)
             make.bottom.equalToSuperview()
         }
         
         /* Number of rooms */
-        roomCountImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
+        roomContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.height.equalTo(CONTAINER_HEIGHT)
             make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalTo(self.contentView.snp.centerX).offset(-(CONTAINER_SEPARATION * 0.5 + CONTAINER_WIDTH))
+        }
+        roomCountImage?.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(ICON_HEIGHT)
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         roomCountLabel?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalTo(roomCountImage.snp.bottom)
             make.bottom.equalToSuperview()
         }
         
         /* Number of beds */
-        bedCountImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
+        bedContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.height.equalTo(CONTAINER_HEIGHT)
             make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalTo(self.contentView.snp.centerX).offset(CONTAINER_SEPARATION * 0.5)
+        }
+        bedCountImage?.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(ICON_HEIGHT)
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         bedCountLabel?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalTo(bedCountImage.snp.bottom)
             make.bottom.equalToSuperview()
         }
         
         /* Number of bathrooms */
-        bathroomCountImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
+        bathroomContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.height.equalTo(CONTAINER_HEIGHT)
             make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalTo(self.contentView.snp.centerX).offset(CONTAINER_SEPARATION * 1.5 + CONTAINER_WIDTH)
+        }
+        bathroomCountImage?.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(ICON_HEIGHT)
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
         bathroomCountLabel?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.top.equalTo(bathroomCountImage.snp.bottom)
             make.bottom.equalToSuperview()
         }
+        
+        print(self.contentView.frame.width)
+        
     }
     
     func populateViews() {
@@ -155,13 +167,13 @@ class HouseInfographicTableViewCell: UITableViewCell {
         guestCountImage.image = #imageLiteral(resourceName: "icon_guest")
         
         /* Number of rooms */
-        guestCountImage.image = #imageLiteral(resourceName: "icon_door")
+        roomCountImage.image = #imageLiteral(resourceName: "icon_door")
         
         /* Number of beds */
-        guestCountImage.image = #imageLiteral(resourceName: "icon_bed")
+        bedCountImage.image = #imageLiteral(resourceName: "icon_bed")
         
         /* Number of bathrooms */
-        guestCountImage.image = #imageLiteral(resourceName: "icon_bath")
+        bathroomCountImage.image = #imageLiteral(resourceName: "icon_bath")
     }
     
     override func awakeFromNib() {

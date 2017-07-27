@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseInfographicTableViewCell.swift"
-            timestampString = "522810446.155381"
+            timestampString = "522868127.063759"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "makeConstraints()"
             landmarkType = "7">
             <Locations>
