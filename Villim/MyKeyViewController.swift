@@ -31,7 +31,8 @@ class MyKeyViewController: ViewController {
         self.title = "내 열쇠"
         
         let sliderLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        slideButton = SlideButton(frame:CGRect(x:sliderLeft,y:300, width:slideButtonWidth, height:slideButtonHeight))
+        let sliderTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        slideButton = SlideButton(frame:CGRect(x:sliderLeft,y:sliderTop, width:slideButtonWidth, height:slideButtonHeight))
         slideButton.backgroundColor = VillimUtils.themeColor
         slideButton.imageName = #imageLiteral(resourceName: "slider_thumb")
         slideButton.buttonText = NSLocalizedString("unlock_doorlock", comment: "")

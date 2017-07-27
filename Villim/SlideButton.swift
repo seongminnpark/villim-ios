@@ -19,7 +19,7 @@ class SlideButton: UIView {
     
     var delegate: SlideButtonDelegate?
     
-    var dragPointWidth: CGFloat = 70 {
+    var dragPointWidth: CGFloat = 60 {
         didSet{
             setStyle()
         }
@@ -152,14 +152,19 @@ class SlideButton: UIView {
         print("pandetected")
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
-        sender.view?.frame.origin.x = dragPointWidth + translatedPoint.x
+        if dragPointWidth + translatedPoint.x > self.frame.size.width - dragPointWidth {
+            sender.view?.frame.origin.x = self.frame.size.width - dragPointWidth
+        } else {
+            sender.view?.frame.origin.x = dragPointWidth + translatedPoint.x
+        }
+        
         if sender.state == .ended{
             
             let velocityX = sender.velocity(in: self).x * 0.2
             var finalX    = translatedPoint.x + velocityX
             if finalX < 0{
                 finalX = 0
-            }else if finalX + self.dragPointWidth  >  (self.frame.size.width - 60){
+            } else if finalX + self.dragPointWidth  >  self.frame.size.width {
                 unlocked = true
                 self.unlock()
             }
