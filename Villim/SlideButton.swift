@@ -15,6 +15,8 @@ protocol SlideButtonDelegate{
 
 class SlideButton: UIView {
     
+    let sliderInset : CGFloat = 3.0 // Diff between slider thumb and slider.
+    
     var delegate: SlideButtonDelegate?
     
     var dragPointWidth: CGFloat = 70 {
@@ -78,7 +80,6 @@ class SlideButton: UIView {
     
     var dragPoint            = UIView()
     var buttonLabel          = UILabel()
-    var dragPointButtonLabel = UILabel()
     var imageView            = UIImageView()
     var unlocked             = false
     var layoutSet            = false
@@ -101,23 +102,21 @@ class SlideButton: UIView {
     
     func setStyle(){
         self.buttonLabel.text               = self.buttonText
-        self.dragPointButtonLabel.text      = self.buttonText
         self.dragPoint.frame.size.width     = self.dragPointWidth
         self.dragPoint.backgroundColor      = self.dragPointColor
         self.backgroundColor                = self.buttonColor
         self.imageView.image                = imageName
         self.buttonLabel.textColor          = self.buttonTextColor
-        self.dragPointButtonLabel.textColor = self.dragPointTextColor
         
         self.dragPoint.layer.cornerRadius   = buttonCornerRadius
         self.layer.cornerRadius             = buttonCornerRadius
     }
     
     func setUpButton(){
-        
+        print("setupbutton")
         self.backgroundColor              = self.buttonColor
         
-        self.dragPoint                    = UIView(frame: CGRect(x: dragPointWidth - self.frame.size.width, y: 0, width: self.frame.size.width, height: self.frame.size.height))
+        self.dragPoint                    = UIView(frame: CGRect(x: sliderInset, y: sliderInset, width: self.frame.size.height - sliderInset*2, height: self.frame.size.height - sliderInset*2))
         self.dragPoint.backgroundColor    = dragPointColor
         self.dragPoint.layer.cornerRadius = buttonCornerRadius
         self.addSubview(self.dragPoint)
@@ -131,20 +130,12 @@ class SlideButton: UIView {
             self.buttonLabel.font          = self.buttonFont
             self.buttonLabel.textColor     = self.buttonTextColor
             self.addSubview(self.buttonLabel)
-            
-            self.dragPointButtonLabel               = UILabel(frame: CGRect(x: 0, y: 0, width: self.frame.size.width, height: self.frame.size.height))
-            self.dragPointButtonLabel.textAlignment = .center
-            self.dragPointButtonLabel.text          = buttonText
-            self.dragPointButtonLabel.textColor     = UIColor.white
-            self.dragPointButtonLabel.font          = self.buttonFont
-            self.dragPointButtonLabel.textColor     = self.dragPointTextColor
-            self.dragPoint.addSubview(self.dragPointButtonLabel)
         }
         self.bringSubview(toFront: self.dragPoint)
         
         if self.imageName != UIImage(){
-            self.imageView = UIImageView(frame: CGRect(x: self.frame.size.width - dragPointWidth, y: 0, width: self.dragPointWidth, height: self.frame.size.height))
-            self.imageView.contentMode = .center
+            self.imageView = UIImageView(frame: dragPoint.frame)
+            self.imageView.contentMode = .scaleAspectFill
             self.imageView.image = self.imageName
             self.dragPoint.addSubview(self.imageView)
         }
@@ -158,9 +149,10 @@ class SlideButton: UIView {
     }
     
     func panDetected(sender: UIPanGestureRecognizer){
+        print("pandetected")
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
-        sender.view?.frame.origin.x = (dragPointWidth - self.frame.size.width) + translatedPoint.x
+        sender.view?.frame.origin.x = dragPointWidth + translatedPoint.x
         if sender.state == .ended{
             
             let velocityX = sender.velocity(in: self).x * 0.2
@@ -188,15 +180,14 @@ class SlideButton: UIView {
     
     //lock button animation (SUCCESS)
     func unlock(){
+        print("unlock")
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
             self.dragPoint.frame = CGRect(x: self.frame.size.width - self.dragPoint.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in
             if Status{
-                self.dragPointButtonLabel.text      = self.buttonUnlockedText
-                self.imageView.isHidden               = true
-                self.dragPoint.backgroundColor      = self.buttonUnlockedColor
-                self.dragPointButtonLabel.textColor = self.buttonUnlockedTextColor
-                self.delegate?.buttonStatus(status: "Unlocked", sender: self)
+//                self.imageView.isHidden               = true
+//                self.dragPoint.backgroundColor      = self.buttonUnlockedColor
+//                self.delegate?.buttonStatus(status: "Unlocked", sender: self)
             }
         }
     }
@@ -204,14 +195,12 @@ class SlideButton: UIView {
     //reset button animation (RESET)
     func reset(){
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
-            self.dragPoint.frame = CGRect(x: self.dragPointWidth - self.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
+            self.dragPoint.frame = CGRect(x: 0, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in
             if Status{
-                self.dragPointButtonLabel.text      = self.buttonText
-                self.imageView.isHidden               = false
-                self.dragPoint.backgroundColor      = self.dragPointColor
-                self.dragPointButtonLabel.textColor = self.dragPointTextColor
-                self.unlocked                       = false
+//                self.imageView.isHidden               = false
+//                self.dragPoint.backgroundColor      = self.dragPointColor
+//                self.unlocked                       = false
                 //self.delegate?.buttonStatus("Locked")
             }
         }

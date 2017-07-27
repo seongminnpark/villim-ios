@@ -13,6 +13,9 @@ import Nuke
 
 class MyKeyViewController: ViewController {
     
+    let slideButtonWidth  : CGFloat = 300.0
+    let slideButtonHeight : CGFloat = 60.0
+    
     var reviewButton : UIButton!
     var changePasscodeButton: UIButton!
     var roomName : UILabel!
@@ -27,8 +30,11 @@ class MyKeyViewController: ViewController {
         self.view.backgroundColor = UIColor.white
         self.title = "내 열쇠"
         
-        slideButton = SlideButton(frame:CGRect(x:10,y:300, width:300, height:50))
-        slideButton.backgroundColor = UIColor.black
+        let sliderLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
+        slideButton = SlideButton(frame:CGRect(x:sliderLeft,y:300, width:slideButtonWidth, height:slideButtonHeight))
+        slideButton.backgroundColor = VillimUtils.themeColor
+        slideButton.imageName = #imageLiteral(resourceName: "slider_thumb")
+        slideButton.buttonText = NSLocalizedString("unlock_doorlock", comment: "")
         self.view.addSubview(slideButton)
         
 //        makeConstraints()
