@@ -154,19 +154,17 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     func onScroll(contentOffset:CGPoint) {
         let contentVector = contentOffset.y - prevContentOffset
         prevContentOffset = contentOffset.y
-        let newHeight = houseImageView.bounds.height - contentVector
+        var newHeight = houseImageView.bounds.height - contentVector
         
-        print(newHeight, houseImageView.bounds.height, contentOffset.y)
-        if originalHouseImageViewHeight >= newHeight && newHeight >= topOffset {
-            houseImageView?.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(newHeight)
-            }
-
-//            houseImageView.frame = CGRect(x: houseImageView.frame.origin.x, y:houseImageView.frame.origin.y, width:houseImageView.bounds.width, height:newHeight);
-            print("newHeight: \(houseImageView.bounds.height)")
-            print("------------------------------------------")
+        if newHeight < topOffset {
+            newHeight = topOffset
+        } else if newHeight > originalHouseImageViewHeight {
+            newHeight = originalHouseImageViewHeight
         }
-
+        
+        houseImageView?.snp.updateConstraints { (make) -> Void in
+            make.height.equalTo(newHeight)
+        }
     }
 
     override func didReceiveMemoryWarning() {
