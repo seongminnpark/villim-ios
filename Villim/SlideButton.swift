@@ -113,7 +113,6 @@ class SlideButton: UIView {
     }
     
     func setUpButton(){
-        print("setupbutton")
         self.backgroundColor              = self.buttonColor
         
         self.dragPoint                    = UIView(frame: CGRect(x: sliderInset, y: sliderInset, width: self.frame.size.height - sliderInset*2, height: self.frame.size.height - sliderInset*2))
@@ -149,13 +148,14 @@ class SlideButton: UIView {
     }
     
     func panDetected(sender: UIPanGestureRecognizer){
-        print("pandetected")
         var translatedPoint = sender.translation(in: self)
         translatedPoint     = CGPoint(x: translatedPoint.x, y: self.frame.size.height / 2)
-        if dragPointWidth + translatedPoint.x > self.frame.size.width - dragPointWidth {
+        if translatedPoint.x > self.frame.size.width - dragPointWidth {
             sender.view?.frame.origin.x = self.frame.size.width - dragPointWidth
+        } else if translatedPoint.x < sliderInset {
+            sender.view?.frame.origin.x = 0
         } else {
-            sender.view?.frame.origin.x = dragPointWidth + translatedPoint.x
+            sender.view?.frame.origin.x = translatedPoint.x
         }
         
         if sender.state == .ended{
@@ -164,7 +164,7 @@ class SlideButton: UIView {
             var finalX    = translatedPoint.x + velocityX
             if finalX < 0{
                 finalX = 0
-            } else if finalX + self.dragPointWidth  >  self.frame.size.width {
+            } else if finalX + self.dragPointWidth >= self.frame.size.width - sliderInset {
                 unlocked = true
                 self.unlock()
             }

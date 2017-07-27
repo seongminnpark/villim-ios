@@ -11,7 +11,7 @@ import Alamofire
 import SnapKit
 import Nuke
 
-class MyKeyViewController: ViewController {
+class MyKeyViewController: ViewController, SlideButtonDelegate {
     
     let slideButtonWidth  : CGFloat = 300.0
     let slideButtonHeight : CGFloat = 60.0
@@ -36,12 +36,17 @@ class MyKeyViewController: ViewController {
         slideButton.backgroundColor = VillimUtils.themeColor
         slideButton.imageName = #imageLiteral(resourceName: "slider_thumb")
         slideButton.buttonText = NSLocalizedString("unlock_doorlock", comment: "")
+        slideButton.delegate = self
         self.view.addSubview(slideButton)
         
 //        makeConstraints()
     }
     
     func populateViews() {
+        
+    }
+    
+    func buttonStatus(status:String, sender:SlideButton) {
         
     }
     
