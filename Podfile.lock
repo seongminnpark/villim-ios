@@ -1,5 +1,10 @@
 PODS:
   - Alamofire (4.5.0)
+  - GoogleMaps (2.3.1):
+    - GoogleMaps/Maps (= 2.3.1)
+  - GoogleMaps/Base (2.3.1)
+  - GoogleMaps/Maps (2.3.1):
+    - GoogleMaps/Base
   - Nuke (5.1.1)
   - NVActivityIndicatorView (3.7.0):
     - NVActivityIndicatorView/Presenter (= 3.7.0)
@@ -10,6 +15,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
+  - GoogleMaps
   - Nuke (~> 5.0)
   - NVActivityIndicatorView
   - SnapKit (~> 3.2.0)
@@ -18,12 +24,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   Nuke: 0a2ddb4bd13d75782964bf598a159ca2a836d826
   NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: f13031c636ef065281bc11857be9a16c7659e04f
 
-PODFILE CHECKSUM: 1e1f51a7e7ae53918ce6b61ab2466faa4d246211
+PODFILE CHECKSUM: 747efbc859c665ea6110aeac2852b2ec7c7f3948
 
 COCOAPODS: 1.2.1

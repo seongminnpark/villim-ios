@@ -7,40 +7,46 @@
 //
 
 import UIKit
+import GoogleMaps
 
 class HouseMapTableViewCell: UITableViewCell {
 
-    var title   : UILabel!
-    var content : UILabel!
+    var container : UIView!
+    var latitude  : Double = 0.0
+    var longitude : Double = 0.0
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
+
+        container = UIView()
+        self.contentView.addSubview(container)
         
-        title = UILabel()
-        self.contentView.addSubview(title)
-        
-        content = UILabel()
-        self.contentView.addSubview(content)
-        
+        makeConstraints()
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func populateView() {
+        let location = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
+        let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 6.0)
+        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        
+        container.addSubview(mapView)
+        
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+    }
     
     func makeConstraints() {
         
-        title?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
+        container?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
             make.height.equalToSuperview()
             make.left.equalToSuperview()
-        }
-        
-        content?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(100)
             make.top.equalToSuperview()
-            make.right.equalToSuperview()
         }
         
     }

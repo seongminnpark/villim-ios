@@ -86,7 +86,12 @@ class HouseDetailTableViewController: UITableViewController {
         let cell : HostInfoTableViewCell = HostInfoTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"host_info")
         
         let url = URL(string: house.hostProfilePicUrl)
-        Nuke.loadImage(with: url!, into: cell.hostImage)
+        
+        if url == nil {
+            cell.hostImage.image = #imageLiteral(resourceName: "img_default")
+        } else {
+            Nuke.loadImage(with: url!, into: cell.hostImage)
+        }
         
         cell.hostName.text        = house.hostName
         cell.hostRating.text      = "\(house.hostRating)"
@@ -153,12 +158,12 @@ class HouseDetailTableViewController: UITableViewController {
 
         cell.title.text = NSLocalizedString("amenity", comment: "")
         
-        cell.houseReviewCount   = self.house.houseReviewCount
-        cell.houseReviewRating  = self.house.houseRating
-        cell.lastReviewRating   = self.lastReviewRating
-        cell.lastReviewContent  = self.lastReviewContent
-        cell.lastReviewReviewer = self.lastReviewReviewer
-        cell.lastReviewRating   = self.lastReviewRating
+        cell.houseReviewCount            = self.house.houseReviewCount
+        cell.houseReviewRating           = self.house.houseRating
+        cell.lastReviewRating            = self.lastReviewRating
+        cell.lastReviewContent           = self.lastReviewContent
+        cell.lastReviewReviewer          = self.lastReviewReviewer
+        cell.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
         
         cell.populateViews()
         cell.makeConstraints()
@@ -167,7 +172,10 @@ class HouseDetailTableViewController: UITableViewController {
     
     func setupMapCell() -> HouseMapTableViewCell {
         let cell : HouseMapTableViewCell = HouseMapTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_map")
-
+        
+        cell.latitude = house.latitude
+        cell.longitude = house.longitude
+        
         cell.makeConstraints()
         return cell
     }
