@@ -39,8 +39,8 @@ class HostInfoTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         hostImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(100)
+            make.width.equalTo(50)
+            make.height.equalTo(50)
             make.left.equalToSuperview()
             make.top.equalToSuperview()
         }
