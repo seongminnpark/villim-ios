@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  Villim
+
+  Created by Seongmin Park on 7/28/17.
+  Copyright © 2017 Villim. All rights reserved.
+*/
+
+"my_key" = "내 열쇠";
+"visit_list" = "방문 목록";
+"discover" = "숙소 찾기";
