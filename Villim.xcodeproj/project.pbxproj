@@ -29,6 +29,7 @@
 		3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */; };
 		3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */; };
 		3E0F06C31F1E05100023E229 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06C21F1E05100023E229 /* Localizable.strings */; };
+		3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */; };
 		3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543871F21DF9200525F7A /* VillimHouse.swift */; };
 		3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543891F21E0F700525F7A /* VillimReservation.swift */; };
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
@@ -100,6 +101,7 @@
 		3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimUtils.swift; sourceTree = "<group>"; };
 		3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitListViewController.swift; sourceTree = "<group>"; };
 		3E0F06C21F1E05100023E229 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailViewController.swift; sourceTree = "<group>"; };
 		3E8543871F21DF9200525F7A /* VillimHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimHouse.swift; sourceTree = "<group>"; };
 		3E8543891F21E0F700525F7A /* VillimReservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimReservation.swift; sourceTree = "<group>"; };
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				3E0F06C21F1E05100023E229 /* Localizable.strings */,
 				3E0F067E1F1E017B0023E229 /* AppDelegate.swift */,
 				3E0F06801F1E017B0023E229 /* ViewController.swift */,
+				3EB051481F2AF57200EBBBCE /* ApplicationShortcut.swift */,
 				3E0F06821F1E017B0023E229 /* Main.storyboard */,
 				3E0F06851F1E017B0023E229 /* Assets.xcassets */,
 				3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */,
@@ -199,7 +202,7 @@
 				3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */,
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
-				3EB051481F2AF57200EBBBCE /* ApplicationShortcut.swift */,
+				3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */,
 			);
 			path = Villim;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				3EB0512C1F28801500EBBBCE /* HouseDetailViewController.swift in Sources */,
 				3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */,
 				3EB0513F1F28F25000EBBBCE /* HouseReviewTableViewCell.swift in Sources */,
+				3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */,
 				3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */,
 				3EB051491F2AF57200EBBBCE /* ApplicationShortcut.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,

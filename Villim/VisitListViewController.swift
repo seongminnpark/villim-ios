@@ -12,7 +12,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Toaster
 
-class VisitListViewController: ViewController {
+class VisitListViewController: ViewController, VisitTableViewItemSelectedListener {
 
     var visits : [VillimVisit] = []
     var houses : [VillimHouse] = []
@@ -29,6 +29,7 @@ class VisitListViewController: ViewController {
         
         /* Featured houses list */
         visitTableViewController = VisitTableViewController()
+        visitTableViewController.itemSelectedListener = self
         self.view.addSubview(visitTableViewController.view)
         
         /* Loading inidcator */
@@ -106,6 +107,12 @@ class VisitListViewController: ViewController {
         }
     }
     
+    func visitItemSelected(position: Int) {
+        let visitDetailViewController = VisitDetailViewController()
+        visitDetailViewController.visit = visits[position]
+        visitDetailViewController.house = houses[position]
+        self.navigationController?.pushViewController(visitDetailViewController, animated: true)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

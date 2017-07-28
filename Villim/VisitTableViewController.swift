@@ -9,9 +9,13 @@
 import UIKit
 import Nuke
 
+protocol VisitTableViewItemSelectedListener {
+    func visitItemSelected(position:Int)
+}
 
 class VisitTableViewController: UITableViewController {
 
+    var itemSelectedListener : VisitTableViewItemSelectedListener!
     var visits : [VillimVisit] = []
     var houses : [VillimHouse] = []
     
@@ -62,8 +66,6 @@ class VisitTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let currentCell = tableView.cellForRow(at: indexPath)! as! HouseTableViewCell
-        
+        itemSelectedListener.visitItemSelected(position: indexPath.row)
     }
-
 }
