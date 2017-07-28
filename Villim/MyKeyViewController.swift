@@ -253,7 +253,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         findRoomButton.backgroundColor = VillimUtils.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
         findRoomButton.setTitleColor(UIColor.white, for: .normal)
-        findRoomButton.setTitleColor(UIColor.grey, for: .highlighted)
+        findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)
         findRoomButton.layer.cornerRadius  = 30
         findRoomButton.layer.masksToBounds = true
         
