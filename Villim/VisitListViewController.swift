@@ -144,6 +144,10 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        viewDidLoad()
+//    }
 
     
 }

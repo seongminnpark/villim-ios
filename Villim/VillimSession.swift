@@ -21,6 +21,14 @@ class VillimSession {
             if let bundle = Bundle.main.bundleIdentifier {
                 UserDefaults.standard.removePersistentDomain(forName: bundle)
             }
+            /* Clear cookies */
+            let cstorage = HTTPCookieStorage.shared
+            let url = URL(string:VillimUtils.buildURL(endpoint: ""))
+            if let cookies = cstorage.cookies(for: url!) {
+                for cookie in cookies {
+                    cstorage.deleteCookie(cookie)
+                }
+            }
         }
         defaults.set(loggedIn, forKey: KEY_LOGGED_IN)
         defaults.synchronize()
