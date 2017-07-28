@@ -79,7 +79,7 @@ class ProfileTableViewController: UITableViewController {
         case NSLocalizedString("privacy_policy", comment: ""):
             return #imageLiteral(resourceName: "icon_shield")
         case NSLocalizedString("edit_profile", comment: ""):
-            return #imageLiteral(resourceName: "icon_profile")
+            return #imageLiteral(resourceName: "icon_view_profile")
         default:
             return #imageLiteral(resourceName: "icon_login")
         }
