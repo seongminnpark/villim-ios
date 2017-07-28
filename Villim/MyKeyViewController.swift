@@ -36,6 +36,8 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     var houseDateLabel       : UILabel!
     
     var slideButton          : SlideButton!
+    var findRoomButton       : UIButton!
+    
     var loadingIndicator     : NVActivityIndicatorView!
     var errorMessage         : UILabel!
     
@@ -218,7 +220,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     func setUpKeyLayout() {
-        print(houseName)
+        
         /* Slide button */
         let sliderLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
         let sliderTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
@@ -243,7 +245,23 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     func setUpNoKeyLayout() {
-
+    
+        /* Find room button */
+        let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
+        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
+        findRoomButton.backgroundColor = VillimUtils.themeColor
+        findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
+        findRoomButton.setTitleColor(UIColor.white, for: .normal)
+        findRoomButton.setTitleColor(UIColor.grey, for: .highlighted)
+        findRoomButton.layer.cornerRadius  = 30
+        findRoomButton.layer.masksToBounds = true
+        
+        self.view.addSubview(findRoomButton)
+        
+        /* Room Info */
+        houseImage.image = #imageLiteral(resourceName: "img_default")
+        houseNameLabel.text = NSLocalizedString("no_rented_house", comment: "")
     }
     
     func unLocked() {
