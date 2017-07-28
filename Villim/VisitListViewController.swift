@@ -116,6 +116,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)
         findRoomButton.layer.cornerRadius  = 30
         findRoomButton.layer.masksToBounds = true
+        findRoomButton.addTarget(self, action:#selector(self.showDiscoverTab), for: .touchUpInside)
         
         self.view.addSubview(findRoomButton)
         
@@ -146,6 +147,11 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
             make.centerY.equalToSuperview()
         }
     }
+    
+    func showDiscoverTab() {
+        self.tabBarController?.selectedIndex = 0;
+    }
+    
     
     @objc private func sendVisitListRequest() {
         

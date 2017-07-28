@@ -257,12 +257,16 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)
         findRoomButton.layer.cornerRadius  = 30
         findRoomButton.layer.masksToBounds = true
-        
+        findRoomButton.addTarget(self, action:#selector(self.showDiscoverTab), for: .touchUpInside)
         self.view.addSubview(findRoomButton)
         
         /* Room Info */
         houseImage.image = #imageLiteral(resourceName: "img_default")
         houseNameLabel.text = NSLocalizedString("no_rented_house", comment: "")
+    }
+    
+    func showDiscoverTab() {
+        self.tabBarController?.selectedIndex = 0;
     }
     
     func unLocked() {
