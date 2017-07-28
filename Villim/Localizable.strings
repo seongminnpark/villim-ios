@@ -79,4 +79,4 @@
 "review_house" = "후기 작성";
 "change_doorlock_passcode" = "도어락 비밀번호 변경";
 "unlock_doorlock" = "도어락 잠금 해제";
-
+"doorlock_open_success" = "도어락을 열었습니다.";

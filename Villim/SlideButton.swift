@@ -162,7 +162,7 @@ class SlideButton: UIView {
             
             let velocityX = sender.velocity(in: self).x * 0.2
             var finalX    = translatedPoint.x + velocityX
-            if finalX < 0{
+            if finalX < 0 {
                 finalX = 0
             } else if finalX + self.dragPointWidth >= self.frame.size.width - sliderInset {
                 unlocked = true
@@ -185,6 +185,7 @@ class SlideButton: UIView {
     
     //lock button animation (SUCCESS)
     func unlock(){
+        delegate?.unLocked()
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
             self.dragPoint.frame = CGRect(x: self.frame.size.width - self.dragPoint.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in

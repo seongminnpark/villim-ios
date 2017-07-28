@@ -35,8 +35,9 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     var houseNameLabel       : UILabel!
     var houseDateLabel       : UILabel!
     
-    var slideButton : SlideButton!
-    var loadingIndicator   : NVActivityIndicatorView!
+    var slideButton          : SlideButton!
+    var loadingIndicator     : NVActivityIndicatorView!
+    var errorMessage         : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,7 +70,9 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         
         /* Labels */
         houseNameLabel = UILabel()
+        houseNameLabel.textAlignment = .center
         houseDateLabel = UILabel()
+        houseDateLabel.textAlignment = .center
         
         container.addSubview(houseImage)
         container.addSubview(houseNameLabel)
@@ -79,14 +82,20 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
         let indicatorViewLeft = screenCenterX - VillimUtils.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimUtils.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
+        let indicatorViweRight = screenCenterY - VillimUtils.loadingIndicatorSize / 2
+        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRight,
                                            width:VillimUtils.loadingIndicatorSize, height: VillimUtils.loadingIndicatorSize)
         loadingIndicator = NVActivityIndicatorView(
             frame: loadingIndicatorFrame,
             type: .orbit,
             color: VillimUtils.themeColor)
         self.view.addSubview(loadingIndicator)
+        
+        /* Error message */
+        let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2.5
+        errorMessage = UILabel(frame:CGRect(x:0, y:errorTop, width:UIScreen.main.bounds.width, height:50))
+        errorMessage.textAlignment = .center
+        self.view.addSubview(errorMessage)
         
         makeConstraints()
         
@@ -139,8 +148,15 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                if responseData[VillimKeys.KEY_OPEN_AUTHORIZED].boolValue && responseData[VillimKeys.KEY_OPEN_SUCESS].boolValue {
-                    AudioServicesPlayAlertSound(SystemSoundID(kSystemSoundID_Vibrate))
+                if responseData[VillimKeys.KEY_OPEN_AUTHORIZED].boolValue && responseData[VillimKeys.KEY_SUCCESS].boolValue {
+                    self.showErrorMessage(message: NSLocalizedString("doorlock_open_success", comment: ""))
+                    if #available(iOS 10, *) {
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.success)
+                    } else {
+                        // use another api
+                    }
+                    
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
@@ -193,12 +209,12 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         }
         
         container?.snp.makeConstraints { (make) -> Void in
-            //            make.top.equalToSuperview().offset(topOffset)
-            make.width.equalToSuperview()
             make.height.equalTo(houseImage)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
+        
+        
     }
     
     func setUpKeyLayout() {
@@ -231,7 +247,6 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     func unLocked() {
-        print("Adasadas")
         sendOpenDoorlockRequest()
     }
     
@@ -244,19 +259,13 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     private func showErrorMessage(message:String) {
-        let toast = Toast(text: message, duration: Delay.long)
-        
-        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
-        
-        toast.show()
+        errorMessage.isHidden = false
+        errorMessage.text = message
     }
     
     private func hideErrorMessage() {
-        ToastCenter.default.cancelAll()
+        errorMessage.isHidden = true
     }
-    
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
     }
