@@ -76,5 +76,7 @@
 "review_see_more_format" = "+%d개 후기 더보기";
 "no_review" = "아직 작성된 후기가 없습니다.";
 
+"review_house" = "후기 작성";
+"change_doorlock_passcode" = "도어락 비밀번호 변경";
 "unlock_doorlock" = "도어락 잠금 해제";
 

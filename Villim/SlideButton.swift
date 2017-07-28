@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 protocol SlideButtonDelegate{
-    func buttonStatus(status:String, sender:SlideButton)
+    func unLocked()
 }
 
 class SlideButton: UIView {
@@ -185,7 +185,6 @@ class SlideButton: UIView {
     
     //lock button animation (SUCCESS)
     func unlock(){
-        print("unlock")
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
             self.dragPoint.frame = CGRect(x: self.frame.size.width - self.dragPoint.frame.size.width, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in

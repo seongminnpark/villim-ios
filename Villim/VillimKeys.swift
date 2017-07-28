@@ -41,7 +41,7 @@ class VillimKeys {
     static let FAQ_URL = "https://boo7387.wixsite.com/villim01/faq";
     
     /* Request success codes */
-    static let KEY_QUERY_SUCCESS = "query_success";
+    static let KEY_QUERY_SUCCESS = "success";
     
     /* Activity request codes */
     
