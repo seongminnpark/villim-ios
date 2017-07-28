@@ -232,10 +232,11 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         self.view.addSubview(slideButton)
         
         /* Room Info */
+        print(houseThumbnailUrl)
         if houseThumbnailUrl.isEmpty {
             houseImage.image = #imageLiteral(resourceName: "img_default")
         } else {
-            let url = URL(string: VillimSession.getProfilePicUrl())
+            let url = URL(string:houseThumbnailUrl)
             Nuke.loadImage(with: url!, into: houseImage)
         }
         

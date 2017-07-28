@@ -14,23 +14,36 @@ import Toaster
 
 class VisitListViewController: ViewController, VisitTableViewItemSelectedListener {
 
+    var topOffset : CGFloat = 0
+    let houseImageSize       : CGFloat = 200.0
+    let slideButtonWidth     : CGFloat = 300.0
+    let slideButtonHeight    : CGFloat = 60.0
+    
     var visits : [VillimVisit] = []
     var houses : [VillimHouse] = []
+    
     var visitTableViewController : VisitTableViewController!
+    
+    var container            : UIView!
+    var houseImage           : UIImageView!
+    var houseNameLabel       : UILabel!
+    var houseDateLabel       : UILabel!
+    var findRoomButton       : UIButton!
+    
     var loadingIndicator   : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        /* Prevent overlap with navigation controller */
+        let navControllerHeight = self.navigationController!.navigationBar.frame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        topOffset = navControllerHeight + statusBarHeight
+        
         self.view.backgroundColor = UIColor.white
         self.title = "방문 목록"
         self.tabBarItem.title = self.title
-        
-        /* Featured houses list */
-        visitTableViewController = VisitTableViewController()
-        visitTableViewController.itemSelectedListener = self
-        self.view.addSubview(visitTableViewController.view)
         
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
@@ -45,23 +58,24 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
             color: VillimUtils.themeColor)
         self.view.addSubview(loadingIndicator)
         
-        populateViews()
-        makeConstraints()
-        
-        sendVisitListRequest()
-        
+    
+        if VillimSession.getLoggedIn() {
+            sendVisitListRequest()
+        } else {
+            setUpNovisitLayout()
+        }
     }
     
-    func populateViews() {
-        visitTableViewController.visits = self.visits
+    
+    func setUpVisitListLayout() {
+        /* Visit list */
+        self.visitTableViewController = VisitTableViewController()
+        self.visitTableViewController.itemSelectedListener = self
+        self.visitTableViewController.visits = self.visits
+        self.visitTableViewController.houses = self.houses
+        self.visitTableViewController.tableView.reloadData()
         visitTableViewController.tableView.reloadData()
-    }
-    
-    func makeConstraints() {
-        /* Prevent overlap with navigation controller */
-        let navControllerHeight = self.navigationController!.navigationBar.frame.height
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let topOffset = navControllerHeight + statusBarHeight
+        self.view.addSubview(visitTableViewController.view)
         
         /* Tableview */
         visitTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
@@ -69,7 +83,68 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
             make.top.equalTo(topOffset)
             make.bottom.equalToSuperview()
         }
+    }
+    
+    func setUpNovisitLayout() {
+        /* Info container */
+        container = UIView()
+        container.translatesAutoresizingMaskIntoConstraints = true
+        self.view.addSubview(container)
         
+        /* House picture */
+        houseImage = UIImageView()
+        houseImage.layer.cornerRadius = houseImageSize / 2
+        houseImage.layer.masksToBounds = true;
+        
+        /* Labels */
+        houseNameLabel = UILabel()
+        houseNameLabel.textAlignment = .center
+        houseDateLabel = UILabel()
+        houseDateLabel.textAlignment = .center
+        
+        container.addSubview(houseImage)
+        container.addSubview(houseNameLabel)
+        container.addSubview(houseDateLabel)
+        
+        /* Find room button */
+        let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
+        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
+        findRoomButton.backgroundColor = VillimUtils.themeColor
+        findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
+        findRoomButton.setTitleColor(UIColor.white, for: .normal)
+        findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)
+        findRoomButton.layer.cornerRadius  = 30
+        findRoomButton.layer.masksToBounds = true
+        
+        self.view.addSubview(findRoomButton)
+        
+        /* Room Info */
+        houseImage.image = #imageLiteral(resourceName: "img_default")
+        houseNameLabel.text = NSLocalizedString("no_visit", comment: "")
+        
+        houseImage?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(houseImageSize)
+            make.height.equalTo(houseImageSize)
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        
+        houseNameLabel?.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(houseImage.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        
+        houseDateLabel?.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(houseNameLabel.snp.bottom)
+            make.centerX.equalToSuperview()
+        }
+        
+        container?.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(houseImage)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
     }
     
     @objc private func sendVisitListRequest() {
@@ -93,14 +168,19 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
                     
                     self.visits = VillimVisit.visitArrayFromJsonArray(jsonVisits: visitArray)
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: visitArray)
+             
+                    if self.visits.count > 0 {
+                        self.setUpVisitListLayout()
+                    } else {
+                        self.setUpNovisitLayout()
+                    }
                     
-                    self.visitTableViewController.visits = self.visits
-                    self.visitTableViewController.houses = self.houses
-                    self.visitTableViewController.tableView.reloadData()
                 } else {
+                    self.setUpNovisitLayout()
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
+                self.setUpNovisitLayout()
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
             self.hideLoadingIndicator()
