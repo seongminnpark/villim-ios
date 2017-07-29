@@ -17,6 +17,7 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
 
     var houseId              : Int! = 0
     
+    var ratingContainer      : UIView!
     var ratingLabel          : UILabel!
     var ratingBar            : CosmosView!
     var rateButton           : UIButton!
@@ -34,10 +35,14 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         self.view.backgroundColor = UIColor.white
         self.tabBarController?.title = NSLocalizedString("review_house", comment: "")
         
+        /* Rating container */
+        ratingContainer = UIView()
+        self.view.addSubview(ratingContainer)
+        
         /* Rating Label */
         ratingLabel = UILabel()
         ratingLabel.text = NSLocalizedString("rating", comment: "")
-        self.view.addSubview(ratingLabel)
+        ratingContainer.addSubview(ratingLabel)
         
         /* Rating bar */
         ratingBar = CosmosView()
@@ -45,7 +50,8 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         ratingBar.settings.fillMode = .precise
         ratingBar.settings.starSize = 30
         ratingBar.settings.starMargin = 5
-        self.view.addSubview(ratingBar)
+        ratingBar.rating = 0.0
+        ratingContainer.addSubview(ratingBar)
         
         /* Rate button */
         rateButton = UIButton()
@@ -53,7 +59,7 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         rateButton.setTitleColor(UIColor.gray, for: .normal)
         rateButton.setTitleColor(UIColor.black, for: .highlighted)
         rateButton.addTarget(self, action:#selector(self.rateHouseActivity), for: .touchUpInside)
-        self.view.addSubview(rateButton)
+        ratingContainer.addSubview(rateButton)
         
         /* Review Label */
         reviewLabel = UILabel()
@@ -106,28 +112,35 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let topOffset = navControllerHeight + statusBarHeight
         
+        /* Rating Container */
+        ratingContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
+            make.top.equalTo(topOffset)
+            make.height.equalTo(80)
+        }
+        
         /* Rating label */
         ratingLabel?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.centerY.equalToSuperview()
         }
-        
+
         /* Rating bar */
         ratingBar?.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(ratingLabel.snp.right)
-            make.top.equalTo(topOffset)
+            make.centerY.equalToSuperview()
         }
         
         /* Rate button */
         rateButton?.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.centerY.equalToSuperview()
         }
         
         /* Review label */
         reviewLabel?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview()
-            make.top.equalTo(ratingLabel.snp.bottom)
+            make.top.equalTo(ratingContainer.snp.bottom)
         }
         
         /* Review content field */
@@ -152,6 +165,17 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let border = CALayer()
+        let width = CGFloat(1.0)
+        border.borderColor = VillimUtils.dividerColor.cgColor
+        border.frame = CGRect(x: 0, y: ratingContainer.frame.size.height - width, width:  ratingContainer.frame.size.width, height: ratingContainer.frame.size.height)
+        border.backgroundColor = UIColor.clear.cgColor
+        border.borderWidth = width
+        ratingContainer.layer.addSublayer(border)
+        ratingContainer.layer.masksToBounds = true
+    }
 
     @objc private func sendReviewHouseRequest() {
         
