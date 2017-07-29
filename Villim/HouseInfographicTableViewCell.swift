@@ -157,9 +157,6 @@ class HouseInfographicTableViewCell: UITableViewCell {
             make.top.equalTo(bathroomCountImage.snp.bottom)
             make.bottom.equalToSuperview()
         }
-        
-        print(self.contentView.frame.width)
-        
     }
     
     func populateViews() {

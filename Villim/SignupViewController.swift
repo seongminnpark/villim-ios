@@ -1,8 +1,8 @@
 //
-//  LoginViewController.swift
+//  SignupViewController.swift
 //  Villim
 //
-//  Created by Seongmin Park on 7/16/17.
+//  Created by Seongmin Park on 7/28/17.
 //  Copyright © 2017 Villim. All rights reserved.
 //
 
@@ -12,57 +12,65 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-extension UIButton {
-    
-    func setBackgroundColor(color: UIColor, forState: UIControlState) {
-        
-        UIGraphicsBeginImageContext(CGSize(width: 1, height: 1))
-        UIGraphicsGetCurrentContext()!.setFillColor(color.cgColor)
-        UIGraphicsGetCurrentContext()!.fill(CGRect(x: 0, y: 0, width: 1, height: 1))
-        let colorImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        
-        self.setBackgroundImage(colorImage, for: forState)
-    }
+protocol SignupListener {
+    func onSignup(success:Bool)
 }
 
-protocol LoginListener {
-    func onLogin(success:Bool)
-}
+class SignupViewController: UIViewController, UITextFieldDelegate {
 
-class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener {
-    
-    var loginListener      : LoginListener!
+    var signupListener      : SignupListener!
     
     var titleMain          : UILabel!
-    var titleSecondary     : UILabel!
+    var lastnameField      : UITextField!
+    var firstnameField     : UITextField!
     var emailField         : UITextField!
     var passwordField      : UITextField!
     
-    var findPasswordButton : UIButton!
-    var signupButton       : UIButton!
     var nextButton         : UIButton!
     
     var errorMessage       : UILabel!
     var loadingIndicator   : NVActivityIndicatorView!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
-        self.tabBarController?.title = NSLocalizedString("login", comment: "")
+        self.tabBarController?.title = NSLocalizedString("signup", comment: "")
         
         /* Title */
         titleMain = UILabel()
         titleMain.text = NSLocalizedString("login_title_main", comment: "")
         self.view.addSubview(titleMain)
         
-        /* Second Title */
-        titleSecondary = UILabel()
-        titleSecondary.text = NSLocalizedString("login_title_secondary", comment: "")
-        self.view.addSubview(titleSecondary)
+        /* Last name field */
+        lastnameField = UITextField()
+        lastnameField.placeholder = NSLocalizedString("last_name", comment: "")
+        lastnameField.textContentType = UITextContentType.emailAddress
+        lastnameField.keyboardType = UIKeyboardType.emailAddress
+        lastnameField.returnKeyType = .next
+        lastnameField.autocapitalizationType = .none
+        lastnameField.clearButtonMode = .whileEditing
+        lastnameField.delegate = self
+        self.view.addSubview(lastnameField)
+        
+        lastnameField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_email"))
+        lastnameField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
+        lastnameField.leftViewMode = .always
+        
+        /* First name field */
+        firstnameField = UITextField()
+        firstnameField.placeholder = NSLocalizedString("first_name", comment: "")
+        firstnameField.isSecureTextEntry = true
+        firstnameField.autocapitalizationType = .none
+        firstnameField.returnKeyType = .done
+        firstnameField.clearButtonMode = .whileEditing
+        firstnameField.delegate = self
+        self.view.addSubview(firstnameField)
+        
+        firstnameField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_lock"))
+        firstnameField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
+        firstnameField.leftViewMode = .always
         
         /* Email field */
         emailField = UITextField()
@@ -92,22 +100,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         passwordField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_lock"))
         passwordField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
         passwordField.leftViewMode = .always
-        
-        /* Find password button */
-        findPasswordButton = UIButton()
-        findPasswordButton.setTitle(NSLocalizedString("find_password", comment: ""), for: .normal)
-        findPasswordButton.setTitleColor(UIColor.gray, for: .normal)
-        findPasswordButton.setTitleColor(UIColor.black, for: .highlighted)
-        self.view.addSubview(findPasswordButton)
-        
-        /* Signup button */
-        signupButton = UIButton()
-        signupButton.setTitle(NSLocalizedString("signup", comment: ""), for: .normal)
-        signupButton.setTitleColor(UIColor.gray, for: .normal)
-        signupButton.setTitleColor(UIColor.black, for: .highlighted)
-        signupButton.addTarget(self, action:#selector(self.launchSignupActivity), for: .touchUpInside)
-        self.view.addSubview(signupButton)
-        
+
         /* Next button */
         nextButton = UIButton()
         nextButton.setBackgroundColor(color: VillimUtils.themeColor, forState: .normal)
@@ -137,6 +130,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         self.view.addSubview(loadingIndicator)
         
         makeConstraints()
+
+
     }
     
     func makeConstraints() {
@@ -152,19 +147,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
             make.top.equalTo(topOffset)
         }
         
-        
-        /* Second Title */
-        titleSecondary?.snp.makeConstraints { (make) -> Void in
+        /* Last name field */
+        lastnameField?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(self.view)
             make.height.equalTo(50)
             make.top.equalTo(titleMain.snp.bottom)
+        }
+        
+        /* First name field */
+        firstnameField?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(self.view)
+            make.height.equalTo(50)
+            make.top.equalTo(lastnameField.snp.bottom)
         }
         
         /* Email field */
         emailField?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(self.view)
             make.height.equalTo(50)
-            make.top.equalTo(titleSecondary.snp.bottom)
+            make.top.equalTo(firstnameField.snp.bottom)
         }
         
         /* Password field */
@@ -181,18 +182,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
             make.bottom.equalTo(self.view)
         }
         
-        /* Find password button */
-        findPasswordButton?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top)
-        }
-        
-        /* Signup button */
-        signupButton?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top)
-        }
-        
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(self.view)
@@ -201,17 +190,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         }
         
     }
-    
-    func launchSignupActivity() {
-        let signupViewController = SignupViewController()
-        signupViewController.signupListener = self
-        self.navigationController?.pushViewController(signupViewController, animated: true)
-    }
-    
+
     /* Text field listeners */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
-        if textField == emailField { // Switch focus to other text field
+        if textField == lastnameField { // Switch focus to other text field
+            firstnameField.becomeFirstResponder()
+        } else if textField == firstnameField {
+            emailField.becomeFirstResponder()
+        } else if textField == emailField {
             passwordField.becomeFirstResponder()
         }
         return true
@@ -220,7 +207,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
-    
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -232,50 +219,49 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
                 !(passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
         let validInput : Bool = allFieldsFilledOut;
         if validInput {
-            sendLoginRequest();
+            sendSignupRequest();
         } else {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         }
     }
     
-    @objc private func sendLoginRequest() {
+    @objc private func sendSignupRequest() {
         
         showLoadingIndicator()
         
         let parameters = [
-            VillimKeys.KEY_EMAIL    : emailField.text!,
-            VillimKeys.KEY_PASSWORD : passwordField.text!
+            VillimKeys.KEY_LASTNAME  : lastnameField.text!,
+            VillimKeys.KEY_FIRSTNAME : firstnameField.text!,
+            VillimKeys.KEY_EMAIL     : emailField.text!,
+            VillimKeys.KEY_PASSWORD  : passwordField.text!
             ] as [String : Any]
         
-        let url = VillimUtils.buildURL(endpoint: VillimKeys.LOGIN_URL)
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.SIGNUP_URL)
         
         Alamofire.request(url, method:.post, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                print(responseData)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     let user : VillimUser = VillimUser.init(userInfo:responseData[VillimKeys.KEY_USER_INFO])
                     VillimSession.setLoggedIn(loggedIn: true)
                     VillimSession.updateUserSession(user: user)
-                    self.login()
+                    self.signup()
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-                self.loginListener.onLogin(success: false)
+                self.signupListener.onSignup(success: false)
             }
             self.hideLoadingIndicator()
         }
     }
-    
-    func login() {
-        self.loginListener.onLogin(success: true)
+
+    func signup() {
+        self.signupListener.onSignup(success: true)
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    func onSignup(success:Bool) {
-        self.login()
     }
     
     private func showLoadingIndicator() {
@@ -298,5 +284,5 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
     }
-    
+
 }

@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/VisitListViewController.swift"
-            timestampString = "522970134.937126"
+            timestampString = "522976595.569234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "sendVisitListRequest()"
             landmarkType = "7">
          </BreakpointContent>
@@ -36,11 +36,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/VisitListViewController.swift"
-            timestampString = "522970135.53711"
+            timestampString = "522976595.569234"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "sendVisitListRequest()"
             landmarkType = "7">
          </BreakpointContent>

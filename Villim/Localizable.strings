@@ -23,7 +23,7 @@
 "login_title_main" = "전세계의 집이 나의 집!";
 "login_title_secondary" = "언제 어디서나 쉽고 빠르게 방을 빌리세요.";
 "forgot_password" = "비밀번호를 잊으셨나요?";
-"signup" = "회원 가입";
+"signup" = "회원가입";
 "next" = "다음";
 "empty_field" = "모든 항목을 작성해주세요.";
 "server_unavailable" = "서버가 불안정합니다.";
@@ -88,3 +88,6 @@
 "book" = "입주 신청하기";
 
 "no_visit" = "방문 신청한 방이 없습니다.";
+
+"first_name" = "이름";
+"last_name" = "성";
