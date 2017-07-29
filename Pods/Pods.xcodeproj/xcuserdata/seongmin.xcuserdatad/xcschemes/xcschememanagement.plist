@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Cosmos.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,6 +57,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>198D03A194ADE4C78BCBE5C9E48B8D28</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>1FB3581F4855FB816F0C4899ED1A6026</key>
 		<dict>
 			<key>primary</key>
@@ -62,12 +72,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5EF749DCC111FDF123D9EFFB86BC6794</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>66081DDAAD2D7E372D74F9B68314B707</key>
+		<key>4FDC533A4360A68ABDCE852F04B30927</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8E0779CBE7F458454962E3DB4A089293</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>975BA11C77C26761CB9D64C4F14F078A</key>
+		<key>8BB6C843F4DFE56E2BBA2DCF2C3CF637</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -93,6 +93,16 @@
 			<true/>
 		</dict>
 		<key>F22DF210EAF2891D844420B05AC0FC06</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F6F9CA353B108FBE2F913149EAA78109</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F7EFB3CD22B570F22F9AD5CA2D703747</key>
 		<dict>
 			<key>primary</key>
 			<true/>

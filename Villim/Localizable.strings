@@ -50,6 +50,8 @@
 
 "amenity" = "시설";
 "review" = "후기";
+"rating" = "별점";
+"rate" = "별점주기";
 
 "bedsheet" = "침대시트";
 "wifi" = "무선 인터넷";
@@ -108,3 +110,5 @@
 "passcode_too_short" = "비밀번호가 너무 짧습니다.";
 "passcode_too_long" = "비밀번호가 너무 깁니다.";
 "try_again" = "문제가 발생했습니다. 다시 시도해 주세요.";
+
+"review_content_placeholder" = "400자 이내로 작성해주세요.";

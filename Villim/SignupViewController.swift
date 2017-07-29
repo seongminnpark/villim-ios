@@ -53,8 +53,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         /* Last name field */
         lastnameField = UITextField()
         lastnameField.placeholder = NSLocalizedString("last_name", comment: "")
-        lastnameField.textContentType = UITextContentType.emailAddress
-        lastnameField.keyboardType = UIKeyboardType.emailAddress
         lastnameField.returnKeyType = .next
         lastnameField.autocapitalizationType = .none
         lastnameField.clearButtonMode = .whileEditing
@@ -68,9 +66,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         /* First name field */
         firstnameField = UITextField()
         firstnameField.placeholder = NSLocalizedString("first_name", comment: "")
-        firstnameField.isSecureTextEntry = true
         firstnameField.autocapitalizationType = .none
-        firstnameField.returnKeyType = .done
+        firstnameField.returnKeyType = .next
         firstnameField.clearButtonMode = .whileEditing
         firstnameField.delegate = self
         self.view.addSubview(firstnameField)

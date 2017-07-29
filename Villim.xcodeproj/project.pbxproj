@@ -53,6 +53,7 @@
 		3EDC139F1F2C33A500BA4077 /* FindPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC139E1F2C33A500BA4077 /* FindPasswordViewController.swift */; };
 		3EDC13A11F2C390400BA4077 /* FindPasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */; };
 		3EDC13A31F2C5B2300BA4077 /* ChangePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */; };
+		3EDC13A51F2CD4F400BA4077 /* ReviewHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -131,6 +132,7 @@
 		3EDC139E1F2C33A500BA4077 /* FindPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordViewController.swift; sourceTree = "<group>"; };
 		3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordSuccessViewController.swift; sourceTree = "<group>"; };
 		3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasscodeViewController.swift; sourceTree = "<group>"; };
+		3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewHouseViewController.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -211,6 +213,7 @@
 				3EDC139E1F2C33A500BA4077 /* FindPasswordViewController.swift */,
 				3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */,
 				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
+				3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */,
 				3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */,
 				3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */,
 				3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */,
@@ -605,6 +608,7 @@
 				3E0954091F274B2D000240FA /* VisitTableViewController.swift in Sources */,
 				3EB0513B1F28F20900EBBBCE /* HouseGenericTableViewCell.swift in Sources */,
 				3EDC13A11F2C390400BA4077 /* FindPasswordSuccessViewController.swift in Sources */,
+				3EDC13A51F2CD4F400BA4077 /* ReviewHouseViewController.swift in Sources */,
 				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
 				3EB051451F2A780800EBBBCE /* SlideButton.swift in Sources */,
 				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,

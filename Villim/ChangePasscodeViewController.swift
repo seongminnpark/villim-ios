@@ -35,7 +35,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         titleMain.text = NSLocalizedString("change_doorlock_passcode", comment: "")
         self.view.addSubview(titleMain)
         
-        /* Last name field */
+        /* Passcode field */
         passcodeField = UITextField()
         passcodeField.placeholder = NSLocalizedString("passcode_hint", comment: "")
         passcodeField.textContentType = UITextContentType.emailAddress
@@ -50,7 +50,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         passcodeField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
         passcodeField.leftViewMode = .always
         
-        /* First name field */
+        /* Passcode confirm field */
         passcodeConfirmField = UITextField()
         passcodeConfirmField.placeholder = NSLocalizedString("passcode_confirm_hint", comment: "")
         passcodeConfirmField.isSecureTextEntry = true

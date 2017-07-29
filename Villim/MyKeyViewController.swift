@@ -268,7 +268,10 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     func launchReviewHouseViewController() {
-
+        self.tabBarController?.tabBar.isHidden = true
+        let reviewHouseViewController = ReviewHouseViewController()
+        reviewHouseViewController.houseId = houseId
+        self.navigationController?.pushViewController(reviewHouseViewController, animated: true)
     }
     
     func launcChangePasscodeViewController() {
