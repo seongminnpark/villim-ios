@@ -107,8 +107,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
 
         /* Next button */
         nextButton = UIButton()
-        nextButton.setBackgroundColor(color: VillimUtils.themeColor, forState: .normal)
-        nextButton.setBackgroundColor(color: VillimUtils.themeColorHighlighted, forState: .highlighted)
+        nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
         nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
@@ -148,14 +148,14 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimUtils.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimUtils.loadingIndicatorSize / 2
+        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
+        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
         let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimUtils.loadingIndicatorSize, height: VillimUtils.loadingIndicatorSize)
+                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
         loadingIndicator = NVActivityIndicatorView(
             frame: loadingIndicatorFrame,
             type: .orbit,
-            color: VillimUtils.themeColor)
+            color: VillimValues.themeColor)
         self.view.addSubview(loadingIndicator)
         
         makeConstraints()

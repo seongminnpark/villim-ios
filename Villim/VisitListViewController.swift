@@ -48,14 +48,14 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimUtils.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimUtils.loadingIndicatorSize / 2
+        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
+        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
         let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimUtils.loadingIndicatorSize, height: VillimUtils.loadingIndicatorSize)
+                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
         loadingIndicator = NVActivityIndicatorView(
             frame: loadingIndicatorFrame,
             type: .orbit,
-            color: VillimUtils.themeColor)
+            color: VillimValues.themeColor)
         self.view.addSubview(loadingIndicator)
         
     
@@ -110,7 +110,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
         let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
         findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
-        findRoomButton.backgroundColor = VillimUtils.themeColor
+        findRoomButton.backgroundColor = VillimValues.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
         findRoomButton.setTitleColor(UIColor.white, for: .normal)
         findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)

@@ -34,6 +34,7 @@ class HouseDetailTableViewController: UITableViewController {
         self.tableView.rowHeight = 150
         self.tableView.allowsSelection = false
         self.tableView.bounces = false
+        self.tableView.separatorInset = UIEdgeInsets.zero
     }
     
     override func didReceiveMemoryWarning() {

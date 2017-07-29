@@ -84,7 +84,7 @@ class VisitDetailViewController: UIViewController {
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
         let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
         bookButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
-        bookButton.backgroundColor = VillimUtils.themeColor
+        bookButton.backgroundColor = VillimValues.themeColor
         bookButton.setTitle(NSLocalizedString("book", comment: ""), for: .normal)
         bookButton.setTitleColor(UIColor.white, for: .normal)
         bookButton.setTitleColor(UIColor.gray, for: .highlighted)
@@ -96,14 +96,14 @@ class VisitDetailViewController: UIViewController {
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimUtils.loadingIndicatorSize / 2
-        let indicatorViweRight = screenCenterY - VillimUtils.loadingIndicatorSize / 2
+        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
+        let indicatorViweRight = screenCenterY - VillimValues.loadingIndicatorSize / 2
         let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRight,
-                                           width:VillimUtils.loadingIndicatorSize, height: VillimUtils.loadingIndicatorSize)
+                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
         loadingIndicator = NVActivityIndicatorView(
             frame: loadingIndicatorFrame,
             type: .orbit,
-            color: VillimUtils.themeColor)
+            color: VillimValues.themeColor)
         self.view.addSubview(loadingIndicator)
         
         /* Error message */

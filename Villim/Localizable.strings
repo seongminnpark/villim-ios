@@ -112,3 +112,12 @@
 "try_again" = "문제가 발생했습니다. 다시 시도해 주세요.";
 
 "review_content_placeholder" = "400자 이내로 작성해주세요.";
+
+"accuracy" = "정확성";
+"location" = "위치";
+"communication" = "의사소통";
+"checkin" = "체크인";
+"cleanliness" = "청결도";
+"value" = "가치";
+
+"apply" = "적용";

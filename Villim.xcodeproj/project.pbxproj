@@ -54,6 +54,9 @@
 		3EDC13A11F2C390400BA4077 /* FindPasswordSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */; };
 		3EDC13A31F2C5B2300BA4077 /* ChangePasscodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */; };
 		3EDC13A51F2CD4F400BA4077 /* ReviewHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */; };
+		3EDC13A71F2D10D400BA4077 /* RateHouseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */; };
+		3EDC13A91F2D11A900BA4077 /* RateHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */; };
+		3EDC13AB1F2D11BA00BA4077 /* RateHouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13AA1F2D11BA00BA4077 /* RateHouseTableViewCell.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -133,6 +136,9 @@
 		3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindPasswordSuccessViewController.swift; sourceTree = "<group>"; };
 		3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasscodeViewController.swift; sourceTree = "<group>"; };
 		3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewHouseViewController.swift; sourceTree = "<group>"; };
+		3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateHouseViewController.swift; sourceTree = "<group>"; };
+		3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateHouseTableViewController.swift; sourceTree = "<group>"; };
+		3EDC13AA1F2D11BA00BA4077 /* RateHouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateHouseTableViewCell.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +220,7 @@
 				3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */,
 				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
 				3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */,
+				3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */,
 				3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */,
 				3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */,
 				3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */,
@@ -258,6 +265,7 @@
 				3EB0513C1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift */,
 				3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */,
 				3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */,
+				3EDC13AA1F2D11BA00BA4077 /* RateHouseTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -269,6 +277,7 @@
 				3E0954061F21FDBB000240FA /* DiscoverTableViewController.swift */,
 				3E0954081F274B2D000240FA /* VisitTableViewController.swift */,
 				3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */,
+				3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */,
 			);
 			name = TableViewControllers;
 			sourceTree = "<group>";
@@ -597,6 +606,7 @@
 				3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */,
 				3EB0513F1F28F25000EBBBCE /* HouseReviewTableViewCell.swift in Sources */,
 				3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */,
+				3EDC13A91F2D11A900BA4077 /* RateHouseTableViewController.swift in Sources */,
 				3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */,
 				3EB051491F2AF57200EBBBCE /* ApplicationShortcut.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,
@@ -615,11 +625,13 @@
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
 				3EB051351F28F19900EBBBCE /* HouseHeaderTableViewCell.swift in Sources */,
 				3EDC139D1F2C295200BA4077 /* WebViewController.swift in Sources */,
+				3EDC13AB1F2D11BA00BA4077 /* RateHouseTableViewCell.swift in Sources */,
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
 				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,
 				3EB051301F28F13400EBBBCE /* HostInfoTableViewCell.swift in Sources */,
 				3EDC13A31F2C5B2300BA4077 /* ChangePasscodeViewController.swift in Sources */,
+				3EDC13A71F2D10D400BA4077 /* RateHouseViewController.swift in Sources */,
 				3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */,
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,

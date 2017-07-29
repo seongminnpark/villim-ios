@@ -13,9 +13,17 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Cosmos
 
-class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
+class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextFieldDelegate {
 
     var houseId              : Int! = 0
+    
+    var ratingOverall        : Double = 0.0
+    var ratingAccuracy       : Double = 0.0
+    var ratingLocation       : Double = 0.0
+    var ratingCommunication  : Double = 0.0
+    var ratingCheckin        : Double = 0.0
+    var ratingCleanliness    : Double = 0.0
+    var ratingValue          : Double = 0.0
     
     var ratingContainer      : UIView!
     var ratingLabel          : UILabel!
@@ -50,7 +58,7 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         ratingBar.settings.fillMode = .precise
         ratingBar.settings.starSize = 30
         ratingBar.settings.starMargin = 5
-        ratingBar.rating = 0.0
+        ratingBar.rating = self.ratingOverall
         ratingContainer.addSubview(ratingBar)
         
         /* Rate button */
@@ -58,7 +66,7 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         rateButton.setTitle(NSLocalizedString("rate", comment: ""), for: .normal)
         rateButton.setTitleColor(UIColor.gray, for: .normal)
         rateButton.setTitleColor(UIColor.black, for: .highlighted)
-        rateButton.addTarget(self, action:#selector(self.rateHouseActivity), for: .touchUpInside)
+        rateButton.addTarget(self, action:#selector(self.launchRateHouseViewController), for: .touchUpInside)
         ratingContainer.addSubview(rateButton)
         
         /* Review Label */
@@ -76,8 +84,8 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         
         /* Next button */
         nextButton = UIButton()
-        nextButton.setBackgroundColor(color: VillimUtils.themeColor, forState: .normal)
-        nextButton.setBackgroundColor(color: VillimUtils.themeColorHighlighted, forState: .highlighted)
+        nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
         nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
@@ -93,14 +101,14 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimUtils.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimUtils.loadingIndicatorSize / 2
+        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
+        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
         let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimUtils.loadingIndicatorSize, height: VillimUtils.loadingIndicatorSize)
+                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
         loadingIndicator = NVActivityIndicatorView(
             frame: loadingIndicatorFrame,
             type: .orbit,
-            color: VillimUtils.themeColor)
+            color: VillimValues.themeColor)
         self.view.addSubview(loadingIndicator)
         
         makeConstraints()
@@ -169,7 +177,7 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLayoutSubviews()
         let border = CALayer()
         let width = CGFloat(1.0)
-        border.borderColor = VillimUtils.dividerColor.cgColor
+        border.borderColor = VillimValues.dividerColor.cgColor
         border.frame = CGRect(x: 0, y: ratingContainer.frame.size.height - width, width:  ratingContainer.frame.size.width, height: ratingContainer.frame.size.height)
         border.backgroundColor = UIColor.clear.cgColor
         border.borderWidth = width
@@ -183,7 +191,7 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
         
         let parameters = [
             VillimKeys.KEY_HOUSE_ID             : houseId,
-            VillimKeys.KEY_REVIEW_CONTENT       : 0.0,
+            VillimKeys.KEY_REVIEW_CONTENT       : (reviewContentField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,
             VillimKeys.KEY_RATING_OVERALL       : 0.0,
             VillimKeys.KEY_RATING_ACCURACY      : 0.0,
             VillimKeys.KEY_RATING_LOCATION      : 0.0,
@@ -215,7 +223,41 @@ class ReviewHouseViewController: UIViewController, UITextFieldDelegate {
     }
 
     
-    func rateHouseActivity() {
+    func launchRateHouseViewController() {
+        let rateHouseViewController = RateHouseViewController()
+        rateHouseViewController.listener            = self
+        rateHouseViewController.ratingAccuracy      = self.ratingAccuracy
+        rateHouseViewController.ratingLocation      = self.ratingLocation
+        rateHouseViewController.ratingCommunication = self.ratingCommunication
+        rateHouseViewController.ratingCheckin       = self.ratingCheckin
+        rateHouseViewController.ratingCleanliness   = self.ratingCleanliness
+        rateHouseViewController.ratingValue         = self.ratingValue
+        self.navigationController?.pushViewController(rateHouseViewController, animated: true)
+    }
+    
+    func onRatingSubmit(ratingAccuracy      : Double,
+                     ratingLocation      : Double,
+                     ratingCommunication : Double,
+                     ratingCheckin       : Double,
+                     ratingCleanliness   : Double,
+                     ratingValue         : Double ){
+        
+        self.ratingAccuracy      = ratingAccuracy
+        self.ratingLocation      = ratingLocation
+        self.ratingCommunication = ratingCommunication
+        self.ratingCheckin       = ratingCheckin
+        self.ratingCleanliness   = ratingCleanliness
+        self.ratingValue         = ratingValue
+        
+        self.recalculateOverallRating()
+    }
+    
+    func recalculateOverallRating() {
+        self.ratingOverall =
+            (self.ratingAccuracy + self.ratingLocation + self.ratingCommunication +
+                self.ratingCheckin + self.ratingCleanliness + self.ratingValue) / 6.0
+       
+        self.ratingBar.rating = ratingOverall
         
     }
     
