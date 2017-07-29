@@ -272,6 +272,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     func launcChangePasscodeViewController() {
+        self.tabBarController?.tabBar.isHidden = true
         let changePasscodeViewController = ChangePasscodeViewController()
         self.navigationController?.pushViewController(changePasscodeViewController, animated: true)
     }
@@ -309,6 +310,9 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
     
 }

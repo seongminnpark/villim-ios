@@ -117,21 +117,25 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     }
     
     func profileItemSelected(item:String) {
-        self.tabBarController?.tabBar.isHidden = true
         switch item {
         case NSLocalizedString("login", comment: ""):
+            self.tabBarController?.tabBar.isHidden = true
             launchLoginViewController()
             break
         case NSLocalizedString("logout", comment: ""):
             logout()
             break
         case NSLocalizedString("faq", comment: ""):
+            self.tabBarController?.tabBar.isHidden = true
             break
         case NSLocalizedString("settings", comment: ""):
+            self.tabBarController?.tabBar.isHidden = true
             break
         case NSLocalizedString("privacy_policy", comment: ""):
+            self.tabBarController?.tabBar.isHidden = true
             break
         case NSLocalizedString("edit_profile", comment: ""):
+            self.tabBarController?.tabBar.isHidden = true
             break
         default:
             break
