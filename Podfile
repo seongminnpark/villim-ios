@@ -13,7 +13,7 @@ target 'Villim' do
   pod 'Nuke', '~> 5.0'
   pod 'Toaster'
   pod 'GoogleMaps'
-  pod 'Cosmos'
+  pod 'Cosmos', '~> 11.0'
 
   target 'VillimTests' do
     inherit! :search_paths

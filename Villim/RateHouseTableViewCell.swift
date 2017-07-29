@@ -33,7 +33,8 @@ class RateHouseTableViewCell: UITableViewCell {
         ratingBar.settings.starSize = 30
         ratingBar.settings.starMargin = 10
         ratingBar.rating = self.rating
-        ratingBar.image = UIImage(named: "GoldStarFilled")
+        ratingBar.settings.filledImage = UIImage(named: "icon_star_on")
+        ratingBar.settings.emptyImage = UIImage(named: "icon_star_off")
         self.contentView.addSubview(ratingBar)
         
         ratingBar.didFinishTouchingCosmos = { rating in

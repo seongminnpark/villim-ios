@@ -59,6 +59,8 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         ratingBar.settings.starSize = 30
         ratingBar.settings.starMargin = 5
         ratingBar.rating = self.ratingOverall
+        ratingBar.settings.filledImage = UIImage(named: "icon_star_on")
+        ratingBar.settings.emptyImage = UIImage(named: "icon_star_off")
         ratingContainer.addSubview(ratingBar)
         
         /* Rate button */
