@@ -95,3 +95,16 @@
 "tos_left" = "로그인하면 당사의 ";
 "tos_right" = "에 동의하는 것으로 간주합니다.";
 "tos_middle" = "서비스 이용약관";
+
+"lost_password" = "비밀번호 분실";
+"find_password" = "비밀번호 찾기";
+"enter_email" = "등록 시 사용하신 이메일 주소를 입력해주세요";
+
+"configure_doorlock" = "도어락 설정";
+"passcode_hint" = "비밀번호 (4~12자)";
+"passcode_confirm_hint" = "비밀번호 확인 (4~12자)";
+"passcode_different" = "두 비밀번호가 일치하지 않습니다.";
+"passcode_non_digit" = "숫자 비밀번호만 설정할 수 있습니다.";
+"passcode_too_short" = "비밀번호가 너무 짧습니다.";
+"passcode_too_long" = "비밀번호가 너무 깁니다.";
+"try_again" = "문제가 발생했습니다. 다시 시도해 주세요.";

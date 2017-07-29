@@ -50,14 +50,17 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         
         /* Text buttons */
         reviewButton = UIButton()
-        reviewButton.setTitle(NSLocalizedString("change_doorlock_passcode", comment: ""), for: .normal)
+        reviewButton.setTitle(NSLocalizedString("review_house", comment: ""), for: .normal)
         reviewButton.setTitleColor(UIColor.gray, for: .normal)
         reviewButton.setTitleColor(UIColor.black, for: .highlighted)
+        reviewButton.addTarget(self, action:#selector(self.launchReviewHouseViewController), for: .touchUpInside)
         self.view.addSubview(reviewButton)
+        
         changePasscodeButton = UIButton()
         changePasscodeButton.setTitle(NSLocalizedString("change_doorlock_passcode", comment: ""), for: .normal)
         changePasscodeButton.setTitleColor(UIColor.gray, for: .normal)
         changePasscodeButton.setTitleColor(UIColor.black, for: .highlighted)
+        changePasscodeButton.addTarget(self, action:#selector(self.launcChangePasscodeViewController), for: .touchUpInside)
         self.view.addSubview(changePasscodeButton)
         
         /* Info container */
@@ -262,6 +265,15 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         /* Room Info */
         houseImage.image = #imageLiteral(resourceName: "img_default")
         houseNameLabel.text = NSLocalizedString("no_rented_house", comment: "")
+    }
+    
+    func launchReviewHouseViewController() {
+
+    }
+    
+    func launcChangePasscodeViewController() {
+        let changePasscodeViewController = ChangePasscodeViewController()
+        self.navigationController?.pushViewController(changePasscodeViewController, animated: true)
     }
     
     func showDiscoverTab() {

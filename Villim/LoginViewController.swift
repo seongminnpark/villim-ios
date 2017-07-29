@@ -98,6 +98,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         findPasswordButton.setTitle(NSLocalizedString("forgot_password", comment: ""), for: .normal)
         findPasswordButton.setTitleColor(UIColor.gray, for: .normal)
         findPasswordButton.setTitleColor(UIColor.black, for: .highlighted)
+        findPasswordButton.addTarget(self, action:#selector(self.launchFindPasswordViewController), for: .touchUpInside)
         self.view.addSubview(findPasswordButton)
         
         /* Signup button */
@@ -105,7 +106,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         signupButton.setTitle(NSLocalizedString("signup", comment: ""), for: .normal)
         signupButton.setTitleColor(UIColor.gray, for: .normal)
         signupButton.setTitleColor(UIColor.black, for: .highlighted)
-        signupButton.addTarget(self, action:#selector(self.launchSignupActivity), for: .touchUpInside)
+        signupButton.addTarget(self, action:#selector(self.launchSignupViewController), for: .touchUpInside)
         self.view.addSubview(signupButton)
         
         /* Next button */
@@ -201,10 +202,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
     }
     
-    func launchSignupActivity() {
+    func launchSignupViewController() {
         let signupViewController = SignupViewController()
         signupViewController.signupListener = self
         self.navigationController?.pushViewController(signupViewController, animated: true)
+    }
+    
+    func launchFindPasswordViewController() {
+        let findPasswordViewController = FindPasswordViewController()
+        self.navigationController?.pushViewController(findPasswordViewController, animated: true)
     }
     
     /* Text field listeners */
