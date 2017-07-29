@@ -95,7 +95,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         /* Find password button */
         findPasswordButton = UIButton()
-        findPasswordButton.setTitle(NSLocalizedString("find_password", comment: ""), for: .normal)
+        findPasswordButton.setTitle(NSLocalizedString("forgot_password", comment: ""), for: .normal)
         findPasswordButton.setTitleColor(UIColor.gray, for: .normal)
         findPasswordButton.setTitleColor(UIColor.black, for: .highlighted)
         self.view.addSubview(findPasswordButton)
@@ -151,7 +151,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
             make.height.equalTo(50)
             make.top.equalTo(topOffset)
         }
-        
         
         /* Second Title */
         titleSecondary?.snp.makeConstraints { (make) -> Void in

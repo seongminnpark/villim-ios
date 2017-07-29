@@ -91,3 +91,7 @@
 
 "first_name" = "이름";
 "last_name" = "성";
+
+"tos_left" = "로그인하면 당사의 ";
+"tos_right" = "에 동의하는 것으로 간주합니다.";
+"tos_middle" = "서비스 이용약관";

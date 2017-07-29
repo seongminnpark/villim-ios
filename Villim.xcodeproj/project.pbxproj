@@ -49,6 +49,7 @@
 		3EB051471F2AF3CE00EBBBCE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3EB051461F2AF3CE00EBBBCE /* InfoPlist.strings */; };
 		3EB051491F2AF57200EBBBCE /* ApplicationShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB051481F2AF57200EBBBCE /* ApplicationShortcut.swift */; };
 		3EDC139B1F2C0B1A00BA4077 /* VillimValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC139A1F2C0B1A00BA4077 /* VillimValues.swift */; };
+		3EDC139D1F2C295200BA4077 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC139C1F2C295200BA4077 /* WebViewController.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -123,6 +124,7 @@
 		3EB051461F2AF3CE00EBBBCE /* InfoPlist.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = InfoPlist.strings; sourceTree = "<group>"; };
 		3EB051481F2AF57200EBBBCE /* ApplicationShortcut.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationShortcut.swift; sourceTree = "<group>"; };
 		3EDC139A1F2C0B1A00BA4077 /* VillimValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimValues.swift; sourceTree = "<group>"; };
+		3EDC139C1F2C295200BA4077 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
 				3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
+				3EDC139C1F2C295200BA4077 /* WebViewController.swift */,
 			);
 			path = Villim;
 			sourceTree = "<group>";
@@ -597,6 +600,7 @@
 				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
 				3EB051351F28F19900EBBBCE /* HouseHeaderTableViewCell.swift in Sources */,
+				3EDC139D1F2C295200BA4077 /* WebViewController.swift in Sources */,
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
 				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,

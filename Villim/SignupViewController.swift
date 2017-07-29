@@ -18,18 +18,25 @@ protocol SignupListener {
 
 class SignupViewController: UIViewController, UITextFieldDelegate {
 
-    var signupListener      : SignupListener!
+    let tosFontSize      : CGFloat = 12
     
-    var titleMain          : UILabel!
-    var lastnameField      : UITextField!
-    var firstnameField     : UITextField!
-    var emailField         : UITextField!
-    var passwordField      : UITextField!
+    var signupListener   : SignupListener!
     
-    var nextButton         : UIButton!
+    var titleMain        : UILabel!
+    var lastnameField    : UITextField!
+    var firstnameField   : UITextField!
+    var emailField       : UITextField!
+    var passwordField    : UITextField!
+
+    var nextButton       : UIButton!
     
-    var errorMessage       : UILabel!
-    var loadingIndicator   : NVActivityIndicatorView!
+    var tosContainer     : UIStackView!
+    var tosMiddle        : UIButton!
+    var tosLeft          : UILabel!
+    var tosRight         : UILabel!
+    
+    var errorMessage     : UILabel!
+    var loadingIndicator : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +61,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         lastnameField.delegate = self
         self.view.addSubview(lastnameField)
         
-        lastnameField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_email"))
+        lastnameField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_view_profile"))
         lastnameField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
         lastnameField.leftViewMode = .always
         
@@ -68,7 +75,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         firstnameField.delegate = self
         self.view.addSubview(firstnameField)
         
-        firstnameField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_lock"))
+        firstnameField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_view_profile"))
         firstnameField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
         firstnameField.leftViewMode = .always
         
@@ -112,6 +119,31 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
+        /* Terms of Service button */
+        tosContainer = UIStackView()
+        tosContainer.axis = UILayoutConstraintAxis.horizontal
+        tosContainer.distribution = UIStackViewDistribution.fill
+        tosContainer.alignment = UIStackViewAlignment.center
+        self.view.addSubview(tosContainer)
+        
+        tosLeft = UILabel()
+        tosLeft.text = NSLocalizedString("tos_left", comment: "")
+        tosLeft.font = tosLeft.font.withSize(tosFontSize)
+        tosContainer.addArrangedSubview(tosLeft)
+        
+        tosMiddle = UIButton()
+        tosMiddle.setTitle(NSLocalizedString("tos_middle", comment: ""), for: .normal)
+        tosMiddle.setTitleColor(UIColor.gray, for: .normal)
+        tosMiddle.setTitleColor(UIColor.black, for: .highlighted)
+        tosMiddle.titleLabel?.font = tosMiddle.titleLabel?.font.withSize(tosFontSize)
+        tosMiddle.addTarget(self, action:#selector(self.launchTOSActivity), for: .touchUpInside)
+        tosContainer.addArrangedSubview(tosMiddle)
+        
+        tosRight = UILabel()
+        tosRight.text = NSLocalizedString("tos_right", comment: "")
+        tosRight.font = tosRight.font.withSize(tosFontSize)
+        tosContainer.addArrangedSubview(tosRight)
+        
         /* Error message */
         errorMessage = UILabel()
         self.view.addSubview(errorMessage)
@@ -130,8 +162,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(loadingIndicator)
         
         makeConstraints()
-
-
     }
     
     func makeConstraints() {
@@ -182,6 +212,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             make.bottom.equalTo(self.view)
         }
         
+        /* */
+        tosContainer?.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.bottom.equalTo(nextButton.snp.top)
+        }
+        
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(self.view)
@@ -225,6 +261,12 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
+    func launchTOSActivity() {
+        let tosWebViewController = WebViewController()
+        tosWebViewController.urlString = VillimKeys.TERMS_OF_SERVICE_URL
+        self.navigationController?.pushViewController(tosWebViewController, animated: true)
+    }
+    
     @objc private func sendSignupRequest() {
         
         showLoadingIndicator()
@@ -242,7 +284,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                print(responseData)
+                
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     let user : VillimUser = VillimUser.init(userInfo:responseData[VillimKeys.KEY_USER_INFO])
                     VillimSession.setLoggedIn(loggedIn: true)
