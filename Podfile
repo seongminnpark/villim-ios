@@ -14,6 +14,7 @@ target 'Villim' do
   pod 'Toaster'
   pod 'GoogleMaps'
   pod 'Cosmos', '~> 11.0'
+  pod 'FSCalendar'
 
   target 'VillimTests' do
     inherit! :search_paths

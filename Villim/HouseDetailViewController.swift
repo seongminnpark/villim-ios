@@ -30,7 +30,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     
     var loadingIndicator : NVActivityIndicatorView!
     
-    let originalHouseImageViewHeight : CGFloat! = 300
+    let houseImageViewMaxHeight : CGFloat! = 300
     var navControllerHeight : CGFloat!
     var statusBarHeight : CGFloat!
     var topOffset : CGFloat!
@@ -89,7 +89,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         /* House ImageView */
         houseImageView?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(self.view)
-            make.height.equalTo(originalHouseImageViewHeight)
+            make.height.equalTo(houseImageViewMaxHeight)
             make.top.equalTo(self.view)
         }
         
@@ -158,8 +158,8 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         
         if newHeight < topOffset {
             newHeight = topOffset
-        } else if newHeight > originalHouseImageViewHeight {
-            newHeight = originalHouseImageViewHeight
+        } else if newHeight > houseImageViewMaxHeight {
+            newHeight = houseImageViewMaxHeight
         }
         
         houseImageView?.snp.updateConstraints { (make) -> Void in

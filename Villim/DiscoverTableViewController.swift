@@ -9,13 +9,14 @@
 import UIKit
 import Nuke
 
-protocol DiscoverTableViewItemSelectedListener {
+protocol DiscoverTableViewDelegate {
     func discoverItemSelected(position:Int)
+    func onScroll(contentOffset:CGPoint)
 }
 
 class DiscoverTableViewController: UITableViewController {
 
-    var itemSelectedListener : DiscoverTableViewItemSelectedListener!
+    var discoverDelegate : DiscoverTableViewDelegate!
     var houses   : [VillimHouse] = []
     
     override func viewDidLoad() {
@@ -28,6 +29,7 @@ class DiscoverTableViewController: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
         self.tableView.rowHeight = 150
+        self.tableView.bounces = false
         self.tableView.separatorInset = UIEdgeInsets.zero
     }
 
@@ -66,7 +68,11 @@ class DiscoverTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        itemSelectedListener.discoverItemSelected(position: indexPath.row)
+        discoverDelegate.discoverItemSelected(position: indexPath.row)
+    }
+    
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        discoverDelegate.onScroll(contentOffset: scrollView.contentOffset)
     }
 
 }
