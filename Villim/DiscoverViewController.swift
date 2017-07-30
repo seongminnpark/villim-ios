@@ -81,6 +81,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
         locationFilter.addSubview(locationFilterClearButton)
         searchFilter.addSubview(locationFilter)
         
+        let locationGesture = UITapGestureRecognizer(target: self, action:  #selector (self.launchLocationFilterViewController(sender:)))
+        self.locationFilter.addGestureRecognizer(locationGesture)
+        
         /* Date filter */
         dateFilterSet = false
         dateFilter = UIView()
@@ -100,6 +103,10 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
         dateFilter.addSubview(dateFilterLabel)
         dateFilter.addSubview(dateFilterClearButton)
         searchFilter.addSubview(dateFilter)
+    
+        let dateGesture = UITapGestureRecognizer(target: self, action:  #selector (self.launchDateFilterViewController(sender:)))
+        self.dateFilter.addGestureRecognizer(dateGesture)
+        
         
         /* Featured houses list */
         discoverTableViewController = DiscoverTableViewController()
@@ -124,6 +131,16 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
         
         sendFeaturedHousesRequest()
         
+    }
+    
+    func launchLocationFilterViewController(sender : UITapGestureRecognizer) {
+        let locationFilterViewController = LocationFilterViewController()
+        self.navigationController?.pushViewController(locationFilterViewController, animated: true)
+    }
+    
+    func launchDateFilterViewController(sender : UITapGestureRecognizer) {
+        let dateFilterViewController = DateFilterViewController()
+        self.navigationController?.pushViewController(dateFilterViewController, animated: true)
     }
     
     func populateViews() {
