@@ -124,3 +124,6 @@
 
 "all_locations" = "모든 위치";
 "select_date" = "날짜 설정";
+
+"where_to_go" = "어디로 가세요?";
+"popular_location" = "인기지역";

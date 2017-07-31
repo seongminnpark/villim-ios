@@ -33,6 +33,9 @@
 		3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */; };
 		3E5F98821F2E6CB6003AAF8F /* LocationFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98811F2E6CB6003AAF8F /* LocationFilterViewController.swift */; };
 		3E5F98841F2E6D0F003AAF8F /* DateFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98831F2E6D0F003AAF8F /* DateFilterViewController.swift */; };
+		3E5F98861F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */; };
+		3E5F98881F2E8A9F003AAF8F /* VillimLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */; };
+		3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */; };
 		3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543871F21DF9200525F7A /* VillimHouse.swift */; };
 		3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543891F21E0F700525F7A /* VillimReservation.swift */; };
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
@@ -117,6 +120,9 @@
 		3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3E5F98811F2E6CB6003AAF8F /* LocationFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterViewController.swift; sourceTree = "<group>"; };
 		3E5F98831F2E6D0F003AAF8F /* DateFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterViewController.swift; sourceTree = "<group>"; };
+		3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestionTableViewController.swift; sourceTree = "<group>"; };
+		3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimLocation.swift; sourceTree = "<group>"; };
+		3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestionTableViewCell.swift; sourceTree = "<group>"; };
 		3E8543871F21DF9200525F7A /* VillimHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimHouse.swift; sourceTree = "<group>"; };
 		3E8543891F21E0F700525F7A /* VillimReservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimReservation.swift; sourceTree = "<group>"; };
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
@@ -272,6 +278,7 @@
 				3EB0513E1F28F25000EBBBCE /* HouseReviewTableViewCell.swift */,
 				3EB051401F28F25B00EBBBCE /* HouseMapTableViewCell.swift */,
 				3EDC13AA1F2D11BA00BA4077 /* RateHouseTableViewCell.swift */,
+				3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -284,6 +291,7 @@
 				3E0954081F274B2D000240FA /* VisitTableViewController.swift */,
 				3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */,
 				3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */,
+				3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */,
 			);
 			name = TableViewControllers;
 			sourceTree = "<group>";
@@ -291,6 +299,7 @@
 		3EB051331F28F16A00EBBBCE /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */,
 				3E0F06B31F1E02CE0023E229 /* VillimSession.swift */,
 				3E0F06B41F1E02CE0023E229 /* VillimUser.swift */,
 				3E8543871F21DF9200525F7A /* VillimHouse.swift */,
@@ -613,6 +622,7 @@
 				3EB0513F1F28F25000EBBBCE /* HouseReviewTableViewCell.swift in Sources */,
 				3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */,
 				3EDC13A91F2D11A900BA4077 /* RateHouseTableViewController.swift in Sources */,
+				3E5F98881F2E8A9F003AAF8F /* VillimLocation.swift in Sources */,
 				3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */,
 				3EB051491F2AF57200EBBBCE /* ApplicationShortcut.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,
@@ -634,6 +644,7 @@
 				3EDC139D1F2C295200BA4077 /* WebViewController.swift in Sources */,
 				3EDC13AB1F2D11BA00BA4077 /* RateHouseTableViewCell.swift in Sources */,
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
+				3E5F98861F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
 				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,
 				3EB051301F28F13400EBBBCE /* HostInfoTableViewCell.swift in Sources */,
@@ -642,6 +653,7 @@
 				3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */,
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
+				3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */,
 				3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */,
 				3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */,
 				3E5F98821F2E6CB6003AAF8F /* LocationFilterViewController.swift in Sources */,

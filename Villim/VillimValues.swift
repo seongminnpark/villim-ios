@@ -28,5 +28,6 @@ class VillimValues {
 
     public static let searchFilterContentColor = UIColor(red: 179.0/255.0, green: 179.0/255.0, blue: 179.0/255.0, alpha:1.0)
 
+    public static let searchFieldBorderColor = UIColor(red: 5.0/255.0, green: 6.0/255.0, blue: 11.0/255.0, alpha:1.0)
     
 }

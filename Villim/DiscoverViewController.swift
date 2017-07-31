@@ -12,9 +12,13 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Toaster
 
-class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
+class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate {
     
     var houses : [VillimHouse] = []
+    
+    var locationQuery : String = ""
+    var checkIn  : Date? = nil
+    var checkOut : Date? = nil
     
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
@@ -48,6 +52,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
         self.title = "숙소 찾기"
         self.tabBarItem.title = self.title
         
+        checkIn = Date()
+        checkOut = Date()
+        
         /* Prevent overlap with navigation controller */
         let navControllerHeight = self.navigationController!.navigationBar.frame.height
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
@@ -76,6 +83,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
         locationFilterClearButton.tintColor = VillimValues.searchFilterContentColor
         locationFilterClearButton.isHidden = true
         locationFilterClearButton.isEnabled = false
+        locationFilterClearButton.addTarget(self, action: #selector(self.clearLocationFilter), for: .touchUpInside)
         locationFilter.addSubview(locationFilterIcon)
         locationFilter.addSubview(locationFilterLabel)
         locationFilter.addSubview(locationFilterClearButton)
@@ -134,11 +142,14 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
     }
     
     func launchLocationFilterViewController(sender : UITapGestureRecognizer) {
+        self.tabBarController?.tabBar.isHidden = true
         let locationFilterViewController = LocationFilterViewController()
+        locationFilterViewController.locationDelegate = self
         self.navigationController?.pushViewController(locationFilterViewController, animated: true)
     }
     
     func launchDateFilterViewController(sender : UITapGestureRecognizer) {
+        self.tabBarController?.tabBar.isHidden = true
         let dateFilterViewController = DateFilterViewController()
         self.navigationController?.pushViewController(dateFilterViewController, animated: true)
     }
@@ -264,6 +275,60 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
             self.hideLoadingIndicator()
         }
     }
+    
+    @objc private func sendSearchRequest() {
+        
+        showLoadingIndicator()
+        
+        var parameters = [
+            VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
+            ] as [String : Any]
+        
+        if dateFilterSet {
+            parameters[VillimKeys.KEY_CHECKIN]  = VillimUtils.dateToString(date: checkIn!)
+            parameters[VillimKeys.KEY_CHECKOUT] =  VillimUtils.dateToString(date: checkOut!)
+        }
+        
+        if locationFilterSet {
+            parameters[VillimKeys.KEY_LOCATION] = locationQuery
+        }
+        
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.SEARCH_URL)
+        
+        Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
+            switch response.result {
+            case .success:
+                let responseData = JSON(data: response.data!)
+                if responseData[VillimKeys.KEY_SUCCESS].boolValue {
+                    
+                    self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
+                    
+                    self.discoverTableViewController.houses = self.houses
+                    self.discoverTableViewController.tableView.reloadData()
+                } else {
+                    self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
+                }
+            case .failure(let error):
+                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+            }
+            self.hideLoadingIndicator()
+        }
+    }
+    
+    func onLocationFilterSet(location:String) {
+        locationFilterSet = true
+        locationFilterLabel.text = location
+        locationFilterClearButton.isHidden = false
+        locationFilterClearButton.isEnabled = true
+        sendSearchRequest()
+    }
+    
+    func clearLocationFilter() {
+        locationFilterSet = false
+        locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
+        locationFilterClearButton.isHidden = true
+        locationFilterClearButton.isEnabled = false
+    }
 
     func discoverItemSelected(position: Int) {
         let houseDetailViewController = HouseDetailViewController()
@@ -319,6 +384,11 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate {
 
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
     }
     
 }

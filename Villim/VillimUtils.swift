@@ -22,7 +22,9 @@ class VillimUtils {
     }
     
     public static func dateToString(date:Date) -> String {
-        return date.description
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        return formatter.string(from: date)
     }
     
     public static func datesBetween(startDate:Date, endDate:Date, includeEdges:Bool) -> [Date] {
