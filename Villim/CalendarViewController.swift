@@ -73,6 +73,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
         calendar.scrollDirection = .vertical
+        calendar.appearance.headerDateFormat = NSLocalizedString("month_header_format", comment: "")
         self.view.addSubview(calendar)
         self.calendar = calendar
         
