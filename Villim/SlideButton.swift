@@ -164,7 +164,7 @@ class SlideButton: UIView {
             var finalX    = translatedPoint.x + velocityX
             if finalX < 0 {
                 finalX = 0
-            } else if finalX + self.dragPointWidth >= self.frame.size.width - sliderInset {
+            } else if translatedPoint.x + self.dragPointWidth >= self.frame.size.width - sliderInset {
                 unlocked = true
                 self.unlock()
             }

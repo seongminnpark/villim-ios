@@ -54,6 +54,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         reviewButton.setTitleColor(UIColor.gray, for: .normal)
         reviewButton.setTitleColor(UIColor.black, for: .highlighted)
         reviewButton.addTarget(self, action:#selector(self.launchReviewHouseViewController), for: .touchUpInside)
+        reviewButton.isEnabled = false
         self.view.addSubview(reviewButton)
         
         changePasscodeButton = UIButton()
@@ -61,6 +62,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         changePasscodeButton.setTitleColor(UIColor.gray, for: .normal)
         changePasscodeButton.setTitleColor(UIColor.black, for: .highlighted)
         changePasscodeButton.addTarget(self, action:#selector(self.launcChangePasscodeViewController), for: .touchUpInside)
+        changePasscodeButton.isEnabled = false
         self.view.addSubview(changePasscodeButton)
         
         /* Info container */
@@ -103,7 +105,6 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         self.view.addSubview(errorMessage)
         
         makeConstraints()
-        
         if VillimSession.getLoggedIn() {
             sendMyHouseRequest()
         } else {
@@ -130,6 +131,8 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
                     self.checkOut          = responseData[VillimKeys.KEY_CHECKOUT].exists() ? responseData[VillimKeys.KEY_CHECKOUT].stringValue : ""
                     self.houseThumbnailUrl = responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].exists() ? responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].stringValue : ""
                     self.setUpKeyLayout()
+                    self.reviewButton.isEnabled = true
+                    self.changePasscodeButton.isEnabled = true
                 } else {
                     self.setUpNoKeyLayout()
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
