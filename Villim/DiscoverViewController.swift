@@ -11,14 +11,15 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import Toaster
+import SwiftDate
 
 class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, DateFilterDelegate {
     
     var houses : [VillimHouse] = []
     
     var locationQuery : String = ""
-    var checkIn  : Date? = nil
-    var checkOut : Date? = nil
+    var checkIn  : DateInRegion! = nil
+    var checkOut : DateInRegion! = nil
     
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
@@ -52,8 +53,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.title = "숙소 찾기"
         self.tabBarItem.title = self.title
         
-        checkIn = Date()
-        checkOut = Date()
+        checkIn = DateInRegion()
+        checkOut = DateInRegion()
         
         /* Prevent overlap with navigation controller */
         let navControllerHeight = self.navigationController!.navigationBar.frame.height
@@ -151,6 +152,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     func launchDateFilterViewController(sender : UITapGestureRecognizer) {
         self.tabBarController?.tabBar.isHidden = true
         let dateFilterViewController = DateFilterViewController()
+        dateFilterViewController.dateSet = self.dateFilterSet
+        dateFilterViewController.checkIn = self.checkIn
+        dateFilterViewController.checkOut = self.checkOut
         self.navigationController?.pushViewController(dateFilterViewController, animated: true)
     }
     
@@ -332,12 +336,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         locationFilterClearButton.isEnabled = false
     }
     
-    func onDateFilterSet(checkIn:Date, checkOut:Date) {
+    func onDateFilterSet(checkIn:DateInRegion, checkOut:DateInRegion) {
         dateFilterSet = true
-        let checkInString  = VillimUtils.dateToString(date: checkIn)
-        let checkOutString = VillimUtils.dateToString(date: checkOut)
+        let dateFormatString = NSLocalizedString("date_format_client", comment: "")
+        let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)
+        let checkOutString = String(format:dateFormatString, checkOut.month, checkOut.day)
         dateFilterLabel.text =
-            String(format:NSLocalizedString("", comment: ""), checkInString, checkOutString)
+            String(format:NSLocalizedString("date_filter_format", comment: ""), checkInString, checkOutString)
         dateFilterClearButton.isHidden = false
         dateFilterClearButton.isEnabled = true
         sendSearchRequest()

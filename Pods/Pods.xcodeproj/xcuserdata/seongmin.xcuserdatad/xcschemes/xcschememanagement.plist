@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FSCalendar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>NVActivityIndicatorView.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -44,6 +49,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>SwiftDate.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,7 +67,12 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>198D03A194ADE4C78BCBE5C9E48B8D28</key>
+		<key>04CEBC46298608A52C68CB9D9A4F419E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0CEFBE136A19A0138A172C6818EBE7CC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,12 +92,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>694675CAB33E1786D3A7282D66E025F7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8BB6C843F4DFE56E2BBA2DCF2C3CF637</key>
+		<key>9C62B90FFD6B67200F3D63C170C48096</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,17 +112,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>C5A2DB7A84B7B78E359870D2E1B24AA7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DCBFB9D78318EB38DB5DEC0E8AA8F55A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>F22DF210EAF2891D844420B05AC0FC06</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F6F9CA353B108FBE2F913149EAA78109</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F7EFB3CD22B570F22F9AD5CA2D703747</key>
 		<dict>
 			<key>primary</key>
 			<true/>

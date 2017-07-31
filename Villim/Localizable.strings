@@ -128,4 +128,20 @@
 "where_to_go" = "어디로 가세요?";
 "popular_location" = "인기지역";
 
+"time_format" = "yyyy-MM-dd HH:mm:ss";
+"date_format" = "yyyy-MM-dd";
+"date_format_client_weekday" = "%d월 %d일 %s";
+"date_format_client" = "%d월 %d일";
 "date_filter_format" = "%s ~ %s";
+
+"start_date" = "시작일";
+"end_date" = "종료일";
+"save" = "저장하기";
+
+"monday"    = "월요일";
+"tuesday"   = " 화요일";
+"wednesday" = "수요일";
+"thursday"  = "목요일";
+"friday"    = "금요일";
+"saturday"  = "토요일";
+"sunday"    = "일요일";

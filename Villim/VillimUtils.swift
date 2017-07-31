@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import SwiftDate
 
 class VillimUtils {
     
@@ -17,14 +18,14 @@ class VillimUtils {
     
     public static func dateFromString(dateString:String) -> Date {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = NSLocalizedString("date_format", comment: "")
         return dateFormatter.date(from: dateString)!
     }
     
-    public static func dateToString(date:Date) -> String {
+    public static func dateToString(date:DateInRegion) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        return formatter.string(from: date)
+        formatter.dateFormat = NSLocalizedString("date_format", comment: "")
+        return formatter.string(from: date.absoluteDate)
     }
     
     public static func datesBetween(startDate:Date, endDate:Date, includeEdges:Bool) -> [Date] {
@@ -43,4 +44,26 @@ class VillimUtils {
         
         return dates;
     }
+    
+    public static func weekdayToString(weekday:Int) -> String {
+        switch weekday {
+        case 0:
+            return NSLocalizedString("monday", comment: "")
+        case 1:
+            return NSLocalizedString("tuesday", comment: "")
+        case 2:
+            return NSLocalizedString("wednesday", comment: "")
+        case 3:
+            return NSLocalizedString("thursday", comment: "")
+        case 4:
+            return NSLocalizedString("friday", comment: "")
+        case 5:
+            return NSLocalizedString("saturday", comment: "")
+        case 6:
+            return NSLocalizedString("sunday", comment: "")
+        default:
+            return NSLocalizedString("monday", comment: "")
+        }
+    }
+    
 }
