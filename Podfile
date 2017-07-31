@@ -14,7 +14,7 @@ target 'Villim' do
   pod 'Toaster'
   pod 'GoogleMaps'
   pod 'Cosmos', '~> 11.0'
-  pod 'FSCalendar'
+  pod 'FSCalendar', '~> 2.7'
   pod 'SwiftDate', '~> 4.0'
 
   target 'VillimTests' do

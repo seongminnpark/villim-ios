@@ -13,7 +13,7 @@ import NVActivityIndicatorView
 import Toaster
 import SwiftDate
 
-class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, DateFilterDelegate {
+class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate {
     
     var houses : [VillimHouse] = []
     
@@ -151,11 +151,12 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     func launchDateFilterViewController(sender : UITapGestureRecognizer) {
         self.tabBarController?.tabBar.isHidden = true
-        let dateFilterViewController = DateFilterViewController()
-        dateFilterViewController.dateSet = self.dateFilterSet
-        dateFilterViewController.checkIn = self.checkIn
-        dateFilterViewController.checkOut = self.checkOut
-        self.navigationController?.pushViewController(dateFilterViewController, animated: true)
+        let calendarViewController = CalendarViewController()
+        calendarViewController.calendarDelegate = self
+        calendarViewController.dateSet = self.dateFilterSet
+        calendarViewController.checkIn = self.checkIn
+        calendarViewController.checkOut = self.checkOut
+        self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
     
     func populateViews() {
@@ -319,7 +320,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         }
     }
     
-    /* Filter delegatino methods */
+    /* Filter delegation methods */
     
     func onLocationFilterSet(location:String) {
         locationFilterSet = true
@@ -336,7 +337,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         locationFilterClearButton.isEnabled = false
     }
     
-    func onDateFilterSet(checkIn:DateInRegion, checkOut:DateInRegion) {
+    func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {
         dateFilterSet = true
         let dateFormatString = NSLocalizedString("date_format_client", comment: "")
         let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)
@@ -350,7 +351,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     func clearDateFilter() {
         dateFilterSet = false
-        locationFilterLabel.text = NSLocalizedString("select_date", comment: "")
+        dateFilterLabel.text = NSLocalizedString("select_date", comment: "")
         dateFilterClearButton.isHidden = true
         dateFilterClearButton.isEnabled = false
     }

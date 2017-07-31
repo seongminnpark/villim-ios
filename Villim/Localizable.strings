@@ -130,7 +130,7 @@
 
 "time_format" = "yyyy-MM-dd HH:mm:ss";
 "date_format" = "yyyy-MM-dd";
-"date_format_client_weekday" = "%d월 %d일 %s";
+"date_format_client_weekday" = "%d월 %d일\n%s";
 "date_format_client" = "%d월 %d일";
 "date_filter_format" = "%s ~ %s";
 
@@ -139,9 +139,13 @@
 "save" = "저장하기";
 
 "monday"    = "월요일";
-"tuesday"   = " 화요일";
+"tuesday"   = "화요일";
 "wednesday" = "수요일";
 "thursday"  = "목요일";
 "friday"    = "금요일";
 "saturday"  = "토요일";
 "sunday"    = "일요일";
+
+"today_selected" = "내일 날짜부터 예약할 수 있습니다.";
+"select_different_dates" = "시작일과 종료일이 같을 수 없습니다.";
+"book_at_least_a_month" = "최소 입주 기간은 한 달입니다.";

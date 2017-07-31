@@ -19,7 +19,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Cosmos (~> 11.0)
-  - FSCalendar
+  - FSCalendar (~> 2.7)
   - GoogleMaps
   - Nuke (~> 5.0)
   - NVActivityIndicatorView
@@ -40,6 +40,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: f13031c636ef065281bc11857be9a16c7659e04f
 
-PODFILE CHECKSUM: 884fff0be9c39c73e21238298813790866d5f667
+PODFILE CHECKSUM: 41f98410631714d13e8e5ed88ba5566aacf71bad
 
 COCOAPODS: 1.2.1

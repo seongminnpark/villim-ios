@@ -32,7 +32,7 @@
 		3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */; };
 		3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */; };
 		3E5F98821F2E6CB6003AAF8F /* LocationFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98811F2E6CB6003AAF8F /* LocationFilterViewController.swift */; };
-		3E5F98841F2E6D0F003AAF8F /* DateFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98831F2E6D0F003AAF8F /* DateFilterViewController.swift */; };
+		3E5F98841F2E6D0F003AAF8F /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98831F2E6D0F003AAF8F /* CalendarViewController.swift */; };
 		3E5F98861F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */; };
 		3E5F98881F2E8A9F003AAF8F /* VillimLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */; };
 		3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */; };
@@ -119,7 +119,7 @@
 		3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailViewController.swift; sourceTree = "<group>"; };
 		3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3E5F98811F2E6CB6003AAF8F /* LocationFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterViewController.swift; sourceTree = "<group>"; };
-		3E5F98831F2E6D0F003AAF8F /* DateFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFilterViewController.swift; sourceTree = "<group>"; };
+		3E5F98831F2E6D0F003AAF8F /* CalendarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestionTableViewController.swift; sourceTree = "<group>"; };
 		3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimLocation.swift; sourceTree = "<group>"; };
 		3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestionTableViewCell.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				3EB051461F2AF3CE00EBBBCE /* InfoPlist.strings */,
 				3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */,
 				3E5F98811F2E6CB6003AAF8F /* LocationFilterViewController.swift */,
-				3E5F98831F2E6D0F003AAF8F /* DateFilterViewController.swift */,
+				3E5F98831F2E6D0F003AAF8F /* CalendarViewController.swift */,
 				3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */,
 				3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */,
 				3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */,
@@ -636,7 +636,7 @@
 				3EDC13A11F2C390400BA4077 /* FindPasswordSuccessViewController.swift in Sources */,
 				3EDC13A51F2CD4F400BA4077 /* ReviewHouseViewController.swift in Sources */,
 				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
-				3E5F98841F2E6D0F003AAF8F /* DateFilterViewController.swift in Sources */,
+				3E5F98841F2E6D0F003AAF8F /* CalendarViewController.swift in Sources */,
 				3EB051451F2A780800EBBBCE /* SlideButton.swift in Sources */,
 				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
