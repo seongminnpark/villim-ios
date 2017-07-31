@@ -12,7 +12,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import Toaster
 
-class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate {
+class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, DateFilterDelegate {
     
     var houses : [VillimHouse] = []
     
@@ -315,6 +315,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         }
     }
     
+    /* Filter delegatino methods */
+    
     func onLocationFilterSet(location:String) {
         locationFilterSet = true
         locationFilterLabel.text = location
@@ -328,6 +330,24 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
         locationFilterClearButton.isHidden = true
         locationFilterClearButton.isEnabled = false
+    }
+    
+    func onDateFilterSet(checkIn:Date, checkOut:Date) {
+        dateFilterSet = true
+        let checkInString  = VillimUtils.dateToString(date: checkIn)
+        let checkOutString = VillimUtils.dateToString(date: checkOut)
+        dateFilterLabel.text =
+            String(format:NSLocalizedString("", comment: ""), checkInString, checkOutString)
+        dateFilterClearButton.isHidden = false
+        dateFilterClearButton.isEnabled = true
+        sendSearchRequest()
+    }
+    
+    func clearDateFilter() {
+        dateFilterSet = false
+        locationFilterLabel.text = NSLocalizedString("select_date", comment: "")
+        dateFilterClearButton.isHidden = true
+        dateFilterClearButton.isEnabled = false
     }
 
     func discoverItemSelected(position: Int) {

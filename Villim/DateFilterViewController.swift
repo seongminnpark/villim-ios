@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol DateFilterDelegate {
+    func onDateFilterSet(checkIn:Date, checkOut:Date)
+}
+
+
 class DateFilterViewController: UIViewController {
 
     override func viewDidLoad() {
