@@ -108,6 +108,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         dateFilterClearButton.tintColor = VillimValues.searchFilterContentColor
         dateFilterClearButton.isHidden = true
         dateFilterClearButton.isEnabled = false
+        dateFilterClearButton.addTarget(self, action: #selector(self.clearDateFilter), for: .touchUpInside)
         dateFilter.addSubview(dateFilterIcon)
         dateFilter.addSubview(dateFilterLabel)
         dateFilter.addSubview(dateFilterClearButton)
@@ -335,10 +336,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
         locationFilterClearButton.isHidden = true
         locationFilterClearButton.isEnabled = false
+        sendSearchRequest()
     }
     
     func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {
         dateFilterSet = true
+        self.checkIn = checkIn
+        self.checkOut = checkOut
         let dateFormatString = NSLocalizedString("date_format_client", comment: "")
         let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)
         let checkOutString = String(format:dateFormatString, checkOut.month, checkOut.day)
@@ -354,6 +358,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         dateFilterLabel.text = NSLocalizedString("select_date", comment: "")
         dateFilterClearButton.isHidden = true
         dateFilterClearButton.isEnabled = false
+        sendSearchRequest()
     }
 
     func discoverItemSelected(position: Int) {

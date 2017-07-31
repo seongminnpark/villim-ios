@@ -50,6 +50,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         self.view.addSubview(labelContainer)
         
         checkInLabel = UILabel()
+        checkInLabel.numberOfLines = 2
         let checkInText = dateSet ?
             String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
                    checkIn.month, checkIn.day, VillimUtils.weekdayToString(weekday:checkIn.weekday)) :
@@ -58,9 +59,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         labelContainer.addSubview(checkInLabel)
         
         checkOutLabel = UILabel()
+        checkOutLabel.numberOfLines = 2
         let checkOutText = dateSet ?
             String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
-                   checkOut.month, checkOut.day, checkOut.weekday) :
+                   checkOut.month, checkOut.day, VillimUtils.weekdayToString(weekday:checkOut.weekday)) :
             NSLocalizedString("end_date", comment: "")
         checkOutLabel.text = checkOutText
         labelContainer.addSubview(checkOutLabel)
@@ -70,6 +72,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
+        calendar.scrollDirection = .vertical
         self.view.addSubview(calendar)
         self.calendar = calendar
         
@@ -83,6 +86,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         saveButton.setTitleColor(UIColor.gray, for: .highlighted)
         saveButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(saveButton)
+        
+        if dateSet {
+            selectDates(from: checkIn, to: checkOut)
+        }
         
         updateState()
         makeConstraints()

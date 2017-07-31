@@ -130,9 +130,9 @@
 
 "time_format" = "yyyy-MM-dd HH:mm:ss";
 "date_format" = "yyyy-MM-dd";
-"date_format_client_weekday" = "%d월 %d일\n%s";
+"date_format_client_weekday" = "%d월 %d일\n%@";
 "date_format_client" = "%d월 %d일";
-"date_filter_format" = "%s ~ %s";
+"date_filter_format" = "%@ ~ %@";
 
 "start_date" = "시작일";
 "end_date" = "종료일";
