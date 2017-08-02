@@ -66,4 +66,12 @@ class VillimUtils {
         }
     }
     
+    public static func currencyToString(code:Int, full:Bool) -> String {
+        switch code {
+        case 0: return  full ? "KRW (₩)" : "₩"
+        case 1: return  full ? "USD ($)" : "$"
+        default: return full ? "KRW (₩)" : "W"
+        }
+    }
+    
 }

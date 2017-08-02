@@ -20,6 +20,8 @@ class VillimValues {
     
     public static let themeColorHighlighted = UIColor(red: 139.0/255.0, green: 0/255.0, blue: 0/255.0, alpha:1.0)
     
+    public static let darkColor = UIColor(red: 42.0/255.0, green: 44.0/255.0, blue: 50.0/255.0, alpha:1.0)
+    
     public static let dividerColor = UIColor(red: 200.0/255.0, green: 200.0/255.0, blue: 200.0/255.0, alpha:1.0)
     
     public static let ratingBarColor = UIColor(red: 79.0/255.0, green: 172.0/255.0, blue: 205.0/255.0, alpha:1.0)

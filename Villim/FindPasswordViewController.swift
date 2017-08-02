@@ -171,7 +171,6 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
-                print(response)
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
             self.hideLoadingIndicator()

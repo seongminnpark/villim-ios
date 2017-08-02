@@ -38,7 +38,7 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: latitude)
         marker.map = mapView
         
         

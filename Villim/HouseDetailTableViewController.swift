@@ -113,7 +113,7 @@ class HouseDetailTableViewController: UITableViewController {
         case 6:
             return 150.0
         case 7:
-            return 200.0
+            return 150.0
         case 8:
             return 70.0
         case 9:
@@ -199,7 +199,6 @@ class HouseDetailTableViewController: UITableViewController {
         let cell : HouseReviewTableViewCell = HouseReviewTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_review")
 
         cell.title.text = NSLocalizedString("review", comment: "")
-        print(lastReviewRating == nil)
         cell.houseReviewCount            = self.house.houseReviewCount
         cell.houseReviewRating           = self.house.houseRating
         cell.lastReviewRating            = self.lastReviewRating

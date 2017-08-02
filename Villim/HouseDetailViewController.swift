@@ -24,18 +24,21 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     var lastReviewProfilePictureUrl : String = ""
     var lastReviewRating : Float = 0
     
-    var houseDetailTableViewController : HouseDetailTableViewController!
-    
-    var houseImageView : UIImageView!
-    
-    var loadingIndicator : NVActivityIndicatorView!
-    
     let houseImageViewMaxHeight : CGFloat! = 300
     var navControllerHeight : CGFloat!
     var statusBarHeight : CGFloat!
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
     let tableViewInset : CGFloat! = 20.0
+    
+    var houseDetailTableViewController : HouseDetailTableViewController!
+    var houseImageView : UIImageView!
+    var leftButton : UIButton!
+    var leftButtonStackView : UIStackView!
+    var leftButtonImageView : UIImageView!
+    var leftButtonLabel     : UILabel!
+    var rightButton : UIButton!
+    var loadingIndicator : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,6 +71,32 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         houseDetailTableViewController.house = self.house
         self.view.addSubview(houseDetailTableViewController.view)
         
+        /* Bottom Buttons */
+        leftButton = UIButton()
+        leftButton.setBackgroundColor(color: VillimValues.darkColor, forState: .normal)
+        self.view.addSubview(leftButton)
+        
+        leftButtonStackView = UIStackView()
+        leftButtonStackView.axis = UILayoutConstraintAxis.horizontal
+        leftButtonStackView.distribution = UIStackViewDistribution.fillProportionally
+        leftButtonStackView.alignment = UIStackViewAlignment.center
+        leftButtonStackView.spacing = 10.0
+        
+        leftButtonImageView = UIImageView()
+        leftButtonImageView.image = #imageLiteral(resourceName: "icon_coin")
+        leftButtonStackView.addArrangedSubview(leftButtonImageView)
+        
+        leftButtonLabel = UILabel()
+        leftButtonLabel.textColor = UIColor.white
+        leftButtonStackView.addArrangedSubview(leftButtonLabel)
+        
+        leftButton.addSubview(leftButtonStackView)
+    
+        rightButton = UIButton.init(type: .custom)
+        rightButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
+        rightButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        self.view.addSubview(rightButton)
+ 
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
@@ -101,6 +130,32 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
             make.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
+        
+        /* Bottom buttons */
+        let screenWidth = UIScreen.main.bounds.width
+        // 1.7 : 1 ratio
+        let leftButtonWidth = screenWidth * 0.63
+        let rightButtonWidth = screenWidth * 0.37
+        
+        leftButton.snp.makeConstraints{ (make) -> Void in
+            make.width.equalTo(leftButtonWidth)
+            make.height.equalTo(VillimValues.BOTTOM_BUTTON_HEIGHT)
+            make.left.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        leftButtonStackView.snp.makeConstraints{ (make) -> Void in
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        
+        rightButton.snp.makeConstraints{ (make) -> Void in
+            make.width.equalTo(rightButtonWidth)
+            make.height.equalTo(VillimValues.BOTTOM_BUTTON_HEIGHT)
+            make.right.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
     }
     
     @objc private func sendHouseInfoRequest() {
@@ -132,14 +187,14 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
                         houseInfo[VillimKeys.KEY_REVIEW_LAST_PROFILE_PIC_URL].exists() ? houseInfo[VillimKeys.KEY_REVIEW_LAST_PROFILE_PIC_URL].stringValue : ""
                     self.lastReviewRating =
                         houseInfo[VillimKeys.KEY_REVIEW_LAST_RATING].exists() ? houseInfo[VillimKeys.KEY_REVIEW_LAST_RATING].floatValue : 0.0
-                        print(houseInfo)
+
                     self.houseDetailTableViewController.house = self.house
                     self.houseDetailTableViewController.lastReviewContent = self.lastReviewContent
                     self.houseDetailTableViewController.lastReviewReviewer = self.lastReviewReviewer
                     self.houseDetailTableViewController.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
                     self.houseDetailTableViewController.lastReviewRating = self.lastReviewRating
                     self.houseDetailTableViewController.tableView.reloadData()
-                    print(self.lastReviewRating)
+
                     self.populateView()
                     
                 } else {
@@ -156,6 +211,15 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         /* Add house image */
         let url = URL(string: house.houseThumbnailUrl)
         Nuke.loadImage(with: url!, into: self.houseImageView)
+        
+        /* Populate bottom button */
+        let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value:house.ratePerMonth))
+
+        leftButtonLabel.text = String(format:NSLocalizedString("monthly_rent_format", comment: ""),
+                                      VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
         
     }
     
