@@ -196,7 +196,7 @@ class HouseDetailTableViewController: UITableViewController {
         cell.lastReviewContent           = self.lastReviewContent
         cell.lastReviewReviewer          = self.lastReviewReviewer
         cell.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
-        
+        print("in tableview")
         cell.populateViews()
         cell.makeConstraints()
         return cell

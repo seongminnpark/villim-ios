@@ -8,8 +8,11 @@
 
 import UIKit
 import Nuke
+import Cosmos
 
 class HouseReviewTableViewCell: UITableViewCell {
+    
+    let reviewerImageSize           : CGFloat! = 50.0
     
     var houseReviewCount            : Int!     = 0
     var houseReviewRating           : Float!   = 0.0
@@ -53,52 +56,63 @@ class HouseReviewTableViewCell: UITableViewCell {
         } else if houseReviewCount > 0 {
             
             var seeMoreButton : UIButton! = nil
-            var houseRating   : UILabel!  = nil
+            var houseRating   : CosmosView!  = nil
             
             let reviewerProfilePic : UIImageView = UIImageView()
+            reviewerProfilePic.layer.cornerRadius = reviewerImageSize / 2.0
+            reviewerProfilePic.layer.masksToBounds = true;
             self.contentView.addSubview(reviewerProfilePic)
             
             let reviewerName : UILabel = UILabel()
             reviewerName.text = lastReviewReviewer
             self.contentView.addSubview(reviewerName)
             
-            let reviewRating : UILabel = UILabel()
-            reviewRating.text = lastReviewReviewer
+            let reviewRating : CosmosView = CosmosView()
+            reviewRating.rating = Double(lastReviewRating)
+            reviewRating.settings.updateOnTouch = false
+            reviewRating.settings.fillMode = .precise
+            reviewRating.settings.starSize = 15
+            reviewRating.settings.starMargin = 5
+            reviewRating.settings.filledImage = UIImage(named: "icon_star_on")
+            reviewRating.settings.emptyImage = UIImage(named: "icon_star_off")
             self.contentView.addSubview(reviewRating)
-            
+
             let reviewContent : UILabel = UILabel()
             reviewContent.text = lastReviewContent
             self.contentView.addSubview(reviewContent)
             
             if houseReviewCount > 1 {
                 seeMoreButton = UIButton()
-                seeMoreButton.titleLabel?.text = String(format: NSLocalizedString("review_see_more_format", comment: ""), houseReviewCount - 1)
+                seeMoreButton.setTitle(String(format: NSLocalizedString("review_see_more_format", comment: ""), houseReviewCount - 1), for: .normal)
+                seeMoreButton.setTitleColor(VillimValues.themeColor, for: .normal)
                 self.contentView.addSubview(seeMoreButton)
-                
-                houseRating = UILabel()
-                houseRating.text = self.lastReviewReviewer
+
+                houseRating = CosmosView()
+                houseRating.rating = Double(self.houseReviewRating)
+                houseRating.settings.updateOnTouch = false
+                houseRating.settings.fillMode = .precise
+                houseRating.settings.starSize = 15
+                houseRating.settings.starMargin = 5
+                houseRating.settings.filledImage = UIImage(named: "icon_star_on")
+                houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
                 self.contentView.addSubview(houseRating)
 
             }
             
             /* Make constriaints */
             reviewerProfilePic.snp.makeConstraints { (make) -> Void in
-                make.width.equalTo(50)
-                make.height.equalTo(50)
+                make.width.equalTo(reviewerImageSize)
+                make.height.equalTo(reviewerImageSize)
                 make.top.equalTo(title.snp.bottom)
                 make.left.equalToSuperview()
             }
             
             reviewerName.snp.makeConstraints { (make) -> Void in
-                make.width.equalTo(150)
-                make.height.equalTo(50)
                 make.top.equalTo(title.snp.bottom)
                 make.left.equalTo(reviewerProfilePic.snp.right)
             }
             
             reviewRating.snp.makeConstraints { (make) -> Void in
-                make.width.equalTo(150)
-                make.height.equalTo(150)
                 make.top.equalTo(title.snp.bottom)
                 make.left.equalTo(reviewerName.snp.right)
             }
@@ -114,14 +128,12 @@ class HouseReviewTableViewCell: UITableViewCell {
                 }
                 
                 seeMoreButton.snp.makeConstraints { (make) -> Void in
-                    make.width.equalTo(150)
                     make.top.equalTo(reviewContent.snp.bottom)
                     make.bottom.equalToSuperview()
                     make.left.equalTo(reviewerProfilePic.snp.right)
                 }
                 
                 houseRating.snp.makeConstraints { (make) -> Void in
-                    make.width.equalTo(150)
                     make.top.equalTo(reviewContent.snp.bottom)
                     make.bottom.equalToSuperview()
                     make.right.equalToSuperview()
@@ -141,9 +153,8 @@ class HouseReviewTableViewCell: UITableViewCell {
             if lastReviewProfilePictureUrl == nil {
                 reviewerProfilePic.image = #imageLiteral(resourceName: "img_default")
             } else {
-                print(VillimSession.getProfilePicUrl())
-                let url = URL(string: VillimSession.getProfilePicUrl())
-                Nuke.loadImage(with: url!, into: reviewerProfilePic)
+                let url = URL(string: lastReviewProfilePictureUrl)
+                if url != nil { Nuke.loadImage(with: url!, into: reviewerProfilePic) }
             }
             
         }

@@ -11,6 +11,8 @@ import Cosmos
 
 class HostInfoTableViewCell: UITableViewCell {
 
+    let hostImageSize   : CGFloat! = 50.0
+    
     var hostImage       : UIImageView!
     var hostName        : UILabel!
     var hostRating      : CosmosView!
@@ -46,8 +48,8 @@ class HostInfoTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         hostImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(50)
-            make.height.equalTo(50)
+            make.width.equalTo(hostImageSize)
+            make.height.equalTo(hostImageSize)
             make.left.equalToSuperview()
             make.top.equalToSuperview()
         }
