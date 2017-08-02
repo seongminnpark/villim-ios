@@ -73,5 +73,15 @@ class VillimUtils {
         default: return full ? "KRW (₩)" : "W"
         }
     }
-    
+ 
+    public static func getRentString(rent:Int) -> String {
+        let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value:rent))
+        
+        return String(format:NSLocalizedString("monthly_rent_format", comment: ""),
+                      VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
+    }
 }

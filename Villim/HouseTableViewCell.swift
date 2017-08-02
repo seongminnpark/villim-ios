@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Cosmos
 
 class HouseTableViewCell: UITableViewCell {
     
     var houseThumbnail: UIImageView!
     var houseName: UILabel!
-    var houseRating: UILabel!
+    var houseRating: CosmosView!
     var houseReviewCount: UILabel!
     var houseRent: UILabel!
     var imageDim: UIView!
@@ -27,7 +28,13 @@ class HouseTableViewCell: UITableViewCell {
         houseName = UILabel()
         self.contentView.addSubview(houseName)
         
-        houseRating = UILabel()
+        houseRating = CosmosView()
+        houseRating.settings.updateOnTouch = false
+        houseRating.settings.fillMode = .precise
+        houseRating.settings.starSize = 15
+        houseRating.settings.starMargin = 5
+        houseRating.settings.filledImage = UIImage(named: "icon_star_on")
+        houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
         self.contentView.addSubview(houseRating)
         
         houseReviewCount = UILabel()
@@ -62,13 +69,12 @@ class HouseTableViewCell: UITableViewCell {
         }
         
         houseRating.snp.makeConstraints{ (make) -> Void in
-            make.height.equalTo(30)
+
             make.top.equalTo(houseName.snp.bottom)
             make.left.equalTo(self.snp.centerX)
         }
         
         houseReviewCount.snp.makeConstraints{ (make) -> Void in
-            make.height.equalTo(30)
             make.top.equalTo(houseName.snp.bottom)
             make.right.equalToSuperview()
         }

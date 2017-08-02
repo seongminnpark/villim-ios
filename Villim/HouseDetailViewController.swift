@@ -213,13 +213,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         Nuke.loadImage(with: url!, into: self.houseImageView)
         
         /* Populate bottom button */
-        let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = NumberFormatter.Style.decimal
-        let formattedNumber = numberFormatter.string(from: NSNumber(value:house.ratePerMonth))
-
-        leftButtonLabel.text = String(format:NSLocalizedString("monthly_rent_format", comment: ""),
-                                      VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
+        leftButtonLabel.text = VillimUtils.getRentString(rent: house.ratePerMonth)
         
     }
     
