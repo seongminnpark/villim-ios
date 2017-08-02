@@ -68,6 +68,7 @@ class HouseReviewTableViewCell: UITableViewCell {
             self.contentView.addSubview(reviewerName)
             
             let reviewRating : CosmosView = CosmosView()
+            
             reviewRating.rating = Double(lastReviewRating)
             reviewRating.settings.updateOnTouch = false
             reviewRating.settings.fillMode = .precise

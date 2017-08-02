@@ -130,14 +130,14 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
                         houseInfo[VillimKeys.KEY_REVIEW_LAST_PROFILE_PIC_URL].exists() ? houseInfo[VillimKeys.KEY_REVIEW_LAST_PROFILE_PIC_URL].stringValue : ""
                     self.lastReviewRating =
                         houseInfo[VillimKeys.KEY_REVIEW_LAST_RATING].exists() ? houseInfo[VillimKeys.KEY_REVIEW_LAST_RATING].floatValue : 0.0
-
+                        print(houseInfo)
                     self.houseDetailTableViewController.house = self.house
                     self.houseDetailTableViewController.lastReviewContent = self.lastReviewContent
                     self.houseDetailTableViewController.lastReviewReviewer = self.lastReviewReviewer
                     self.houseDetailTableViewController.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
                     self.houseDetailTableViewController.lastReviewRating = self.lastReviewRating
                     self.houseDetailTableViewController.tableView.reloadData()
-
+                    print(self.lastReviewRating)
                     self.populateView()
                     
                 } else {

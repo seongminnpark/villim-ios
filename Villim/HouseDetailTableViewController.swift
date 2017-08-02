@@ -15,12 +15,12 @@ protocol HouseDetailScrollListener {
 
 class HouseDetailTableViewController: UITableViewController {
 
-    var houseDetailScrollListener : HouseDetailScrollListener!
-    var house : VillimHouse!
-    var lastReviewContent : String!
-    var lastReviewReviewer : String!
-    var lastReviewProfilePictureUrl : String!
-    var lastReviewRating : Float!
+    var houseDetailScrollListener   : HouseDetailScrollListener!
+    var house                       : VillimHouse!
+    var lastReviewContent           : String! = ""
+    var lastReviewReviewer          : String! = ""
+    var lastReviewProfilePictureUrl : String! = ""
+    var lastReviewRating            : Float! = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,6 +35,8 @@ class HouseDetailTableViewController: UITableViewController {
         self.tableView.allowsSelection = false
         self.tableView.bounces = false
         self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.contentInset =
+            UIEdgeInsets(top: 5, left: 5, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 5)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -175,7 +177,7 @@ class HouseDetailTableViewController: UITableViewController {
         let cell : HouseGenericTableViewCell = HouseGenericTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_generic")
 
         cell.title.text   = title
-        cell.content.text = content
+        cell.content.setTitle(content, for: .normal)
         
         cell.makeConstraints()
         return cell
@@ -196,7 +198,7 @@ class HouseDetailTableViewController: UITableViewController {
         let cell : HouseReviewTableViewCell = HouseReviewTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_review")
 
         cell.title.text = NSLocalizedString("review", comment: "")
-        
+        print(lastReviewRating == nil)
         cell.houseReviewCount            = self.house.houseReviewCount
         cell.houseReviewRating           = self.house.houseRating
         cell.lastReviewRating            = self.lastReviewRating
