@@ -24,7 +24,7 @@ class HouseReviewTableViewCell: UITableViewCell {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
         title = UILabel()
-        title.text = NSLocalizedString("amenities", comment: "")
+        title.text = NSLocalizedString("review", comment: "")
         self.contentView.addSubview(title)
         
         makeConstraints()

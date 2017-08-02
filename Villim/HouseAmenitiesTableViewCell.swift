@@ -10,6 +10,8 @@ import UIKit
 
 class HouseAmenitiesTableViewCell: UITableViewCell {
 
+    static let AMENITY_ICON_SIZE = 30.0
+    
     var amenities : [Int] = []
     
     var title     : UILabel!
@@ -24,7 +26,7 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
         
         stackView = UIStackView()
         stackView.axis = UILayoutConstraintAxis.horizontal
-        stackView.distribution = UIStackViewDistribution.fillEqually
+        stackView.distribution = UIStackViewDistribution.equalSpacing
         stackView.alignment = UIStackViewAlignment.center
         self.contentView.addSubview(stackView)
     }
@@ -44,7 +46,7 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
             noAmenityLabel.text = NSLocalizedString("no_amenity", comment: "")
             stackView.addArrangedSubview(noAmenityLabel)
     
-        } else if amenities.count < HouseDetailViewController.MAX_AMENITY_ICONS {
+        } else if amenities.count <= HouseDetailViewController.MAX_AMENITY_ICONS {
     
             for index in 0 ..< amenities.count {
                 let icon = UIImageView()
@@ -52,17 +54,18 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
                 stackView.addArrangedSubview(icon)
             }
     
-        } else { /* amenities.count > MAX_AMENITY_ICONS - 1 */
+        } else { /* amenities.count > MAX_AMENITY_ICONS */
     
-            for index in 0 ..< amenities.count - 1 {
+            for index in 0 ..< numIcons {
                 let icon = UIImageView()
                 icon.image = VillimAmenity.getAmenityImage(amenityId: amenities[index])
                 stackView.addArrangedSubview(icon)
             }
     
-        let seeMoreButton = UIButton()
-        seeMoreButton.titleLabel?.text = String(format: NSLocalizedString("amenity_see_more_format", comment: ""), amenities.count - numIcons)
-        stackView.addArrangedSubview(seeMoreButton)
+            let seeMoreButton = UIButton()
+            seeMoreButton.setTitle(String(format: NSLocalizedString("amenity_see_more_format", comment: ""), amenities.count - numIcons), for: .normal)
+            seeMoreButton.setTitleColor(VillimValues.themeColor, for: .normal)
+            stackView.addArrangedSubview(seeMoreButton)
         }
     }
     
@@ -82,6 +85,7 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
             make.left.equalToSuperview()
         }
     }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
