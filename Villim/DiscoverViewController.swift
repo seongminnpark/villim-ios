@@ -364,6 +364,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     func discoverItemSelected(position: Int) {
         let houseDetailViewController = HouseDetailViewController()
         houseDetailViewController.house = houses[position]
+        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
     

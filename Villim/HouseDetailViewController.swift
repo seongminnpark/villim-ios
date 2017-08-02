@@ -35,6 +35,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
     var statusBarHeight : CGFloat!
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
+    let tableViewInset : CGFloat! = 20.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,8 +96,9 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         
         /* Tableview */
         houseDetailTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
             make.top.equalTo(houseImageView.snp.bottom)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
     }

@@ -36,7 +36,8 @@ class HouseDetailTableViewController: UITableViewController {
         self.tableView.bounces = false
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.contentInset =
-            UIEdgeInsets(top: 5, left: 5, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 5)
+            UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
