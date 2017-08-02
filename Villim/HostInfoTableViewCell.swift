@@ -60,17 +60,13 @@ class HostInfoTableViewCell: UITableViewCell {
         }
         
         hostRating?.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(50)
             make.top.equalTo(hostName.snp.bottom)
             make.left.equalTo(hostImage.snp.right)
-            make.bottom.equalToSuperview()
         }
         
         hostReviewCount.snp.makeConstraints{ (make) -> Void in
-            make.height.equalTo(50)
-            make.top.equalTo(hostName.snp.bottom)
+            make.top.equalTo(hostRating)
             make.left.equalTo(hostRating.snp.right)
-            make.bottom.equalToSuperview()
         }
     }
     
