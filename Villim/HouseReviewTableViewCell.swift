@@ -11,12 +11,12 @@ import Nuke
 
 class HouseReviewTableViewCell: UITableViewCell {
     
-    var houseReviewCount            : Int!
-    var houseReviewRating           : Float!
-    var lastReviewContent           : String!
-    var lastReviewReviewer          : String!
-    var lastReviewProfilePictureUrl : String!
-    var lastReviewRating            : Float!
+    var houseReviewCount            : Int!     = 0
+    var houseReviewRating           : Float!   = 0.0
+    var lastReviewContent           : String!  = ""
+    var lastReviewReviewer          : String!  = ""
+    var lastReviewProfilePictureUrl : String!  = ""
+    var lastReviewRating            : Float!   = 0.0
     
     var title : UILabel!
     
@@ -138,9 +138,10 @@ class HouseReviewTableViewCell: UITableViewCell {
             }
             
             /* Load image */
-            if lastReviewProfilePictureUrl.isEmpty {
+            if lastReviewProfilePictureUrl == nil {
                 reviewerProfilePic.image = #imageLiteral(resourceName: "img_default")
             } else {
+                print(VillimSession.getProfilePicUrl())
                 let url = URL(string: VillimSession.getProfilePicUrl())
                 Nuke.loadImage(with: url!, into: reviewerProfilePic)
             }

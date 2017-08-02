@@ -31,7 +31,7 @@ class HouseDetailTableViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
-        self.tableView.rowHeight = 150
+        self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.allowsSelection = false
         self.tableView.bounces = false
         self.tableView.separatorInset = UIEdgeInsets.zero
@@ -84,6 +84,36 @@ class HouseDetailTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let row = indexPath.row
+        
+        switch row {
+        case 0:
+            return 100.0
+        case 1:
+            return 120.0
+        case 2:
+            return 100.0
+        case 3:
+            return 100.0
+        case 4:
+            return 70.0
+        case 5:
+            return 100.0
+        case 6:
+            return 150.0
+        case 7:
+            return 200.0
+        case 8:
+            return 70.0
+        case 9:
+            return 70.0
+        default:
+            return 150.0
+        }
+
+    }
+    
     func setupHostInfoCell() -> HostInfoTableViewCell {
         let cell : HostInfoTableViewCell = HostInfoTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"host_info")
         
@@ -96,7 +126,7 @@ class HouseDetailTableViewController: UITableViewController {
         }
         
         cell.hostName.text        = house.hostName
-        cell.hostRating.text      = "\(house.hostRating)"
+        cell.hostRating.rating    = Double(house.hostRating)
         cell.hostReviewCount.text = String(format: NSLocalizedString("review_count_format", comment: ""), house.hostReviewCount)
         
         cell.makeConstraints()
@@ -158,7 +188,7 @@ class HouseDetailTableViewController: UITableViewController {
     func setupHouseReviewCell() -> HouseReviewTableViewCell {
         let cell : HouseReviewTableViewCell = HouseReviewTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_review")
 
-        cell.title.text = NSLocalizedString("amenity", comment: "")
+        cell.title.text = NSLocalizedString("review", comment: "")
         
         cell.houseReviewCount            = self.house.houseReviewCount
         cell.houseReviewRating           = self.house.houseRating

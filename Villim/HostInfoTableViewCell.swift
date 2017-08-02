@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import Cosmos
 
 class HostInfoTableViewCell: UITableViewCell {
 
     var hostImage       : UIImageView!
     var hostName        : UILabel!
-    var hostRating      : UILabel!
+    var hostRating      : CosmosView!
     var hostReviewCount : UILabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
@@ -24,7 +25,13 @@ class HostInfoTableViewCell: UITableViewCell {
         hostName = UILabel()
         self.contentView.addSubview(hostName)
         
-        hostRating = UILabel()
+        hostRating = CosmosView()
+        hostRating.settings.updateOnTouch = false
+        hostRating.settings.fillMode = .precise
+        hostRating.settings.starSize = 15
+        hostRating.settings.starMargin = 5
+        hostRating.settings.filledImage = UIImage(named: "icon_star_on")
+        hostRating.settings.emptyImage = UIImage(named: "icon_star_off")
         self.contentView.addSubview(hostRating)
         
         hostReviewCount = UILabel()

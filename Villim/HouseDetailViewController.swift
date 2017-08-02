@@ -114,6 +114,9 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                
+                print(responseData)
+
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     self.house = VillimHouse.init(houseInfo: responseData[VillimKeys.KEY_HOUSE_INFO])
                     self.lastReviewContent =

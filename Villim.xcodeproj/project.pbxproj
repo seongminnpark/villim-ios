@@ -410,7 +410,7 @@
 				TargetAttributes = {
 					3E0F067A1F1E017B0023E229 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = CE5FHKV2L9;
+						DevelopmentTeam = Y94Q5K4MU7;
 						ProvisioningStyle = Automatic;
 					};
 					3E0F068E1F1E017B0023E229 = {
@@ -819,11 +819,13 @@
 			baseConfigurationReference = 78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CE5FHKV2L9;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y94Q5K4MU7;
 				INFOPLIST_FILE = Villim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.villim.Villim;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seongminnpark.Villim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -833,11 +835,13 @@
 			baseConfigurationReference = F95D5D512ABF4A37A15212BB /* Pods-Villim.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = CE5FHKV2L9;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = Y94Q5K4MU7;
 				INFOPLIST_FILE = Villim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = net.villim.Villim;
+				PRODUCT_BUNDLE_IDENTIFIER = com.seongminnpark.Villim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

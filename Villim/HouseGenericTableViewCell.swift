@@ -39,7 +39,7 @@ class HouseGenericTableViewCell: UITableViewCell {
         
         content?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(100)
-            make.top.equalToSuperview()
+            make.height.equalToSuperview()
             make.right.equalToSuperview()
         }
         
