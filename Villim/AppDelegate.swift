@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        GMSServices.provideAPIKey("AIzaSyCh6u-8mvUsvH5Wz9V2EkzXb69aVocA-EY")
+        GMSServices.provideAPIKey("AIzaSyCKOyK9ajX3YahW1PE23EGcpC1nthF541M")
         
         window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = TabBarController()

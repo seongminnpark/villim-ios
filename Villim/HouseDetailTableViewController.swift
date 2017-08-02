@@ -37,6 +37,13 @@ class HouseDetailTableViewController: UITableViewController {
         self.tableView.separatorInset = UIEdgeInsets.zero
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        // Pre-load mapview.
+        self.tableView(self.tableView, cellForRowAt: IndexPath(row: 7, section: 0))
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -196,7 +203,7 @@ class HouseDetailTableViewController: UITableViewController {
         cell.lastReviewContent           = self.lastReviewContent
         cell.lastReviewReviewer          = self.lastReviewReviewer
         cell.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
-        print("in tableview")
+        
         cell.populateViews()
         cell.makeConstraints()
         return cell
@@ -208,7 +215,7 @@ class HouseDetailTableViewController: UITableViewController {
         cell.latitude = house.latitude
         cell.longitude = house.longitude
         
-        cell.makeConstraints()
+        cell.populateView()
         return cell
     }
     

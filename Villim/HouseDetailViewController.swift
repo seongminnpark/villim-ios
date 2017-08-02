@@ -114,7 +114,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                print(responseData)
+
                 let successExists : Bool = responseData[VillimKeys.KEY_HOUSE_INFO].exists()
                 let success       : Bool = successExists ? responseData[VillimKeys.KEY_SUCCESS].boolValue : false
                 let hosueExists   : Bool = responseData[VillimKeys.KEY_HOUSE_INFO].exists()
@@ -137,9 +137,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
                     self.houseDetailTableViewController.lastReviewProfilePictureUrl = self.lastReviewProfilePictureUrl
                     self.houseDetailTableViewController.lastReviewRating = self.lastReviewRating
                     self.houseDetailTableViewController.tableView.reloadData()
-                    print("ddd")
-                    print(self.lastReviewContent)
-                    print(self.houseDetailTableViewController.lastReviewContent)
+
                     self.populateView()
                     
                 } else {

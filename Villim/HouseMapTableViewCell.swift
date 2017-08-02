@@ -9,9 +9,10 @@
 import UIKit
 import GoogleMaps
 
-class HouseMapTableViewCell: UITableViewCell {
+class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
 
     var container : UIView!
+    var mapView   : GMSMapView!
     var latitude  : Double = 0.0
     var longitude : Double = 0.0
     
@@ -30,19 +31,30 @@ class HouseMapTableViewCell: UITableViewCell {
     
     func populateView() {
         let location = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
-        let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 6.0)
-        let mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 17.0)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         
         container.addSubview(mapView)
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
+        marker.map = mapView
+        
+        
+        makeConstraints()
     }
     
     func makeConstraints() {
         
         container?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+            make.left.equalToSuperview()
+            make.top.equalToSuperview()
+        }
+        
+        mapView?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview()
             make.height.equalToSuperview()
             make.left.equalToSuperview()
