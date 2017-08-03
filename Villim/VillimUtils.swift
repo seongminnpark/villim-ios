@@ -79,6 +79,17 @@ class VillimUtils {
         }
     }
  
+    public static func getCurrencyString(price:Int) -> String{
+        let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        let formattedNumber = numberFormatter.string(from: NSNumber(value:price))
+        
+        return String(format:NSLocalizedString("currency_format", comment: ""),
+                      VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
+    }
+    
     public static func getRentString(rent:Int) -> String {
         let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0
         

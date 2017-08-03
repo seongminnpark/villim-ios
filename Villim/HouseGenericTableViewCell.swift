@@ -11,7 +11,7 @@ import UIKit
 class HouseGenericTableViewCell: UITableViewCell {
 
     var title   : UILabel!
-    var content : UIButton!
+    var button  : UIButton!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
@@ -19,9 +19,9 @@ class HouseGenericTableViewCell: UITableViewCell {
         title = UILabel()
         self.contentView.addSubview(title)
         
-        content = UIButton()
-        content.setTitleColor(VillimValues.themeColor, for: .normal)
-        self.contentView.addSubview(content)
+        button = UIButton()
+        button.setTitleColor(VillimValues.themeColor, for: .normal)
+        self.contentView.addSubview(button)
         
     }
     
@@ -37,13 +37,12 @@ class HouseGenericTableViewCell: UITableViewCell {
             make.left.equalToSuperview()
         }
         
-        content?.snp.makeConstraints { (make) -> Void in
+        button?.snp.makeConstraints { (make) -> Void in
             make.height.equalToSuperview()
             make.right.equalToSuperview()
         }
         
     }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()

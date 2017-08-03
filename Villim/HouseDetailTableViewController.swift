@@ -15,6 +15,17 @@ protocol HouseDetailTableViewDelegate {
 }
 
 class HouseDetailTableViewController: UITableViewController, AmenityDelegate, ReviewDelegate {
+    
+    static let HOST                : Int! = 0
+    static let HEADER              : Int! = 1
+    static let INFOGRAPHIC         : Int! = 2
+    static let DESCRIPTION         : Int! = 3
+    static let PRICE_POLICY        : Int! = 4
+    static let AMENITY             : Int! = 5
+    static let REVIEW              : Int! = 6
+    static let MAP                 : Int! = 7
+    static let RULES               : Int! = 8
+    static let CANCELLATION_POLICY : Int! = 9
 
     var houseDetailDelegate         : HouseDetailTableViewDelegate!
     var house                       : VillimHouse!
@@ -70,26 +81,26 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         let row = indexPath.row
     
         switch row {
-        case 0:
+        case HouseDetailTableViewController.HOST:
             return setupHostInfoCell()
-        case 1:
+        case HouseDetailTableViewController.HEADER:
             return setupHouseHeaderCell()
-        case 2:
+        case HouseDetailTableViewController.INFOGRAPHIC:
             return setupHouseInfographicCell()
-        case 3:
+        case HouseDetailTableViewController.DESCRIPTION:
             return setupHouseDescriptionCell()
-        case 4:
-            return setupHouseGenericCell(title: NSLocalizedString("price_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
-        case 5:
+        case HouseDetailTableViewController.PRICE_POLICY:
+            return setupHouseGenericCell(row:row, title: NSLocalizedString("price_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
+        case HouseDetailTableViewController.AMENITY:
             return setupHouseAmenitiesCell()
-        case 6:
+        case HouseDetailTableViewController.REVIEW:
             return setupHouseReviewCell()
-        case 7:
+        case HouseDetailTableViewController.MAP:
             return setupMapCell()
-        case 8:
-            return setupHouseGenericCell(title: NSLocalizedString("house_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
-        case 9:
-            return setupHouseGenericCell(title: NSLocalizedString("cancellation_policy", comment: ""), content: NSLocalizedString("strict", comment: ""))
+        case HouseDetailTableViewController.RULES:
+            return setupHouseGenericCell(row:row, title: NSLocalizedString("house_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
+        case HouseDetailTableViewController.CANCELLATION_POLICY:
+            return setupHouseGenericCell(row:row, title: NSLocalizedString("cancellation_policy", comment: ""), content: NSLocalizedString("strict", comment: ""))
         default:
             return setupHostInfoCell()
         }
@@ -99,25 +110,25 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         let row = indexPath.row
         
         switch row {
-        case 0:
+        case HouseDetailTableViewController.HOST:
             return 100.0
-        case 1:
+        case HouseDetailTableViewController.HEADER:
             return 120.0
-        case 2:
+        case HouseDetailTableViewController.INFOGRAPHIC:
             return 100.0
-        case 3:
+        case HouseDetailTableViewController.DESCRIPTION:
             return 100.0
-        case 4:
+        case HouseDetailTableViewController.PRICE_POLICY:
             return 70.0
-        case 5:
+        case HouseDetailTableViewController.AMENITY:
             return 100.0
-        case 6:
+        case HouseDetailTableViewController.REVIEW:
             return 150.0
-        case 7:
+        case HouseDetailTableViewController.MAP:
             return 150.0
-        case 8:
+        case HouseDetailTableViewController.RULES:
             return 70.0
-        case 9:
+        case HouseDetailTableViewController.CANCELLATION_POLICY:
             return 70.0
         default:
             return 150.0
@@ -175,11 +186,19 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         return cell
     }
     
-    func setupHouseGenericCell(title:String, content:String) -> HouseGenericTableViewCell {
+    func setupHouseGenericCell(row:Int, title:String, content:String) -> HouseGenericTableViewCell {
         let cell : HouseGenericTableViewCell = HouseGenericTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_generic")
 
         cell.title.text   = title
-        cell.content.setTitle(content, for: .normal)
+        cell.button.setTitle(content, for: .normal)
+        
+        switch row {
+        case HouseDetailTableViewController.PRICE_POLICY:
+            cell.button.addTarget(self, action: #selector(self.onPricePolicySeeMore), for: .touchUpInside)
+            break
+        default:
+            break
+        }
         
         cell.makeConstraints()
         return cell
@@ -228,6 +247,12 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         houseDetailDelegate.onScroll(contentOffset: scrollView.contentOffset)
     }
     
+    func onPricePolicySeeMore() {
+        let pricePolicyViewController = PricePolicyViewController()
+        pricePolicyViewController.cleaningFee = house.cleaningFee
+        houseDetailDelegate.launchViewController(viewController: pricePolicyViewController, animated: true)
+    }
+    
     func onAmenitySeeMore() {
         let amenityViewController = AmenityViewController()
         amenityViewController.amenities = house.amenityIds
@@ -239,4 +264,5 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         viewReviewViewControlelr.houseId = house.houseId
         houseDetailDelegate.launchViewController(viewController: viewReviewViewControlelr, animated: true)
     }
+    
 }
