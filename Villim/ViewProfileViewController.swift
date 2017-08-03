@@ -7,13 +7,33 @@
 //
 
 import UIKit
+import SnapKit
+import Alamofire
+import SwiftyJSON
+import Toaster
+import NVActivityIndicatorView
 
 class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
+    
+    var initialLaunch : Bool = true
+    
+    var firstname   : String!
+    var lastName    : String!
+    var email       : String!
+    var phoneNumber : String!
+    var city        : String!
+    
     var viewProfileTableViewController : ViewProfileTableViewController!
+    var loadingIndicator   : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        firstname   = VillimSession.getFirstName()
+        lastName    = VillimSession.getLastName()
+        email       = VillimSession.getEmail()
+        phoneNumber = VillimSession.getPhoneNumber()
+        city        = VillimSession.getCityOfResidence()
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = VillimValues.backgroundColor
@@ -22,13 +42,32 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         /* Tableview controller */
         viewProfileTableViewController = ViewProfileTableViewController()
         viewProfileTableViewController.viewProfileDelegate = self
+        viewProfileTableViewController.firstname = self.firstname
+        viewProfileTableViewController.lastname = self.lastName
+        viewProfileTableViewController.email = self.email
+        viewProfileTableViewController.phoneNumber = self.phoneNumber
+        viewProfileTableViewController.city = self.city
         self.view.addSubview(viewProfileTableViewController.view)
         
         /* Set up edit button */
-        self.setEditing(false, animated: false)
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
+        /* Loading inidcator */
+        let screenCenterX = UIScreen.main.bounds.width / 2
+        let screenCenterY = UIScreen.main.bounds.height / 2
+        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
+        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
+        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
+                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
+        loadingIndicator = NVActivityIndicatorView(
+            frame: loadingIndicatorFrame,
+            type: .orbit,
+            color: VillimValues.themeColor)
+        self.view.addSubview(loadingIndicator)
+
         makeConstraints()
+        
+        self.setEditing(false, animated: false)
     }
     
     func makeConstraints() {
@@ -48,8 +87,10 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
     override func setEditing(_ editing: Bool, animated: Bool) {
        
         super.setEditing(editing,animated:animated)
-        if (self.isEditing) {
+
+        if self.isEditing {
             self.editButtonItem.title = NSLocalizedString("done", comment:"")
+            initialLaunch = false
         } else {
             self.editButtonItem.title = NSLocalizedString("edit", comment:"")
         }
@@ -63,8 +104,63 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
              IndexPath(row:ViewProfileTableViewController.PHONE_NUMBER, section:0),
              IndexPath(row:ViewProfileTableViewController.CITY,         section:0)], with: .automatic)
         self.viewProfileTableViewController.tableView.endUpdates()
+        self.viewProfileTableViewController.updateProfileInfo()
+        
+        if !initialLaunch && !self.isEditing {
+            sendUpdateProfileRequest()
+        }
     }
 
+    @objc private func sendUpdateProfileRequest() {
+        
+        showLoadingIndicator()
+        
+        let parameters = [
+            VillimKeys.KEY_FIRSTNAME          : self.firstname,
+            VillimKeys.KEY_LASTNAME           : self.lastName,
+            VillimKeys.KEY_EMAIL              : self.email,
+            VillimKeys.KEY_PHONE_NUMBER       : self.phoneNumber,
+            VillimKeys.KEY_CITY_OF_RESIDENCE  : self.city
+            ] as [String : Any]
+        
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.UPDATE_PROFILE_URL)
+        
+        let image = self.viewProfileTableViewController.getProfilePic()
+        let imgData = UIImageJPEGRepresentation(image!, 0.2)!
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            multipartFormData.append(imgData, withName: "fileset",fileName: "file.jpg", mimeType: "image/jpg")
+            for (key, value) in parameters {
+                multipartFormData.append((value as AnyObject).data(using: String.Encoding.utf8.rawValue)!, withName: key)
+            }
+        }, to:url)
+        { (result) in
+            switch result {
+            case .success(let upload, _, _):
+                
+                upload.responseJSON { response in
+                    switch response.result {
+                    case .success:
+                        let responseData = JSON(data: response.data!)
+                        if responseData[VillimKeys.KEY_SUCCESS].boolValue {
+                            let user : VillimUser = VillimUser.init(userInfo:responseData[VillimKeys.KEY_USER_INFO])
+                            VillimSession.updateUserSession(user: user)
+                        } else {
+                            self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
+                        }
+                    case .failure(let error):
+                        self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+                        self.hideLoadingIndicator()
+                    }
+                }
+                
+            case .failure(let encodingError):
+                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+                self.hideLoadingIndicator()
+            }
+        }
+    }
+    
     func launchPhotoPicker() {
         let picker = UIImagePickerController()
         picker.delegate = self
@@ -85,6 +181,39 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         dismiss(animated: true, completion: nil)
     }
     
+    func updateProfileInfo(firstname:String, lastname:String, email:String, phoneNumber:String, city:String) {
+        self.firstname   = firstname
+        self.lastName    = lastname
+        self.email       = email
+        self.phoneNumber = phoneNumber
+        self.city        = city
+    }
+    
+    private func showLoadingIndicator() {
+        loadingIndicator.startAnimating()
+    }
+    
+    private func hideLoadingIndicator() {
+        loadingIndicator.stopAnimating()
+    }
+    
+    private func showErrorMessage(message:String) {
+        let toast = Toast(text: message, duration: Delay.long)
+        
+        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
+        
+        toast.show()
+    }
+    
+    private func hideErrorMessage() {
+        ToastCenter.default.cancelAll()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        hideErrorMessage()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

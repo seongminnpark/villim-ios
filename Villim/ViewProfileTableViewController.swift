@@ -12,6 +12,7 @@ import PhoneNumberKit
 
 protocol ViewProfileDelegate {
     func launchPhotoPicker()
+    func updateProfileInfo(firstname:String, lastname:String, email:String, phoneNumber:String, city:String)
 }
 
 class ViewProfileTableViewController: UITableViewController {
@@ -23,6 +24,12 @@ class ViewProfileTableViewController: UITableViewController {
     static let EMAIL           = 2
     static let PHONE_NUMBER    = 3
     static let CITY            = 4
+    
+    var firstname   : String!
+    var lastname    : String!
+    var email       : String!
+    var phoneNumber : String!
+    var city        : String!
     
     var viewProfileDelegate  : ViewProfileDelegate!
     var tapGestureRecognizer : UITapGestureRecognizer!
@@ -70,18 +77,18 @@ class ViewProfileTableViewController: UITableViewController {
             
         case ViewProfileTableViewController.EMAIL:
             let title = NSLocalizedString("email", comment:"")
-            return setUpViewProfileCell(title:title, content:VillimSession.getEmail())
+            return setUpViewProfileCell(title:title, content:self.email)
             
         case ViewProfileTableViewController.PHONE_NUMBER:
             return setUpViewProfilePhoneNumberCell()
             
         case ViewProfileTableViewController.CITY:
             let title = NSLocalizedString("city_of_residence", comment:"")
-            return setUpViewProfileCell(title:title, content:VillimSession.getCityOfResidence())
+            return setUpViewProfileCell(title:title, content:self.city)
             
         default:
             let title = NSLocalizedString("name", comment:"")
-            return setUpViewProfileCell(title:title, content:VillimSession.getFullName())
+            return setUpViewProfileCell(title:title, content:self.lastname + self.firstname)
         }
 
     }
@@ -152,11 +159,15 @@ class ViewProfileTableViewController: UITableViewController {
         
         if self.inEditMode {
             cell.layoutEditMode()
-            cell.firstNameField.text = VillimSession.getFirstName()
-            cell.lastNameField.text = VillimSession.getLastName()
+            cell.firstNameField.text = self.firstname
+            cell.lastNameField.text = self.lastname
         } else {
+            if cell.firstNameField != nil  && cell.lastNameField != nil {
+                self.firstname = cell.firstNameField.text
+                self.lastname = cell.lastNameField.text
+            }
             cell.layoutNonEditMode()
-            cell.content.text = VillimSession.getFullName()
+            cell.content.text = self.lastname + self.firstname
         }
         
         return cell
@@ -181,6 +192,7 @@ class ViewProfileTableViewController: UITableViewController {
         if self.inEditMode {
             cell.layoutEditMode()
         } else {
+            self.phoneNumber = cell.content.text
             cell.layoutNonEditMode()
         }
         
@@ -196,8 +208,19 @@ class ViewProfileTableViewController: UITableViewController {
             cell.layoutEditMode()
             cell.contentField.text = content
         } else {
-            cell.layoutNonEditMode()
-            cell.content.text = content
+            if title == NSLocalizedString("city_of_residence", comment: "") {
+                if cell.contentField != nil {
+                    self.city = cell.contentField.text
+                }
+                cell.layoutNonEditMode()
+                cell.content.text = self.city
+            } else if title == NSLocalizedString("email", comment:"") {
+                if cell.contentField != nil {
+                   self.email = cell.contentField.text
+                }
+                cell.layoutNonEditMode()
+                cell.content.text = self.email
+            }
         }
         
         return cell
@@ -213,6 +236,17 @@ class ViewProfileTableViewController: UITableViewController {
             IndexPath(row:ViewProfileTableViewController.PROFILE_PICTURE, section:0)) as! ViewProfileImageTableViewCell
         
         cell.profileImage.image = image
+    }
+    
+    func updateProfileInfo() {
+        viewProfileDelegate.updateProfileInfo(firstname: self.firstname, lastname: self.lastname, email: self.email, phoneNumber: self.phoneNumber, city: self.city)
+    }
+    
+    func getProfilePic() -> UIImage? {
+        let cell = self.tableView.cellForRow(at:
+            IndexPath(row:ViewProfileTableViewController.PROFILE_PICTURE, section:0)) as! ViewProfileImageTableViewCell
+        
+        return cell.profileImage.image
     }
     
 }

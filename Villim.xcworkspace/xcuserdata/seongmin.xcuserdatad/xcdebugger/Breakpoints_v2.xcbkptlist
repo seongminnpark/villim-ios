@@ -436,11 +436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/ViewProfileViewController.swift"
-            timestampString = "523491053.024681"
+            timestampString = "523494258.436781"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "launchPhotoPicker()"
             landmarkType = "7">
          </BreakpointContent>
