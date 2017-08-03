@@ -17,6 +17,8 @@ class ViewProfileTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
         title = UILabel()
         self.contentView.addSubview(title)
         
@@ -52,6 +54,7 @@ class ViewProfileTableViewCell: UITableViewCell {
         if content != nil { content.removeFromSuperview() }
         
         contentField = UITextField()
+        contentField.borderStyle = .roundedRect
         self.contentView.addSubview(contentField)
         
         contentField?.snp.makeConstraints { (make) -> Void in

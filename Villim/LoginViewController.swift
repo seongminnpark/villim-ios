@@ -66,6 +66,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         /* Email field */
         emailField = UITextField()
+        emailField.borderStyle = .roundedRect
         emailField.placeholder = NSLocalizedString("email", comment: "")
         emailField.textContentType = UITextContentType.emailAddress
         emailField.keyboardType = UIKeyboardType.emailAddress
@@ -81,6 +82,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         /* Password field */
         passwordField = UITextField()
+        passwordField.borderStyle = .roundedRect
         passwordField.placeholder = NSLocalizedString("password", comment: "")
         passwordField.isSecureTextEntry = true
         passwordField.autocapitalizationType = .none

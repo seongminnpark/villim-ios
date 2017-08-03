@@ -15,6 +15,8 @@ class ViewProfileImageTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
         profileImage = UIImageView()
         self.contentView.addSubview(profileImage)
         

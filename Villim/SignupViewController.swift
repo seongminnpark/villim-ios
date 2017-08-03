@@ -52,6 +52,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         /* Last name field */
         lastnameField = UITextField()
+        lastnameField.borderStyle = .roundedRect
         lastnameField.placeholder = NSLocalizedString("last_name", comment: "")
         lastnameField.returnKeyType = .next
         lastnameField.autocapitalizationType = .none
@@ -65,6 +66,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         /* First name field */
         firstnameField = UITextField()
+        firstnameField.borderStyle = .roundedRect
         firstnameField.placeholder = NSLocalizedString("first_name", comment: "")
         firstnameField.autocapitalizationType = .none
         firstnameField.returnKeyType = .next
@@ -78,6 +80,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         /* Email field */
         emailField = UITextField()
+        emailField.borderStyle = .roundedRect
         emailField.placeholder = NSLocalizedString("email", comment: "")
         emailField.textContentType = UITextContentType.emailAddress
         emailField.keyboardType = UIKeyboardType.emailAddress
@@ -93,6 +96,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         /* Password field */
         passwordField = UITextField()
+        passwordField.borderStyle = .roundedRect
         passwordField.placeholder = NSLocalizedString("password", comment: "")
         passwordField.isSecureTextEntry = true
         passwordField.autocapitalizationType = .none
