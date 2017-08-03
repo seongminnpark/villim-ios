@@ -166,7 +166,7 @@
 "cleaning_fee" = "퇴실 청소비";
 "cleaning_fee_title" = "퇴실 청소비 (일시불 선불)";
 
-"must_select_dates" = "시작일과 종료일을 선택해주세요.";
+"must_select_date" = "시작일과 종료일을 선택해주세요.";
 "select_checkin" = "종료일 선택";
 "select_checkout" = "시작일 선택";
 "duration" = "기간";

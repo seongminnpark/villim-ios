@@ -13,7 +13,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import SwiftDate
 
-class ReservationViewController: UIViewController, ReservationTableViewDelegate {
+class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginListener {
 
     var house    : VillimHouse!
     var dateSet  : Bool = false
@@ -96,7 +96,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate 
         
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
+            make.centerX.equalToSuperview()
             make.bottom.equalTo(nextButton.snp.top)
         }
         
@@ -110,7 +110,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate 
                 showErrorMessage(message: NSLocalizedString("must_select_date", comment: ""))
             }
         } else {
-            
+            launchLoginViewController()
         }
     }
     
@@ -147,7 +147,23 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate 
         self.navigationController?.pushViewController(viewController, animated: animated)
     }
     
+    public func launchLoginViewController() {
+        let loginViewController = LoginViewController()
+        loginViewController.loginListener = self
+        self.navigationController?.pushViewController(loginViewController, animated: true)
+        //        self.present(loginViewController, animated: true, completion: nil)
+    }
 
+    func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {
+        self.dateSet = true
+        self.checkIn = checkIn
+        self.checkOut = checkOut
+    }
+    
+    func onLogin(success: Bool) {
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

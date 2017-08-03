@@ -11,6 +11,7 @@ import SwiftDate
 
 protocol ReservationTableViewDelegate {
     func launchViewController(viewController:UIViewController, animated:Bool)
+    func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion)
 }
 
 class ReservationTableViewController: UITableViewController, CalendarDelegate {
@@ -122,8 +123,6 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
     func setUpHeaderCell() -> ReservationHeaderTableViewCell {
         let cell : ReservationHeaderTableViewCell = ReservationHeaderTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"reservation_header")
         
-        
-        
         cell.houseName.text = house.houseName
         cell.houseAddr.text = house.addrFull
         
@@ -193,6 +192,20 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
         return cell
     }
     
+    func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {
+        self.dateSet = true
+        self.checkIn = checkIn
+        self.checkOut = checkOut
+        
+        reservationDelegate.onDateSet(checkIn:checkIn, checkOut:checkOut)
+
+        tableView.beginUpdates()
+        tableView.reloadRows(at: [IndexPath(row:ReservationTableViewController.DATES, section:0),
+                                  IndexPath(row:ReservationTableViewController.NUMBER_OF_NIGHTS, section:0),
+                                  IndexPath(row:ReservationTableViewController.PRICE, section:0)], with: .automatic)
+        tableView.endUpdates()
+    }
+    
     func launchCalendarViewController() {
         let calendarViewController = CalendarViewController()
         calendarViewController.calendarDelegate = self
@@ -200,16 +213,6 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
         calendarViewController.checkIn  = self.checkIn
         calendarViewController.checkOut = self.checkOut
         reservationDelegate.launchViewController(viewController: calendarViewController, animated: true)
-    }
-
-    func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {
-        self.dateSet = true
-        self.checkIn = checkIn
-        self.checkOut = checkOut
-        
-        self.tableView.beginUpdates()
-        self.tableView.reloadRows(at: [IndexPath(row:ReservationTableViewController.DATES, section:0)], with: .automatic)
-        self.tableView.endUpdates()
     }
     
 }
