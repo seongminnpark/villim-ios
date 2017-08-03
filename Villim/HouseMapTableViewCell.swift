@@ -9,8 +9,14 @@
 import UIKit
 import GoogleMaps
 
+protocol MapDelegate {
+    func onMapSeeMore()
+}
+
 class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
 
+    var mapDelegate : MapDelegate!
+    
     var container : UIView!
     var mapView   : GMSMapView!
     var latitude  : Double = 0.0
@@ -33,14 +39,13 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
         let location = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
         let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 17.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        
+        mapView.delegate = self
         container.addSubview(mapView)
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: latitude)
         marker.map = mapView
-        
         
         makeConstraints()
     }
@@ -62,6 +67,11 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
         }
         
     }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        mapDelegate.onMapSeeMore()
+    }
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -14,7 +14,7 @@ protocol HouseDetailTableViewDelegate {
     func launchViewController(viewController:UIViewController, animated:Bool)
 }
 
-class HouseDetailTableViewController: UITableViewController, AmenityDelegate, ReviewDelegate {
+class HouseDetailTableViewController: UITableViewController, AmenityDelegate, ReviewDelegate, MapDelegate {
     
     static let HOST                : Int! = 0
     static let HEADER              : Int! = 1
@@ -242,6 +242,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
     func setupMapCell() -> HouseMapTableViewCell {
         let cell : HouseMapTableViewCell = HouseMapTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_map")
         
+        cell.mapDelegate = self
         cell.latitude = house.latitude
         cell.longitude = house.longitude
         
@@ -269,6 +270,13 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         let viewReviewViewController = ViewReviewViewController()
         viewReviewViewController.houseId = house.houseId
         houseDetailDelegate.launchViewController(viewController: viewReviewViewController, animated: true)
+    }
+    
+    func onMapSeeMore() {
+        let mapViewController = MapViewController()
+        mapViewController.latitude = house.latitude
+        mapViewController.longitude = house.longitude
+        houseDetailDelegate.launchViewController(viewController: mapViewController, animated: true)
     }
     
     func onHousePolicySeeMore() {
