@@ -24,8 +24,11 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
     static let searchFilterMaxHeight : CGFloat! = 150
-    static let individualFilterHeight : CGFloat! = 60
+    static let individualFilterHeight : CGFloat! = 50
     static let filterOffset : CGFloat! = (searchFilterMaxHeight - individualFilterHeight*2) / 3.0
+    
+    let filterIconSize : CGFloat! = 25.0
+    let filterPadding  : CGFloat! = 25.0
     
     var locationFilterSet : Bool = false
     var dateFilterSet : Bool = false
@@ -50,8 +53,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         // Do any additional setup after loading the view, typically from a nib.
         
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.title = "숙소 찾기"
-        self.tabBarItem.title = self.title
+        self.tabBarItem.title = "숙소 찾기"
         
         checkIn = DateInRegion()
         checkOut = DateInRegion()
@@ -176,20 +178,20 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
         /* Location filter */
         locationFilter.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(filterPadding)
+            make.right.equalToSuperview().offset(-filterPadding)
             make.top.equalToSuperview().offset(DiscoverViewController.filterOffset)
             make.height.equalTo(DiscoverViewController.individualFilterHeight)
         }
         locationFilterIcon.snp.makeConstraints{ (make) -> Void in
-            make.top.equalToSuperview()
-            make.height.equalToSuperview()
-            make.width.equalTo(locationFilter.snp.height)
+            make.width.height.equalTo(filterIconSize)
+            make.centerY.equalToSuperview()
             make.left.equalToSuperview()
         }
         locationFilterLabel.snp.makeConstraints{ (make) -> Void in
             make.top.equalToSuperview()
             make.height.equalToSuperview()
-            make.left.equalTo(locationFilterIcon.snp.right)
+            make.left.equalTo(locationFilterIcon.snp.right).offset(filterPadding)
         }
         locationFilterClearButton.snp.makeConstraints{ (make) -> Void in
             make.top.equalToSuperview()
@@ -200,20 +202,20 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
         /* Date filter */
         dateFilter.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(filterPadding)
+            make.right.equalToSuperview().offset(-filterPadding)
             make.top.equalTo(locationFilter.snp.bottom).offset(DiscoverViewController.filterOffset)
             make.height.equalTo(DiscoverViewController.individualFilterHeight)
         }
         dateFilterIcon.snp.makeConstraints{ (make) -> Void in
-            make.top.equalToSuperview()
-            make.height.equalToSuperview()
-            make.width.equalTo(dateFilter.snp.height)
+            make.width.height.equalTo(filterIconSize)
+            make.centerY.equalToSuperview()
             make.left.equalToSuperview()
         }
         dateFilterLabel.snp.makeConstraints{ (make) -> Void in
             make.top.equalToSuperview()
             make.height.equalToSuperview()
-            make.left.equalTo(dateFilterIcon.snp.right)
+            make.left.equalTo(dateFilterIcon.snp.right).offset(filterPadding)
         }
         dateFilterClearButton.snp.makeConstraints{ (make) -> Void in
             make.top.equalToSuperview()
