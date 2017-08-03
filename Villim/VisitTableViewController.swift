@@ -56,11 +56,13 @@ class VisitTableViewController: UITableViewController {
         let cell : HouseTableViewCell = HouseTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"cell")
         
         let url = URL(string: house.houseThumbnailUrl)
-        Nuke.loadImage(with: url!, into: cell.houseThumbnail)
+        if url != nil {
+            Nuke.loadImage(with: url!, into: cell.houseThumbnail)
+        }
         cell.houseName.text = house.houseName
-        cell.houseRating.text = house.houseName
-        cell.houseReviewCount.text = house.houseName
-        cell.houseRent.text = house.houseName
+        cell.houseRating.rating = Double(house.houseRating)
+        cell.houseReviewCount.text = String(format:NSLocalizedString("review_count_format", comment: ""), house.houseReviewCount)
+        cell.houseRent.text = VillimUtils.getRentString(rent: house.ratePerMonth)
         cell.makeConstraints()
         return cell
     }
