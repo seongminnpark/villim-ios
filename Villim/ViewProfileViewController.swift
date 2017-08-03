@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewProfileViewController: UIViewController {
+class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var viewProfileTableViewController : ViewProfileTableViewController!
     
@@ -21,6 +21,7 @@ class ViewProfileViewController: UIViewController {
 
         /* Tableview controller */
         viewProfileTableViewController = ViewProfileTableViewController()
+        viewProfileTableViewController.viewProfileDelegate = self
         self.view.addSubview(viewProfileTableViewController.view)
         
         /* Set up edit button */
@@ -54,6 +55,7 @@ class ViewProfileViewController: UIViewController {
         }
         
         self.viewProfileTableViewController.inEditMode = editing
+        self.viewProfileTableViewController.togglePhotoEditMode()
         self.viewProfileTableViewController.tableView.beginUpdates()
         self.viewProfileTableViewController.tableView.reloadRows(at:
             [IndexPath(row:ViewProfileTableViewController.NAME,         section:0),
@@ -63,6 +65,27 @@ class ViewProfileViewController: UIViewController {
         self.viewProfileTableViewController.tableView.endUpdates()
     }
 
+    func launchPhotoPicker() {
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = false
+        picker.sourceType = .photoLibrary
+        self.present(picker, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        // use the image
+        self.viewProfileTableViewController.setProfileImage(image: chosenImage)
+        
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true

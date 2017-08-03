@@ -10,6 +10,10 @@ import UIKit
 import Nuke
 import PhoneNumberKit
 
+protocol ViewProfileDelegate {
+    func launchPhotoPicker()
+}
+
 class ViewProfileTableViewController: UITableViewController {
 
     var inEditMode : Bool = false
@@ -20,8 +24,13 @@ class ViewProfileTableViewController: UITableViewController {
     static let PHONE_NUMBER    = 3
     static let CITY            = 4
     
+    var viewProfileDelegate  : ViewProfileDelegate!
+    var tapGestureRecognizer : UITapGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.pickPhoto))
         
         self.tableView = UITableView()
         self.tableView.delegate = self
@@ -108,6 +117,7 @@ class ViewProfileTableViewController: UITableViewController {
         
         let profilePicUrl = VillimSession.getProfilePicUrl()
         
+        /* Load photo */
         if profilePicUrl == nil {
 //            cell.profileImage.image = 
         } else {
@@ -120,6 +130,19 @@ class ViewProfileTableViewController: UITableViewController {
         }
         
         return cell
+    }
+    
+    func togglePhotoEditMode() {
+        
+        let cell = self.tableView.cellForRow(at:
+                        IndexPath(row:ViewProfileTableViewController.PROFILE_PICTURE, section:0))
+        if cell != nil {
+            if self.inEditMode {
+                cell?.addGestureRecognizer(tapGestureRecognizer)
+            } else {
+                cell?.removeGestureRecognizer(tapGestureRecognizer)
+            }
+        }
     }
     
     func setUpViewProfileNameCell() -> ViewProfileNameTableViewCell {
@@ -180,4 +203,16 @@ class ViewProfileTableViewController: UITableViewController {
         return cell
     }
 
+    @objc public func pickPhoto() {
+        viewProfileDelegate.launchPhotoPicker()
+    }
+    
+
+    func setProfileImage(image:UIImage) {
+        let cell = self.tableView.cellForRow(at:
+            IndexPath(row:ViewProfileTableViewController.PROFILE_PICTURE, section:0)) as! ViewProfileImageTableViewCell
+        
+        cell.profileImage.image = image
+    }
+    
 }
