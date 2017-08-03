@@ -21,6 +21,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     var checkIn  : DateInRegion! = nil
     var checkOut : DateInRegion! = nil
     
+    var navControllerHeight : CGFloat!
+    var statusBarHeight : CGFloat!
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
     static let searchFilterMaxHeight : CGFloat! = 150
@@ -29,6 +31,10 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     let filterIconSize : CGFloat! = 25.0
     let filterPadding  : CGFloat! = 25.0
+    let navbarIconSize : CGFloat! = 25.0
+    
+    var navbarLogo : UIImageView!
+    var navbarIcon : UIImageView!
     
     var locationFilterSet : Bool = false
     var dateFilterSet : Bool = false
@@ -59,10 +65,28 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         checkOut = DateInRegion()
         
         /* Prevent overlap with navigation controller */
-        let navControllerHeight = self.navigationController!.navigationBar.frame.height
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        navControllerHeight = self.navigationController!.navigationBar.frame.height
+        statusBarHeight = UIApplication.shared.statusBarFrame.height
         topOffset = navControllerHeight + statusBarHeight
         prevContentOffset = 0
+        
+        /* Add navbar logo */
+        navbarLogo = UIImageView()
+        navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
+        navbarLogo.sizeToFit()
+        
+        let leftItem = UIBarButtonItem(customView: navbarLogo)
+        let negativeSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
+        negativeSpacer.width = -16
+        self.navigationItem.leftBarButtonItems = [negativeSpacer, leftItem]
+        
+        /* Add search icon */
+        navbarIcon = UIImageView()
+        navbarIcon.image = #imageLiteral(resourceName: "icon_search")
+        navbarIcon.sizeToFit()
+        
+        let rightItem = UIBarButtonItem(customView: navbarIcon)
+        self.navigationItem.rightBarButtonItem = rightItem
         
         /* Search filter container */
         searchFilter = UIView()
@@ -168,6 +192,20 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     }
     
     func makeConstraints() {
+        
+        /* Navbar */
+        navbarLogo.snp.makeConstraints{ (make) -> Void in
+            make.top.equalTo(statusBarHeight)
+            make.left.equalToSuperview()
+            make.width.equalTo(4.2*navControllerHeight)
+            make.height.equalTo(navControllerHeight)
+        }
+        
+        navbarIcon.snp.makeConstraints{ (make) -> Void in
+            make.right.equalToSuperview()
+            make.width.equalTo(navbarIconSize)
+            make.height.equalTo(navbarIconSize)
+        }
         
         /* Search filter */
         searchFilter.snp.makeConstraints{ (make) -> Void in
