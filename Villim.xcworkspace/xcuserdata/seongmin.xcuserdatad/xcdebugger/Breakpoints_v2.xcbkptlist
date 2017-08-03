@@ -285,5 +285,149 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/ViewProfilePhoneNumberTableViewCell.swift"
+            timestampString = "523488003.003737"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "layoutNonEditMode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.ViewProfilePhoneNumberTableViewCell.layoutNonEditMode () -&gt; ()"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/ViewProfilePhoneNumberTableViewCell.swift"
+                  timestampString = "523487465.434221"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.ViewProfilePhoneNumberTableViewCell.(layoutNonEditMode () -&gt; ()).(closure #1)"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/ViewProfilePhoneNumberTableViewCell.swift"
+                  timestampString = "523487465.435599"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/ViewProfilePhoneNumberTableViewCell.swift"
+            timestampString = "523488315.743949"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "layoutEditMode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.ViewProfilePhoneNumberTableViewCell.layoutEditMode () -&gt; ()"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/ViewProfilePhoneNumberTableViewCell.swift"
+                  timestampString = "523487465.439637"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "69"
+                  endingLineNumber = "69"
+                  offsetFromSymbolStart = "520">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.ViewProfilePhoneNumberTableViewCell.(layoutEditMode () -&gt; ()).(closure #2)"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/ViewProfilePhoneNumberTableViewCell.swift"
+                  timestampString = "523487465.442202"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "70"
+                  endingLineNumber = "70"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/ViewProfilePhoneNumberTableViewCell.swift"
+            timestampString = "523487499.354756"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "layoutNonEditMode()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.ViewProfilePhoneNumberTableViewCell.layoutNonEditMode () -&gt; ()"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/ViewProfilePhoneNumberTableViewCell.swift"
+                  timestampString = "523487499.358215"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "296">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Villim.ViewProfilePhoneNumberTableViewCell.(layoutNonEditMode () -&gt; ()).(closure #1)"
+                  moduleName = "Villim"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/seongmin/Villim/Villim/ViewProfilePhoneNumberTableViewCell.swift"
+                  timestampString = "523487499.359986"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "53"
+                  endingLineNumber = "53"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

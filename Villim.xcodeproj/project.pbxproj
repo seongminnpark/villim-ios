@@ -82,6 +82,7 @@
 		3EDE4CF21F33AD1800FDB275 /* ViewProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CF11F33AD1800FDB275 /* ViewProfileTableViewCell.swift */; };
 		3EDE4CF41F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CF31F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift */; };
 		3EDE4CF81F33B79900FDB275 /* ViewProfileNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CF71F33B79900FDB275 /* ViewProfileNameTableViewCell.swift */; };
+		3EDE4CFA1F33C49000FDB275 /* ViewProfilePhoneNumberTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CF91F33C49000FDB275 /* ViewProfilePhoneNumberTableViewCell.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -189,6 +190,7 @@
 		3EDE4CF11F33AD1800FDB275 /* ViewProfileTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileTableViewCell.swift; sourceTree = "<group>"; };
 		3EDE4CF31F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileImageTableViewCell.swift; sourceTree = "<group>"; };
 		3EDE4CF71F33B79900FDB275 /* ViewProfileNameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfileNameTableViewCell.swift; sourceTree = "<group>"; };
+		3EDE4CF91F33C49000FDB275 /* ViewProfilePhoneNumberTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewProfilePhoneNumberTableViewCell.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				3EDE4CF11F33AD1800FDB275 /* ViewProfileTableViewCell.swift */,
 				3EDE4CF71F33B79900FDB275 /* ViewProfileNameTableViewCell.swift */,
 				3EDE4CF31F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift */,
+				3EDE4CF91F33C49000FDB275 /* ViewProfilePhoneNumberTableViewCell.swift */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -736,6 +739,7 @@
 				3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */,
 				3EDE4CF01F33AA0100FDB275 /* ViewProfileTableViewController.swift in Sources */,
 				3EB051391F28F1CE00EBBBCE /* HouseDescriptionTableViewCell.swift in Sources */,
+				3EDE4CFA1F33C49000FDB275 /* ViewProfilePhoneNumberTableViewCell.swift in Sources */,
 				3EDC139B1F2C0B1A00BA4077 /* VillimValues.swift in Sources */,
 				3E0954071F21FDBB000240FA /* DiscoverTableViewController.swift in Sources */,
 				3EDE4CD81F32B49800FDB275 /* ViewReviewTableViewCell.swift in Sources */,

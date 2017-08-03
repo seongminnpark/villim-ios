@@ -64,17 +64,7 @@ class ViewProfileTableViewController: UITableViewController {
             return setUpViewProfileCell(title:title, content:VillimSession.getEmail())
             
         case ViewProfileTableViewController.PHONE_NUMBER:
-            let title = NSLocalizedString("phone_number", comment:"")
-            var content = ""
-            do {
-                let phoneNumberKit = PhoneNumberKit()
-                let phoneNumber = try phoneNumberKit.parse(VillimSession.getPhoneNumber())
-                content = phoneNumberKit.format(phoneNumber, toType: .national)
-            }
-            catch {
-                
-            }
-            return setUpViewProfileCell(title:title, content:content)
+            return setUpViewProfilePhoneNumberCell()
             
         case ViewProfileTableViewController.CITY:
             let title = NSLocalizedString("city_of_residence", comment:"")
@@ -135,7 +125,7 @@ class ViewProfileTableViewController: UITableViewController {
     func setUpViewProfileNameCell() -> ViewProfileNameTableViewCell {
         let cell : ViewProfileNameTableViewCell = ViewProfileNameTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"profile_name")
         
-        cell.title.text   = NSLocalizedString("name", comment:"")
+        cell.title.text = NSLocalizedString("name", comment:"")
         
         if self.inEditMode {
             cell.layoutEditMode()
@@ -144,6 +134,31 @@ class ViewProfileTableViewController: UITableViewController {
         } else {
             cell.layoutNonEditMode()
             cell.content.text = VillimSession.getFullName()
+        }
+        
+        return cell
+    }
+    
+    func setUpViewProfilePhoneNumberCell() -> ViewProfilePhoneNumberTableViewCell {
+        let cell : ViewProfilePhoneNumberTableViewCell = ViewProfilePhoneNumberTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"phone_number")
+        
+        cell.title.text = NSLocalizedString("phone_number", comment:"")
+        
+        var content = ""
+        do {
+            let phoneNumberKit = PhoneNumberKit()
+            let phoneNumber = try phoneNumberKit.parse(VillimSession.getPhoneNumber())
+            content = phoneNumberKit.format(phoneNumber, toType: .national)
+        }
+        catch {
+            
+        }
+        cell.content.text = content
+        
+        if self.inEditMode {
+            cell.layoutEditMode()
+        } else {
+            cell.layoutNonEditMode()
         }
         
         return cell
