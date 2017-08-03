@@ -45,13 +45,27 @@ class ViewProfileViewController: UIViewController {
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
-        print("Here")
+       
         super.setEditing(editing,animated:animated)
         if (self.isEditing) {
             self.editButtonItem.title = NSLocalizedString("done", comment:"")
         } else {
             self.editButtonItem.title = NSLocalizedString("edit", comment:"")
         }
+        
+        self.viewProfileTableViewController.inEditMode = editing
+        self.viewProfileTableViewController.tableView.beginUpdates()
+        self.viewProfileTableViewController.tableView.reloadRows(at:
+            [IndexPath(row:ViewProfileTableViewController.NAME,         section:0),
+             IndexPath(row:ViewProfileTableViewController.EMAIL,        section:0),
+             IndexPath(row:ViewProfileTableViewController.PHONE_NUMBER, section:0),
+             IndexPath(row:ViewProfileTableViewController.CITY,         section:0)], with: .automatic)
+        self.viewProfileTableViewController.tableView.endUpdates()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
 }

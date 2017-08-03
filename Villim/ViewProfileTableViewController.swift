@@ -12,7 +12,7 @@ import PhoneNumberKit
 
 class ViewProfileTableViewController: UITableViewController {
 
-    var editMode : Bool = false
+    var inEditMode : Bool = false
     
     static let PROFILE_PICTURE = 0
     static let NAME            = 1
@@ -57,8 +57,7 @@ class ViewProfileTableViewController: UITableViewController {
             return setUpViewProfileImageCell()
             
         case ViewProfileTableViewController.NAME:
-            let title = NSLocalizedString("name", comment:"")
-            return setUpViewProfileCell(title:title, content:VillimSession.getFullName())
+            return setUpViewProfileNameCell()
             
         case ViewProfileTableViewController.EMAIL:
             let title = NSLocalizedString("email", comment:"")
@@ -85,7 +84,9 @@ class ViewProfileTableViewController: UITableViewController {
             let title = NSLocalizedString("name", comment:"")
             return setUpViewProfileCell(title:title, content:VillimSession.getFullName())
         }
+
     }
+    
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let row = indexPath.row
@@ -131,13 +132,35 @@ class ViewProfileTableViewController: UITableViewController {
         return cell
     }
     
+    func setUpViewProfileNameCell() -> ViewProfileNameTableViewCell {
+        let cell : ViewProfileNameTableViewCell = ViewProfileNameTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"profile_name")
+        
+        cell.title.text   = NSLocalizedString("name", comment:"")
+        
+        if self.inEditMode {
+            cell.layoutEditMode()
+            cell.firstNameField.text = VillimSession.getFirstName()
+            cell.lastNameField.text = VillimSession.getLastName()
+        } else {
+            cell.layoutNonEditMode()
+            cell.content.text = VillimSession.getFullName()
+        }
+        
+        return cell
+    }
+    
     func setUpViewProfileCell(title:String, content:String) -> ViewProfileTableViewCell {
         let cell : ViewProfileTableViewCell = ViewProfileTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"view_profile")
         
         cell.title.text   = title
-        cell.content.text = content
         
-        cell.makeConstraints()
+        if self.inEditMode {
+            cell.layoutEditMode()
+            cell.contentField.text = content
+        } else {
+            cell.layoutNonEditMode()
+            cell.content.text = content
+        }
         
         return cell
     }
