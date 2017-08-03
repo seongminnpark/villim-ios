@@ -69,6 +69,9 @@
 		3EDE4CD81F32B49800FDB275 /* ViewReviewTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD71F32B49800FDB275 /* ViewReviewTableViewCell.swift */; };
 		3EDE4CDA1F32B6B300FDB275 /* VillimReview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD91F32B6B300FDB275 /* VillimReview.swift */; };
 		3EDE4CDC1F32E7CA00FDB275 /* PricePolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CDB1F32E7CA00FDB275 /* PricePolicyViewController.swift */; };
+		3EDE4CDE1F32FB6E00FDB275 /* HousePolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CDD1F32FB6E00FDB275 /* HousePolicyViewController.swift */; };
+		3EDE4CE01F32FB8400FDB275 /* CancellationPolicyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CDF1F32FB8400FDB275 /* CancellationPolicyViewController.swift */; };
+		3EDE4CE21F33016F00FDB275 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CE11F33016F00FDB275 /* MapViewController.swift */; };
 		B686B742542892C99052F24C /* Pods_VillimTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 114D68A010B16F1497ABB9D9 /* Pods_VillimTests.framework */; };
 		CEE2535E468AB12358B95FBD /* Pods_Villim.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38935575BE308A988440909F /* Pods_Villim.framework */; };
 		FA4FB42FB4E8172F2DBEE7F6 /* Pods_VillimUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0478C0B2141F92426DD7EBEF /* Pods_VillimUITests.framework */; };
@@ -163,6 +166,9 @@
 		3EDE4CD71F32B49800FDB275 /* ViewReviewTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewReviewTableViewCell.swift; sourceTree = "<group>"; };
 		3EDE4CD91F32B6B300FDB275 /* VillimReview.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimReview.swift; sourceTree = "<group>"; };
 		3EDE4CDB1F32E7CA00FDB275 /* PricePolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PricePolicyViewController.swift; sourceTree = "<group>"; };
+		3EDE4CDD1F32FB6E00FDB275 /* HousePolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HousePolicyViewController.swift; sourceTree = "<group>"; };
+		3EDE4CDF1F32FB8400FDB275 /* CancellationPolicyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CancellationPolicyViewController.swift; sourceTree = "<group>"; };
+		3EDE4CE11F33016F00FDB275 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		3FAC790F0F386510E6B1732C /* Pods-VillimUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VillimUITests/Pods-VillimUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		5C291B7FFE6A9CB1DEDC3155 /* Pods-VillimTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VillimTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests.release.xcconfig"; sourceTree = "<group>"; };
 		78355F640149F0F6A08CD0AB /* Pods-Villim.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Villim.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Villim/Pods-Villim.debug.xcconfig"; sourceTree = "<group>"; };
@@ -243,6 +249,9 @@
 				3EDE4CDB1F32E7CA00FDB275 /* PricePolicyViewController.swift */,
 				3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */,
 				3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */,
+				3EDE4CE11F33016F00FDB275 /* MapViewController.swift */,
+				3EDE4CDD1F32FB6E00FDB275 /* HousePolicyViewController.swift */,
+				3EDE4CDF1F32FB8400FDB275 /* CancellationPolicyViewController.swift */,
 				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
 				3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */,
 				3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */,
@@ -665,10 +674,12 @@
 				3EB051451F2A780800EBBBCE /* SlideButton.swift in Sources */,
 				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
+				3EDE4CE21F33016F00FDB275 /* MapViewController.swift in Sources */,
 				3EB051351F28F19900EBBBCE /* HouseHeaderTableViewCell.swift in Sources */,
 				3EDC139D1F2C295200BA4077 /* WebViewController.swift in Sources */,
 				3EDC13AB1F2D11BA00BA4077 /* RateHouseTableViewCell.swift in Sources */,
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
+				3EDE4CDE1F32FB6E00FDB275 /* HousePolicyViewController.swift in Sources */,
 				3E5F98861F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
 				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,
@@ -680,6 +691,7 @@
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
 				3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */,
+				3EDE4CE01F32FB8400FDB275 /* CancellationPolicyViewController.swift in Sources */,
 				3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */,
 				3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */,
 				3E5F98821F2E6CB6003AAF8F /* LocationFilterViewController.swift in Sources */,

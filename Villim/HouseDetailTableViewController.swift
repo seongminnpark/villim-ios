@@ -24,7 +24,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
     static let AMENITY             : Int! = 5
     static let REVIEW              : Int! = 6
     static let MAP                 : Int! = 7
-    static let RULES               : Int! = 8
+    static let HOUSE_POLICY        : Int! = 8
     static let CANCELLATION_POLICY : Int! = 9
 
     var houseDetailDelegate         : HouseDetailTableViewDelegate!
@@ -97,7 +97,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
             return setupHouseReviewCell()
         case HouseDetailTableViewController.MAP:
             return setupMapCell()
-        case HouseDetailTableViewController.RULES:
+        case HouseDetailTableViewController.HOUSE_POLICY:
             return setupHouseGenericCell(row:row, title: NSLocalizedString("house_policy", comment: ""), content: NSLocalizedString("read", comment: ""))
         case HouseDetailTableViewController.CANCELLATION_POLICY:
             return setupHouseGenericCell(row:row, title: NSLocalizedString("cancellation_policy", comment: ""), content: NSLocalizedString("strict", comment: ""))
@@ -126,7 +126,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
             return 150.0
         case HouseDetailTableViewController.MAP:
             return 150.0
-        case HouseDetailTableViewController.RULES:
+        case HouseDetailTableViewController.HOUSE_POLICY:
             return 70.0
         case HouseDetailTableViewController.CANCELLATION_POLICY:
             return 70.0
@@ -196,6 +196,12 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         case HouseDetailTableViewController.PRICE_POLICY:
             cell.button.addTarget(self, action: #selector(self.onPricePolicySeeMore), for: .touchUpInside)
             break
+        case HouseDetailTableViewController.HOUSE_POLICY:
+            cell.button.addTarget(self, action: #selector(self.onHousePolicySeeMore), for: .touchUpInside)
+            break
+        case HouseDetailTableViewController.CANCELLATION_POLICY:
+            cell.button.addTarget(self, action: #selector(self.onCancellationPolicySeeMore), for: .touchUpInside)
+            break
         default:
             break
         }
@@ -260,9 +266,22 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
     }
     
     func onReviewSeeMore() {
-        let viewReviewViewControlelr = ViewReviewViewController()
-        viewReviewViewControlelr.houseId = house.houseId
-        houseDetailDelegate.launchViewController(viewController: viewReviewViewControlelr, animated: true)
+        let viewReviewViewController = ViewReviewViewController()
+        viewReviewViewController.houseId = house.houseId
+        houseDetailDelegate.launchViewController(viewController: viewReviewViewController, animated: true)
     }
+    
+    func onHousePolicySeeMore() {
+        let housePolicyController = HousePolicyViewController()
+        housePolicyController.housePolicy = house.housePolicy
+        houseDetailDelegate.launchViewController(viewController: housePolicyController, animated: true)
+    }
+    
+    func onCancellationPolicySeeMore() {
+        let cancellationController = CancellationPolicyViewController()
+        cancellationController.cancellationPolicy = house.cancellationPolicy
+        houseDetailDelegate.launchViewController(viewController: cancellationController, animated: true)
+    }
+    
     
 }
