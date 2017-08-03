@@ -49,6 +49,7 @@
 "house_description" = "방 설명";
 
 "amenity" = "시설";
+"amenity_title" = "편의시설";
 "review" = "후기";
 "rating" = "별점";
 "rate" = "별점주기";
@@ -154,3 +155,5 @@
 "monthly_rent_format" = "%@ %@ / 월";
 
 "request_visit" = "방문 신청하기";
+
+

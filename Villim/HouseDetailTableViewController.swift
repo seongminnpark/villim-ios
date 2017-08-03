@@ -9,13 +9,14 @@
 import UIKit
 import Nuke
 
-protocol HouseDetailScrollListener {
+protocol HouseDetailTableViewDelegate {
     func onScroll(contentOffset:CGPoint)
+    func launchViewController(viewController:UIViewController, animated:Bool)
 }
 
-class HouseDetailTableViewController: UITableViewController {
+class HouseDetailTableViewController: UITableViewController, AmenityDelegate {
 
-    var houseDetailScrollListener   : HouseDetailScrollListener!
+    var houseDetailDelegate         : HouseDetailTableViewDelegate!
     var house                       : VillimHouse!
     var lastReviewContent           : String! = ""
     var lastReviewReviewer          : String! = ""
@@ -189,6 +190,7 @@ class HouseDetailTableViewController: UITableViewController {
 
         cell.title.text = NSLocalizedString("amenity", comment: "")
         cell.amenities = house.amenityIds
+        cell.amenityDelegate = self
         
         cell.populateViews()
         cell.makeConstraints()
@@ -222,6 +224,12 @@ class HouseDetailTableViewController: UITableViewController {
     }
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        houseDetailScrollListener.onScroll(contentOffset: scrollView.contentOffset)
+        houseDetailDelegate.onScroll(contentOffset: scrollView.contentOffset)
+    }
+    
+    func onAmenitySeeMore() {
+        let amenityViewController = AmenityViewController()
+        amenityViewController.amenities = house.amenityIds
+        houseDetailDelegate.launchViewController(viewController: amenityViewController, animated: true)
     }
 }

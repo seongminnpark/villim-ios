@@ -14,7 +14,7 @@ import NVActivityIndicatorView
 import Toaster
 
 
-class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
+class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate {
     
     static let MAX_AMENITY_ICONS = 6
     
@@ -67,7 +67,7 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         
         /* House Table View */
         houseDetailTableViewController = HouseDetailTableViewController()
-        houseDetailTableViewController.houseDetailScrollListener = self
+        houseDetailTableViewController.houseDetailDelegate = self
         houseDetailTableViewController.house = self.house
         self.view.addSubview(houseDetailTableViewController.view)
         
@@ -231,6 +231,10 @@ class HouseDetailViewController: UIViewController, HouseDetailScrollListener {
         houseImageView?.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(newHeight)
         }
+    }
+    
+    func launchViewController(viewController:UIViewController, animated:Bool) {
+        self.navigationController?.pushViewController(viewController, animated: animated)
     }
 
     override func didReceiveMemoryWarning() {

@@ -8,9 +8,15 @@
 
 import UIKit
 
+protocol AmenityDelegate {
+    func onAmenitySeeMore()
+}
+
 class HouseAmenitiesTableViewCell: UITableViewCell {
 
     static let AMENITY_ICON_SIZE = 30.0
+    
+    var amenityDelegate : AmenityDelegate! = nil
     
     var amenities : [Int] = []
     
@@ -65,6 +71,7 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
             let seeMoreButton = UIButton()
             seeMoreButton.setTitle(String(format: NSLocalizedString("amenity_see_more_format", comment: ""), amenities.count - numIcons), for: .normal)
             seeMoreButton.setTitleColor(VillimValues.themeColor, for: .normal)
+            seeMoreButton.addTarget(self, action: #selector(self.seeMore), for: .touchUpInside)
             stackView.addArrangedSubview(seeMoreButton)
         }
     }
@@ -83,6 +90,12 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
             make.top.equalTo(title.snp.bottom)
             make.bottom.equalToSuperview()
             make.left.equalToSuperview()
+        }
+    }
+    
+    func seeMore() {
+        if amenityDelegate != nil {
+            amenityDelegate.onAmenitySeeMore()
         }
     }
     
