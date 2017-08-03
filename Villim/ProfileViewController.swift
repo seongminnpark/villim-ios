@@ -135,6 +135,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
             self.tabBarController?.tabBar.isHidden = true
             break
         case NSLocalizedString("edit_profile", comment: ""):
+            launchViewProfileViewController()
             self.tabBarController?.tabBar.isHidden = true
             break
         default:
@@ -152,6 +153,12 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     public func logout() {
         VillimSession.setLoggedIn(loggedIn: false)
         populateViews()
+    }
+    
+    public func launchViewProfileViewController() {
+        let viewProfileViewController = ViewProfileViewController()
+        self.navigationController?.pushViewController(viewProfileViewController, animated: true)
+        //        self.present(loginViewController, animated: true, completion: nil)
     }
     
     public func onLogin(success: Bool) {

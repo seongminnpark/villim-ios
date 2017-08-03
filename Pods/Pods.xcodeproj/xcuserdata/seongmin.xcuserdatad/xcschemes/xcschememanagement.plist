@@ -29,6 +29,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>PhoneNumberKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-Villim.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -67,17 +72,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>04CEBC46298608A52C68CB9D9A4F419E</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>0CEFBE136A19A0138A172C6818EBE7CC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>1FB3581F4855FB816F0C4899ED1A6026</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>21544970872DC57BC8C2D19EE5F24DEB</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3DA80DAE0C0D65E977D4430A8727AB8C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +97,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>694675CAB33E1786D3A7282D66E025F7</key>
+		<key>7A6C269FB46688BEA9E479712B62626E</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -102,7 +107,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9C62B90FFD6B67200F3D63C170C48096</key>
+		<key>8C5BD10883BD185426DD737247F56DEC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -117,7 +122,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>DCBFB9D78318EB38DB5DEC0E8AA8F55A</key>
+		<key>CE72D55DD6569591E020FED68EE9A825</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EE7B3A038D6E3020BAD0BD34CF89E984</key>
 		<dict>
 			<key>primary</key>
 			<true/>

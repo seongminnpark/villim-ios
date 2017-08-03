@@ -92,6 +92,7 @@
 
 "no_visit" = "방문 신청한 방이 없습니다.";
 
+"name" = "이름";
 "first_name" = "이름";
 "last_name" = "성";
 
@@ -176,3 +177,9 @@
 "not_selected" = "미정";
 "number_of_dates_format" = "%d일";
 "house_info_format" = "인원 %d명, 방 %d개, 침대 %d개, 욕실 %d개";
+
+"edit" = "수정";
+"done" = "완료";
+
+"phone_number" = "전화번호";
+"city_of_residence" = "거주 도시";

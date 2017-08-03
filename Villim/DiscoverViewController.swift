@@ -49,7 +49,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "숙소 찾기"
         self.tabBarItem.title = self.title
         
