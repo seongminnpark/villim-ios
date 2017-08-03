@@ -172,7 +172,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
             case .success:
                 let responseData = JSON(data: response.data!)
 
-                let successExists : Bool = responseData[VillimKeys.KEY_HOUSE_INFO].exists()
+                let successExists : Bool = responseData[VillimKeys.KEY_SUCCESS].exists()
                 let success       : Bool = successExists ? responseData[VillimKeys.KEY_SUCCESS].boolValue : false
                 let hosueExists   : Bool = responseData[VillimKeys.KEY_HOUSE_INFO].exists()
                 
@@ -267,5 +267,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
 }

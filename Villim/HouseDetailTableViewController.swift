@@ -14,7 +14,7 @@ protocol HouseDetailTableViewDelegate {
     func launchViewController(viewController:UIViewController, animated:Bool)
 }
 
-class HouseDetailTableViewController: UITableViewController, AmenityDelegate {
+class HouseDetailTableViewController: UITableViewController, AmenityDelegate, ReviewDelegate {
 
     var houseDetailDelegate         : HouseDetailTableViewDelegate!
     var house                       : VillimHouse!
@@ -200,6 +200,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate {
     func setupHouseReviewCell() -> HouseReviewTableViewCell {
         let cell : HouseReviewTableViewCell = HouseReviewTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"house_review")
 
+        cell.reviewDelegate = self
         cell.title.text = NSLocalizedString("review", comment: "")
         cell.houseReviewCount            = self.house.houseReviewCount
         cell.houseReviewRating           = self.house.houseRating
@@ -231,5 +232,11 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate {
         let amenityViewController = AmenityViewController()
         amenityViewController.amenities = house.amenityIds
         houseDetailDelegate.launchViewController(viewController: amenityViewController, animated: true)
+    }
+    
+    func onReviewSeeMore() {
+        let viewReviewViewControlelr = ViewReviewViewController()
+        viewReviewViewControlelr.houseId = house.houseId
+        houseDetailDelegate.launchViewController(viewController: viewReviewViewControlelr, animated: true)
     }
 }

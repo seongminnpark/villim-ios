@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftDate
 
 class VillimReservation {
     
@@ -14,8 +15,8 @@ class VillimReservation {
     var houseId : Int
     var hostId : Int
     var guestId : Int
-    var startDate : Date
-    var endDate : Date
+    var startDate : DateInRegion
+    var endDate : DateInRegion
     var reservationTime : String
     var reservationStatus : Int
     var reservationCode : String
@@ -25,8 +26,8 @@ class VillimReservation {
         self.houseId = 0
         self.hostId = 0
         self.guestId = 0
-        self.startDate = Date()
-        self.endDate = Date()
+        self.startDate = DateInRegion()
+        self.endDate = DateInRegion()
         self.reservationTime = ""
         self.reservationStatus = 0
         self.reservationCode = ""

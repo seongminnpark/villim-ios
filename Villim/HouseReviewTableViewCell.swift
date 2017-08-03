@@ -10,6 +10,10 @@ import UIKit
 import Nuke
 import Cosmos
 
+protocol ReviewDelegate {
+    func onReviewSeeMore()
+}
+
 class HouseReviewTableViewCell: UITableViewCell {
     
     let reviewerImageSize           : CGFloat! = 50.0
@@ -20,6 +24,8 @@ class HouseReviewTableViewCell: UITableViewCell {
     var lastReviewReviewer          : String!  = ""
     var lastReviewProfilePictureUrl : String!  = ""
     var lastReviewRating            : Float!   = 0.0
+    
+    var reviewDelegate             : ReviewDelegate!
     
     var title : UILabel!
     
@@ -86,6 +92,7 @@ class HouseReviewTableViewCell: UITableViewCell {
                 seeMoreButton = UIButton()
                 seeMoreButton.setTitle(String(format: NSLocalizedString("review_see_more_format", comment: ""), houseReviewCount - 1), for: .normal)
                 seeMoreButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                seeMoreButton.addTarget(self, action: #selector(seeMore), for: .touchUpInside)
                 self.contentView.addSubview(seeMoreButton)
 
                 houseRating = CosmosView()
@@ -171,6 +178,9 @@ class HouseReviewTableViewCell: UITableViewCell {
         }
     }
     
+    func seeMore() {
+        reviewDelegate.onReviewSeeMore()
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

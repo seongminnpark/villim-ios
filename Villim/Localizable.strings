@@ -133,6 +133,7 @@
 "date_format" = "yyyy-MM-dd";
 "date_format_client_weekday" = "%d월 %d일\n%@";
 "date_format_client" = "%d월 %d일";
+"date_format_client_year_month" = "%d년 %d월";
 "date_filter_format" = "%@ ~ %@";
 "month_header_format" = "yyyy년 MM월";
 

@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import SwiftDate
 
 class VillimHouse {
 
@@ -108,9 +109,9 @@ class VillimHouse {
         return houses
     }
     
-    public func getInvalidDates() -> [Date] {
+    public func getInvalidDates() -> [DateInRegion] {
     
-        var dates = [Date]()
+        var dates = [DateInRegion]()
     
         for reservation in self.reservations {
             let reservedDates = VillimUtils.datesBetween(startDate: reservation.startDate, endDate: reservation.endDate, includeEdges: true);

@@ -16,10 +16,15 @@ class VillimUtils {
         return VillimKeys.SERVER_SCHEME + "://" + VillimKeys.SERVER_HOST + "/" + endpoint
     }
     
-    public static func dateFromString(dateString:String) -> Date {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = NSLocalizedString("date_format", comment: "")
-        return dateFormatter.date(from: dateString)!
+    public static func dateFromString(dateString:String) -> DateInRegion {
+
+        var date = DateInRegion(string: dateString, format: .custom("yyyy-MM-dd"))
+        
+        if date == nil {
+            date = DateInRegion(string: dateString, format: .custom("yyyy-MM-dd HH:mm:ss"))
+        }
+        
+        return date!
     }
     
     public static func dateToString(date:DateInRegion) -> String {
@@ -28,16 +33,16 @@ class VillimUtils {
         return formatter.string(from: date.absoluteDate)
     }
     
-    public static func datesBetween(startDate:Date, endDate:Date, includeEdges:Bool) -> [Date] {
+    public static func datesBetween(startDate:DateInRegion, endDate:DateInRegion, includeEdges:Bool) -> [DateInRegion] {
         var currDate = startDate;
         
-        var dates = [Date]();
+        var dates = [DateInRegion]();
         
         if includeEdges { dates.append(startDate) }
         
         while currDate < endDate {
             dates.append(currDate)
-            currDate = Calendar.current.date(byAdding: .day, value: 1, to: currDate)!
+            currDate = currDate + 1.day
         }
         
         if includeEdges { dates.append(endDate) }
