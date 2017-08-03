@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import Toaster
+import SwiftDate
 
 
 class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate {
@@ -23,6 +24,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     var lastReviewReviewer : String = ""
     var lastReviewProfilePictureUrl : String = ""
     var lastReviewRating : Float = 0
+    
+    var dateSet : Bool = false
+    var checkIn : DateInRegion!
+    var checkOut : DateInRegion!
     
     let houseImageViewMaxHeight : CGFloat! = 300
     var navControllerHeight : CGFloat!
@@ -90,11 +95,13 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         leftButtonLabel.textColor = UIColor.white
         leftButtonStackView.addArrangedSubview(leftButtonLabel)
         
+        leftButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
         leftButton.addSubview(leftButtonStackView)
     
         rightButton = UIButton.init(type: .custom)
         rightButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
         rightButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        rightButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
         self.view.addSubview(rightButton)
  
         /* Loading inidcator */
@@ -237,6 +244,15 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.navigationController?.pushViewController(viewController, animated: animated)
     }
 
+    func launchReservationViewController() {
+        let reservationViewController = ReservationViewController()
+        reservationViewController.house = self.house
+        reservationViewController.dateSet = self.dateSet
+        reservationViewController.checkIn = self.checkIn
+        reservationViewController.checkOut = self.checkOut
+        self.navigationController?.pushViewController(reservationViewController, animated: true)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

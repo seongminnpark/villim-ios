@@ -160,8 +160,19 @@
 
 "rent_title" = "임대료 (일시불 선불)";
 "rent_content" = "월 수 x 월세 + 추가로 사용하는 일 수 일일계산\n시작일 및 종료일은 월 단위로 계산되며, 그 외 추가 일 수는 일일 계산됩니다.";
+"utility_fee" = "관리비";
 "utility_fee_title" = "관리비 (일시불 선불)";
 "utility_fee_content" = "임대료의 15~20%\n3월 - 5월 및 9월 - 11월 임대료의 15%\n6월 - 8월 및 12월 - 2월 임대료의 20%\n공과금 목록: 전기, 수도, 난방, 주차, 통신비 (인터넷 및 IP TV)";
+"cleaning_fee" = "퇴실 청소비";
 "cleaning_fee_title" = "퇴실 청소비 (일시불 선불)";
 
-
+"must_select_dates" = "시작일과 종료일을 선택해주세요.";
+"select_checkin" = "종료일 선택";
+"select_checkout" = "시작일 선택";
+"duration" = "기간";
+"number_of_nights" = "입주일 수";
+"price" = "금액";
+"base_price" = "기본 금액";
+"not_selected" = "미정";
+"number_of_dates_format" = "%d일";
+"house_info_format" = "인원 %d명, 방 %d개, 침대 %d개, 욕실 %d개";

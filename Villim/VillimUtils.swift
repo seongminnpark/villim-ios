@@ -100,4 +100,92 @@ class VillimUtils {
         return String(format:NSLocalizedString("monthly_rent_format", comment: ""),
                       VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
     }
+    
+    // Calculates and returns (base price, utitlity) in a tuple.
+    public static func calculatePrice(checkIn:DateInRegion, checkOut:DateInRegion, rent:Int) -> (Int, Int) {
+        let TWENTY    : Float = 0.2;
+        let FIFTEEN   : Float = 0.15;
+        
+        let dailyRent : Float = Float(rent) / 30.0
+        
+        var total     : Int = 0
+        var base      : Int = 0
+        var util      : Float = 0
+        
+        /* Start counting from start date. */
+        var currDate : DateInRegion = checkIn
+        var endDate  : DateInRegion = checkOut
+        var nextDate : DateInRegion = currDate + 1.month
+
+        
+        /* Count until we go over end date. */
+        while (nextDate < endDate) {
+            
+            nextDate = currDate
+            nextDate = nextDate + 1.month
+            
+            /* Base price */
+            base += rent;
+            
+            /* Utility fees */
+            var currUtilityRate : Float = isLowUtility(date: currDate) ? FIFTEEN : TWENTY
+            var nextUtilityRate : Float = isLowUtility(date: nextDate) ? FIFTEEN : TWENTY
+        
+            if (currUtilityRate != nextUtilityRate) {
+                
+                var currUtilityFee : Float = Float(daysUntilEndOfMonth(date: currDate)) * dailyRent * currUtilityRate
+                var nextUtilityFee : Float = Float(daysFromStartOfMonth(date: currDate)) * dailyRent * nextUtilityRate
+                
+                util += currUtilityFee;
+                util += nextUtilityFee;
+                
+            } else {
+                util += Float(rent) * currUtilityRate
+            }
+            
+            /* Go to next month */
+            currDate = currDate + 1.month
+        }
+        
+        /* Calculate daily rent */
+        var days : Int = (endDate - currDate).in(.day)!
+        if (days > 0) {
+            base += Int(Float(days) * dailyRent)
+        }
+        
+        return (base, Int(util))
+    }
+    
+    
+    private static func isLowUtility(date:DateInRegion) -> Bool {
+        return date.month == 3  ||
+               date.month == 4  ||
+               date.month == 5  ||
+               date.month == 9  ||
+               date.month == 10 ||
+               date.month == 11
+    }
+    
+    private static func daysUntilEndOfMonth(date:DateInRegion) -> Int {
+        var endDate : Int
+        switch date.month {
+        case 1, 3, 5, 7, 8, 10, 12:
+            endDate = 31
+            break
+        case 4, 6, 9, 11:
+            endDate = 30
+            break
+        case 2:
+            endDate = 28
+            break
+        default:
+            endDate = 31
+            break
+        }
+        return endDate - date.day
+    }
+    
+    private static func daysFromStartOfMonth(date:DateInRegion) -> Int {
+        return date.day - 1;
+    }
 }

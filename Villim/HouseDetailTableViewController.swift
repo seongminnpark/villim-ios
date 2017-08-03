@@ -39,7 +39,6 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         
         /* Initialize tableview */
         self.tableView = UITableView()
-        self.tableView.register(HouseTableViewCell.self, forCellReuseIdentifier: "cell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
