@@ -27,8 +27,10 @@ class ViewReviewViewController: UIViewController {
     
     var reviews              : [VillimReview] = []
     
-    let starSize             : Double = 15.0
+    let starSize             : Double = 13.0
     let starMargin           : Double = 5.0
+    let sideMargin           : CGFloat = 20.0
+    let verticalMargin       : CGFloat = 10.0
     
     var reviewTitle            : UILabel!
     
@@ -57,11 +59,15 @@ class ViewReviewViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
-        self.title = ""
+        self.view.backgroundColor = VillimValues.backgroundColor
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = VillimValues.backgroundColor
         
         /* Add Title */
         reviewTitle = UILabel()
+        reviewTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        reviewTitle.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         reviewTitle.text = NSLocalizedString("review", comment: "")
         self.view.addSubview(reviewTitle)
         
@@ -97,29 +103,43 @@ class ViewReviewViewController: UIViewController {
 
     func initRatingLabels() {
         reviewCountLabel = UILabel()
+        reviewTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        reviewTitle.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         reviewContainer.addSubview(reviewCountLabel)
         
         accuracyLabel = UILabel()
+        accuracyLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        accuracyLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         accuracyLabel.text = NSLocalizedString("accuracy", comment: "")
         reviewContainer.addSubview(accuracyLabel)
     
         locationLabel = UILabel()
+        locationLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        locationLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         locationLabel.text = NSLocalizedString("location", comment: "")
         reviewContainer.addSubview(locationLabel)
     
         communicationLabel = UILabel()
+        communicationLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        communicationLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         communicationLabel.text = NSLocalizedString("communication", comment: "")
         reviewContainer.addSubview(communicationLabel)
     
         checkinLabel = UILabel()
+        checkinLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        checkinLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         checkinLabel.text = NSLocalizedString("checkin", comment: "")
         reviewContainer.addSubview(checkinLabel)
     
         cleanlinessLabel = UILabel()
+        cleanlinessLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        cleanlinessLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         cleanlinessLabel.text = NSLocalizedString("cleanliness", comment: "")
         reviewContainer.addSubview(cleanlinessLabel)
     
         valueLabel = UILabel()
+        valueLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        valueLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         valueLabel.text = NSLocalizedString("value", comment: "")
         reviewContainer.addSubview(valueLabel)
     }
@@ -220,16 +240,16 @@ class ViewReviewViewController: UIViewController {
         
         /* Review title */
         reviewTitle?.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view)
-            make.top.equalTo(self.view).offset(topOffset)
+            make.left.equalTo(self.view).offset(sideMargin)
+            make.top.equalTo(self.view).offset(topOffset + sideMargin * 0.3)
         }
         
         /* Review overview */
         reviewContainer?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.top.equalTo(reviewTitle.snp.bottom)
-            make.height.equalTo(100.0)
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
+            make.top.equalTo(reviewTitle.snp.bottom).offset(sideMargin)
+            make.height.equalTo(150.0)
         }
         
         reviewCountLabel?.snp.makeConstraints { (make) -> Void in
@@ -239,72 +259,73 @@ class ViewReviewViewController: UIViewController {
         
         ratingBarOverall?.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalToSuperview()
+            make.centerY.equalTo(reviewCountLabel)
         }
         
         accuracyLabel?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview()
-            make.top.equalTo(reviewCountLabel.snp.bottom)
+            make.top.equalTo(reviewCountLabel.snp.bottom).offset(verticalMargin)
         }
         
         ratingBarAccuracy?.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(reviewContainer.snp.centerX)
-            make.top.equalTo(reviewCountLabel.snp.bottom)
+            make.right.equalTo(reviewContainer.snp.centerX).offset(-sideMargin/2)
+            make.centerY.equalTo(accuracyLabel)
         }
         
         locationLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(reviewContainer.snp.centerX)
-            make.top.equalTo(reviewCountLabel.snp.bottom)
+            make.left.equalTo(reviewContainer.snp.centerX).offset(sideMargin/2)
+            make.top.equalTo(reviewCountLabel.snp.bottom).offset(verticalMargin)
         }
         
         ratingBarLocation?.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalTo(reviewCountLabel.snp.bottom)
+            make.centerY.equalTo(locationLabel)
         }
         
         communicationLabel?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview()
-            make.top.equalTo(accuracyLabel.snp.bottom)
+            make.top.equalTo(accuracyLabel.snp.bottom).offset(verticalMargin)
         }
         
         ratingBarCommunication?.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(reviewContainer.snp.centerX)
-            make.top.equalTo(accuracyLabel.snp.bottom)
+            make.right.equalTo(reviewContainer.snp.centerX).offset(-sideMargin/2)
+            make.centerY.equalTo(communicationLabel)
         }
         
         checkinLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(reviewContainer.snp.centerX)
-            make.top.equalTo(accuracyLabel.snp.bottom)
+            make.left.equalTo(reviewContainer.snp.centerX).offset(sideMargin/2)
+            make.top.equalTo(accuracyLabel.snp.bottom).offset(verticalMargin)
         }
         
         ratingBarCheckin?.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalTo(accuracyLabel.snp.bottom)
+            make.centerY.equalTo(checkinLabel)
         }
         
         cleanlinessLabel?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview()
-            make.top.equalTo(communicationLabel.snp.bottom)
+            make.top.equalTo(communicationLabel.snp.bottom).offset(verticalMargin)
         }
         
         ratingBarCleanliness?.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(reviewContainer.snp.centerX)
-            make.top.equalTo(communicationLabel.snp.bottom)
+            make.right.equalTo(reviewContainer.snp.centerX).offset(-sideMargin/2)
+            make.centerY.equalTo(cleanlinessLabel)
         }
         
         valueLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(reviewContainer.snp.centerX)
-            make.top.equalTo(communicationLabel.snp.bottom)
+            make.left.equalTo(reviewContainer.snp.centerX).offset(sideMargin/2)
+            make.top.equalTo(communicationLabel.snp.bottom).offset(verticalMargin)
         }
         
         ratingBarValue?.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalTo(communicationLabel.snp.bottom)
+            make.centerY.equalTo(valueLabel)
         }
         
         /* Tableview */
         reviewTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
             make.top.equalTo(reviewContainer.snp.bottom)
             make.bottom.equalToSuperview()
         }

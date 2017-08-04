@@ -23,7 +23,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     static let MAX_AMENITY_ICONS = 6
     
-    var navBarOpen = false
+    var navBarOpen = true
     
     var houseDetailDelegate : HouseDetailDelegate!
     
@@ -66,7 +66,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.extendedLayoutIncludesOpaqueBars = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
 
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -311,9 +310,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         if navBarOpen {
             /* Make navbar transparent */
-            self.navigationController?.navigationBar.isTranslucent = true
-
-            
             houseDetailDelegate.onOpen()
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController!.navigationBar.barTintColor = UIColor.clear

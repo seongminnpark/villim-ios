@@ -24,6 +24,8 @@ class ViewReviewTableViewController: UITableViewController {
         self.tableView.isScrollEnabled = true
         self.tableView.allowsSelection = false
         self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.showsVerticalScrollIndicator = false
+        self.tableView.backgroundColor = VillimValues.backgroundColor
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +71,7 @@ class ViewReviewTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 80.0
+        return 140.0
         
     }
 
