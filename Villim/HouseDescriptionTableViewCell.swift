@@ -16,6 +16,8 @@ class HouseDescriptionTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
         title = UILabel()
         title.text = NSLocalizedString("house_description", comment: "")
         self.contentView.addSubview(title)

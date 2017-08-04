@@ -152,6 +152,8 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         cell.hostRating.rating    = Double(house.hostRating)
         cell.hostReviewCount.text = String(format: NSLocalizedString("review_count_format", comment: ""), house.hostReviewCount)
         
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        
         cell.makeConstraints()
         return cell
     }

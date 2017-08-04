@@ -24,6 +24,8 @@ class RateHouseTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
         categoryLabel = UILabel()
         self.contentView.addSubview(categoryLabel)
         

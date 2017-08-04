@@ -21,6 +21,8 @@ class HostInfoTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
 
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
         hostImage = UIImageView()
         self.contentView.addSubview(hostImage)
         
@@ -54,25 +56,24 @@ class HostInfoTableViewCell: UITableViewCell {
         hostImage?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(hostImageSize)
             make.height.equalTo(hostImageSize)
-            make.left.equalToSuperview()
-            make.top.equalToSuperview()
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.top.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
         }
         
         hostName?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview().dividedBy(2)
             make.top.equalTo(hostImage)
-            make.left.equalTo(hostImage.snp.right)
+            make.left.equalTo(hostImage.snp.right).offset(VillimValues.tableMargin)
         }
         
         hostRating?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(hostName.snp.bottom)
-            make.left.equalTo(hostImage.snp.right)
+            make.left.equalTo(hostImage.snp.right).offset(VillimValues.tableMargin)
             make.bottom.equalTo(hostImage)
         }
         
         hostReviewCount.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(hostRating)
-            make.left.equalTo(hostRating.snp.right)
+            make.centerY.equalTo(hostRating)
+            make.left.equalTo(hostRating.snp.right).offset(VillimValues.tableMargin)
         }
     }
     
