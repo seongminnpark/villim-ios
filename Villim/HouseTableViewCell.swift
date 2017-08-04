@@ -33,6 +33,9 @@ class HouseTableViewCell: UITableViewCell {
         container.addSubview(houseThumbnail)
         
         houseName = UILabel()
+        houseName.font = UIFont(name: "QuicksandDash-Regular", size: 20)
+        houseName.numberOfLines = 2
+        houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         container.addSubview(houseName)
         
         houseRating = CosmosView()
@@ -45,9 +48,13 @@ class HouseTableViewCell: UITableViewCell {
         container.addSubview(houseRating)
         
         houseReviewCount = UILabel()
+        houseReviewCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        houseReviewCount.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         container.addSubview(houseReviewCount)
         
         houseRent = UILabel()
+        houseRent.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
+        houseRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         container.addSubview(houseRent)
         
         imageDim = UIView()
@@ -67,7 +74,6 @@ class HouseTableViewCell: UITableViewCell {
             make.bottom.equalToSuperview()
         }
         
-        
         houseThumbnail?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview().dividedBy(2)
             make.top.equalToSuperview()
@@ -76,28 +82,25 @@ class HouseTableViewCell: UITableViewCell {
         }
         
         houseName?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview().dividedBy(2)
-            make.height.equalTo(30)
-            make.right.equalToSuperview()
-            make.top.equalToSuperview()
+            make.left.equalTo(houseThumbnail.snp.right).offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.top.equalToSuperview().offset(10)
         }
         
         houseRating.snp.makeConstraints{ (make) -> Void in
-
-            make.top.equalTo(houseName.snp.bottom)
-            make.left.equalTo(self.snp.centerX)
+            make.centerY.equalToSuperview()
+            make.left.equalTo(houseThumbnail.snp.right).offset(10)
         }
         
         houseReviewCount.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(houseName.snp.bottom)
-            make.right.equalToSuperview()
+            make.left.equalTo(houseRating.snp.right).offset(10)
+            make.centerY.equalToSuperview()
         }
         
         houseRent.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview().dividedBy(2)
-            make.height.equalTo(30)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.left.equalTo(houseThumbnail.snp.right).offset(10)
+            make.right.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         imageDim.snp.makeConstraints{ (make) -> Void in
