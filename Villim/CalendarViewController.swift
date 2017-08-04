@@ -280,4 +280,15 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         hideErrorMessage()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        /* Make navbar transparent */
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+    }
+    
 }

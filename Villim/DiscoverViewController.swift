@@ -78,6 +78,11 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.extendedLayoutIncludesOpaqueBars = true
         self.navigationItem.backBarButtonItem?.title = ""
         
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
         /* Add navbar logo */
         navbarLogo = UIImageView()
         navbarLogo.frame = CGRect(x: 0, y: statusBarHeight, width: 4.2*navControllerHeight, height: navControllerHeight)
@@ -162,8 +167,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
         let dateGesture = UITapGestureRecognizer(target: self, action:  #selector (self.launchDateFilterViewController(sender:)))
         self.dateFilter.addGestureRecognizer(dateGesture)
-        
-        
+    
         /* Featured houses list */
         discoverTableViewController = DiscoverTableViewController()
         discoverTableViewController.discoverDelegate = self
@@ -197,6 +201,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.tabBarController?.tabBar.isHidden = true
         let locationFilterViewController = LocationFilterViewController()
         locationFilterViewController.locationDelegate = self
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(locationFilterViewController, animated: true)
     }
     
@@ -207,6 +212,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         calendarViewController.dateSet = self.dateFilterSet
         calendarViewController.checkIn = self.checkIn
         calendarViewController.checkOut = self.checkOut
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
     
@@ -420,9 +426,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         houseDetailViewController.checkIn = self.checkIn
         houseDetailViewController.checkOut = self.checkOut
         self.tabBarController?.tabBar.isHidden = true
-        /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
@@ -543,7 +546,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
-        self.collapseFilter()
+        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilter.bounds.height)
     }
     
 }

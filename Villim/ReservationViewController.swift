@@ -32,6 +32,14 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         self.view.backgroundColor = VillimValues.backgroundColor
         self.tabBarController?.title = NSLocalizedString("request_visit", comment: "")
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
         /* Tableview controller */
         reservationTableViewController = ReservationTableViewController()
         reservationTableViewController.reservationDelegate = self
@@ -199,6 +207,14 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
     }
     
 }
