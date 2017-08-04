@@ -29,6 +29,8 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         title = UILabel()
+        title.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        title.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         title.text = NSLocalizedString("amenities", comment: "")
         self.contentView.addSubview(title)
         
@@ -73,6 +75,7 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
             let seeMoreButton = UIButton()
             seeMoreButton.setTitle(String(format: NSLocalizedString("amenity_see_more_format", comment: ""), amenities.count - numIcons), for: .normal)
             seeMoreButton.setTitleColor(VillimValues.themeColor, for: .normal)
+            seeMoreButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 16)
             seeMoreButton.addTarget(self, action: #selector(self.seeMore), for: .touchUpInside)
             stackView.addArrangedSubview(seeMoreButton)
         }
@@ -81,17 +84,14 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         title?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.top.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN * 0.75)
         }
         
         stackView?.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalTo(title.snp.bottom)
-            make.bottom.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.equalTo(title.snp.bottom).offset(HouseDetailTableViewController.SIDE_MARGIN/2)
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
         }
     }
     

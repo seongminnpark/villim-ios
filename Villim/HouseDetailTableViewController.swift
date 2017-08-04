@@ -122,7 +122,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         case HouseDetailTableViewController.PRICE_POLICY:
             return 70.0
         case HouseDetailTableViewController.AMENITY:
-            return 100.0
+            return 110.0
         case HouseDetailTableViewController.REVIEW:
             return 150.0
         case HouseDetailTableViewController.MAP:
