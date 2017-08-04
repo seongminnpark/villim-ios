@@ -39,6 +39,7 @@
 		3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543871F21DF9200525F7A /* VillimHouse.swift */; };
 		3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543891F21E0F700525F7A /* VillimReservation.swift */; };
 		3E956A031F348DF4001B7091 /* LocationFilterSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */; };
+		3E956A051F34FA41001B7091 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A041F34FA41001B7091 /* CustomTextField.swift */; };
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
 		3EB0512C1F28801500EBBBCE /* HouseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */; };
 		3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */; };
@@ -154,6 +155,7 @@
 		3E8543871F21DF9200525F7A /* VillimHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimHouse.swift; sourceTree = "<group>"; };
 		3E8543891F21E0F700525F7A /* VillimReservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimReservation.swift; sourceTree = "<group>"; };
 		3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterSearchField.swift; sourceTree = "<group>"; };
+		3E956A041F34FA41001B7091 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
 		3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDetailViewController.swift; sourceTree = "<group>"; };
 		3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDetailTableViewController.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
 				3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */,
+				3E956A041F34FA41001B7091 /* CustomTextField.swift */,
 				3EDC139C1F2C295200BA4077 /* WebViewController.swift */,
 			);
 			path = Villim;
@@ -760,6 +763,7 @@
 				3EDC13A31F2C5B2300BA4077 /* ChangePasscodeViewController.swift in Sources */,
 				3EDE4CE41F3307B500FDB275 /* ReservationViewController.swift in Sources */,
 				3EDC13A71F2D10D400BA4077 /* RateHouseViewController.swift in Sources */,
+				3E956A051F34FA41001B7091 /* CustomTextField.swift in Sources */,
 				3EDE4CD61F32B42800FDB275 /* ViewReviewTableViewController.swift in Sources */,
 				3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */,
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,

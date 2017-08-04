@@ -42,8 +42,8 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
-        self.tabBarController?.title = NSLocalizedString("signup", comment: "")
+        self.view.backgroundColor = VillimValues.backgroundColor
+        self.title = NSLocalizedString("signup", comment: "")
         
         /* Title */
         titleMain = UILabel()

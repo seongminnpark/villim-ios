@@ -21,6 +21,8 @@ class VillimValues {
     
     public static let backButtonSize       : CGFloat = 25.0
     
+    public static let sideMargin           : CGFloat = 20.0
+    
     
     /* Colors */
     
@@ -49,6 +51,8 @@ class VillimValues {
     public static let darkBottomButtonColor    = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
     
     public static let whiteHighlightedColor    = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
+    
+    public static let customTextFieldBorderColor = UIColor(red:0.66, green:0.66, blue:0.66, alpha:1.0)
     
     
     /* Fonts */

@@ -38,8 +38,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     
     var titleMain          : UILabel!
     var titleSecondary     : UILabel!
-    var emailField         : UITextField!
-    var passwordField      : UITextField!
+    var emailField         : CustomTextField!
+    var passwordField      : CustomTextField!
     
     var findPasswordButton : UIButton!
     var signupButton       : UIButton!
@@ -54,7 +54,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
-        self.tabBarController?.title = NSLocalizedString("login", comment: "")
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         if isRootView {
             let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back_caret_black"), style: .plain, target: self, action: #selector(self.onBackPressed))
@@ -62,19 +64,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
             self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         }
         
+        self.title = NSLocalizedString("login", comment: "")
+        
         /* Title */
         titleMain = UILabel()
+        titleMain.font = UIFont(name: "BMDOHYEON", size: 25)
+        titleMain.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         titleMain.text = NSLocalizedString("login_title_main", comment: "")
         self.view.addSubview(titleMain)
         
         /* Second Title */
         titleSecondary = UILabel()
+        titleSecondary.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 13)
+        titleSecondary.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         titleSecondary.text = NSLocalizedString("login_title_secondary", comment: "")
         self.view.addSubview(titleSecondary)
         
         /* Email field */
-        emailField = UITextField()
-        emailField.borderStyle = .roundedRect
+        emailField = CustomTextField()
+        emailField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        emailField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         emailField.placeholder = NSLocalizedString("email", comment: "")
         emailField.textContentType = UITextContentType.emailAddress
         emailField.keyboardType = UIKeyboardType.emailAddress
@@ -89,8 +98,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         emailField.leftViewMode = .always
         
         /* Password field */
-        passwordField = UITextField()
-        passwordField.borderStyle = .roundedRect
+        passwordField = CustomTextField()
+        passwordField.font =  UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        passwordField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         passwordField.placeholder = NSLocalizedString("password", comment: "")
         passwordField.isSecureTextEntry = true
         passwordField.autocapitalizationType = .none
@@ -105,17 +115,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         /* Find password button */
         findPasswordButton = UIButton()
+        findPasswordButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        findPasswordButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+        findPasswordButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         findPasswordButton.setTitle(NSLocalizedString("forgot_password", comment: ""), for: .normal)
-        findPasswordButton.setTitleColor(UIColor.gray, for: .normal)
-        findPasswordButton.setTitleColor(UIColor.black, for: .highlighted)
         findPasswordButton.addTarget(self, action:#selector(self.launchFindPasswordViewController), for: .touchUpInside)
         self.view.addSubview(findPasswordButton)
         
         /* Signup button */
         signupButton = UIButton()
+        signupButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        signupButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+        signupButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         signupButton.setTitle(NSLocalizedString("signup", comment: ""), for: .normal)
-        signupButton.setTitleColor(UIColor.gray, for: .normal)
-        signupButton.setTitleColor(UIColor.black, for: .highlighted)
         signupButton.addTarget(self, action:#selector(self.launchSignupViewController), for: .touchUpInside)
         self.view.addSubview(signupButton)
         
@@ -124,14 +136,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
-        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
+        nextButton.titleLabel?.font = VillimValues.bottomButtonFont
         nextButton.setTitleColor(UIColor.white, for: .normal)
-        nextButton.setTitleColor(UIColor.gray, for: .highlighted)
+        nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
         /* Error message */
         errorMessage = UILabel()
+        errorMessage.textAlignment = .center
+        errorMessage.textColor = VillimValues.themeColor
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
         
         /* Loading inidcator */
@@ -158,30 +174,32 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         /* Title */
         titleMain?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(topOffset)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(topOffset + VillimValues.sideMargin * 3)
         }
         
         /* Second Title */
         titleSecondary?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(titleMain.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(titleMain.snp.bottom).offset(VillimValues.sideMargin)
         }
         
         /* Email field */
         emailField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(titleSecondary.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(titleSecondary.snp.bottom).offset(VillimValues.sideMargin*2)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Password field */
         passwordField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(emailField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(emailField.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Next button */
@@ -193,23 +211,34 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         /* Find password button */
         findPasswordButton?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.bottom.equalTo(nextButton.snp.top).offset(-VillimValues.sideMargin)
         }
         
         /* Signup button */
         signupButton?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.bottom.equalTo(nextButton.snp.top).offset(-VillimValues.sideMargin)
         }
         
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(30)
-            make.top.equalTo(passwordField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(passwordField.snp.bottom).offset(10)
         }
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let width = CGFloat(1.0)
+        
+        /* Email form */
+        emailField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+        
+        /* Password form */
+        passwordField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
     }
     
     func launchSignupViewController() {
