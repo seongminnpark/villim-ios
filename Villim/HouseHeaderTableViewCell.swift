@@ -32,15 +32,14 @@ class HouseHeaderTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         houseName?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
             make.top.equalToSuperview()
         }
         
         houseAddress?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(30)
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
             make.top.equalTo(houseName.snp.bottom)
             make.bottom.equalToSuperview()
         }

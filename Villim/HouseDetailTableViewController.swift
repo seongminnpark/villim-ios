@@ -27,6 +27,8 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
     static let HOUSE_POLICY        : Int! = 8
     static let CANCELLATION_POLICY : Int! = 9
 
+    static let SIDE_MARGIN          : CGFloat! = 20.0
+    
     var houseDetailDelegate         : HouseDetailTableViewDelegate!
     var house                       : VillimHouse!
     var lastReviewContent           : String! = ""

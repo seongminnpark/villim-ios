@@ -79,8 +79,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         /* Add navbar logo */
         navbarLogo = UIImageView()
+        navbarLogo.frame = CGRect(x: 0, y: statusBarHeight, width: 4.2*navControllerHeight, height: navControllerHeight)
         navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
-        navbarLogo.sizeToFit()
         
         let leftItem = UIBarButtonItem(customView: navbarLogo)
         let negativeSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
@@ -89,6 +89,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         /* Set up right button items */
         navbarIcon = UIButton()
+        navbarIcon.frame = CGRect(x: 0, y: 0, width: navbarIconSize, height: navbarIconSize)
         navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
         navbarIcon.sizeToFit()
         navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
@@ -214,20 +215,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     }
     
     func makeConstraints() {
-        
-        /* Navbar */
-        navbarLogo.snp.makeConstraints{ (make) -> Void in
-            make.top.equalTo(statusBarHeight)
-            make.left.equalToSuperview()
-            make.width.equalTo(4.2*navControllerHeight)
-            make.height.equalTo(navControllerHeight)
-        }
-        
-        self.navigationItem.rightBarButtonItem?.customView?.snp.makeConstraints{ (make) -> Void in
-            make.right.equalToSuperview()
-            make.width.equalTo(navbarIconSize)
-            make.height.equalTo(navbarIconSize)
-        }
         
         /* Search filter */
         searchFilter.snp.makeConstraints{ (make) -> Void in
@@ -466,10 +453,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
         navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
         navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.searchFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(0)
             }
+            
+            self.searchFilter.superview?.layoutIfNeeded()
         })
     }
     
@@ -478,10 +468,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         navbarLogo.image = #imageLiteral(resourceName: "navbar_logo_open")
         navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
         navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
+        
         UIView.animate(withDuration: 0.5, animations: {
             self.searchFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.searchFilterMaxHeight)
             }
+            
+            self.searchFilter.superview?.layoutIfNeeded()
         })
     }
 
@@ -532,6 +525,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
     }
     
 }

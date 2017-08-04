@@ -134,7 +134,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                                print(responseData)
+
                 if responseData[VillimKeys.KEY_QUERY_SUCCESS].boolValue {
                     self.houseId           = responseData[VillimKeys.KEY_HOUSE_ID].exists() ? responseData[VillimKeys.KEY_HOUSE_ID].intValue : 0
                     self.houseName         = responseData[VillimKeys.KEY_HOUSE_NAME].exists() ? responseData[VillimKeys.KEY_HOUSE_NAME].stringValue : ""

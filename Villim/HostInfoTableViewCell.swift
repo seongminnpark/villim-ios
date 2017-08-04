@@ -25,6 +25,8 @@ class HostInfoTableViewCell: UITableViewCell {
         self.contentView.addSubview(hostImage)
         
         hostName = UILabel()
+        hostName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        hostName.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         self.contentView.addSubview(hostName)
         
         hostRating = CosmosView()
@@ -37,6 +39,8 @@ class HostInfoTableViewCell: UITableViewCell {
         self.contentView.addSubview(hostRating)
         
         hostReviewCount = UILabel()
+        hostReviewCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        hostReviewCount.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         self.contentView.addSubview(hostReviewCount)
     }
     
@@ -56,14 +60,14 @@ class HostInfoTableViewCell: UITableViewCell {
         
         hostName?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview().dividedBy(2)
-            make.height.equalTo(50)
-            make.top.equalToSuperview()
+            make.top.equalTo(hostImage)
             make.left.equalTo(hostImage.snp.right)
         }
         
         hostRating?.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(hostName.snp.bottom)
             make.left.equalTo(hostImage.snp.right)
+            make.bottom.equalTo(hostImage)
         }
         
         hostReviewCount.snp.makeConstraints{ (make) -> Void in
