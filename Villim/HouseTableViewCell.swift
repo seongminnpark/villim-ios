@@ -33,7 +33,7 @@ class HouseTableViewCell: UITableViewCell {
         container.addSubview(houseThumbnail)
         
         houseName = UILabel()
-        houseName.font = UIFont(name: "QuicksandDash-Regular", size: 20)
+        houseName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         houseName.numberOfLines = 2
         houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         container.addSubview(houseName)

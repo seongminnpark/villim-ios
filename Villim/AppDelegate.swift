@@ -14,10 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         GMSServices.provideAPIKey("AIzaSyCKOyK9ajX3YahW1PE23EGcpC1nthF541M")
+        
+        UITabBar.appearance().tintColor = VillimValues.themeColor
         
         window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.rootViewController = TabBarController()

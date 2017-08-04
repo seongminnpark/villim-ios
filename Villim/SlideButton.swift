@@ -25,13 +25,13 @@ class SlideButton: UIView {
         }
     }
     
-    var dragPointColor: UIColor = UIColor.darkGray {
+    var dragPointColor: UIColor = VillimValues.themeColor  {
         didSet{
             setStyle()
         }
     }
     
-    var buttonColor: UIColor = UIColor.gray {
+    var buttonColor: UIColor = VillimValues.themeColor {
         didSet{
             setStyle()
         }
@@ -74,7 +74,7 @@ class SlideButton: UIView {
     }
     
     var buttonUnlockedText: String   = "UNLOCKED"
-    var buttonUnlockedColor: UIColor = UIColor.black
+    var buttonUnlockedColor: UIColor = VillimValues.themeColor 
     var buttonFont                   = UIFont.boldSystemFont(ofSize: 17)
     
     
@@ -115,7 +115,7 @@ class SlideButton: UIView {
     func setUpButton(){
         self.backgroundColor              = self.buttonColor
         
-        self.dragPoint                    = UIView(frame: CGRect(x: sliderInset, y: sliderInset, width: self.frame.size.height - sliderInset*2, height: self.frame.size.height - sliderInset*2))
+        self.dragPoint                    = UIView(frame: CGRect(x: sliderInset/2, y: sliderInset/2, width: self.frame.size.height - sliderInset*2, height: self.frame.size.height - sliderInset*2))
         self.dragPoint.backgroundColor    = dragPointColor
         self.dragPoint.layer.cornerRadius = buttonCornerRadius
         self.addSubview(self.dragPoint)
@@ -145,6 +145,7 @@ class SlideButton: UIView {
         let panGestureRecognizer                    = UIPanGestureRecognizer(target: self, action: #selector(self.panDetected(sender:)))
         panGestureRecognizer.minimumNumberOfTouches = 1
         self.dragPoint.addGestureRecognizer(panGestureRecognizer)
+//        self.reset()
     }
     
     func panDetected(sender: UIPanGestureRecognizer){
@@ -200,7 +201,7 @@ class SlideButton: UIView {
     //reset button animation (RESET)
     func reset(){
         UIView.transition(with: self, duration: 0.2, options: .curveEaseOut, animations: {
-            self.dragPoint.frame = CGRect(x: 0, y: 0, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
+            self.dragPoint.frame = CGRect(x: self.sliderInset/2, y: self.sliderInset/2, width: self.dragPoint.frame.size.width, height: self.dragPoint.frame.size.height)
         }) { (Status) in
             if Status{
 //                self.imageView.isHidden               = false

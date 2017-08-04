@@ -185,3 +185,5 @@
 "city_of_residence" = "거주 도시";
 
 "add" = "추가";
+
+"valid_dates_format" = "유효기간  %d년 %d월 %d일 - %d년 %d월 %d일";

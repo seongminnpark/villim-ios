@@ -108,13 +108,12 @@ class VillimUtils {
         
         let dailyRent : Float = Float(rent) / 30.0
         
-        var total     : Int = 0
         var base      : Int = 0
         var util      : Float = 0
         
         /* Start counting from start date. */
         var currDate : DateInRegion = checkIn
-        var endDate  : DateInRegion = checkOut
+        let endDate  : DateInRegion = checkOut
         var nextDate : DateInRegion = currDate + 1.month
 
         
@@ -128,13 +127,13 @@ class VillimUtils {
             base += rent;
             
             /* Utility fees */
-            var currUtilityRate : Float = isLowUtility(date: currDate) ? FIFTEEN : TWENTY
-            var nextUtilityRate : Float = isLowUtility(date: nextDate) ? FIFTEEN : TWENTY
+            let currUtilityRate : Float = isLowUtility(date: currDate) ? FIFTEEN : TWENTY
+            let nextUtilityRate : Float = isLowUtility(date: nextDate) ? FIFTEEN : TWENTY
         
             if (currUtilityRate != nextUtilityRate) {
                 
-                var currUtilityFee : Float = Float(daysUntilEndOfMonth(date: currDate)) * dailyRent * currUtilityRate
-                var nextUtilityFee : Float = Float(daysFromStartOfMonth(date: currDate)) * dailyRent * nextUtilityRate
+                let currUtilityFee : Float = Float(daysUntilEndOfMonth(date: currDate)) * dailyRent * currUtilityRate
+                let nextUtilityFee : Float = Float(daysFromStartOfMonth(date: currDate)) * dailyRent * nextUtilityRate
                 
                 util += currUtilityFee;
                 util += nextUtilityFee;
@@ -148,7 +147,7 @@ class VillimUtils {
         }
         
         /* Calculate daily rent */
-        var days : Int = (endDate - currDate).in(.day)!
+        let days : Int = (endDate - currDate).in(.day)!
         if (days > 0) {
             base += Int(Float(days) * dailyRent)
         }

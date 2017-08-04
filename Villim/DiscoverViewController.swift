@@ -106,11 +106,15 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Location filter */
         locationFilterSet = false
         locationFilter = UIView()
+        locationFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
+        locationFilter.layer.borderWidth = 2.0;
+        locationFilter.layer.cornerRadius = individualFilterHeight / 2.0
         locationFilterIcon = UIImageView()
         let markerIcon = UIImage(named: "icon_marker")!.withRenderingMode(.alwaysTemplate)
         locationFilterIcon.image = markerIcon
         locationFilterIcon.tintColor = VillimValues.searchFilterContentColor
         locationFilterLabel = UILabel()
+        locationFilterLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
         locationFilterLabel.textColor = VillimValues.searchFilterContentColor
         locationFilterClearButton = UIButton()
@@ -130,11 +134,15 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Date filter */
         dateFilterSet = false
         dateFilter = UIView()
+        dateFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
+        dateFilter.layer.borderWidth = 2.0;
+        dateFilter.layer.cornerRadius = individualFilterHeight / 2.0
         dateFilterIcon = UIImageView()
         let calendarIcon = UIImage(named: "icon_calendar")!.withRenderingMode(.alwaysTemplate)
         dateFilterIcon.image = calendarIcon
         dateFilterIcon.tintColor = VillimValues.searchFilterContentColor
         dateFilterLabel = UILabel()
+        dateFilterLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         dateFilterLabel.text = NSLocalizedString("select_date", comment: "")
         dateFilterLabel.textColor = VillimValues.searchFilterContentColor
         dateFilterClearButton = UIButton()
@@ -236,7 +244,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         locationFilterIcon.snp.makeConstraints{ (make) -> Void in
             make.width.height.equalTo(filterIconSize)
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(filterPadding)
         }
         locationFilterLabel.snp.makeConstraints{ (make) -> Void in
             make.top.equalToSuperview()
@@ -260,7 +268,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         dateFilterIcon.snp.makeConstraints{ (make) -> Void in
             make.width.height.equalTo(filterIconSize)
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(filterPadding)
         }
         dateFilterLabel.snp.makeConstraints{ (make) -> Void in
             make.top.equalToSuperview()
@@ -284,26 +292,26 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        let width = CGFloat(1.0)
-        
-        let locationBorder = CALayer()
-        locationBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
-        locationBorder.frame = CGRect(x: 0, y: locationFilter.frame.size.height - width, width:  locationFilter.frame.size.width, height: locationFilter.frame.size.height)
-        locationBorder.backgroundColor = UIColor.clear.cgColor
-        locationBorder.borderWidth = width
-        locationFilter.layer.addSublayer(locationBorder)
-        locationFilter.layer.masksToBounds = true
-        
-        let dateBorder = CALayer()
-        dateBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
-        dateBorder.frame = CGRect(x: 0, y: dateFilter.frame.size.height - width, width:  dateFilter.frame.size.width, height: dateFilter.frame.size.height)
-        dateBorder.backgroundColor = UIColor.clear.cgColor
-        dateBorder.borderWidth = width
-        dateFilter.layer.addSublayer(dateBorder)
-        dateFilter.layer.masksToBounds = true
-    }
+//    override func viewDidLayoutSubviews() {
+//        super.viewDidLayoutSubviews()
+//        let width = CGFloat(1.0)
+//        
+//        let locationBorder = CALayer()
+//        locationBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+//        locationBorder.frame = CGRect(x: 0, y: locationFilter.frame.size.height - width, width:  locationFilter.frame.size.width, height: locationFilter.frame.size.height)
+//        locationBorder.backgroundColor = UIColor.clear.cgColor
+//        locationBorder.borderWidth = width
+//        locationFilter.layer.addSublayer(locationBorder)
+//        locationFilter.layer.masksToBounds = true
+//        
+//        let dateBorder = CALayer()
+//        dateBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+//        dateBorder.frame = CGRect(x: 0, y: dateFilter.frame.size.height - width, width:  dateFilter.frame.size.width, height: dateFilter.frame.size.height)
+//        dateBorder.backgroundColor = UIColor.clear.cgColor
+//        dateBorder.borderWidth = width
+//        dateFilter.layer.addSublayer(dateBorder)
+//        dateFilter.layer.masksToBounds = true
+//    }
     
     @objc private func sendFeaturedHousesRequest() {
         

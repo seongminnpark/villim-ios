@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/DiscoverViewController.swift"
-            timestampString = "523503384.05863"
+            timestampString = "523510182.021916"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "444"
-            endingLineNumber = "444"
+            startingLineNumber = "453"
+            endingLineNumber = "453"
             landmarkName = "onScroll(contentOffset:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,6 +42,22 @@
             startingLineNumber = "98"
             endingLineNumber = "98"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/VillimUtils.swift"
+            timestampString = "523509082.698303"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "calculatePrice(checkIn:checkOut:rent:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

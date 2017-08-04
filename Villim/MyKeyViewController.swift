@@ -14,6 +14,7 @@ import Nuke
 import Toaster
 import NVActivityIndicatorView
 import AudioToolbox
+import SwiftDate
 
 class MyKeyViewController: ViewController, SlideButtonDelegate {
     
@@ -21,8 +22,8 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     
     var houseId              : Int!    = 0
     var houseName            : String! = ""
-    var checkIn              : String! = ""
-    var checkOut             : String! = ""
+    var checkIn              : DateInRegion!
+    var checkOut             : DateInRegion!
     var houseThumbnailUrl    : String! = ""
     
     let slideButtonWidth     : CGFloat = 300.0
@@ -51,16 +52,18 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         /* Text buttons */
         reviewButton = UIButton()
         reviewButton.setTitle(NSLocalizedString("review_house", comment: ""), for: .normal)
-        reviewButton.setTitleColor(UIColor.gray, for: .normal)
-        reviewButton.setTitleColor(UIColor.black, for: .highlighted)
+        reviewButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
+        reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        reviewButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         reviewButton.addTarget(self, action:#selector(self.launchReviewHouseViewController), for: .touchUpInside)
         reviewButton.isEnabled = false
         self.view.addSubview(reviewButton)
         
         changePasscodeButton = UIButton()
         changePasscodeButton.setTitle(NSLocalizedString("change_doorlock_passcode", comment: ""), for: .normal)
-        changePasscodeButton.setTitleColor(UIColor.gray, for: .normal)
-        changePasscodeButton.setTitleColor(UIColor.black, for: .highlighted)
+        changePasscodeButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
+        changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        changePasscodeButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         changePasscodeButton.addTarget(self, action:#selector(self.launcChangePasscodeViewController), for: .touchUpInside)
         changePasscodeButton.isEnabled = false
         self.view.addSubview(changePasscodeButton)
@@ -78,8 +81,13 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         /* Labels */
         houseNameLabel = UILabel()
         houseNameLabel.textAlignment = .center
+        houseNameLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        houseNameLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        
         houseDateLabel = UILabel()
         houseDateLabel.textAlignment = .center
+        houseDateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
+        houseDateLabel.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         
         container.addSubview(houseImage)
         container.addSubview(houseNameLabel)
@@ -99,9 +107,11 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         self.view.addSubview(loadingIndicator)
         
         /* Error message */
-        let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2.5
+        let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2 - 60
         errorMessage = UILabel(frame:CGRect(x:0, y:errorTop, width:UIScreen.main.bounds.width, height:50))
         errorMessage.textAlignment = .center
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        errorMessage.textColor = VillimValues.themeColor
         self.view.addSubview(errorMessage)
         
         makeConstraints()
@@ -124,15 +134,25 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                                print(responseData)
                 if responseData[VillimKeys.KEY_QUERY_SUCCESS].boolValue {
                     self.houseId           = responseData[VillimKeys.KEY_HOUSE_ID].exists() ? responseData[VillimKeys.KEY_HOUSE_ID].intValue : 0
                     self.houseName         = responseData[VillimKeys.KEY_HOUSE_NAME].exists() ? responseData[VillimKeys.KEY_HOUSE_NAME].stringValue : ""
-                    self.checkIn           = responseData[VillimKeys.KEY_CHECKIN].exists() ? responseData[VillimKeys.KEY_CHECKIN].stringValue : ""
-                    self.checkOut          = responseData[VillimKeys.KEY_CHECKOUT].exists() ? responseData[VillimKeys.KEY_CHECKOUT].stringValue : ""
+                    let checkInString      = responseData[VillimKeys.KEY_CHECKIN].exists() ? responseData[VillimKeys.KEY_CHECKIN].stringValue : ""
+                    self.checkIn           = VillimUtils.dateFromString(dateString: checkInString)
+                    let checkOutString     = responseData[VillimKeys.KEY_CHECKOUT].exists() ? responseData[VillimKeys.KEY_CHECKOUT].stringValue : ""
+                    self.checkOut          = VillimUtils.dateFromString(dateString: checkOutString)
                     self.houseThumbnailUrl = responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].exists() ? responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].stringValue : ""
+                    
                     self.setUpKeyLayout()
                     self.reviewButton.isEnabled = true
                     self.changePasscodeButton.isEnabled = true
+                    self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    
+//                    self.populateViews()
                 } else {
                     self.setUpNoKeyLayout()
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
@@ -187,15 +207,17 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let topOffset = navControllerHeight + statusBarHeight
         
+        let sidePadding = (UIScreen.main.bounds.width - slideButtonWidth) / 4
+        
         /* Text Buttons */
         reviewButton?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.left.equalToSuperview().offset(sidePadding)
+            make.top.equalTo(topOffset + sidePadding).offset
         }
         
         changePasscodeButton?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.right.equalToSuperview().offset(-sidePadding)
+            make.top.equalTo(topOffset + sidePadding)
         }
         
         /* Room Info */
@@ -207,19 +229,19 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         }
         
         houseNameLabel?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseImage.snp.bottom)
+            make.top.equalTo(houseImage.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
         houseDateLabel?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseNameLabel.snp.bottom)
+            make.top.equalTo(houseNameLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
         container?.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(houseImage)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-slideButtonHeight)
         }
         
         
@@ -229,9 +251,9 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         
         /* Slide button */
         let sliderLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        let sliderTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        let sliderTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2
         slideButton = SlideButton(frame:CGRect(x:sliderLeft,y:sliderTop, width:slideButtonWidth, height:slideButtonHeight))
-        slideButton.backgroundColor = VillimValues.themeColor
+        slideButton.buttonColor = VillimValues.themeColor
         slideButton.imageName = #imageLiteral(resourceName: "slider_thumb")
         slideButton.buttonText = NSLocalizedString("unlock_doorlock", comment: "")
         slideButton.delegate = self
@@ -245,8 +267,13 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
             Nuke.loadImage(with: url!, into: houseImage)
         }
         
-        houseNameLabel.text = houseName
-        houseDateLabel.text = checkIn
+        houseNameLabel.text = self.houseName
+        
+        if self.checkIn != nil && self.checkOut != nil {
+            houseDateLabel.text = String(format:NSLocalizedString("valid_dates_format", comment: ""),
+                                         self.checkIn.year, self.checkIn.month, self.checkIn.day,
+                                         self.checkOut.year, self.checkOut.month, self.checkOut.day)
+        }
 
     }
     
@@ -254,7 +281,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     
         /* Find room button */
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2
         findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
         findRoomButton.backgroundColor = VillimValues.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
