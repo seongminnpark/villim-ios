@@ -19,9 +19,13 @@ class HouseHeaderTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         houseName = UILabel()
+        houseName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        houseName.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         self.contentView.addSubview(houseName)
         
         houseAddress = UILabel()
+        houseAddress.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        houseAddress.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(houseAddress)
         
     }
@@ -42,8 +46,7 @@ class HouseHeaderTableViewCell: UITableViewCell {
         houseAddress?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
             make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
-            make.top.equalTo(houseName.snp.bottom)
-            make.bottom.equalToSuperview()
+            make.top.equalTo(houseName.snp.bottom).offset(HouseDetailTableViewController.SIDE_MARGIN / 2)
         }
         
     }

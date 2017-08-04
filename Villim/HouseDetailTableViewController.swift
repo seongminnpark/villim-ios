@@ -112,9 +112,9 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         
         switch row {
         case HouseDetailTableViewController.HOST:
-            return 100.0
+            return 90.0
         case HouseDetailTableViewController.HEADER:
-            return 120.0
+            return 80.0
         case HouseDetailTableViewController.INFOGRAPHIC:
             return 100.0
         case HouseDetailTableViewController.DESCRIPTION:
