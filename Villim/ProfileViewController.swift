@@ -10,7 +10,7 @@ import UIKit
 import SnapKit
 import Nuke
 
-class ProfileViewController: ViewController, ProfileTableViewItemSelectedListener, LoginListener {
+class ProfileViewController: ViewController, ProfileTableViewItemSelectedListener, LoginDelegate {
     
     let profileImageViewSize : CGFloat! = 100.0
     
@@ -162,7 +162,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     public func launchLoginViewController() {
         let loginViewController = LoginViewController()
         loginViewController.isRootView = false
-        loginViewController.loginListener = self
+        loginViewController.loginDelegate = self
         self.navigationController?.pushViewController(loginViewController, animated: true)
         //        self.present(loginViewController, animated: true, completion: nil)
     }

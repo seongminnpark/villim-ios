@@ -26,7 +26,7 @@ extension UIButton {
     }
 }
 
-protocol LoginListener {
+protocol LoginDelegate {
     func onLogin(success:Bool)
 }
 
@@ -34,7 +34,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     
     var isRootView         : Bool = false
     
-    var loginListener      : LoginListener!
+    var loginDelegate     : LoginDelegate!
     
     var titleMain          : UILabel!
     var titleSecondary     : UILabel!
@@ -319,15 +319,19 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
                 }
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-                self.loginListener.onLogin(success: false)
+                self.loginDelegate.onLogin(success: false)
             }
             self.hideLoadingIndicator()
         }
     }
     
     func login() {
-        self.loginListener.onLogin(success: true)
-        self.navigationController?.popViewController(animated: true)
+        self.loginDelegate.onLogin(success: true)
+        if isRootView {
+             self.dismiss(animated: true, completion: nil)
+        } else {
+             self.navigationController?.popViewController(animated: true)
+        }
     }
     
     func onSignup(success:Bool) {

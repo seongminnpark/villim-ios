@@ -28,11 +28,6 @@ class FindPasswordSuccessViewController: UIViewController {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
-        
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         

@@ -13,7 +13,7 @@ import SwiftyJSON
 import NVActivityIndicatorView
 import SwiftDate
 
-class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginListener {
+class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginDelegate {
 
     var house    : VillimHouse!
     var dateSet  : Bool = false
@@ -165,7 +165,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     public func launchLoginViewController() {
         let loginViewController = LoginViewController()
         loginViewController.isRootView = true
-        loginViewController.loginListener = self
+        loginViewController.loginDelegate = self
         let newNavBar: UINavigationController = UINavigationController(rootViewController: loginViewController)
         self.present(newNavBar, animated: true, completion: nil)
 //        self.navigationController?.pushViewController(loginViewController, animated: true)
@@ -178,7 +178,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     }
     
     func onLogin(success: Bool) {
-        
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {

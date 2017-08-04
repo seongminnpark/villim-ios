@@ -27,10 +27,6 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
         super.viewDidLoad()
 
         /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
-        
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
