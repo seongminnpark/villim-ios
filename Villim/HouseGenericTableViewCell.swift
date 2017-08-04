@@ -19,10 +19,13 @@ class HouseGenericTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         title = UILabel()
+        title.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        title.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         self.contentView.addSubview(title)
         
         button = UIButton()
         button.setTitleColor(VillimValues.themeColor, for: .normal)
+        button.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 16)
         self.contentView.addSubview(button)
         
     }
@@ -35,13 +38,13 @@ class HouseGenericTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         title?.snp.makeConstraints { (make) -> Void in
-            make.height.equalToSuperview()
-            make.left.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN * 0.75)
         }
         
         button?.snp.makeConstraints { (make) -> Void in
-            make.height.equalToSuperview()
-            make.right.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN * 0.75)
         }
         
     }
