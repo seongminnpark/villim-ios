@@ -89,12 +89,12 @@ class ReservationPriceTableViewCell: UITableViewCell {
         
         utilityTitle?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(ReservationTableViewController.SIDE_MARGIN)
-            make.top.equalTo(basePriceTitle.snp.bottom).offset(10)
+            make.top.equalTo(basePriceTitle.snp.bottom).offset(5)
         }
         
         cleaningFeeTitle?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(ReservationTableViewController.SIDE_MARGIN)
-            make.top.equalTo(utilityTitle.snp.bottom).offset(10)
+            make.top.equalTo(utilityTitle.snp.bottom).offset(5)
         }
         
         priceContent?.snp.makeConstraints { (make) -> Void in

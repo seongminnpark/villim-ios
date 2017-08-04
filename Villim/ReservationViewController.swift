@@ -57,7 +57,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
         nextButton.titleLabel?.font = VillimValues.bottomButtonFont
-        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
+        nextButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
         nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)

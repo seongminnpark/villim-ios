@@ -146,7 +146,7 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
         
         let checkOutText = dateSet ?
             String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
-                   checkOut.month, checkOut.day, VillimUtils.weekdayToString(weekday:checkIn.weekday)) :
+                   checkOut.month, checkOut.day, VillimUtils.weekdayToString(weekday:checkOut.weekday)) :
             NSLocalizedString("select_checkout", comment: "")
         
         cell.checkInLabel.text = checkInText
