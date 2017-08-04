@@ -42,6 +42,8 @@ class HouseInfographicTableViewCell: UITableViewCell {
         self.contentView.addSubview(guestContainer)
         
         guestCountLabel = UILabel()
+        guestCountLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        guestCountLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         guestContainer.addSubview(guestCountLabel)
         
         guestCountImage = UIImageView()
@@ -52,6 +54,8 @@ class HouseInfographicTableViewCell: UITableViewCell {
         self.contentView.addSubview(roomContainer)
         
         roomCountLabel = UILabel()
+        roomCountLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        roomCountLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         roomContainer.addSubview(roomCountLabel)
         
         roomCountImage = UIImageView()
@@ -62,6 +66,8 @@ class HouseInfographicTableViewCell: UITableViewCell {
         self.contentView.addSubview(bedContainer)
         
         bedCountLabel = UILabel()
+        bedCountLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        bedCountLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         bedContainer.addSubview(bedCountLabel)
         
         bedCountImage = UIImageView()
@@ -72,6 +78,8 @@ class HouseInfographicTableViewCell: UITableViewCell {
         self.contentView.addSubview(bathroomContainer)
         
         bathroomCountLabel = UILabel()
+        bathroomCountLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        bathroomCountLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         bathroomContainer.addSubview(bathroomCountLabel)
         
         bathroomCountImage = UIImageView()
@@ -91,72 +99,64 @@ class HouseInfographicTableViewCell: UITableViewCell {
         /* Number of guests */
         guestContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
-            make.height.equalTo(CONTAINER_HEIGHT)
             make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(-(CONTAINER_SEPARATION * 1.5 + CONTAINER_WIDTH * 2))
         }
         guestCountImage?.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(ICON_HEIGHT)
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
         }
         guestCountLabel?.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.top.equalTo(guestCountImage.snp.bottom)
+            make.top.equalTo(guestCountImage.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
         
         /* Number of rooms */
         roomContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
-            make.height.equalTo(CONTAINER_HEIGHT)
             make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(-(CONTAINER_SEPARATION * 0.5 + CONTAINER_WIDTH))
         }
         roomCountImage?.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(ICON_HEIGHT)
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
         }
         roomCountLabel?.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.top.equalTo(roomCountImage.snp.bottom)
+            make.top.equalTo(roomCountImage.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
         
         /* Number of beds */
         bedContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
-            make.height.equalTo(CONTAINER_HEIGHT)
             make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(CONTAINER_SEPARATION * 0.5)
         }
         bedCountImage?.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(ICON_HEIGHT)
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
         }
         bedCountLabel?.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.top.equalTo(bedCountImage.snp.bottom)
+            make.top.equalTo(bedCountImage.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
         
         /* Number of bathrooms */
         bathroomContainer?.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(CONTAINER_WIDTH)
-            make.height.equalTo(CONTAINER_HEIGHT)
             make.centerY.equalToSuperview()
             make.left.equalTo(self.contentView.snp.centerX).offset(CONTAINER_SEPARATION * 1.5 + CONTAINER_WIDTH)
         }
         bathroomCountImage?.snp.makeConstraints { (make) -> Void in
-            make.height.equalTo(ICON_HEIGHT)
             make.top.equalToSuperview()
             make.centerX.equalToSuperview()
         }
         bathroomCountLabel?.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.top.equalTo(bathroomCountImage.snp.bottom)
+            make.top.equalTo(bathroomCountImage.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
     }
