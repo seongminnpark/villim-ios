@@ -23,11 +23,13 @@ class AmenityTableViewController: UITableViewController {
         
         /* Initialize tableview */
         self.tableView = UITableView()
+        self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
         self.tableView.isScrollEnabled = true
         self.tableView.allowsSelection = false
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.separatorInset = UIEdgeInsets.zero
     }
 
@@ -51,9 +53,16 @@ class AmenityTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "reuseIdentifier")
         cell.separatorInset = UIEdgeInsets.zero
+        cell.contentView.backgroundColor = VillimValues.backgroundColor
+        cell.textLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        cell.textLabel?.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         cell.textLabel?.text = VillimAmenity.getAmenityName(amenityId: amenities[indexPath.row])
         cell.imageView?.image = VillimAmenity.getAmenityImage(amenityId: amenities[indexPath.row])
         return cell
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
 }

@@ -12,6 +12,8 @@ class AmenityViewController: UIViewController {
 
     var amenities = [Int]()
     
+    let sideMargin : CGFloat = 20.0
+    
     private var amenityTitle : UILabel!
     private var amenityTableViewController : AmenityTableViewController!
     
@@ -19,11 +21,15 @@ class AmenityViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
-        self.title = ""
+        self.view.backgroundColor = VillimValues.backgroundColor
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = VillimValues.backgroundColor
         
         /* Add Title */
         amenityTitle = UILabel()
+        amenityTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        amenityTitle.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         amenityTitle.text = NSLocalizedString("amenity_title", comment: "")
         self.view.addSubview(amenityTitle)
         
@@ -44,14 +50,15 @@ class AmenityViewController: UIViewController {
         
         /* Amenity title */
         amenityTitle?.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self.view)
-            make.top.equalTo(self.view).offset(topOffset)
+            make.left.equalTo(self.view).offset(sideMargin)
+            make.top.equalTo(self.view).offset(topOffset + sideMargin * 0.3)
         }
         
         /* Tableview */
         amenityTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalTo(self.view)
-            make.top.equalTo(amenityTitle.snp.bottom)
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
+            make.top.equalTo(amenityTitle.snp.bottom).offset(sideMargin)
             make.bottom.equalTo(self.view)
         }
         
