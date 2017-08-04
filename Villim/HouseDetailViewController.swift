@@ -61,6 +61,12 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         topOffset = navControllerHeight + statusBarHeight
         prevContentOffset = 0
         
+        self.extendedLayoutIncludesOpaqueBars = true
+
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        
         /* House ImageView */
         houseImageView = UIImageView()
         self.view.addSubview(houseImageView!)
@@ -246,10 +252,12 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func launchViewController(viewController:UIViewController, animated:Bool) {
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(viewController, animated: animated)
     }
 
     func launchReservationViewController() {
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         let reservationViewController = ReservationViewController()
         reservationViewController.house = self.house
         reservationViewController.dateSet = self.dateSet

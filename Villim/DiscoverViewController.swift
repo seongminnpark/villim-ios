@@ -76,7 +76,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
-        self.navigationItem.backBarButtonItem?.title = ""
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
