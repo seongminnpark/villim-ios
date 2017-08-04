@@ -194,3 +194,6 @@
 
 "passcode_change_success_title" = "비밀번호가 변경되었습니다.";
 "passcode_change_success_instruction" = "이제부터 변경된 비밀번호로\n도어락 잠금해제를 할 수 있습니다.";
+
+"find_password_success_title" = "메시지가 전송되었습니다.";
+"find_password_success_instruction" = "비밀번호를 재설정할 수 있는 링크가\n포함된 Villim 메시지가 발송되었습니다.";

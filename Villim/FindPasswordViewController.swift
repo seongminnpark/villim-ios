@@ -12,7 +12,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class FindPasswordViewController: UIViewController, UITextFieldDelegate {
+class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPasswordSuccessDelegate {
 
     var titleMain        : UILabel!
     var emailField       : CustomTextField!
@@ -161,7 +161,8 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
             !(emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
         let validInput : Bool = allFieldsFilledOut;
         if validInput {
-            sendFindPasswordRequest()
+            self.launchFindPasswordSuccessViewController()
+//            sendFindPasswordRequest()
         } else {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         }
@@ -182,7 +183,7 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
         showLoadingIndicator()
         
         let parameters = [
-            VillimKeys.KEY_EMAIL    : emailField.text!] as [String : Any]
+            VillimKeys.KEY_EMAIL : emailField.text!] as [String : Any]
         
         let url = VillimUtils.buildURL(endpoint: VillimKeys.FIND_PASSWORD_URL)
         
@@ -204,7 +205,12 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
 
     func launchFindPasswordSuccessViewController() {
         let findPasswordSuccessViewController = FindPasswordSuccessViewController()
+        findPasswordSuccessViewController.dismissDelegate = self
         self.navigationController?.pushViewController(findPasswordSuccessViewController, animated: true)
+    }
+    
+    func onDismiss() {
+        self.navigationController?.popViewController(animated: true)
     }
     
     override func didReceiveMemoryWarning() {
