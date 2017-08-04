@@ -47,12 +47,22 @@ class VisitDetailViewController: UIViewController {
 
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "방문 정보"
+
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         /* Text buttons */
         locationButton = UIButton()
         locationButton.setTitle(NSLocalizedString("show_location", comment: ""), for: .normal)
         locationButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
         locationButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        locationButton.addTarget(self, action: #selector(self.launchMapViewController), for: .touchUpInside)
         locationButton.isEnabled = false
         self.view.addSubview(locationButton)
         
@@ -60,6 +70,7 @@ class VisitDetailViewController: UIViewController {
         cancelButton.setTitle(NSLocalizedString("cancel_visit", comment: ""), for: .normal)
         cancelButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
         cancelButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        cancelButton.addTarget(self, action: #selector(self.cancelVisit), for: .touchUpInside)
         cancelButton.isEnabled = false
         self.view.addSubview(cancelButton)
         
@@ -148,7 +159,7 @@ class VisitDetailViewController: UIViewController {
                     let houseInfo = responseData[VillimKeys.KEY_HOUSE_INFO].exists() ? responseData[VillimKeys.KEY_HOUSE_INFO] : nil
                     self.house = VillimHouse(houseInfo: houseInfo)
                     
-                    self.locationButton.isEnabled = false
+                    self.locationButton.isEnabled = true
                     self.locationButton.setTitleColor(VillimValues.themeColor, for: .normal)
                     self.locationButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
                     
@@ -236,6 +247,17 @@ class VisitDetailViewController: UIViewController {
 
     }
     
+    func launchMapViewController() {
+        let mapViewController = MapViewController()
+        mapViewController.latitude = house.latitude
+        mapViewController.longitude = house.longitude
+        self.navigationController?.pushViewController(mapViewController, animated: true)
+    }
+    
+    func cancelVisit() {
+        
+    }
+    
     private func showLoadingIndicator() {
         loadingIndicator.startAnimating()
     }
@@ -256,4 +278,9 @@ class VisitDetailViewController: UIViewController {
         hideErrorMessage()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
 }

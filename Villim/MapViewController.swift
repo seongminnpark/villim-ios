@@ -18,6 +18,9 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         self.view.backgroundColor = VillimValues.backgroundColor
         self.navigationController?.navigationBar.isTranslucent = true
         self.extendedLayoutIncludesOpaqueBars = true

@@ -31,6 +31,9 @@ class LocationFilterViewController: UIViewController, UITextFieldDelegate, Locat
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "장소 검색"
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         /* Search field */
         searchField = LocationFilterSearchField()
         searchField.font = UIFont(name: "NotoSansCJKkr-Regular", size: LocationFilterSearchField.iconSize)

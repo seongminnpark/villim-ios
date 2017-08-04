@@ -242,9 +242,10 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         hideErrorMessage()
     }
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        viewDidLoad()
-//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = false
+    }
 
     
 }

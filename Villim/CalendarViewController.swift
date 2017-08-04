@@ -44,6 +44,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "날짜 선택"
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         state = CalendarViewController.STATE_SELECT_CHECKIN
         
         /* Date labels */
