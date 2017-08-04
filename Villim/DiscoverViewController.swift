@@ -13,7 +13,7 @@ import NVActivityIndicatorView
 import Toaster
 import SwiftDate
 
-class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate {
+class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate, HouseDetailDelegate {
     
     var filterOpen : Bool = false
     
@@ -414,6 +414,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
     func discoverItemSelected(position: Int) {
         let houseDetailViewController = HouseDetailViewController()
+        houseDetailViewController.houseDetailDelegate = self
         houseDetailViewController.house = houses[position]
         houseDetailViewController.dateSet = self.dateFilterSet
         houseDetailViewController.checkIn = self.checkIn
@@ -495,6 +496,14 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         return UIColor(red: r, green: g, blue: b, alpha: 1.0)
     }
     
+    
+    func onCollapse() {
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+    }
+    
+    func onOpen() {
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

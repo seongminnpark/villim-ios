@@ -23,6 +23,8 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     static let MAX_AMENITY_ICONS = 6
     
+    var houseDetailDelegate : HouseDetailDelegate!
+    
     var house : VillimHouse! = nil
     var lastReviewContent : String = ""
     var lastReviewReviewer : String = ""
@@ -222,15 +224,23 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         prevContentOffset = contentOffset.y
         var newHeight = houseImageView.bounds.height - contentVector
         
-        if newHeight < topOffset {
+        if newHeight <= topOffset {
             newHeight = topOffset
+            houseDetailDelegate.onCollapse()
+            self.navigationController?.navigationBar.isTranslucent = false
+            self.navigationController?.navigationBar.barTintColor = UIColor.white
         } else if newHeight > houseImageViewMaxHeight {
             newHeight = houseImageViewMaxHeight
+        } else {
+            houseDetailDelegate.onOpen()
+            self.navigationController?.navigationBar.isTranslucent = true
+            self.navigationController!.navigationBar.barTintColor = UIColor.clear
         }
         
         houseImageView?.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(newHeight)
         }
+
     }
     
     func launchViewController(viewController:UIViewController, animated:Bool) {
@@ -283,9 +293,9 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.tabBarController?.tabBar.isHidden = true
         
         /* Make navbar transparent */
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
     }
 }

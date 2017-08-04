@@ -37,6 +37,8 @@ class VillimValues {
     public static let searchFieldBorderColor   = UIColor(red:  5.0/255.0,  green:   6.0/255.0, blue:  11.0/255.0, alpha:1.0)
     
     public static let inactiveButtonColor      = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
+    
+    public static let darkBackButtonColor      = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
 
     
 }
