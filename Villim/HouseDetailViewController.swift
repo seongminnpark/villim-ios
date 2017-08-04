@@ -73,7 +73,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         /* Bottom Buttons */
         leftButton = UIButton()
-        leftButton.setBackgroundColor(color: VillimValues.darkColor, forState: .normal)
+        leftButton.setBackgroundColor(color: VillimValues.darkBottomButtonColor, forState: .normal)
         self.view.addSubview(leftButton)
         
         leftButtonStackView = UIStackView()
@@ -88,6 +88,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         leftButtonLabel = UILabel()
         leftButtonLabel.textColor = UIColor.white
+        leftButtonLabel.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
         leftButtonStackView.addArrangedSubview(leftButtonLabel)
         
         leftButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
@@ -96,6 +97,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         rightButton = UIButton.init(type: .custom)
         rightButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
         rightButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        rightButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
         rightButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
         self.view.addSubview(rightButton)
  
