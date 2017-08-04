@@ -106,17 +106,18 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Location filter */
         locationFilterSet = false
         locationFilter = UIView()
-        locationFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
-        locationFilter.layer.borderWidth = 2.0;
+//        locationFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
+//        locationFilter.layer.borderWidth = 2.0;
         locationFilter.layer.cornerRadius = individualFilterHeight / 2.0
+        locationFilter.backgroundColor = UIColor.white
         locationFilterIcon = UIImageView()
         let markerIcon = UIImage(named: "icon_marker")!.withRenderingMode(.alwaysTemplate)
         locationFilterIcon.image = markerIcon
-        locationFilterIcon.tintColor = VillimValues.searchFilterContentColor
+        locationFilterIcon.tintColor = UIColor.black
         locationFilterLabel = UILabel()
-        locationFilterLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        locationFilterLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
-        locationFilterLabel.textColor = VillimValues.searchFilterContentColor
+        locationFilterLabel.textColor = UIColor.black
         locationFilterClearButton = UIButton()
         locationFilterClearButton.setImage(clearIcon, for: .normal)
         locationFilterClearButton.tintColor = VillimValues.searchFilterContentColor
@@ -134,20 +135,21 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Date filter */
         dateFilterSet = false
         dateFilter = UIView()
-        dateFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
-        dateFilter.layer.borderWidth = 2.0;
+//        dateFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
+//        dateFilter.layer.borderWidth = 2.0;
         dateFilter.layer.cornerRadius = individualFilterHeight / 2.0
+        dateFilter.backgroundColor = UIColor.white
         dateFilterIcon = UIImageView()
         let calendarIcon = UIImage(named: "icon_calendar")!.withRenderingMode(.alwaysTemplate)
         dateFilterIcon.image = calendarIcon
-        dateFilterIcon.tintColor = VillimValues.searchFilterContentColor
+        dateFilterIcon.tintColor = UIColor.black
         dateFilterLabel = UILabel()
-        dateFilterLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        dateFilterLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         dateFilterLabel.text = NSLocalizedString("select_date", comment: "")
-        dateFilterLabel.textColor = VillimValues.searchFilterContentColor
+        dateFilterLabel.textColor = UIColor.black
         dateFilterClearButton = UIButton()
         dateFilterClearButton.setImage(clearIcon, for: .normal)
-        dateFilterClearButton.tintColor = VillimValues.searchFilterContentColor
+        dateFilterClearButton.tintColor = UIColor.white
         dateFilterClearButton.isHidden = true
         dateFilterClearButton.isEnabled = false
         dateFilterClearButton.addTarget(self, action: #selector(self.clearDateFilter), for: .touchUpInside)
