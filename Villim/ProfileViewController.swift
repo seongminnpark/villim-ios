@@ -78,7 +78,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
             
         } else {
             profileTitle.text = self.title
-            profileImageView.image = #imageLiteral(resourceName: "icon_profile")
+            profileImageView.image = #imageLiteral(resourceName: "img_default")
             profileTableViewController.profileTableViewItems = loggedOutTableViewItems
             profileTableViewController.tableView.reloadData()
         }

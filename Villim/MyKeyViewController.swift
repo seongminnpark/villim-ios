@@ -46,7 +46,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "내 열쇠"
         
         /* Text buttons */

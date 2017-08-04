@@ -19,7 +19,9 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.tabBarController?.title = NSLocalizedString("", comment: "")
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = VillimValues.backgroundColor
         
         let location = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
         let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 17.0)

@@ -100,8 +100,13 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         /* Labels */
         houseNameLabel = UILabel()
         houseNameLabel.textAlignment = .center
+        houseNameLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        houseNameLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+
         houseDateLabel = UILabel()
         houseDateLabel.textAlignment = .center
+        houseDateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
+        houseDateLabel.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         
         container.addSubview(houseImage)
         container.addSubview(houseNameLabel)
@@ -133,12 +138,12 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         }
         
         houseNameLabel?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseImage.snp.bottom)
+            make.top.equalTo(houseImage.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
         houseDateLabel?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseNameLabel.snp.bottom)
+            make.top.equalTo(houseNameLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
