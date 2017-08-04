@@ -19,17 +19,16 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.isTranslucent = true
         self.extendedLayoutIncludesOpaqueBars = true
-        self.navigationController?.navigationBar.barTintColor = VillimValues.backgroundColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
         
-        let location = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
-        let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 17.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
 
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: latitude)
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.map = mapView
         
         self.view.addSubview(mapView)
@@ -55,14 +54,12 @@ class MapViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
     }
-    */
 
 }
