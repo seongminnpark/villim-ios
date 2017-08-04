@@ -156,7 +156,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         dateFilterLabel.textColor = UIColor.black
         dateFilterClearButton = UIButton()
         dateFilterClearButton.setImage(clearIcon, for: .normal)
-        dateFilterClearButton.tintColor = UIColor.white
+        dateFilterClearButton.tintColor = VillimValues.searchFilterContentColor
         dateFilterClearButton.isHidden = true
         dateFilterClearButton.isEnabled = false
         dateFilterClearButton.addTarget(self, action: #selector(self.clearDateFilter), for: .touchUpInside)

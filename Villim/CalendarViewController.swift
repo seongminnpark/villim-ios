@@ -41,7 +41,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "날짜 선택"
         
         state = CalendarViewController.STATE_SELECT_CHECKIN
@@ -82,7 +82,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendar.appearance.headerDateFormat = NSLocalizedString("month_header_format", comment: "")
         calendar.appearance.headerTitleFont = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
         calendar.appearance.weekdayFont = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
-        calendar.appearance.titleFont = UIFont(name: "NotoSansCJKkr-DemiLight", size: 15)
+        calendar.appearance.titleFont = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
 
         calendar.appearance.headerTitleColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         calendar.appearance.weekdayTextColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)

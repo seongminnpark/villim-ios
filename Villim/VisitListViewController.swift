@@ -41,7 +41,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         topOffset = navControllerHeight + statusBarHeight
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "방문 목록"
         self.tabBarItem.title = self.title
         

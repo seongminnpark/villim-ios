@@ -134,7 +134,6 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         default:
             return 150.0
         }
-
     }
     
     func setupHostInfoCell() -> HostInfoTableViewCell {

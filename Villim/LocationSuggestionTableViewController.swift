@@ -19,9 +19,10 @@ class LocationSuggestionTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         /* Initialize tableview */
         self.tableView = UITableView()
+        self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
@@ -65,8 +66,12 @@ class LocationSuggestionTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let currentCell = tableView.cellForRow(at: indexPath)! as! LocationSuggestionTableViewCell
-        let currentItem = currentCell.locationName.text
+        let currentItem = currentCell.locationDetail.text
         itemSelectedListener.locationSuggestionItemSelected(item: currentItem!)
     }
 
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
+    
 }

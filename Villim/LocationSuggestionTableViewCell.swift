@@ -16,10 +16,16 @@ class LocationSuggestionTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
         locationName = UILabel()
+        locationName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        locationName.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         self.contentView.addSubview(locationName)
         
         locationDetail = UILabel()
+        locationDetail.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
+        locationDetail.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(locationDetail)
         
         makeConstraints()

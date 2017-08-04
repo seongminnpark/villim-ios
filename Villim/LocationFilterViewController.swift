@@ -14,6 +14,8 @@ protocol LocationFilterDelegate {
 
 class LocationFilterViewController: UIViewController, UITextFieldDelegate, LocationSuggestionSelectedListener {
 
+    let sideMargin : CGFloat! = 20.0
+    
     var locationDelegate : LocationFilterDelegate!
     var locationSuggestionTableViewController : LocationSuggestionTableViewController!
     
@@ -26,26 +28,31 @@ class LocationFilterViewController: UIViewController, UITextFieldDelegate, Locat
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "장소 검색"
         
         /* Search field */
-        searchField = UITextField()
+        searchField = LocationFilterSearchField()
+        searchField.font = UIFont(name: "NotoSansCJKkr-Regular", size: LocationFilterSearchField.iconSize)
+        searchField.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         searchField.placeholder = NSLocalizedString("where_to_go", comment: "")
         searchField.returnKeyType = .search
-        searchField.autocapitalizationType = .none
+        searchField.autocapitalizationType = .sentences
         searchField.clearButtonMode = .whileEditing
         searchField.delegate = self
         self.view.addSubview(searchField)
         
         searchField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_search"))
-        searchField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
+        searchField.leftView?.frame = CGRect(x: 0, y: 0, width:
+            LocationFilterSearchField.iconSize , height:LocationFilterSearchField.iconSize)
         searchField.leftViewMode = .always
         
         let location = VillimLocation(name:"강남구", addrFull:"서울시 강남구 청담동 42", addrSummary:"서울특별시 강남구", addrDirection:"", latitude:0.0, longitude:0.0)
         locationSuggestions = [location, location, location, location, location, location]
         
         popularTitle = UILabel()
+        popularTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        popularTitle.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         popularTitle.text = NSLocalizedString("popular_location", comment: "")
         self.view.addSubview(popularTitle)
         
@@ -66,22 +73,24 @@ class LocationFilterViewController: UIViewController, UITextFieldDelegate, Locat
         
         /* Search Field */
         searchField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(topOffset)
-            make.centerX.equalToSuperview()
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
+            make.top.equalTo(topOffset + sideMargin * 2)
+            make.height.equalTo(LocationFilterSearchField.iconSize * 2)
         }
     
         /* Popular title */
         popularTitle.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalTo(searchField.snp.bottom)
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
+            make.top.equalTo(searchField.snp.bottom).offset(sideMargin)
         }
         
         /* Tableview */
         locationSuggestionTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalTo(popularTitle.snp.bottom)
+            make.top.equalTo(popularTitle.snp.bottom).offset(sideMargin/2)
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
             make.bottom.equalToSuperview()
         }
     
@@ -124,14 +133,15 @@ class LocationFilterViewController: UIViewController, UITextFieldDelegate, Locat
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+        
+        /* Make navbar transparent */
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
     }
-    */
 
 }
