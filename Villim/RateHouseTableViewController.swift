@@ -24,6 +24,7 @@ class RateHouseTableViewController: UITableViewController {
         /* Initialize tableview */
         self.tableView = UITableView()
         self.tableView.register(HouseTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells
@@ -87,6 +88,11 @@ class RateHouseTableViewController: UITableViewController {
         rateCell.categoryLabel.text  = categoryName
         
         return rateCell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        return 60.0
     }
     
     func setRating(category:Int, value:Double) {

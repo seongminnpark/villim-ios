@@ -27,6 +27,8 @@ class RateHouseTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         categoryLabel = UILabel()
+        categoryLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        categoryLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         self.contentView.addSubview(categoryLabel)
         
         ratingBar = CosmosView()
@@ -55,12 +57,12 @@ class RateHouseTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         categoryLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.centerY.equalToSuperview()
         }
         
         ratingBar?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
             make.centerY.equalToSuperview()
         }
         

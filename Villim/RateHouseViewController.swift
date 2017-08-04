@@ -58,9 +58,10 @@ class RateHouseViewController: UIViewController, RatingSetListener {
         applyButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         applyButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         applyButton.adjustsImageWhenHighlighted = true
-        applyButton.setTitle(NSLocalizedString("apply", comment: ""), for: .normal)
+        applyButton.titleLabel?.font = VillimValues.bottomButtonFont
         applyButton.setTitleColor(UIColor.white, for: .normal)
-        applyButton.setTitleColor(UIColor.gray, for: .highlighted)
+        applyButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        applyButton.setTitle(NSLocalizedString("apply", comment: ""), for: .normal)
         applyButton.addTarget(self, action: #selector(self.applyRating), for: .touchUpInside)
         self.view.addSubview(applyButton)
         
