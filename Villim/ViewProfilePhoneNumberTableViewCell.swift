@@ -22,20 +22,26 @@ class ViewProfilePhoneNumberTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         title = UILabel()
+        title.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 13)
+        title.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(title)
         
         title?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(VillimValues.sideMargin)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(VillimValues.sideMargin)
         }
         
+        
         content = UILabel()
+        content.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        content.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         self.contentView.addSubview(content)
         
         content?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(title.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(title.snp.bottom).offset(10)
         }
         
     }
@@ -50,9 +56,9 @@ class ViewProfilePhoneNumberTableViewCell: UITableViewCell {
         if addButton != nil { addButton.removeFromSuperview() }
         
         content?.snp.remakeConstraints { (make) -> Void in
-            make.top.equalTo(title.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
+            make.top.equalTo(title.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
         }
         
     }
@@ -60,20 +66,21 @@ class ViewProfilePhoneNumberTableViewCell: UITableViewCell {
     func layoutEditMode() {
         
         addButton = UIButton.init()
-        addButton.setTitle(NSLocalizedString("add", comment: ""), for: .normal)
+        addButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 15)
         addButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        addButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+        addButton.setTitle(NSLocalizedString("add", comment: ""), for: .normal)
         self.contentView.addSubview(addButton)
         
         addButton?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(title.snp.bottom)
-            make.right.equalToSuperview()
-//            make.width.height.equalTo(addButtonSize)
+            make.top.equalTo(title.snp.bottom).offset(10)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
         }
         
         content?.snp.remakeConstraints { (make) -> Void in
-            make.top.equalTo(title.snp.bottom)
-            make.left.equalToSuperview()
-            make.right.equalTo(addButton.snp.left)
+            make.centerY.equalTo(addButton)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalTo(addButton.snp.left).offset(-VillimValues.sideMargin)
         }
         
     }

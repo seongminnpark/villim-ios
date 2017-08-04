@@ -45,6 +45,7 @@ class ViewProfileTableViewController: UITableViewController {
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
         self.tableView.isScrollEnabled = true
         self.tableView.allowsSelection = false
+        self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.separatorInset = UIEdgeInsets.zero
     }
 

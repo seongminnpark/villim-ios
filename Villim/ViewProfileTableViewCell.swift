@@ -20,11 +20,14 @@ class ViewProfileTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         title = UILabel()
+        title.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 13)
+        title.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(title)
         
         title?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(VillimValues.sideMargin)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(VillimValues.sideMargin)
         }
         
     }
@@ -39,12 +42,14 @@ class ViewProfileTableViewCell: UITableViewCell {
         if contentField != nil { contentField.removeFromSuperview() }
         
         content = UILabel()
+        content.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        content.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         self.contentView.addSubview(content)
         
         content?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalTo(title.snp.bottom)
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(title.snp.bottom).offset(10)
         }
         
     }
@@ -54,17 +59,18 @@ class ViewProfileTableViewCell: UITableViewCell {
         if content != nil { content.removeFromSuperview() }
         
         contentField = UITextField()
+        contentField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        contentField.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         contentField.borderStyle = .roundedRect
         self.contentView.addSubview(contentField)
         
         contentField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalTo(title.snp.bottom)
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(title.snp.bottom).offset(10)
         }
         
     }
-
     
     override func awakeFromNib() {
         super.awakeFromNib()

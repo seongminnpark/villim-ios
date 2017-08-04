@@ -29,6 +29,11 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
+        self.title = NSLocalizedString("profile", comment: "")
+        
         firstname   = VillimSession.getFirstName()
         lastName    = VillimSession.getLastName()
         email       = VillimSession.getEmail()
@@ -68,6 +73,12 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         makeConstraints()
         
         self.setEditing(false, animated: false)
+        
+        /* Dismiss keyboard on tap */
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(self.view.endEditing))
+        tap.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tap)
+        
     }
     
     func makeConstraints() {
