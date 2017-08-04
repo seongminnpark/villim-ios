@@ -15,6 +15,8 @@ import SwiftDate
 
 class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate {
     
+    var filterOpen : Bool = false
+    
     var houses : [VillimHouse] = []
     
     var locationQuery : String = ""
@@ -25,17 +27,17 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     var statusBarHeight : CGFloat!
     var topOffset : CGFloat!
     var prevContentOffset : CGFloat!
-    static let searchFilterMaxHeight : CGFloat! = 150
-    static let individualFilterHeight : CGFloat! = 50
-    static let filterOffset : CGFloat! = (searchFilterMaxHeight - individualFilterHeight*2) / 3.0
+    let searchFilterMaxHeight : CGFloat! = 150
+    let individualFilterHeight : CGFloat! = 50
+    var filterOffset : CGFloat!
     
     let filterIconSize : CGFloat! = 25.0
     let filterPadding  : CGFloat! = 25.0
     let navbarIconSize : CGFloat! = 25.0
     
     var navbarLogo : UIImageView!
-    var navbarIcon : UIImageView!
-    
+    var navbarIcon : UIButton!
+
     var locationFilterSet : Bool = false
     var dateFilterSet : Bool = false
     
@@ -61,6 +63,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.view.backgroundColor = VillimValues.backgroundColor
         self.tabBarItem.title = "숙소 찾기"
         
+        filterOffset = (searchFilterMaxHeight - individualFilterHeight*2) / 3.0
+        
         checkIn = DateInRegion()
         checkOut = DateInRegion()
         
@@ -69,6 +73,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         statusBarHeight = UIApplication.shared.statusBarFrame.height
         topOffset = navControllerHeight + statusBarHeight
         prevContentOffset = 0
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
         
         /* Add navbar logo */
         navbarLogo = UIImageView()
@@ -80,12 +87,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         negativeSpacer.width = -16
         self.navigationItem.leftBarButtonItems = [negativeSpacer, leftItem]
         
-        /* Add search icon */
-        navbarIcon = UIImageView()
-        navbarIcon.image = #imageLiteral(resourceName: "icon_search")
+        /* Set up right button items */
+        navbarIcon = UIButton()
+        navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
         navbarIcon.sizeToFit()
-        
+        navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
         let rightItem = UIBarButtonItem(customView: navbarIcon)
+        
         self.navigationItem.rightBarButtonItem = rightItem
         
         /* Search filter container */
@@ -165,6 +173,10 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         populateViews()
         makeConstraints()
         
+        self.searchFilter?.snp.updateConstraints { (make) -> Void in
+            make.height.equalTo(0)
+        }
+        
         sendFeaturedHousesRequest()
         
     }
@@ -201,7 +213,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
             make.height.equalTo(navControllerHeight)
         }
         
-        navbarIcon.snp.makeConstraints{ (make) -> Void in
+        self.navigationItem.rightBarButtonItem?.customView?.snp.makeConstraints{ (make) -> Void in
             make.right.equalToSuperview()
             make.width.equalTo(navbarIconSize)
             make.height.equalTo(navbarIconSize)
@@ -211,15 +223,15 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         searchFilter.snp.makeConstraints{ (make) -> Void in
             make.width.equalToSuperview()
             make.top.equalTo(topOffset)
-            make.height.equalTo(DiscoverViewController.searchFilterMaxHeight)
+            make.height.equalTo(searchFilterMaxHeight)
         }
     
         /* Location filter */
         locationFilter.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview().offset(filterPadding)
             make.right.equalToSuperview().offset(-filterPadding)
-            make.top.equalToSuperview().offset(DiscoverViewController.filterOffset)
-            make.height.equalTo(DiscoverViewController.individualFilterHeight)
+            make.top.equalToSuperview().offset(filterOffset)
+            make.height.equalTo(individualFilterHeight)
         }
         locationFilterIcon.snp.makeConstraints{ (make) -> Void in
             make.width.height.equalTo(filterIconSize)
@@ -242,8 +254,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         dateFilter.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview().offset(filterPadding)
             make.right.equalToSuperview().offset(-filterPadding)
-            make.top.equalTo(locationFilter.snp.bottom).offset(DiscoverViewController.filterOffset)
-            make.height.equalTo(DiscoverViewController.individualFilterHeight)
+            make.top.equalTo(locationFilter.snp.bottom).offset(filterOffset)
+            make.height.equalTo(individualFilterHeight)
         }
         dateFilterIcon.snp.makeConstraints{ (make) -> Void in
             make.width.height.equalTo(filterIconSize)
@@ -418,16 +430,61 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
         if newHeight <= 0 {
             newHeight = 0
-        } else if newHeight > DiscoverViewController.searchFilterMaxHeight {
-            newHeight = DiscoverViewController.searchFilterMaxHeight
+            filterOpen = false
+            navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
+            navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
+            navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
+        } else if newHeight > searchFilterMaxHeight {
+            newHeight = searchFilterMaxHeight
+            filterOpen = true
+            navbarLogo.image = #imageLiteral(resourceName: "navbar_logo_open")
+        } else {
+            filterOpen = true
+            navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
+            navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
         }
-        
+        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: newHeight)
         searchFilter?.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(newHeight)
         }
     
     }
+    
+    func collapseFilter() {
+        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: 0)
+        navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
+        navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
+        navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.searchFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(0)
+            }
+        })
+    }
+    
+    func openFilter() {
+        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilterMaxHeight)
+        navbarLogo.image = #imageLiteral(resourceName: "navbar_logo_open")
+        navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
+        navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
+        UIView.animate(withDuration: 0.5, animations: {
+            self.searchFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.searchFilterMaxHeight)
+            }
+        })
+    }
 
+    func calculateNavBarColor(offset:CGFloat) -> UIColor {
+        let openColorComponents = VillimValues.searchFilterOpenColor.cgColor.components
+        let openR = openColorComponents?[0]
+        let openG = openColorComponents?[1]
+        let openB = openColorComponents?[2]
+        let diff = searchFilterMaxHeight - offset
+        let r = openR! + diff/searchFilterMaxHeight  * (1 - openR!)
+        let g = openR! + diff/searchFilterMaxHeight  * (1 - openG!)
+        let b = openR! + diff/searchFilterMaxHeight  * (1 - openB!)
+        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+    }
     
     
     override func didReceiveMemoryWarning() {
