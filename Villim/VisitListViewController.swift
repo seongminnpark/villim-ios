@@ -36,6 +36,11 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
         /* Prevent overlap with navigation controller */
         let navControllerHeight = self.navigationController!.navigationBar.frame.height
         let statusBarHeight = UIApplication.shared.statusBarFrame.height

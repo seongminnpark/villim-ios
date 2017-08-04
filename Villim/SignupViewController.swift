@@ -23,10 +23,10 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     var signupListener   : SignupListener!
     
     var titleMain        : UILabel!
-    var lastnameField    : UITextField!
-    var firstnameField   : UITextField!
-    var emailField       : UITextField!
-    var passwordField    : UITextField!
+    var lastnameField    : CustomTextField!
+    var firstnameField   : CustomTextField!
+    var emailField       : CustomTextField!
+    var passwordField    : CustomTextField!
 
     var nextButton       : UIButton!
     
@@ -42,17 +42,25 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = VillimValues.backgroundColor
+        self.view.backgroundColor = UIColor.white
         self.title = NSLocalizedString("signup", comment: "")
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         /* Title */
         titleMain = UILabel()
-        titleMain.text = NSLocalizedString("login_title_main", comment: "")
+        titleMain.font = UIFont(name: "NotoSansCJKkr-Medium", size: 25)
+        titleMain.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        titleMain.text = NSLocalizedString("signup_title", comment: "")
         self.view.addSubview(titleMain)
         
         /* Last name field */
-        lastnameField = UITextField()
-        lastnameField.borderStyle = .roundedRect
+        lastnameField = CustomTextField()
+        lastnameField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        lastnameField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         lastnameField.placeholder = NSLocalizedString("last_name", comment: "")
         lastnameField.returnKeyType = .next
         lastnameField.autocapitalizationType = .none
@@ -65,8 +73,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         lastnameField.leftViewMode = .always
         
         /* First name field */
-        firstnameField = UITextField()
-        firstnameField.borderStyle = .roundedRect
+        firstnameField = CustomTextField()
+        firstnameField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        firstnameField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         firstnameField.placeholder = NSLocalizedString("first_name", comment: "")
         firstnameField.autocapitalizationType = .none
         firstnameField.returnKeyType = .next
@@ -79,8 +88,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         firstnameField.leftViewMode = .always
         
         /* Email field */
-        emailField = UITextField()
-        emailField.borderStyle = .roundedRect
+        emailField = CustomTextField()
+        emailField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        emailField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         emailField.placeholder = NSLocalizedString("email", comment: "")
         emailField.textContentType = UITextContentType.emailAddress
         emailField.keyboardType = UIKeyboardType.emailAddress
@@ -95,8 +105,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         emailField.leftViewMode = .always
         
         /* Password field */
-        passwordField = UITextField()
-        passwordField.borderStyle = .roundedRect
+        passwordField = CustomTextField()
+        passwordField.font =  UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        passwordField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         passwordField.placeholder = NSLocalizedString("password", comment: "")
         passwordField.isSecureTextEntry = true
         passwordField.autocapitalizationType = .none
@@ -114,9 +125,10 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
-        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
+        nextButton.titleLabel?.font = VillimValues.bottomButtonFont
         nextButton.setTitleColor(UIColor.white, for: .normal)
-        nextButton.setTitleColor(UIColor.gray, for: .highlighted)
+        nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
@@ -128,25 +140,32 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.view.addSubview(tosContainer)
         
         tosLeft = UILabel()
+        tosLeft.font =  UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+        tosLeft.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         tosLeft.text = NSLocalizedString("tos_left", comment: "")
         tosLeft.font = tosLeft.font.withSize(tosFontSize)
         tosContainer.addArrangedSubview(tosLeft)
         
         tosMiddle = UIButton()
+        tosMiddle.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+        tosMiddle.setTitleColor(VillimValues.themeColor, for: .normal)
+        tosMiddle.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
         tosMiddle.setTitle(NSLocalizedString("tos_middle", comment: ""), for: .normal)
-        tosMiddle.setTitleColor(UIColor.gray, for: .normal)
-        tosMiddle.setTitleColor(UIColor.black, for: .highlighted)
-        tosMiddle.titleLabel?.font = tosMiddle.titleLabel?.font.withSize(tosFontSize)
         tosMiddle.addTarget(self, action:#selector(self.launchTOSActivity), for: .touchUpInside)
         tosContainer.addArrangedSubview(tosMiddle)
         
         tosRight = UILabel()
+        tosRight.font =  UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+        tosRight.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         tosRight.text = NSLocalizedString("tos_right", comment: "")
         tosRight.font = tosRight.font.withSize(tosFontSize)
         tosContainer.addArrangedSubview(tosRight)
         
         /* Error message */
         errorMessage = UILabel()
+        errorMessage.textAlignment = .center
+        errorMessage.textColor = VillimValues.themeColor
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
         
         /* Loading inidcator */
@@ -173,37 +192,41 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         /* Title */
         titleMain?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(topOffset)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(topOffset + VillimValues.sideMargin)
         }
         
         /* Last name field */
         lastnameField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(titleMain.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(titleMain.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* First name field */
         firstnameField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(lastnameField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(lastnameField.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Email field */
         emailField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(firstnameField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(firstnameField.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Password field */
         passwordField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(emailField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(emailField.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Next button */
@@ -213,21 +236,38 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
             make.bottom.equalTo(self.view)
         }
         
-        /* */
+        /* Terms of service */
         tosContainer?.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top)
+            make.bottom.equalTo(nextButton.snp.top).offset(-10)
         }
         
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(30)
-            make.top.equalTo(passwordField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(passwordField.snp.bottom).offset(10)
         }
         
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let width = CGFloat(1.0)
+        
+        /* Lastname form */
+        lastnameField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+        
+        /* Firstname form */
+        firstnameField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+        
+        /* Email form */
+        emailField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+        
+        /* Password form */
+        passwordField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+    }
+    
     /* Text field listeners */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

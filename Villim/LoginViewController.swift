@@ -66,6 +66,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         
         self.title = NSLocalizedString("login", comment: "")
         
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
         /* Title */
         titleMain = UILabel()
         titleMain.font = UIFont(name: "BMDOHYEON", size: 25)

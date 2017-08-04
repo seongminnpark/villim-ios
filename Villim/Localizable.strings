@@ -22,6 +22,7 @@
 "password" = "비밀번호";
 "login_title_main" = "전세계의 집이 나의 집!";
 "login_title_secondary" = "언제 어디서나 쉽고 빠르게 방을 빌리세요.";
+"signup_title" = "빌림에 오신것을 환영합니다.";
 "forgot_password" = "비밀번호를 잊으셨나요?";
 "signup" = "회원가입";
 "next" = "다음";

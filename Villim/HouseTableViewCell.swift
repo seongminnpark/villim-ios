@@ -48,7 +48,7 @@ class HouseTableViewCell: UITableViewCell {
         container.addSubview(houseRating)
         
         houseReviewCount = UILabel()
-        houseReviewCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        houseReviewCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
         houseReviewCount.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         container.addSubview(houseReviewCount)
         

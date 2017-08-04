@@ -46,6 +46,11 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "내 열쇠"
         

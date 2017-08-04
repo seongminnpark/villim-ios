@@ -15,7 +15,7 @@ import NVActivityIndicatorView
 class FindPasswordViewController: UIViewController, UITextFieldDelegate {
 
     var titleMain        : UILabel!
-    var emailField       : UITextField!
+    var emailField       : CustomTextField!
     var instruction      : UILabel!
     
     var nextButton       : UIButton!
@@ -26,18 +26,25 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        // Do any additional setup after loading the view.
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
         self.view.backgroundColor = UIColor.white
-        self.tabBarController?.title = NSLocalizedString("find_password", comment: "")
+        self.title = NSLocalizedString("find_password", comment: "")
         
         /* Title */
         titleMain = UILabel()
+        titleMain.font = UIFont(name: "NotoSansCJKkr-Medium", size: 25)
+        titleMain.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         titleMain.text = NSLocalizedString("lost_password", comment: "")
         self.view.addSubview(titleMain)
         
         /* Email field */
-        emailField = UITextField()
+        emailField = CustomTextField()
+        emailField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        emailField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         emailField.placeholder = NSLocalizedString("email", comment: "")
         emailField.textContentType = UITextContentType.emailAddress
         emailField.keyboardType = UIKeyboardType.emailAddress
@@ -53,6 +60,8 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
         
         /* Instruction Field */
         instruction = UILabel()
+        instruction.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
+        instruction.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         instruction.text = NSLocalizedString("enter_email", comment: "")
         self.view.addSubview(instruction)
         
@@ -61,14 +70,18 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
         nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
-        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
+        nextButton.titleLabel?.font = VillimValues.bottomButtonFont
         nextButton.setTitleColor(UIColor.white, for: .normal)
-        nextButton.setTitleColor(UIColor.gray, for: .highlighted)
+        nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
         /* Error message */
         errorMessage = UILabel()
+        errorMessage.textAlignment = .center
+        errorMessage.textColor = VillimValues.themeColor
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
         
         /* Loading inidcator */
@@ -96,30 +109,31 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
         
         /* Title */
         titleMain?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(topOffset)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(topOffset + VillimValues.sideMargin)
         }
         
         /* Email field */
         emailField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(titleMain.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(titleMain.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Instruction Field */
         instruction?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(emailField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(emailField.snp.bottom).offset(10)
         }
         
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(30)
-            make.top.equalTo(instruction.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(instruction.snp.bottom).offset(VillimValues.sideMargin * 2)
         }
         
         /* Next button */
@@ -129,6 +143,14 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
             make.bottom.equalTo(self.view)
         }
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let width = CGFloat(1.0)
+        
+        /* Email form */
+        emailField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
     }
     
     @objc private func verifyInput() {
