@@ -11,6 +11,7 @@ import Cosmos
 
 class HouseTableViewCell: UITableViewCell {
     
+    var container : UIView!
     var houseThumbnail: UIImageView!
     var houseName: UILabel!
     var houseRating: CosmosView!
@@ -22,11 +23,17 @@ class HouseTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
+        self.contentView.backgroundColor = VillimValues.backgroundColor
+        
+        container = UIView()
+        container.backgroundColor = UIColor.white
+        self.contentView.addSubview(container)
+        
         houseThumbnail = UIImageView()
-        self.contentView.addSubview(houseThumbnail)
+        container.addSubview(houseThumbnail)
         
         houseName = UILabel()
-        self.contentView.addSubview(houseName)
+        container.addSubview(houseName)
         
         houseRating = CosmosView()
         houseRating.settings.updateOnTouch = false
@@ -35,29 +42,36 @@ class HouseTableViewCell: UITableViewCell {
         houseRating.settings.starMargin = 5
         houseRating.settings.filledImage = UIImage(named: "icon_star_on")
         houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
-        self.contentView.addSubview(houseRating)
+        container.addSubview(houseRating)
         
         houseReviewCount = UILabel()
-        self.contentView.addSubview(houseReviewCount)
+        container.addSubview(houseReviewCount)
         
         houseRent = UILabel()
-        self.contentView.addSubview(houseRent)
+        container.addSubview(houseRent)
         
         imageDim = UIView()
         imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-        self.contentView.addSubview(imageDim)
+        container.addSubview(imageDim)
     }
     
     required init(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-
     func makeConstraints() {
+        
+        container?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
+            make.top.equalToSuperview().offset(VillimValues.tableMargin)
+            make.bottom.equalToSuperview()
+        }
+        
         
         houseThumbnail?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview().dividedBy(2)
-            make.height.equalToSuperview()
+            make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.left.equalToSuperview()
         }
         

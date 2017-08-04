@@ -25,11 +25,13 @@ class VisitTableViewController: UITableViewController {
         /* Initialize tableview */
         self.tableView = UITableView()
         self.tableView.register(HouseTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
         self.tableView.rowHeight = 150
         self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.showsVerticalScrollIndicator = false
     }
     
     override func didReceiveMemoryWarning() {

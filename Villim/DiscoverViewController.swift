@@ -276,7 +276,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         /* Tableview */
         discoverTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.tableMargin)
+            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
             make.top.equalTo(searchFilter.snp.bottom)
             make.bottom.equalToSuperview()
         }

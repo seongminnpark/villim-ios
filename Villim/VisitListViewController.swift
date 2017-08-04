@@ -79,7 +79,8 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         
         /* Tableview */
         visitTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.tableMargin)
+            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
             make.top.equalTo(topOffset)
             make.bottom.equalToSuperview()
         }
