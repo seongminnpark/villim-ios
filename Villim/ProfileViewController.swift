@@ -12,6 +12,9 @@ import Nuke
 
 class ProfileViewController: ViewController, ProfileTableViewItemSelectedListener, LoginListener {
     
+    let profileImageViewSize : CGFloat! = 100.0
+    let sideMargin  : CGFloat! = 20.0
+    
     private var profileTitle : UILabel!
     private var profileImageView : UIImageView!
     private var profileTableViewController : ProfileTableViewController!
@@ -30,15 +33,19 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = NSLocalizedString("profile", comment: "")
         
         /* Add Title */
         profileTitle = UILabel()
+        profileTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        profileTitle.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         self.view.addSubview(profileTitle!)
         
         /* Add profile image view */
         profileImageView = UIImageView()
+        profileImageView.layer.cornerRadius = profileImageViewSize / 2.0
+        profileImageView.layer.masksToBounds = true;
         self.view.addSubview(profileImageView!)
         
         /* Populate tableview */
@@ -83,24 +90,23 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let topOffset = navControllerHeight + statusBarHeight
         
-        /* Profile title */
-        profileTitle?.snp.makeConstraints { (make) -> Void in
-            make.width.height.equalTo(50)
-            make.left.equalTo(self.view)
-            make.top.equalTo(self.view).offset(topOffset)
-        }
-        
         /* Profile image */
         profileImageView?.snp.makeConstraints { (make) -> Void in
-            make.width.height.equalTo(50)
-            make.right.equalTo(self.view)
-            make.top.equalTo(self.view).offset(topOffset)
+            make.width.height.equalTo(profileImageViewSize)
+            make.right.equalTo(self.view).offset(-sideMargin)
+            make.top.equalTo(self.view).offset(topOffset + sideMargin)
+        }
+        
+        /* Profile title */
+        profileTitle?.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(profileImageView)
+            make.left.equalToSuperview().offset(sideMargin)
         }
         
         /* Tableview */
         profileTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
             make.width.equalTo(self.view)
-            make.top.equalTo(profileTitle.snp.bottom)
+            make.top.equalTo(profileImageView.snp.bottom).offset(10)
             make.bottom.equalTo(self.view)
         }
         

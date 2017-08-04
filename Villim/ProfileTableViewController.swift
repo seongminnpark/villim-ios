@@ -28,6 +28,7 @@ class ProfileTableViewController: UITableViewController {
         
         /* Initialize tableview */
         self.tableView = UITableView()
+        self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
@@ -56,9 +57,17 @@ class ProfileTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: UITableViewCellStyle.default, reuseIdentifier: "reuseIdentifier")
         cell.separatorInset = UIEdgeInsets.zero
+        cell.backgroundColor = VillimValues.backgroundColor
         cell.textLabel?.text = profileTableViewItems[indexPath.row]
+        cell.textLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        cell.textLabel?.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         cell.imageView?.image = getCellImage(cellTitle: profileTableViewItems[indexPath.row])
         return cell
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
     }
     
 
