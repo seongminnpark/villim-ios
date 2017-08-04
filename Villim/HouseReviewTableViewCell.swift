@@ -169,7 +169,11 @@ class HouseReviewTableViewCell: UITableViewCell {
                 reviewerProfilePic.image = #imageLiteral(resourceName: "img_default")
             } else {
                 let url = URL(string: lastReviewProfilePictureUrl)
-                if url != nil { Nuke.loadImage(with: url!, into: reviewerProfilePic) }
+                if url != nil {
+                    Nuke.loadImage(with: url!, into: reviewerProfilePic)
+                } else {
+                    reviewerProfilePic.image = #imageLiteral(resourceName: "img_default")
+                }
             }
             
         }

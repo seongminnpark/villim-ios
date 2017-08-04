@@ -293,6 +293,7 @@
 				3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */,
 				3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */,
 				3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */,
+				3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */,
 				3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */,
 				3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */,
 				3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */,
@@ -303,7 +304,6 @@
 				3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */,
 				3EDC139A1F2C0B1A00BA4077 /* VillimValues.swift */,
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
-				3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
 				3EDC139C1F2C295200BA4077 /* WebViewController.swift */,
 			);

@@ -109,12 +109,12 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         
         /* Find room button */
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2
         findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
         findRoomButton.backgroundColor = VillimValues.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
         findRoomButton.setTitleColor(UIColor.white, for: .normal)
-        findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)
+        findRoomButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
         findRoomButton.layer.cornerRadius  = 30
         findRoomButton.layer.masksToBounds = true
         findRoomButton.addTarget(self, action:#selector(self.showDiscoverTab), for: .touchUpInside)
@@ -145,7 +145,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         container?.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(houseImage)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-slideButtonHeight)
         }
     }
     

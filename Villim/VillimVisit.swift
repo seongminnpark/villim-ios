@@ -8,6 +8,7 @@
 
 import Foundation
 import SwiftyJSON
+import SwiftDate
 
 class VillimVisit {
     static let PENDING   = 0
@@ -17,14 +18,19 @@ class VillimVisit {
     var visitId     : Int
     var houseId     : Int
     var visitorId   : Int
-    var visitTime   : String
+    var visitTime   : DateInRegion
     var visitStatus : Int
     
     init(visitInfo:JSON) {
         self.visitId = visitInfo[VillimKeys.KEY_VISIT_ID].exists() ? visitInfo[VillimKeys.KEY_VISIT_ID].intValue : 0
         self.houseId = visitInfo[VillimKeys.KEY_HOUSE_ID].exists() ? visitInfo[VillimKeys.KEY_HOUSE_ID].intValue : 0
         self.visitorId = visitInfo[VillimKeys.KEY_VISITOR_ID].exists() ? visitInfo[VillimKeys.KEY_VISITOR_ID].intValue : 0
-        self.visitTime = visitInfo[VillimKeys.KEY_VISIT_TIME].exists() ? visitInfo[VillimKeys.KEY_VISIT_TIME].stringValue : ""
+        let timeString = visitInfo[VillimKeys.KEY_VISIT_TIME].exists() ? visitInfo[VillimKeys.KEY_VISIT_TIME].stringValue : nil
+        if timeString != nil {
+            self.visitTime = VillimUtils.dateFromString(dateString: timeString!)
+        } else  {
+            self.visitTime = DateInRegion()
+        }
         self.visitStatus = visitInfo[VillimKeys.KEY_VISIT_STATUS].exists() ? visitInfo[VillimKeys.KEY_VISIT_STATUS].intValue : 0
     }
     

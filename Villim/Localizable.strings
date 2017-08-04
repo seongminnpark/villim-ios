@@ -187,3 +187,4 @@
 "add" = "추가";
 
 "valid_dates_format" = "유효기간  %d년 %d월 %d일 - %d년 %d월 %d일";
+"visit_date_format" = "방문시간  %d.%d.%d %d:%d";

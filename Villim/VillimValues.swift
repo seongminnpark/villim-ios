@@ -20,7 +20,7 @@ class VillimValues {
     /* Colors */
     public static let themeColor               = UIColor(red: 237.0/255.0, green: 32.0/255.0,  blue:  37.0/255.0, alpha:1.0)
     
-    public static let themeColorHighlighted    = UIColor(red: 139.0/255.0, green:   0/255.0,   blue:     0/255.0, alpha:1.0)
+    public static let themeColorHighlighted    = UIColor(red: 193/255.0, green:   9/255.0,     blue:     14/255.0, alpha:1.0)
     
     public static let backgroundColor          = UIColor(red: 240.0/255.0, green: 241/255.0,   blue:   242/255.0, alpha:1.0)
     
@@ -40,7 +40,9 @@ class VillimValues {
     
     public static let darkBackButtonColor      = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
     
-    public static let darkBottomButtonColor          = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
+    public static let darkBottomButtonColor    = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
+    
+    public static let whiteHighlightedColor    = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
 
     
 }

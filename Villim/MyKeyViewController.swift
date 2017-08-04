@@ -53,7 +53,6 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         reviewButton = UIButton()
         reviewButton.setTitle(NSLocalizedString("review_house", comment: ""), for: .normal)
         reviewButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
-        reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
         reviewButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         reviewButton.addTarget(self, action:#selector(self.launchReviewHouseViewController), for: .touchUpInside)
         reviewButton.isEnabled = false
@@ -62,7 +61,6 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         changePasscodeButton = UIButton()
         changePasscodeButton.setTitle(NSLocalizedString("change_doorlock_passcode", comment: ""), for: .normal)
         changePasscodeButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
-        changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
         changePasscodeButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         changePasscodeButton.addTarget(self, action:#selector(self.launcChangePasscodeViewController), for: .touchUpInside)
         changePasscodeButton.isEnabled = false
@@ -146,11 +144,12 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
                     
                     self.setUpKeyLayout()
                     self.reviewButton.isEnabled = true
+                    self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.reviewButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+                    
                     self.changePasscodeButton.isEnabled = true
-                    self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
-                    self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
                     self.changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
-                    self.changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.changePasscodeButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
                     
 //                    self.populateViews()
                 } else {
@@ -212,7 +211,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         /* Text Buttons */
         reviewButton?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(sidePadding)
-            make.top.equalTo(topOffset + sidePadding).offset
+            make.top.equalTo(topOffset + sidePadding)
         }
         
         changePasscodeButton?.snp.makeConstraints { (make) -> Void in
@@ -286,7 +285,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         findRoomButton.backgroundColor = VillimValues.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
         findRoomButton.setTitleColor(UIColor.white, for: .normal)
-        findRoomButton.setTitleColor(UIColor.gray, for: .highlighted)
+        findRoomButton.setTitleColor(UIColor.lightGray, for: .highlighted)
         findRoomButton.layer.cornerRadius  = 30
         findRoomButton.layer.masksToBounds = true
         findRoomButton.addTarget(self, action:#selector(self.showDiscoverTab), for: .touchUpInside)

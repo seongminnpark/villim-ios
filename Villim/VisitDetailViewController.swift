@@ -45,19 +45,22 @@ class VisitDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "방문 정보"
         
         /* Text buttons */
         locationButton = UIButton()
         locationButton.setTitle(NSLocalizedString("show_location", comment: ""), for: .normal)
-        locationButton.setTitleColor(UIColor.gray, for: .normal)
-        locationButton.setTitleColor(UIColor.black, for: .highlighted)
+        locationButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
+        locationButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        locationButton.isEnabled = false
         self.view.addSubview(locationButton)
+        
         cancelButton = UIButton()
         cancelButton.setTitle(NSLocalizedString("cancel_visit", comment: ""), for: .normal)
-        cancelButton.setTitleColor(UIColor.gray, for: .normal)
-        cancelButton.setTitleColor(UIColor.black, for: .highlighted)
+        cancelButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
+        cancelButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        cancelButton.isEnabled = false
         self.view.addSubview(cancelButton)
         
         /* Info container */
@@ -73,8 +76,13 @@ class VisitDetailViewController: UIViewController {
         /* Labels */
         houseNameLabel = UILabel()
         houseNameLabel.textAlignment = .center
+        houseNameLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        houseNameLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        
         houseDateLabel = UILabel()
         houseDateLabel.textAlignment = .center
+        houseDateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
+        houseDateLabel.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         
         container.addSubview(houseImage)
         container.addSubview(houseNameLabel)
@@ -82,12 +90,12 @@ class VisitDetailViewController: UIViewController {
         
         /* Find room button */
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 1.5
+        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2
         bookButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
         bookButton.backgroundColor = VillimValues.themeColor
         bookButton.setTitle(NSLocalizedString("book", comment: ""), for: .normal)
         bookButton.setTitleColor(UIColor.white, for: .normal)
-        bookButton.setTitleColor(UIColor.gray, for: .highlighted)
+        bookButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
         bookButton.layer.cornerRadius  = 30
         bookButton.layer.masksToBounds = true
         
@@ -107,7 +115,7 @@ class VisitDetailViewController: UIViewController {
         self.view.addSubview(loadingIndicator)
         
         /* Error message */
-        let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2.5
+        let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2 - 60
         errorMessage = UILabel(frame:CGRect(x:0, y:errorTop, width:UIScreen.main.bounds.width, height:50))
         errorMessage.textAlignment = .center
         self.view.addSubview(errorMessage)
@@ -123,15 +131,16 @@ class VisitDetailViewController: UIViewController {
         showLoadingIndicator()
         
         let parameters = [
-            VillimKeys.KEY_VISIT_ID : VillimSession.getCurrencyPref(),
+            VillimKeys.KEY_VISIT_ID : self.visit.visitId,
             ] as [String : Any]
         
-        let url = VillimUtils.buildURL(endpoint: VillimKeys.OPEN_DOORLOCK_URL)
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.VISIT_INFO_URL)
         
         Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                
                 if responseData[VillimKeys.KEY_QUERY_SUCCESS].boolValue {
                     let visitInfo = responseData[VillimKeys.KEY_VISIT_INFO].exists() ? responseData[VillimKeys.KEY_VISIT_INFO] : nil
                     self.visit = VillimVisit(visitInfo: visitInfo)
@@ -139,6 +148,13 @@ class VisitDetailViewController: UIViewController {
                     let houseInfo = responseData[VillimKeys.KEY_HOUSE_INFO].exists() ? responseData[VillimKeys.KEY_HOUSE_INFO] : nil
                     self.house = VillimHouse(houseInfo: houseInfo)
                     
+                    self.locationButton.isEnabled = false
+                    self.locationButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.locationButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+                    
+                    self.cancelButton.isEnabled = true
+                    self.cancelButton.setTitleColor(VillimValues.themeColor, for: .normal)
+                    self.cancelButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
                     
                     self.populateViews()
                 } else {
@@ -166,7 +182,12 @@ class VisitDetailViewController: UIViewController {
             let url = URL(string: house.houseThumbnailUrl)
             Nuke.loadImage(with: url!, into: houseImage)
         }
-        houseNameLabel.text = visit.visitTime
+    
+        if visit.visitTime != nil {
+            houseDateLabel.text = String(format: NSLocalizedString("visit_date_format", comment: ""), visit.visitTime.year, visit.visitTime.month, visit.visitTime.day,
+                                         visit.visitTime.hour, visit.visitTime.minute)
+        }
+
     }
 
     func makeConstraints() {
@@ -176,15 +197,17 @@ class VisitDetailViewController: UIViewController {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let topOffset = navControllerHeight + statusBarHeight
         
+        let sidePadding = (UIScreen.main.bounds.width - slideButtonWidth) / 4
+        
         /* Text Buttons */
         locationButton?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.left.equalToSuperview().offset(sidePadding)
+            make.top.equalTo(topOffset + sidePadding)
         }
         
         cancelButton?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.right.equalToSuperview().offset(-sidePadding)
+            make.top.equalTo(topOffset + sidePadding)
         }
         
         /* Room Info */
@@ -196,19 +219,19 @@ class VisitDetailViewController: UIViewController {
         }
         
         houseNameLabel?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseImage.snp.bottom)
+            make.top.equalTo(houseImage.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
         houseDateLabel?.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseNameLabel.snp.bottom)
+            make.top.equalTo(houseNameLabel.snp.bottom).offset(10)
             make.centerX.equalToSuperview()
         }
         
         container?.snp.makeConstraints { (make) -> Void in
             make.height.equalTo(houseImage)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(-slideButtonHeight)
         }
 
     }
