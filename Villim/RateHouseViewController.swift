@@ -50,6 +50,9 @@ class RateHouseViewController: UIViewController, RatingSetListener {
         rateHouseTableViewController.listener = self
         self.view.addSubview(rateHouseTableViewController.view)
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         /* Apply button */
         applyButton = UIButton()
         applyButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
@@ -158,4 +161,9 @@ class RateHouseViewController: UIViewController, RatingSetListener {
     }
     */
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
 }

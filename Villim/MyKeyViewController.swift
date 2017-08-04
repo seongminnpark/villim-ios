@@ -51,6 +51,9 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "내 열쇠"
         

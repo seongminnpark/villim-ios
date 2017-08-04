@@ -31,6 +31,9 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         self.view.backgroundColor = UIColor.white
         self.title = NSLocalizedString("find_password", comment: "")
         
@@ -111,7 +114,7 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate {
         titleMain?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.right.equalToSuperview().offset(-VillimValues.sideMargin)
-            make.top.equalTo(topOffset + VillimValues.sideMargin)
+            make.top.equalTo(topOffset + VillimValues.titleOffset)
         }
         
         /* Email field */

@@ -12,11 +12,11 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
+class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, ChangePasscodeSuccessDelegate {
     
     var titleMain            : UILabel!
-    var passcodeField        : UITextField!
-    var passcodeConfirmField : UITextField!
+    var passcodeField        : CustomTextField!
+    var passcodeConfirmField : CustomTextField!
     
     var nextButton           : UIButton!
     
@@ -27,56 +27,71 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         self.view.backgroundColor = UIColor.white
-        self.tabBarController?.title = NSLocalizedString("configure_doorlock", comment: "")
+        self.title = NSLocalizedString("configure_doorlock", comment: "")
         
         /* Title */
         titleMain = UILabel()
+        titleMain.font = UIFont(name: "NotoSansCJKkr-Medium", size: 25)
+        titleMain.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         titleMain.text = NSLocalizedString("change_doorlock_passcode", comment: "")
         self.view.addSubview(titleMain)
         
         /* Passcode field */
-        passcodeField = UITextField()
+        passcodeField = CustomTextField()
+        passcodeField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        passcodeField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         passcodeField.placeholder = NSLocalizedString("passcode_hint", comment: "")
-        passcodeField.textContentType = UITextContentType.emailAddress
-        passcodeField.keyboardType = UIKeyboardType.emailAddress
-        passcodeField.returnKeyType = .next
-        passcodeField.autocapitalizationType = .none
         passcodeField.clearButtonMode = .whileEditing
+        passcodeField.isSecureTextEntry = true
+        passcodeField.keyboardType = .numberPad
         passcodeField.delegate = self
         self.view.addSubview(passcodeField)
         
-        passcodeField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_view_profile"))
+        passcodeField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_lock"))
         passcodeField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
         passcodeField.leftViewMode = .always
         
         /* Passcode confirm field */
-        passcodeConfirmField = UITextField()
+        passcodeConfirmField = CustomTextField()
+        passcodeConfirmField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        passcodeConfirmField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         passcodeConfirmField.placeholder = NSLocalizedString("passcode_confirm_hint", comment: "")
         passcodeConfirmField.isSecureTextEntry = true
-        passcodeConfirmField.autocapitalizationType = .none
-        passcodeConfirmField.returnKeyType = .done
         passcodeConfirmField.clearButtonMode = .whileEditing
+        passcodeConfirmField.keyboardType = .numberPad
         passcodeConfirmField.delegate = self
         self.view.addSubview(passcodeConfirmField)
         
-        passcodeConfirmField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_view_profile"))
+        passcodeConfirmField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_lock"))
         passcodeConfirmField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
         passcodeConfirmField.leftViewMode = .always
         
-        /* Next button */
+        /* Confirm button */
         nextButton = UIButton()
         nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
-        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
+        nextButton.titleLabel?.font = VillimValues.bottomButtonFont
         nextButton.setTitleColor(UIColor.white, for: .normal)
-        nextButton.setTitleColor(UIColor.gray, for: .highlighted)
+        nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        nextButton.setTitle(NSLocalizedString("confirm", comment: ""), for: .normal)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
         /* Error message */
         errorMessage = UILabel()
+        errorMessage.textAlignment = .center
+        errorMessage.textColor = VillimValues.themeColor
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
         
         /* Loading inidcator */
@@ -103,23 +118,25 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         
         /* Title */
         titleMain?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(topOffset)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(topOffset + VillimValues.titleOffset)
         }
         
         /* Passcode field */
         passcodeField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(titleMain.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(titleMain.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Passcode confirm field */
         passcodeConfirmField?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(50)
-            make.top.equalTo(passcodeField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(passcodeField.snp.bottom).offset(VillimValues.sideMargin)
+            make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
         /* Next button */
@@ -131,11 +148,22 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(self.view)
-            make.height.equalTo(30)
-            make.top.equalTo(passcodeConfirmField.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
+            make.top.equalTo(passcodeConfirmField.snp.bottom).offset(10)
         }
         
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let width = CGFloat(1.0)
+        
+        /* Passcode form */
+        passcodeField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+        
+        /* Passcode confirm form */
+        passcodeConfirmField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
     }
     
     /* Text field listeners */
@@ -190,8 +218,8 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         showLoadingIndicator()
         
         let parameters = [
-            VillimKeys.KEY_PASSCODE         : passcodeField.text!,
-            VillimKeys.KEY_PASSCODE_CONFIRM : passcodeConfirmField.text!
+            VillimKeys.KEY_PASSCODE         : (passcodeField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,
+            VillimKeys.KEY_PASSCODE_CONFIRM : (passcodeConfirmField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!
             ] as [String : Any]
         
         let url = VillimUtils.buildURL(endpoint: VillimKeys.CHANGE_PASSCODE_URL)
@@ -200,10 +228,10 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                print(responseData)
+                if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                 
-                if responseData[VillimKeys.KEY_CHANGE_SUCCESS].boolValue {
-
-                    
+                    self.launchChangePasscodeSuccessViewController()
                     
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
@@ -213,6 +241,18 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
             }
             self.hideLoadingIndicator()
         }
+    }
+    
+    
+    func onDismiss() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    func launchChangePasscodeSuccessViewController() {
+        let changePasscodeSuccessViewController = ChangePasscodeSuccessViewController()
+        let newNavBar: UINavigationController = UINavigationController(rootViewController: changePasscodeSuccessViewController)
+        self.present(newNavBar, animated: true, completion: nil)
+
     }
     
     private func showLoadingIndicator() {
@@ -236,5 +276,9 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate {
         hideErrorMessage()
     }
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
 }

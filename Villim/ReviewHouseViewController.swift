@@ -40,8 +40,16 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
-        self.tabBarController?.title = NSLocalizedString("review_house", comment: "")
+        self.view.backgroundColor = VillimValues.backgroundColor
+        self.title = NSLocalizedString("review_house", comment: "")
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
         
         /* Rating container */
         ratingContainer = UIView()
@@ -294,6 +302,11 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
     }
 
 }

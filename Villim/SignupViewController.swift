@@ -50,6 +50,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         /* Title */
         titleMain = UILabel()
         titleMain.font = UIFont(name: "NotoSansCJKkr-Medium", size: 25)
@@ -194,7 +197,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         titleMain?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.right.equalToSuperview().offset(-VillimValues.sideMargin)
-            make.top.equalTo(topOffset + VillimValues.sideMargin)
+            make.top.equalTo(topOffset + VillimValues.titleOffset)
         }
         
         /* Last name field */

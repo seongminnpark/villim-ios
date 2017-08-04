@@ -23,6 +23,8 @@ class VillimValues {
     
     public static let sideMargin           : CGFloat = 20.0
     
+    public static let titleOffset          : CGFloat = 100.0
+    
     
     /* Colors */
     

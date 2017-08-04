@@ -71,6 +71,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         /* Title */
         titleMain = UILabel()
         titleMain.font = UIFont(name: "BMDOHYEON", size: 25)
@@ -181,7 +184,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         titleMain?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.right.equalToSuperview().offset(-VillimValues.sideMargin)
-            make.top.equalTo(topOffset + VillimValues.sideMargin * 3)
+            make.top.equalTo(topOffset + VillimValues.titleOffset)
         }
         
         /* Second Title */

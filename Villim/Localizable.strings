@@ -189,3 +189,8 @@
 
 "valid_dates_format" = "유효기간  %d년 %d월 %d일 - %d년 %d월 %d일";
 "visit_date_format" = "방문시간  %d.%d.%d %d:%d";
+
+"confirm" = "확인";
+
+"passcode_change_success_title" = "비밀번호가 변경되었습니다.";
+"passcode_change_success_instruction" = "이제부터 변경된 비밀번호로\n도어락 잠금해제를 할 수 있습니다.";

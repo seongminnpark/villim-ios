@@ -140,12 +140,15 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
             break
         case NSLocalizedString("faq", comment: ""):
             self.tabBarController?.tabBar.isHidden = true
+            launchFAQWebView()
             break
         case NSLocalizedString("settings", comment: ""):
             self.tabBarController?.tabBar.isHidden = true
+            launchSettingsViewController()
             break
         case NSLocalizedString("privacy_policy", comment: ""):
             self.tabBarController?.tabBar.isHidden = true
+            launchPrivacyPolicyWebView()
             break
         case NSLocalizedString("edit_profile", comment: ""):
             launchViewProfileViewController()
@@ -173,6 +176,24 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         let viewProfileViewController = ViewProfileViewController()
         self.navigationController?.pushViewController(viewProfileViewController, animated: true)
         //        self.present(loginViewController, animated: true, completion: nil)
+    }
+    
+    func launchFAQWebView() {
+        let webViewController = WebViewController()
+        webViewController.urlString = VillimKeys.FAQ_URL
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    func launchSettingsViewController() {
+        let webViewController = WebViewController()
+        webViewController.urlString = VillimKeys.TERMS_OF_SERVICE_URL
+        self.navigationController?.pushViewController(webViewController, animated: true)
+    }
+    
+    func launchPrivacyPolicyWebView() {
+        let webViewController = WebViewController()
+        webViewController.urlString = VillimKeys.TERMS_OF_SERVICE_URL
+        self.navigationController?.pushViewController(webViewController, animated: true)
     }
     
     public func onLogin(success: Bool) {
