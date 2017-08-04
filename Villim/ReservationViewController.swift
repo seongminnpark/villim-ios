@@ -22,6 +22,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     
     var reservationTableViewController : ReservationTableViewController!
     
+    var backButton         : UIButton!
     var nextButton         : UIButton!
     var errorMessage       : UILabel!
     var loadingIndicator   : NVActivityIndicatorView!
@@ -30,14 +31,15 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         super.viewDidLoad()
 
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.tabBarController?.title = NSLocalizedString("request_visit", comment: "")
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
         /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
+        self.title = NSLocalizedString("request_visit", comment: "")
+
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back_caret_black"), style: .plain, target: self, action: #selector(self.onBackPressed))
+        self.navigationItem.leftBarButtonItem  = backButton
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         /* Tableview controller */
@@ -54,9 +56,10 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
+        nextButton.titleLabel?.font = VillimValues.bottomButtonFont
         nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         nextButton.setTitleColor(UIColor.white, for: .normal)
-        nextButton.setTitleColor(UIColor.gray, for: .highlighted)
+        nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
@@ -110,6 +113,10 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         
     }
     
+    func onBackPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     func verifyInput() {
         if VillimSession.getLoggedIn() {
             if self.dateSet {
@@ -157,9 +164,11 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     
     public func launchLoginViewController() {
         let loginViewController = LoginViewController()
+        loginViewController.isRootView = true
         loginViewController.loginListener = self
-        self.navigationController?.pushViewController(loginViewController, animated: true)
-        //        self.present(loginViewController, animated: true, completion: nil)
+        let newNavBar: UINavigationController = UINavigationController(rootViewController: loginViewController)
+        self.present(newNavBar, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(loginViewController, animated: true)
     }
 
     func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {

@@ -151,6 +151,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     public func launchLoginViewController() {
         let loginViewController = LoginViewController()
+        loginViewController.isRootView = false
         loginViewController.loginListener = self
         self.navigationController?.pushViewController(loginViewController, animated: true)
         //        self.present(loginViewController, animated: true, completion: nil)

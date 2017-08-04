@@ -10,14 +10,20 @@ import Foundation
 import UIKit
 
 class VillimValues {
+    
     /* Values */
+    
     public static let BOTTOM_BUTTON_HEIGHT : CGFloat = 65
     
     public static let loadingIndicatorSize : CGFloat = 150.0
     
     public static let tableMargin          : CGFloat = 10.0
     
+    public static let backButtonSize       : CGFloat = 25.0
+    
+    
     /* Colors */
+    
     public static let themeColor               = UIColor(red: 237.0/255.0, green: 32.0/255.0,  blue:  37.0/255.0, alpha:1.0)
     
     public static let themeColorHighlighted    = UIColor(red: 193/255.0, green:   9/255.0,     blue:     14/255.0, alpha:1.0)
@@ -43,6 +49,9 @@ class VillimValues {
     public static let darkBottomButtonColor    = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
     
     public static let whiteHighlightedColor    = UIColor(red:0.85, green:0.85, blue:0.85, alpha:1.0)
-
     
+    
+    /* Fonts */
+    
+    public static let bottomButtonFont         = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
 }

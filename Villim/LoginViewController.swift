@@ -32,6 +32,8 @@ protocol LoginListener {
 
 class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener {
     
+    var isRootView         : Bool = false
+    
     var loginListener      : LoginListener!
     
     var titleMain          : UILabel!
@@ -53,6 +55,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
         self.tabBarController?.title = NSLocalizedString("login", comment: "")
+        
+        if isRootView {
+            let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back_caret_black"), style: .plain, target: self, action: #selector(self.onBackPressed))
+            self.navigationItem.leftBarButtonItem  = backButton
+            self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        }
         
         /* Title */
         titleMain = UILabel()
@@ -213,6 +221,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     func launchFindPasswordViewController() {
         let findPasswordViewController = FindPasswordViewController()
         self.navigationController?.pushViewController(findPasswordViewController, animated: true)
+    }
+    
+    func onBackPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
     
     /* Text field listeners */

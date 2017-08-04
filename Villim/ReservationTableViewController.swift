@@ -22,6 +22,8 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
     static let PRICE               : Int! = 3
     static let CANCELLATION_POLICY : Int! = 4
     
+    static let SIDE_MARGIN : CGFloat = 20.0
+    
     var reservationDelegate : ReservationTableViewDelegate!
     
     var house    : VillimHouse!
@@ -81,19 +83,19 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
         
         switch row {
         case ReservationTableViewController.HEADER:
-            return 100.0
+            return 150.0
             
         case ReservationTableViewController.DATES:
-            return 70.0
+            return 130.0
             
         case ReservationTableViewController.NUMBER_OF_NIGHTS:
             return 70.0
             
         case ReservationTableViewController.PRICE:
-            return 100.0
+            return 140.0
             
         case ReservationTableViewController.CANCELLATION_POLICY:
-            return 100.0
+            return 70.0
             
         default:
             return 70.0

@@ -269,7 +269,9 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         reservationViewController.dateSet = self.dateSet
         reservationViewController.checkIn = self.checkIn
         reservationViewController.checkOut = self.checkOut
-        self.navigationController?.pushViewController(reservationViewController, animated: true)
+        let newNavBar: UINavigationController = UINavigationController(rootViewController: reservationViewController)
+        self.present(newNavBar, animated: true, completion: nil)
+//        self.navigationController?.pushViewController(reservationViewController, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
