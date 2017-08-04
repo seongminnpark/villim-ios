@@ -76,6 +76,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationItem.backBarButtonItem?.title = ""
         
         /* Add navbar logo */
         navbarLogo = UIImageView()
@@ -418,6 +419,10 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         houseDetailViewController.checkIn = self.checkIn
         houseDetailViewController.checkOut = self.checkOut
         self.tabBarController?.tabBar.isHidden = true
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
     

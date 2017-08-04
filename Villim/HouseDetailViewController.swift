@@ -14,6 +14,10 @@ import NVActivityIndicatorView
 import Toaster
 import SwiftDate
 
+protocol HouseDetailDelegate {
+    func onCollapse()
+    func onOpen()
+}
 
 class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate {
     
@@ -54,16 +58,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         statusBarHeight = UIApplication.shared.statusBarFrame.height
         topOffset = navControllerHeight + statusBarHeight
         prevContentOffset = 0
-        
-        /* Remove title */
-        
-        /* Make navbar transparent */
-        
-        /* Make navbar transparent */
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
         
         /* House ImageView */
         houseImageView = UIImageView()
@@ -287,5 +281,11 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+        
+        /* Make navbar transparent */
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
 }
