@@ -19,10 +19,14 @@ class HouseDescriptionTableViewCell: UITableViewCell {
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
         title = UILabel()
+        title.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        title.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         title.text = NSLocalizedString("house_description", comment: "")
         self.contentView.addSubview(title)
         
         houseDescription = UILabel()
+        houseDescription.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 14)
+        houseDescription.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(houseDescription)
         
     }
@@ -35,15 +39,13 @@ class HouseDescriptionTableViewCell: UITableViewCell {
     func makeConstraints() {
         
         title?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(50)
-            make.top.equalToSuperview()
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.top.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
         }
         
         houseDescription?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalTo(title.snp.bottom)
-            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.top.equalTo(title.snp.bottom).offset(HouseDetailTableViewController.SIDE_MARGIN*0.75)
         }
         
     }
