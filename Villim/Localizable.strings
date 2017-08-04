@@ -197,3 +197,5 @@
 
 "find_password_success_title" = "메시지가 전송되었습니다.";
 "find_password_success_instruction" = "비밀번호를 재설정할 수 있는 링크가\n포함된 Villim 메시지가 발송되었습니다.";
+
+"submit" = "등록";

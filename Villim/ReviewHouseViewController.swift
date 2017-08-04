@@ -57,6 +57,8 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         
         /* Rating Label */
         ratingLabel = UILabel()
+        ratingLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        ratingLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         ratingLabel.text = NSLocalizedString("rating", comment: "")
         ratingContainer.addSubview(ratingLabel)
         
@@ -64,7 +66,7 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         ratingBar = CosmosView()
         ratingBar.settings.updateOnTouch = false
         ratingBar.settings.fillMode = .precise
-        ratingBar.settings.starSize = 30
+        ratingBar.settings.starSize = 15
         ratingBar.settings.starMargin = 5
         ratingBar.rating = self.ratingOverall
         ratingBar.settings.filledImage = UIImage(named: "icon_star_on")
@@ -73,19 +75,23 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         
         /* Rate button */
         rateButton = UIButton()
+        rateButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 16)
+        rateButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        rateButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
         rateButton.setTitle(NSLocalizedString("rate", comment: ""), for: .normal)
-        rateButton.setTitleColor(UIColor.gray, for: .normal)
-        rateButton.setTitleColor(UIColor.black, for: .highlighted)
         rateButton.addTarget(self, action:#selector(self.launchRateHouseViewController), for: .touchUpInside)
         ratingContainer.addSubview(rateButton)
         
         /* Review Label */
         reviewLabel = UILabel()
+        reviewLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        reviewLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         reviewLabel.text = NSLocalizedString("review", comment: "")
         self.view.addSubview(reviewLabel)
         
         /* Review content field */
         reviewContentField = UITextField()
+        reviewContentField.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 16)
         reviewContentField.placeholder = NSLocalizedString("review_content_placeholder", comment: "")
         reviewContentField.autocapitalizationType = .none
         reviewContentField.returnKeyType = .done
@@ -97,15 +103,18 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         nextButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         nextButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         nextButton.adjustsImageWhenHighlighted = true
-        nextButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
+        nextButton.titleLabel?.font = VillimValues.bottomButtonFont
         nextButton.setTitleColor(UIColor.white, for: .normal)
-        nextButton.setTitleColor(UIColor.gray, for: .highlighted)
+        nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        nextButton.setTitle(NSLocalizedString("submit", comment: ""), for: .normal)
         nextButton.addTarget(self, action: #selector(self.sendReviewHouseRequest), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
         /* Error message */
         errorMessage = UILabel()
         errorMessage.textAlignment = .center
+        errorMessage.textColor = VillimValues.themeColor
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
         
         /* Loading inidcator */
@@ -139,32 +148,32 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         
         /* Rating label */
         ratingLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.centerY.equalToSuperview()
         }
 
         /* Rating bar */
         ratingBar?.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(ratingLabel.snp.right)
+            make.left.equalTo(ratingLabel.snp.right).offset(VillimValues.sideMargin)
             make.centerY.equalToSuperview()
         }
         
         /* Rate button */
         rateButton?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
             make.centerY.equalToSuperview()
         }
         
         /* Review label */
         reviewLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.top.equalTo(ratingContainer.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.top.equalTo(ratingContainer.snp.bottom).offset(VillimValues.sideMargin)
         }
         
         /* Review content field */
         reviewContentField?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.top.equalTo(reviewLabel.snp.bottom)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.top.equalTo(reviewLabel.snp.bottom).offset(VillimValues.sideMargin * 2)
         }
         
         /* Next button */
@@ -187,7 +196,7 @@ class ReviewHouseViewController: UIViewController, RatingSubmitListener, UITextF
         super.viewDidLayoutSubviews()
         let border = CALayer()
         let width = CGFloat(1.0)
-        border.borderColor = VillimValues.dividerColor.cgColor
+        border.borderColor = UIColor(red:0.66, green:0.66, blue:0.66, alpha:1.0).cgColor
         border.frame = CGRect(x: 0, y: ratingContainer.frame.size.height - width, width:  ratingContainer.frame.size.width, height: ratingContainer.frame.size.height)
         border.backgroundColor = UIColor.clear.cgColor
         border.borderWidth = width

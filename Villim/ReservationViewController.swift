@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 import SwiftDate
+import Toaster
 
 class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginDelegate {
 
@@ -63,10 +64,6 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
         
-        /* Error message */
-        errorMessage = UILabel()
-        self.view.addSubview(errorMessage)
-        
         /* Loading inidcator */
         let screenCenterX = UIScreen.main.bounds.width / 2
         let screenCenterY = UIScreen.main.bounds.height / 2
@@ -103,12 +100,6 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
             make.width.equalTo(self.view)
             make.height.equalTo(VillimValues.BOTTOM_BUTTON_HEIGHT)
             make.bottom.equalTo(self.view)
-        }
-        
-        /* Error message */
-        errorMessage?.snp.makeConstraints { (make) -> Void in
-            make.centerX.equalToSuperview()
-            make.bottom.equalTo(nextButton.snp.top)
         }
         
     }
@@ -206,12 +197,17 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     }
     
     private func showErrorMessage(message:String) {
-        errorMessage.isHidden = false
-        errorMessage.text = message
+        let toast = Toast(text: message, duration: Delay.long)
+        
+        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
+        
+        toast.show()
     }
     
     private func hideErrorMessage() {
-        errorMessage.isHidden = true
+        ToastCenter.default.cancelAll()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

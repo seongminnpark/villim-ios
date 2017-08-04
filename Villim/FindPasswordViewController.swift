@@ -158,7 +158,6 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
         let validInput : Bool = allFieldsFilledOut;
         if validInput {
             self.launchFindPasswordSuccessViewController()
-//            sendFindPasswordRequest()
         } else {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         }
