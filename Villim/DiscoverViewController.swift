@@ -542,6 +542,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
+        
+        self.collapseFilter()
     }
     
 }

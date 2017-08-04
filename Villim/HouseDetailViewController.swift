@@ -295,6 +295,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         /* Make navbar transparent */
         self.navigationController?.navigationBar.isTranslucent = true
         self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
     }
