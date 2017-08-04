@@ -15,12 +15,13 @@ protocol CalendarDelegate {
     func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion)
 }
 
-class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource {
+class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDataSource, FSCalendarDelegateAppearance  {
     static let STATE_NORMAL          = 0
     static let STATE_SELECT_CHECKIN  = 1
     static let STATE_SELECT_CHECKOUT = 2
     
-    let LabelContainerHeight = 130.0
+    let LabelContainerHeight : CGFloat! = 130.0
+    let sideMargin           : CGFloat! = 20.0
     
     var state : Int!
     var dateSet : Bool = false
@@ -50,6 +51,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         self.view.addSubview(labelContainer)
         
         checkInLabel = UILabel()
+        checkInLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 25)
+        checkInLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         checkInLabel.numberOfLines = 2
         let checkInText = dateSet ?
             String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
@@ -59,6 +62,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         labelContainer.addSubview(checkInLabel)
         
         checkOutLabel = UILabel()
+        checkOutLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 25)
+        checkOutLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         checkOutLabel.numberOfLines = 2
         let checkOutText = dateSet ?
             String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
@@ -73,7 +78,19 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
         calendar.scrollDirection = .vertical
+        calendar.today = nil
         calendar.appearance.headerDateFormat = NSLocalizedString("month_header_format", comment: "")
+        calendar.appearance.headerTitleFont = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        calendar.appearance.weekdayFont = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        calendar.appearance.titleFont = UIFont(name: "NotoSansCJKkr-DemiLight", size: 15)
+
+        calendar.appearance.headerTitleColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        calendar.appearance.weekdayTextColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        calendar.appearance.titleDefaultColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        calendar.appearance.titleSelectionColor = UIColor.white
+        
+        calendar.appearance.selectionColor = VillimValues.themeColor
+        calendar.appearance.todaySelectionColor = VillimValues.backgroundColor
         self.view.addSubview(calendar)
         self.calendar = calendar
         
@@ -82,9 +99,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         saveButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         saveButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         saveButton.adjustsImageWhenHighlighted = true
+        saveButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
         saveButton.setTitle(NSLocalizedString("next", comment: ""), for: .normal)
         saveButton.setTitleColor(UIColor.white, for: .normal)
-        saveButton.setTitleColor(UIColor.gray, for: .highlighted)
+        saveButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
         saveButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(saveButton)
         
@@ -104,19 +122,20 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         
         /* Date labels */
         labelContainer?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
             make.height.equalTo(LabelContainerHeight)
             make.top.equalTo(topOffset)
         }
         
         checkInLabel?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(sideMargin)
+            make.bottom.equalToSuperview().offset(-sideMargin)
         }
         
         checkOutLabel?.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+            make.right.equalToSuperview().offset(-sideMargin)
+            make.bottom.equalToSuperview().offset(-sideMargin)
         }
         
         /* Save button */
@@ -129,8 +148,9 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
         /* Calendar */
         calendar?.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(labelContainer.snp.bottom)
-            make.width.equalToSuperview()
             make.bottom.equalTo(saveButton.snp.top)
+            make.left.equalToSuperview().offset(sideMargin)
+            make.right.equalToSuperview().offset(-sideMargin)
         }
         
         self.view.layoutIfNeeded()
@@ -138,10 +158,10 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let width = CGFloat(1.0)
+        let width = CGFloat(2.0)
         
         let labelBorder = CALayer()
-        labelBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+        labelBorder.borderColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0).cgColor
         labelBorder.frame = CGRect(x: 0, y: labelContainer.frame.size.height - width, width:  labelContainer.frame.size.width, height: labelContainer.frame.size.height)
         labelBorder.backgroundColor = UIColor.clear.cgColor
         labelBorder.borderWidth = width
@@ -172,7 +192,7 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     /* Calendar methods */
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
-        if (date.isToday) {
+        if date <= Date() {
             return false
         }
         return true
@@ -198,14 +218,28 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
             break
             
         case CalendarViewController.STATE_SELECT_CHECKOUT:
-            self.dateSet = true
-            self.state = CalendarViewController.STATE_NORMAL
-            self.checkOut = selectedDate
-            checkOutLabel.text =
-                String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
-                       self.checkOut.month, self.checkOut.day,
-                       VillimUtils.weekdayToString(weekday:self.checkOut.weekday))
-            selectDates(from:self.checkIn, to:self.checkOut)
+            
+            if selectedDate > checkIn {
+                self.dateSet = true
+                self.state = CalendarViewController.STATE_NORMAL
+                self.checkOut = selectedDate
+                checkOutLabel.text =
+                    String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
+                           self.checkOut.month, self.checkOut.day,
+                           VillimUtils.weekdayToString(weekday:self.checkOut.weekday))
+                selectDates(from:self.checkIn, to:self.checkOut)
+            } else {
+                self.dateSet = false
+                self.state = CalendarViewController.STATE_SELECT_CHECKOUT
+                self.checkIn = selectedDate
+                checkInLabel.text =
+                    String(format:NSLocalizedString("date_format_client_weekday", comment: ""),
+                           self.checkIn.month, self.checkIn.day,
+                           VillimUtils.weekdayToString(weekday:self.checkIn.weekday))
+                checkOutLabel.text = NSLocalizedString("end_date", comment: "")
+                clearDates()
+                calendar.select(self.checkIn.absoluteDate)
+            }
             break
             
         default:
@@ -218,6 +252,14 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     func calendar(_ calendar: FSCalendar, didDeselect date: Date, at monthPosition: FSCalendarMonthPosition) {
         self.calendar(calendar, didSelect: date, at: monthPosition)
+    }
+    
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        if date <= Date()  {
+            return UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
+        } else {
+            return UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        }
     }
     
     func selectDates(from:DateInRegion, to:DateInRegion) {
