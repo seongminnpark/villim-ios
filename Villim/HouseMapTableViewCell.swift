@@ -38,20 +38,19 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
     }
     
     func populateView() {
-        let location = CLLocationCoordinate2D(latitude:latitude, longitude:longitude)
-        let camera = GMSCameraPosition.camera(withLatitude: location.latitude, longitude: location.longitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 17.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
         container.addSubview(mapView)
         
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: latitude)
+        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         marker.map = mapView
         
         makeConstraints()
     }
-    
+
     func makeConstraints() {
         
         container?.snp.makeConstraints { (make) -> Void in
