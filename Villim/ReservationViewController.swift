@@ -177,8 +177,8 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
-        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetPortrait = VillimValues.BOTTOM_BUTTON_HEIGHT + 30
+        ToastView.appearance().bottomOffsetLandscape = VillimValues.BOTTOM_BUTTON_HEIGHT + 30
         ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
         
         toast.show()
@@ -190,7 +190,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
-        VillimUtils.showLoadingIndicator()
+        VillimUtils.hideLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

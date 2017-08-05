@@ -253,9 +253,14 @@ class VillimUtils {
     }
 
     public static func showLoadingIndicator() {
+        
+        if loadingIndicator != nil {
+            loadingIndicator.pop_removeAllAnimations()
+        }
+        
         let window = UIApplication.shared.keyWindow!
         loadingIndicator = UIImageView()
-        window.addSubview(loadingIndicator);
+        window.addSubview(loadingIndicator)
         
         loadingIndicator.snp.makeConstraints { (make) -> Void in
             make.width.equalTo(VillimValues.loaderSize)
@@ -264,7 +269,7 @@ class VillimUtils {
             make.centerY.equalToSuperview()
         }
         
-        loadingIndicator.image = #imageLiteral(resourceName: "img_default")
+        loadingIndicator.image = #imageLiteral(resourceName: "img_loading")
         
         if let anim = POPSpringAnimation(propertyNamed:kPOPLayerScaleXY) {
             anim.fromValue = CGSize(width:0.5, height:0.5)
