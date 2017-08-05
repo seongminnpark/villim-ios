@@ -36,6 +36,7 @@
 		3E5F98861F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */; };
 		3E5F98881F2E8A9F003AAF8F /* VillimLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */; };
 		3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */; };
+		3E65CAF51F365C4900DD2A29 /* VillimDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */; };
 		3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543871F21DF9200525F7A /* VillimHouse.swift */; };
 		3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543891F21E0F700525F7A /* VillimReservation.swift */; };
 		3E956A031F348DF4001B7091 /* LocationFilterSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */; };
@@ -156,6 +157,7 @@
 		3E5F98851F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestionTableViewController.swift; sourceTree = "<group>"; };
 		3E5F98871F2E8A9F003AAF8F /* VillimLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimLocation.swift; sourceTree = "<group>"; };
 		3E5F98891F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSuggestionTableViewCell.swift; sourceTree = "<group>"; };
+		3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimDialog.swift; sourceTree = "<group>"; };
 		3E8543871F21DF9200525F7A /* VillimHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimHouse.swift; sourceTree = "<group>"; };
 		3E8543891F21E0F700525F7A /* VillimReservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimReservation.swift; sourceTree = "<group>"; };
 		3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterSearchField.swift; sourceTree = "<group>"; };
@@ -324,6 +326,7 @@
 				3E956A041F34FA41001B7091 /* CustomTextField.swift */,
 				3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */,
 				3EDC139C1F2C295200BA4077 /* WebViewController.swift */,
+				3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */,
 			);
 			path = Villim;
 			sourceTree = "<group>";
@@ -784,6 +787,7 @@
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
 				3EDC276D1F35329A00228C1F /* AddPhoneViewController.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
+				3E65CAF51F365C4900DD2A29 /* VillimDialog.swift in Sources */,
 				3EDE4CEA1F337BBA00FDB275 /* ReservationDatesTableViewCell.swift in Sources */,
 				3EDE4CE81F337BA500FDB275 /* ReservationHeaderTableViewCell.swift in Sources */,
 				3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */,
@@ -962,6 +966,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MZYDBTXKN8;
 				INFOPLIST_FILE = Villim/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.villim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -978,6 +983,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = MZYDBTXKN8;
 				INFOPLIST_FILE = Villim/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = test.villim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
