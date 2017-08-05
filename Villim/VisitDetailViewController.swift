@@ -38,6 +38,8 @@ class VisitDetailViewController: UIViewController {
     
     var bookButton           : UIButton!
     
+    var visitCancelDialog    : VillimDialog!
+    
     var loadingIndicator     : NVActivityIndicatorView!
     var errorMessage         : UILabel!
 
@@ -255,7 +257,38 @@ class VisitDetailViewController: UIViewController {
     }
     
     func cancelVisit() {
+        visitCancelDialog = VillimDialog()
+        visitCancelDialog.title = NSLocalizedString("cancel_visit", comment: "")
+        visitCancelDialog.label =
+            String(format:NSLocalizedString("cancel_visit_confirm", comment: ""), VillimSession.getFullName())
+        visitCancelDialog.onConfirm = { () -> Void in self.sendCancelVisitRequest() }
+        self.navigationController?.view.addSubview(visitCancelDialog)
+    }
+    
+    func sendCancelVisitRequest() {
+        showLoadingIndicator()
         
+        let parameters = [
+            VillimKeys.KEY_VISIT_ID : self.visit.visitId,
+            ] as [String : Any]
+        
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.CANCEL_VISIT_URL)
+        
+        Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
+            switch response.result {
+            case .success:
+                let responseData = JSON(data: response.data!)
+                
+                if responseData[VillimKeys.KEY_CANCEL_SUCCESS].boolValue {
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
+                }
+            case .failure(let error):
+                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+            }
+            self.hideLoadingIndicator()
+        }
     }
     
     private func showLoadingIndicator() {
@@ -276,6 +309,9 @@ class VisitDetailViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        if visitCancelDialog != nil {
+            visitCancelDialog.dismiss()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {

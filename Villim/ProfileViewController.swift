@@ -171,12 +171,6 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         self.navigationController?.view.addSubview(logoutConfirmDialog)
     }
     
-    func dismissDialog() {
-        if logoutConfirmDialog != nil {
-            logoutConfirmDialog.removeFromSuperview()
-        }
-    }
-    
     public func launchLoginViewController() {
         let loginViewController = LoginViewController()
         loginViewController.isRootView = false
@@ -187,7 +181,6 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     public func logout() {
         VillimSession.setLoggedIn(loggedIn: false)
-        dismissDialog()
         populateViews()
     }
     
@@ -222,7 +215,9 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        dismissDialog()
+        if logoutConfirmDialog != nil {
+            logoutConfirmDialog.dismiss()
+        }
     }
     
     
