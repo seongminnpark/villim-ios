@@ -257,7 +257,6 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
             var num = code1Text + code2Text + code3Text
             num += code4Text + code5Text + code6Text
             sendVerifyPhoneRequest(number: num)
-            self.navigationController?.popViewController(animated: true)
         } else if !allFieldsFilledOut {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         } else if !allDigits {

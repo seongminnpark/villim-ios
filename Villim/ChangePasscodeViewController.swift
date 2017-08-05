@@ -245,6 +245,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
     
     func launchChangePasscodeSuccessViewController() {
         let changePasscodeSuccessViewController = ChangePasscodeSuccessViewController()
+        changePasscodeSuccessViewController.dismissDelegate = self
         let newNavBar: UINavigationController = UINavigationController(rootViewController: changePasscodeSuccessViewController)
         self.present(newNavBar, animated: true, completion: nil)
 

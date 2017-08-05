@@ -276,6 +276,8 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
             houseDateLabel.text = String(format:NSLocalizedString("valid_dates_format", comment: ""),
                                          self.checkIn.year, self.checkIn.month, self.checkIn.day,
                                          self.checkOut.year, self.checkOut.month, self.checkOut.day)
+        } else {
+            houseDateLabel.text = ""
         }
 
     }
@@ -298,6 +300,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         /* Room Info */
         houseImage.image = #imageLiteral(resourceName: "img_default")
         houseNameLabel.text = NSLocalizedString("no_rented_house", comment: "")
+        houseDateLabel.text = ""
     }
     
     func launchReviewHouseViewController() {

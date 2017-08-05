@@ -67,6 +67,19 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     
     
     func setUpVisitListLayout() {
+        
+        if houseImage != nil {
+            houseImage.removeFromSuperview()
+        }
+        
+        if container != nil {
+            container.removeFromSuperview()
+        }
+        
+        if findRoomButton != nil {
+            findRoomButton.removeFromSuperview()
+        }
+        
         /* Visit list */
         self.visitTableViewController = VisitTableViewController()
         self.visitTableViewController.itemSelectedListener = self
@@ -86,6 +99,12 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     }
     
     func setUpNovisitLayout() {
+        
+        if visitTableViewController != nil {
+            visitTableViewController.tableView.removeFromSuperview()
+            visitTableViewController = nil
+        }
+        
         /* Info container */
         container = UIView()
         container.translatesAutoresizingMaskIntoConstraints = true

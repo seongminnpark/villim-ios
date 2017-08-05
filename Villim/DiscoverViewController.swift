@@ -473,17 +473,17 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         })
     }
 
-    func calculateNavBarColor(offset:CGFloat) -> UIColor {
-        let openColorComponents = VillimValues.searchFilterOpenColor.cgColor.components
-        let openR = openColorComponents?[0]
-        let openG = openColorComponents?[1]
-        let openB = openColorComponents?[2]
-        let diff = searchFilterMaxHeight - offset
-        let r = openR! + diff/searchFilterMaxHeight  * (1 - openR!)
-        let g = openR! + diff/searchFilterMaxHeight  * (1 - openG!)
-        let b = openR! + diff/searchFilterMaxHeight  * (1 - openB!)
-        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
-    }
+//    func calculateNavBarColor(offset:CGFloat) -> UIColor {
+//        let openColorComponents = VillimValues.searchFilterOpenColor.cgColor.components
+//        let openR = openColorComponents?[0]
+//        let openG = openColorComponents?[1]
+//        let openB = openColorComponents?[2]
+//        let diff = searchFilterMaxHeight - offset
+//        let r = openR! + diff/searchFilterMaxHeight  * (1 - openR!)
+//        let g = openR! + diff/searchFilterMaxHeight  * (1 - openG!)
+//        let b = openR! + diff/searchFilterMaxHeight  * (1 - openB!)
+//        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
+//    }
     
     
     func onCollapse() {
