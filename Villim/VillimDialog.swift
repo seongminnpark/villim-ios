@@ -88,7 +88,6 @@ class VillimDialog: UIView {
         
         /* Dialog text */
         dialogLabel = UILabel()
-        dialogLabel.lineBreakMode = .byClipping
         dialogLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         dialogLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         dialogLabel.textAlignment = .center
@@ -134,13 +133,6 @@ class VillimDialog: UIView {
             make.width.equalTo(VillimValues.dialogHeaderHeight - VillimValues.dialogMargin * 2)
         }
         
-        dialogLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(VillimValues.dialogMargin)
-            make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
-            make.top.equalTo(dialogTitle.snp.bottom).offset(10)
-            make.bottom.equalTo(confirmButton.snp.bottom).offset(-10)
-        }
-        
         confirmButton.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.dialogMargin)
             make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
@@ -148,6 +140,13 @@ class VillimDialog: UIView {
             make.bottom.equalToSuperview().offset(-VillimValues.dialogMargin)
         }
 
+        
+        dialogLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.dialogMargin)
+            make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
+            make.top.equalTo(dialogTitle.snp.bottom).offset(10)
+            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {

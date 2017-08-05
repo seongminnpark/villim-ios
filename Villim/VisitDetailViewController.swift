@@ -131,6 +131,8 @@ class VisitDetailViewController: UIViewController {
         let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2 - 60
         errorMessage = UILabel(frame:CGRect(x:0, y:errorTop, width:UIScreen.main.bounds.width, height:50))
         errorMessage.textAlignment = .center
+        errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        errorMessage.textColor = VillimValues.themeColor
         self.view.addSubview(errorMessage)
         
         makeConstraints()
