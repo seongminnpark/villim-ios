@@ -63,12 +63,6 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
             color: VillimValues.themeColor)
         self.view.addSubview(loadingIndicator)
         
-    
-        if VillimSession.getLoggedIn() {
-            sendVisitListRequest()
-        } else {
-            setUpNovisitLayout()
-        }
     }
     
     
@@ -245,6 +239,12 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        if VillimSession.getLoggedIn() {
+            sendVisitListRequest()
+        } else {
+            setUpNovisitLayout()
+        }
     }
 
     

@@ -121,11 +121,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         self.view.addSubview(errorMessage)
         
         makeConstraints()
-        if VillimSession.getLoggedIn() {
-            sendMyHouseRequest()
-        } else {
-            setUpNoKeyLayout()
-        }
+
     }
     
     @objc private func sendMyHouseRequest() {
@@ -353,6 +349,12 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        if VillimSession.getLoggedIn() {
+            sendMyHouseRequest()
+        } else {
+            setUpNoKeyLayout()
+        }
     }
     
 }
