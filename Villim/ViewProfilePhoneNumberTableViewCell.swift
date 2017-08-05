@@ -69,7 +69,7 @@ class ViewProfilePhoneNumberTableViewCell: UITableViewCell {
         addButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 15)
         addButton.setTitleColor(VillimValues.themeColor, for: .normal)
         addButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
-        addButton.setTitle(NSLocalizedString("add", comment: ""), for: .normal)
+        addButton.setTitle(NSLocalizedString("change", comment: ""), for: .normal)
         self.contentView.addSubview(addButton)
         
         addButton?.snp.makeConstraints { (make) -> Void in

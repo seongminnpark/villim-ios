@@ -104,7 +104,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         /* Search filter container */
         searchFilter = UIView()
-        searchFilter.backgroundColor = VillimValues.searchFilterOpenColor
+        searchFilter.backgroundColor = UIColor.white
         self.view.addSubview(searchFilter)
         
         let clearIcon = UIImage(named: "icon_clear_white")!.withRenderingMode(.alwaysTemplate)
@@ -112,18 +112,14 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Location filter */
         locationFilterSet = false
         locationFilter = UIView()
-//        locationFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
-//        locationFilter.layer.borderWidth = 2.0;
-        locationFilter.layer.cornerRadius = individualFilterHeight / 2.0
-        locationFilter.backgroundColor = UIColor.white
         locationFilterIcon = UIImageView()
         let markerIcon = UIImage(named: "icon_marker")!.withRenderingMode(.alwaysTemplate)
         locationFilterIcon.image = markerIcon
-        locationFilterIcon.tintColor = UIColor.black
+        locationFilterIcon.tintColor = VillimValues.searchFilterContentColor
         locationFilterLabel = UILabel()
         locationFilterLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
-        locationFilterLabel.textColor = UIColor.black
+        locationFilterLabel.textColor = VillimValues.searchFilterContentColor
         locationFilterClearButton = UIButton()
         locationFilterClearButton.setImage(clearIcon, for: .normal)
         locationFilterClearButton.tintColor = VillimValues.searchFilterContentColor
@@ -141,18 +137,14 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Date filter */
         dateFilterSet = false
         dateFilter = UIView()
-//        dateFilter.layer.borderColor = VillimValues.searchFilterContentColor.cgColor
-//        dateFilter.layer.borderWidth = 2.0;
-        dateFilter.layer.cornerRadius = individualFilterHeight / 2.0
-        dateFilter.backgroundColor = UIColor.white
         dateFilterIcon = UIImageView()
         let calendarIcon = UIImage(named: "icon_calendar")!.withRenderingMode(.alwaysTemplate)
         dateFilterIcon.image = calendarIcon
-        dateFilterIcon.tintColor = UIColor.black
+        dateFilterIcon.tintColor = VillimValues.searchFilterContentColor
         dateFilterLabel = UILabel()
         dateFilterLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         dateFilterLabel.text = NSLocalizedString("select_date", comment: "")
-        dateFilterLabel.textColor = UIColor.black
+        dateFilterLabel.textColor = VillimValues.searchFilterContentColor
         dateFilterClearButton = UIButton()
         dateFilterClearButton.setImage(clearIcon, for: .normal)
         dateFilterClearButton.tintColor = VillimValues.searchFilterContentColor
@@ -200,7 +192,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.tabBarController?.tabBar.isHidden = true
         let locationFilterViewController = LocationFilterViewController()
         locationFilterViewController.locationDelegate = self
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+//        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(locationFilterViewController, animated: true)
     }
     
@@ -211,7 +203,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         calendarViewController.dateSet = self.dateFilterSet
         calendarViewController.checkIn = self.checkIn
         calendarViewController.checkOut = self.checkOut
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+//        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
     
@@ -287,26 +279,26 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
     }
     
-//    override func viewDidLayoutSubviews() {
-//        super.viewDidLayoutSubviews()
-//        let width = CGFloat(1.0)
-//        
-//        let locationBorder = CALayer()
-//        locationBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
-//        locationBorder.frame = CGRect(x: 0, y: locationFilter.frame.size.height - width, width:  locationFilter.frame.size.width, height: locationFilter.frame.size.height)
-//        locationBorder.backgroundColor = UIColor.clear.cgColor
-//        locationBorder.borderWidth = width
-//        locationFilter.layer.addSublayer(locationBorder)
-//        locationFilter.layer.masksToBounds = true
-//        
-//        let dateBorder = CALayer()
-//        dateBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
-//        dateBorder.frame = CGRect(x: 0, y: dateFilter.frame.size.height - width, width:  dateFilter.frame.size.width, height: dateFilter.frame.size.height)
-//        dateBorder.backgroundColor = UIColor.clear.cgColor
-//        dateBorder.borderWidth = width
-//        dateFilter.layer.addSublayer(dateBorder)
-//        dateFilter.layer.masksToBounds = true
-//    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let width = CGFloat(1.0)
+        
+        let locationBorder = CALayer()
+        locationBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+        locationBorder.frame = CGRect(x: 0, y: locationFilter.frame.size.height - width, width:  locationFilter.frame.size.width, height: locationFilter.frame.size.height)
+        locationBorder.backgroundColor = UIColor.clear.cgColor
+        locationBorder.borderWidth = width
+        locationFilter.layer.addSublayer(locationBorder)
+        locationFilter.layer.masksToBounds = true
+        
+        let dateBorder = CALayer()
+        dateBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+        dateBorder.frame = CGRect(x: 0, y: dateFilter.frame.size.height - width, width:  dateFilter.frame.size.width, height: dateFilter.frame.size.height)
+        dateBorder.backgroundColor = UIColor.clear.cgColor
+        dateBorder.borderWidth = width
+        dateFilter.layer.addSublayer(dateBorder)
+        dateFilter.layer.masksToBounds = true
+    }
     
     @objc private func sendFeaturedHousesRequest() {
         
@@ -425,7 +417,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         houseDetailViewController.checkIn = self.checkIn
         houseDetailViewController.checkOut = self.checkOut
         self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
     
@@ -437,19 +429,16 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         if newHeight <= 0 {
             newHeight = 0
             filterOpen = false
-            navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
             navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
             navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
         } else if newHeight > searchFilterMaxHeight {
             newHeight = searchFilterMaxHeight
             filterOpen = true
-            navbarLogo.image = #imageLiteral(resourceName: "navbar_logo_open")
         } else {
             filterOpen = true
             navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
             navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
         }
-        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: newHeight)
         searchFilter?.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(newHeight)
         }
@@ -458,7 +447,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     func collapseFilter() {
         self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: 0)
-        navbarLogo.image = #imageLiteral(resourceName: "navbar_logo")
         navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
         navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
         
@@ -473,7 +461,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     func openFilter() {
         self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilterMaxHeight)
-        navbarLogo.image = #imageLiteral(resourceName: "navbar_logo_open")
         navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
         navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
         
@@ -500,11 +487,11 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     
     func onCollapse() {
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+//        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
     }
     
     func onOpen() {
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+//        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     override func didReceiveMemoryWarning() {
@@ -544,8 +531,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
-        
-        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilter.bounds.height)
     }
     
 }

@@ -199,3 +199,16 @@
 "find_password_success_instruction" = "비밀번호를 재설정할 수 있는 링크가\n포함된 Villim 메시지가 발송되었습니다.";
 
 "submit" = "등록";
+"change" = "변경";
+
+"add_phone_number" = "전화번호 추가";
+"verify_phone_number" = "전화번호 확인";
+"add_phone_number_placeholder" = "'-' 없이 숫자만 입력해주세요.";
+"try_again" = "문제가 발생했습니다. 다시 시도해 주세요.";
+"phone_number_non_digit" = "숫자만 입력해주세요.";
+"phone_number_too_short" = "전화번호가 너무 짧습니다.";
+"phone_number_too_long" = "전화번호가 너무 깁니다.";
+"enter_phone_number" = "전화번호를 입력하세요.";
+
+"verify_phone_title" = "인증번호를 입력해주세요";
+"verify_phone_instruction" = "핸드폰으로 전송된 인증번호를 입력해주세요.";

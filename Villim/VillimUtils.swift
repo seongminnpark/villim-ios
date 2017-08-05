@@ -187,4 +187,65 @@ class VillimUtils {
     private static func daysFromStartOfMonth(date:DateInRegion) -> Int {
         return date.day - 1;
     }
+    
+    public static func formatPhoneNumber(numberString:String) -> String {
+        
+        var formattedString = ""
+        let chars = Array(numberString.characters)
+        
+        if chars.count == 0 {
+            
+            formattedString = ""
+            
+        } else if chars.count <= 3 {
+            
+            formattedString = "(" + numberString + ")"
+        
+        } else if chars.count <= 6 {
+        
+            formattedString = "(" + String(chars[0]) + String(chars[1])
+            formattedString += String(chars[2]) + ")" + " "
+            for char in chars[2 ..< chars.count] {
+                formattedString += String(char)
+            }
+        
+        } else if chars.count <= 10 {
+            
+            formattedString = "(" + String(chars[0])
+            formattedString += String(chars[1]) + String(chars[2])
+            formattedString += ")" + " " + String(chars[3])
+            formattedString += String(chars[4]) + String(chars[5]) + "-"
+            for char in chars[6 ..< chars.count] {
+                formattedString += String(char)
+            }
+            
+        } else if chars.count == 11 {
+            
+            formattedString = "(" + String(chars[0]) + String(chars[1]) + String(chars[2])
+            formattedString += ")" + " "
+            formattedString += String(chars[3]) + String(chars[4])
+            formattedString += String(chars[5]) + String(chars[6])  + "-"
+            formattedString += String(chars[7]) + String(chars[8])
+            formattedString += String(chars[9]) + String(chars[10])
+        
+        } else {
+        
+            formattedString = ""
+            
+        }
+
+        return formattedString
+    }
+
+    public static func decodePhoneString(phoneString:String) -> String {
+        var decodedString = ""
+        for char in Array(decodedString.characters) {
+            if char != " " && char != "-" && char != "(" && char != ")" {
+                decodedString += String(char)
+            }
+        }
+        return decodedString
+        
+    }
+
 }

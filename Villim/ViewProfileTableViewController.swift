@@ -12,6 +12,7 @@ import PhoneNumberKit
 
 protocol ViewProfileDelegate {
     func launchPhotoPicker()
+    func launchAddPhoneViewController()
     func updateProfileInfo(firstname:String, lastname:String, email:String, phoneNumber:String, city:String)
 }
 
@@ -179,21 +180,23 @@ class ViewProfileTableViewController: UITableViewController {
         
         cell.title.text = NSLocalizedString("phone_number", comment:"")
         
-        var content = ""
-        do {
-            let phoneNumberKit = PhoneNumberKit()
-            let phoneNumber = try phoneNumberKit.parse(VillimSession.getPhoneNumber())
-            content = phoneNumberKit.format(phoneNumber, toType: .national)
-        }
-        catch {
-            
-        }
-        cell.content.text = content
+//        var content = ""
+//        do {
+//            let phoneNumberKit = PhoneNumberKit()
+//            let phoneNumber = try phoneNumberKit.parse(self.phoneNumber)
+//            content = phoneNumberKit.format(phoneNumber, toType: .international)
+//        }
+//        catch {
+//            
+//        }
+        
+        cell.content.text = VillimUtils.formatPhoneNumber(numberString: self.phoneNumber)
         
         if self.inEditMode {
             cell.layoutEditMode()
+            cell.addButton.addTarget(self, action: #selector(self.launchAddPhoneViewController), for: .touchUpInside)
         } else {
-            self.phoneNumber = cell.content.text
+            self.phoneNumber = VillimUtils.decodePhoneString(phoneString: cell.content.text!)
             cell.layoutNonEditMode()
         }
         
@@ -231,6 +234,9 @@ class ViewProfileTableViewController: UITableViewController {
         viewProfileDelegate.launchPhotoPicker()
     }
     
+    @objc public func launchAddPhoneViewController() {
+        viewProfileDelegate.launchAddPhoneViewController()
+    }
 
     func setProfileImage(image:UIImage) {
         let cell = self.tableView.cellForRow(at:

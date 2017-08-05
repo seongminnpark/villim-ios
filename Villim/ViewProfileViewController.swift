@@ -12,8 +12,9 @@ import Alamofire
 import SwiftyJSON
 import Toaster
 import NVActivityIndicatorView
+import PhoneNumberKit
 
-class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImagePickerControllerDelegate, AddPhoneDelegate, UINavigationControllerDelegate {
     
     var initialLaunch : Bool = true
     
@@ -28,6 +29,14 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
@@ -190,6 +199,24 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
+    }
+    
+    func launchAddPhoneViewController() {
+        let addPhoneViewController = AddPhoneViewController()
+        addPhoneViewController.phoneDelegate = self
+        let newNavBar: UINavigationController = UINavigationController(rootViewController: addPhoneViewController)
+        self.present(newNavBar, animated: true, completion: nil)
+    }
+    
+    func onPhoneAdded(number:String) {
+        self.phoneNumber = number
+        self.viewProfileTableViewController.phoneNumber = number
+        print(number)
+        self.viewProfileTableViewController.tableView.beginUpdates()
+        self.viewProfileTableViewController.tableView.reloadRows(at:
+            [IndexPath(row:ViewProfileTableViewController.PHONE_NUMBER, section:0)], with: .automatic)
+        self.viewProfileTableViewController.tableView.endUpdates()
+        
     }
     
     func updateProfileInfo(firstname:String, lastname:String, email:String, phoneNumber:String, city:String) {

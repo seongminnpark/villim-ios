@@ -1,8 +1,8 @@
 //
-//  FindPasswordViewController.swift
+//  AddPhoneNumberViewController.swift
 //  Villim
 //
-//  Created by Seongmin Park on 7/28/17.
+//  Created by Seongmin Park on 8/4/17.
 //  Copyright © 2017 Villim. All rights reserved.
 //
 
@@ -12,11 +12,18 @@ import Alamofire
 import SwiftyJSON
 import NVActivityIndicatorView
 
-class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPasswordSuccessDelegate {
+protocol AddPhoneDelegate {
+    func onPhoneAdded(number:String)
+}
+
+class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhoneDelegate {
+    
+    var phoneNumeber     : String! = ""
+    
+    var phoneDelegate    : AddPhoneDelegate!
 
     var titleMain        : UILabel!
-    var emailField       : CustomTextField!
-    var instruction      : UILabel!
+    var numberField      : CustomTextField!
     
     var nextButton       : UIButton!
     
@@ -26,44 +33,45 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
+        let backButton = UIBarButtonItem(image: #imageLiteral(resourceName: "back_caret_black"), style: .plain, target: self, action: #selector(self.onBackPressed))
+        self.navigationItem.leftBarButtonItem  = backButton
+        
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
         self.view.backgroundColor = UIColor.white
-        self.title = NSLocalizedString("find_password", comment: "")
-        
+        self.title = NSLocalizedString("add_phone_number", comment: "")
+
         /* Title */
         titleMain = UILabel()
         titleMain.font = UIFont(name: "NotoSansCJKkr-Medium", size: 25)
         titleMain.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
-        titleMain.text = NSLocalizedString("lost_password", comment: "")
+        titleMain.text = NSLocalizedString("enter_phone_number", comment: "")
         self.view.addSubview(titleMain)
         
-        /* Email field */
-        emailField = CustomTextField()
-        emailField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
-        emailField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
-        emailField.placeholder = NSLocalizedString("email", comment: "")
-        emailField.textContentType = UITextContentType.emailAddress
-        emailField.keyboardType = UIKeyboardType.emailAddress
-        emailField.returnKeyType = .next
-        emailField.autocapitalizationType = .none
-        emailField.clearButtonMode = .whileEditing
-        emailField.delegate = self
-        self.view.addSubview(emailField)
+        /* Number field */
+        numberField = CustomTextField()
+        numberField.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        numberField.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        numberField.placeholder = NSLocalizedString("add_phone_number_placeholder", comment: "")
+        numberField.textContentType = .telephoneNumber
+        numberField.keyboardType = .decimalPad
+        numberField.returnKeyType = .done
+        numberField.clearButtonMode = .whileEditing
+        numberField.delegate = self
+        self.view.addSubview(numberField)
         
-        emailField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_email"))
-        emailField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
-        emailField.leftViewMode = .always
-        
-        /* Instruction Field */
-        instruction = UILabel()
-        instruction.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
-        instruction.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
-        instruction.text = NSLocalizedString("enter_email", comment: "")
-        instruction.textAlignment = .center
-        self.view.addSubview(instruction)
+        numberField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_phone"))
+        numberField.leftView?.frame = CGRect(x: 0, y: 0, width: 20 , height:20)
+        numberField.leftViewMode = .always
         
         /* Next button */
         nextButton = UIButton()
@@ -98,7 +106,7 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
         self.view.addSubview(loadingIndicator)
         
         makeConstraints()
-
+        
     }
     
     func makeConstraints() {
@@ -114,26 +122,19 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
             make.top.equalTo(topOffset + VillimValues.titleOffset)
         }
         
-        /* Email field */
-        emailField?.snp.makeConstraints { (make) -> Void in
+        /* Number field */
+        numberField?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.right.equalToSuperview().offset(-VillimValues.sideMargin)
             make.top.equalTo(titleMain.snp.bottom).offset(VillimValues.sideMargin)
             make.height.equalTo(CustomTextField.iconSize * 2)
         }
         
-        /* Instruction Field */
-        instruction?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(VillimValues.sideMargin)
-            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
-            make.top.equalTo(emailField.snp.bottom).offset(10)
-        }
-        
         /* Error message */
         errorMessage?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.sideMargin)
             make.right.equalToSuperview().offset(-VillimValues.sideMargin)
-            make.top.equalTo(instruction.snp.bottom).offset(VillimValues.sideMargin * 2)
+            make.top.equalTo(numberField.snp.bottom).offset(VillimValues.sideMargin * 2)
         }
         
         /* Next button */
@@ -149,20 +150,39 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
         super.viewDidLayoutSubviews()
         let width = CGFloat(1.0)
         
-        /* Email form */
-        emailField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
+        /* Number form */
+        numberField.addBottomBorderWithColor(color: VillimValues.customTextFieldBorderColor, width: width)
     }
     
+    
     @objc private func verifyInput() {
-        let allFieldsFilledOut : Bool =
-            !(emailField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
-        let validInput : Bool = allFieldsFilledOut;
+        let phoneInput        : String = (numberField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!
+        
+        let allFieldsFilledOut : Bool = !phoneInput.isEmpty
+        let tooLong   : Bool = phoneInput.characters.count > 11
+        let tooShort  : Bool = phoneInput.characters.count < 10
+        let allDigits : Bool = CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phoneInput))
+        
+        let validInput : Bool = allFieldsFilledOut && !tooLong && !tooShort && allDigits
         if validInput {
-            self.launchFindPasswordSuccessViewController()
-        } else {
+            sendSendVerificationPhoneRequest()
+        } else if !allFieldsFilledOut {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
+        } else if tooLong {
+            showErrorMessage(message: NSLocalizedString("phone_number_too_long", comment: ""))
+        } else if tooShort {
+            showErrorMessage(message: NSLocalizedString("phone_number_too_short", comment: ""))
+        } else if !allDigits {
+            showErrorMessage(message: NSLocalizedString("phone_number_non_digit", comment: ""))
+        } else {
+            showErrorMessage(message: NSLocalizedString("try_again", comment: ""))
         }
     }
+    
+    func onBackPressed() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     
     /* Text field listeners */
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -174,21 +194,22 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
         self.view.endEditing(true)
     }
     
-    @objc private func sendFindPasswordRequest() {
+    @objc private func sendSendVerificationPhoneRequest() {
         
         showLoadingIndicator()
         
         let parameters = [
-            VillimKeys.KEY_EMAIL : emailField.text!] as [String : Any]
+            VillimKeys.KEY_PHONE_NUMBER : numberField.text!] as [String : Any]
         
-        let url = VillimUtils.buildURL(endpoint: VillimKeys.FIND_PASSWORD_URL)
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.SEND_VERIFICATION_PHONE_URL)
         
         Alamofire.request(url, method:.post, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                if responseData[VillimKeys.KEY_POST_SUCCESS].boolValue {
-                    self.launchFindPasswordSuccessViewController()
+                if responseData[VillimKeys.KEY_SUCCESS].boolValue {
+                    self.phoneNumeber = self.numberField.text!
+                    self.launchVerifyPhoneViewController()
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
@@ -198,15 +219,16 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
             self.hideLoadingIndicator()
         }
     }
-
-    func launchFindPasswordSuccessViewController() {
-        let findPasswordSuccessViewController = FindPasswordSuccessViewController()
-        findPasswordSuccessViewController.dismissDelegate = self
-        self.navigationController?.pushViewController(findPasswordSuccessViewController, animated: true)
+    
+    func launchVerifyPhoneViewController() {
+        let verifyPhoneViewController = VerifyPhoneViewController()
+        verifyPhoneViewController.verifyDelegate = self
+        self.navigationController?.pushViewController(verifyPhoneViewController, animated: true)
     }
     
-    func onDismiss() {
-        self.navigationController?.popViewController(animated: true)
+    func onVerifySuccess() {
+        phoneDelegate.onPhoneAdded(number:self.phoneNumeber)
+        self.dismiss(animated:false, completion:nil)
     }
     
     override func didReceiveMemoryWarning() {
@@ -234,5 +256,6 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
     }
+
 
 }
