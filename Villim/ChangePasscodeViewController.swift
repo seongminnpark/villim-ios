@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 
 class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, ChangePasscodeSuccessDelegate {
     
@@ -21,7 +20,6 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
     var nextButton           : UIButton!
     
     var errorMessage         : UILabel!
-    var loadingIndicator     : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,20 +86,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
         errorMessage.textColor = VillimValues.themeColor
         errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
+      
         makeConstraints()
     }
     
@@ -210,7 +195,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
     
     @objc private func sendChangePasscodeRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_PASSCODE         : (passcodeField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!,
@@ -234,12 +219,13 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
     
     func onDismiss() {
+        VillimUtils.hideLoadingIndicator()
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -249,14 +235,6 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
         let newNavBar: UINavigationController = UINavigationController(rootViewController: changePasscodeSuccessViewController)
         self.present(newNavBar, animated: true, completion: nil)
 
-    }
-    
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
     }
     
     private func showErrorMessage(message:String) {
@@ -270,6 +248,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
 
     override func viewWillAppear(_ animated: Bool) {

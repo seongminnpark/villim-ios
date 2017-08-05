@@ -10,7 +10,6 @@ import UIKit
 import Cosmos
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 import Toaster
 
 class ViewReviewViewController: UIViewController {
@@ -53,7 +52,6 @@ class ViewReviewViewController: UIViewController {
     var ratingBarValue         : CosmosView!
     
     var reviewTableViewController : ViewReviewTableViewController!
-    var loadingIndicator   : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,19 +79,6 @@ class ViewReviewViewController: UIViewController {
         /* Populate tableview */
         reviewTableViewController = ViewReviewTableViewController()
         self.view.addSubview(reviewTableViewController.view)
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
         
         populateViews()
         makeConstraints()
@@ -334,7 +319,7 @@ class ViewReviewViewController: UIViewController {
     
     @objc private func sendHouseReviewRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [VillimKeys.KEY_HOUSE_ID : self.houseId] as [String : Any]
         
@@ -371,7 +356,7 @@ class ViewReviewViewController: UIViewController {
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
 
@@ -394,15 +379,6 @@ class ViewReviewViewController: UIViewController {
         reviewContainer.layer.addSublayer(reviewBorder)
         reviewContainer.layer.masksToBounds = true
     }
-
-    
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
     
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
@@ -420,6 +396,7 @@ class ViewReviewViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

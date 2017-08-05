@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 import Toaster
 import SwiftDate
 
@@ -54,7 +53,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     var dateFilterClearButton : UIButton!
     
     var discoverTableViewController : DiscoverTableViewController!
-    var loadingIndicator   : NVActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -163,19 +161,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         discoverTableViewController = DiscoverTableViewController()
         discoverTableViewController.discoverDelegate = self
         self.view.addSubview(discoverTableViewController.view)
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
         
         populateViews()
         makeConstraints()
@@ -302,7 +287,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     @objc private func sendFeaturedHousesRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
@@ -326,13 +311,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
     @objc private func sendSearchRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         var parameters = [
             VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
@@ -365,7 +350,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
@@ -499,14 +484,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         // Dispose of any resources that can be recreated.
     }
     
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
-    
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
@@ -523,6 +500,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 
 protocol VerifyPhoneDelegate {
     func onVerifySuccess()
@@ -37,7 +36,6 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
     var nextButton       : UIButton!
     
     var errorMessage     : UILabel!
-    var loadingIndicator : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,19 +155,6 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
         errorMessage.textColor = VillimValues.themeColor
         errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
         
         makeConstraints()
         
@@ -299,7 +284,7 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
     
     @objc private func sendVerifyPhoneRequest(number:String) {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_PHONE_NUMBER : number] as [String : Any]
@@ -319,21 +304,13 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
     }
     
     private func showErrorMessage(message:String) {
@@ -347,6 +324,7 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
 

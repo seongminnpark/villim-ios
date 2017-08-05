@@ -9,7 +9,6 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 import Toaster
 
 class VisitListViewController: ViewController, VisitTableViewItemSelectedListener {
@@ -30,8 +29,6 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     var houseDateLabel       : UILabel!
     var findRoomButton       : UIButton!
     
-    var loadingIndicator   : NVActivityIndicatorView!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -49,20 +46,6 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "방문 목록"
         self.tabBarItem.title = self.title
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
     }
     
     
@@ -179,7 +162,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     
     @objc private func sendVisitListRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         //        let parameters = [
         //            VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
@@ -213,7 +196,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
                 self.setUpNovisitLayout()
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
@@ -227,14 +210,6 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-    
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
     }
     
     private func showErrorMessage(message:String) {
@@ -253,6 +228,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

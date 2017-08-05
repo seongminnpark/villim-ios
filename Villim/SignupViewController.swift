@@ -36,7 +36,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     var tosRight         : UILabel!
     
     var errorMessage     : UILabel!
-    var loadingIndicator : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -171,19 +170,6 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
         
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
         makeConstraints()
     }
     
@@ -313,7 +299,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     @objc private func sendSignupRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_LASTNAME  : lastnameField.text!,
@@ -341,7 +327,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
                 self.signupListener.onSignup(success: false)
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
 
@@ -349,15 +335,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         self.signupListener.onSignup(success: true)
         self.navigationController?.popViewController(animated: true)
     }
-    
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
-    
+
     private func showErrorMessage(message:String) {
         errorMessage.isHidden = false
         errorMessage.text = message
@@ -369,6 +347,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.showLoadingIndicator()
     }
 
 }

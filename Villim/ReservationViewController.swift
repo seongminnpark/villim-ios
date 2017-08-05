@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 import SwiftDate
 import Toaster
 
@@ -26,7 +25,6 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     var backButton         : UIButton!
     var nextButton         : UIButton!
     var errorMessage       : UILabel!
-    var loadingIndicator   : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,20 +61,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
         nextButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
         nextButton.addTarget(self, action: #selector(self.verifyInput), for: .touchUpInside)
         self.view.addSubview(nextButton)
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
+       
         makeConstraints()
 
     }
@@ -122,7 +107,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     
     @objc private func sendVisitRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_HOUSE_ID : house.houseId,
@@ -145,7 +130,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
 
@@ -188,13 +173,6 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     }
     */
 
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
     
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
@@ -212,6 +190,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.showLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -25,7 +25,6 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
     var city        : String!
     
     var viewProfileTableViewController : ViewProfileTableViewController!
-    var loadingIndicator   : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,19 +65,6 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         /* Set up edit button */
         self.navigationItem.rightBarButtonItem = self.editButtonItem
         
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-
         makeConstraints()
         
         self.setEditing(false, animated: false)
@@ -133,7 +119,7 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
 
     @objc private func sendUpdateProfileRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_FIRSTNAME          : self.firstname,
@@ -170,13 +156,13 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
                         }
                     case .failure(let error):
                         self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-                        self.hideLoadingIndicator()
+                        VillimUtils.hideLoadingIndicator()
                     }
                 }
                 
             case .failure(let encodingError):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-                self.hideLoadingIndicator()
+                VillimUtils.hideLoadingIndicator()
             }
         }
     }
@@ -227,14 +213,6 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         self.city        = city
     }
     
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
-    
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
@@ -251,6 +229,7 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

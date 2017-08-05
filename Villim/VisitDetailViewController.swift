@@ -12,7 +12,6 @@ import SnapKit
 import SwiftyJSON
 import Nuke
 import Toaster
-import NVActivityIndicatorView
 
 class VisitDetailViewController: UIViewController {
 
@@ -39,8 +38,7 @@ class VisitDetailViewController: UIViewController {
     var bookButton           : UIButton!
     
     var visitCancelDialog    : VillimDialog!
-    
-    var loadingIndicator     : NVActivityIndicatorView!
+
     var errorMessage         : UILabel!
 
     
@@ -114,19 +112,6 @@ class VisitDetailViewController: UIViewController {
         
         self.view.addSubview(bookButton)
         
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRight = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRight,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
         /* Error message */
         let errorTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2 - 60
         errorMessage = UILabel(frame:CGRect(x:0, y:errorTop, width:UIScreen.main.bounds.width, height:50))
@@ -143,7 +128,7 @@ class VisitDetailViewController: UIViewController {
 
     @objc private func sendVisitInfoRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_VISIT_ID : self.visit.visitId,
@@ -178,7 +163,7 @@ class VisitDetailViewController: UIViewController {
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
@@ -264,11 +249,11 @@ class VisitDetailViewController: UIViewController {
         visitCancelDialog.label =
             String(format:NSLocalizedString("cancel_visit_confirm", comment: ""), VillimSession.getFullName())
         visitCancelDialog.onConfirm = { () -> Void in self.sendCancelVisitRequest() }
-        self.navigationController?.view.addSubview(visitCancelDialog)
+        self.tabBarController?.view.addSubview(visitCancelDialog)
     }
     
     func sendCancelVisitRequest() {
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_VISIT_ID : self.visit.visitId,
@@ -289,17 +274,10 @@ class VisitDetailViewController: UIViewController {
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
-    
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
+
     
     private func showErrorMessage(message:String) {
         errorMessage.isHidden = false
@@ -311,6 +289,7 @@ class VisitDetailViewController: UIViewController {
     }
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
         if visitCancelDialog != nil {
             visitCancelDialog.dismiss()
         }

@@ -9,8 +9,12 @@
 import Foundation
 import UIKit
 import SwiftDate
+import SnapKit
+import pop
 
 class VillimUtils {
+    
+    static var loadingIndicator : UIImageView!
     
     public static func buildURL(endpoint:String) -> String {
         return VillimKeys.SERVER_SCHEME + "://" + VillimKeys.SERVER_HOST + "/" + endpoint
@@ -248,4 +252,34 @@ class VillimUtils {
         
     }
 
+    public static func showLoadingIndicator() {
+        let window = UIApplication.shared.keyWindow!
+        loadingIndicator = UIImageView()
+        window.addSubview(loadingIndicator);
+        
+        loadingIndicator.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(VillimValues.loaderSize)
+            make.height.equalTo(VillimValues.loaderSize)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        loadingIndicator.image = #imageLiteral(resourceName: "img_default")
+        
+        if let anim = POPSpringAnimation(propertyNamed:kPOPLayerScaleXY) {
+            anim.fromValue = CGSize(width:0.5, height:0.5)
+            anim.toValue = CGSize(width:1.5, height:1.5)
+            anim.springBounciness = 20
+            anim.repeatForever = true
+            loadingIndicator.layer.pop_add(anim, forKey: "load")
+        }
+    }
+    
+    public static func hideLoadingIndicator() {
+        if loadingIndicator != nil {
+            loadingIndicator.pop_removeAllAnimations()
+            loadingIndicator.removeFromSuperview()
+        }
+    }
+    
 }

@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 
 extension UIButton {
     
@@ -46,7 +45,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     var nextButton         : UIButton!
     
     var errorMessage       : UILabel!
-    var loadingIndicator   : NVActivityIndicatorView!
     
     
     override func viewDidLoad() {
@@ -157,20 +155,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         errorMessage.textColor = VillimValues.themeColor
         errorMessage.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
         self.view.addSubview(errorMessage)
-        
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
+
         makeConstraints()
     }
     
@@ -296,7 +281,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     
     @objc private func sendLoginRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [
             VillimKeys.KEY_EMAIL    : emailField.text!,
@@ -321,7 +306,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
                 self.loginDelegate.onLogin(success: false)
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
@@ -338,14 +323,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         self.login()
     }
     
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
-    
     private func showErrorMessage(message:String) {
         errorMessage.isHidden = false
         errorMessage.text = message
@@ -357,6 +334,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
 }

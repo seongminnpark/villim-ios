@@ -168,7 +168,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         logoutConfirmDialog.label =
             String(format:NSLocalizedString("logout_confirm_format", comment: ""), VillimSession.getFullName())
         logoutConfirmDialog.onConfirm = { () -> Void in self.logout() }
-        self.navigationController?.view.addSubview(logoutConfirmDialog)
+        self.tabBarController?.view.addSubview(logoutConfirmDialog)
     }
     
     public func launchLoginViewController() {

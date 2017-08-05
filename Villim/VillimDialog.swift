@@ -163,6 +163,5 @@ class VillimDialog: UIView {
         }
         self.dismiss()
     }
-    
-    
+
 }

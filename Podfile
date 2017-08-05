@@ -9,7 +9,6 @@ target 'Villim' do
   pod 'SnapKit', '~> 3.2.0'
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
-  pod 'NVActivityIndicatorView'
   pod 'Nuke', '~> 5.0'
   pod 'Toaster'
   pod 'GoogleMaps'
@@ -17,6 +16,7 @@ target 'Villim' do
   pod 'FSCalendar', '~> 2.7'
   pod 'SwiftDate', '~> 4.0'
   pod 'PhoneNumberKit', '~> 1.3'
+  pod 'pop', '~> 1.0'
 
   target 'VillimTests' do
     inherit! :search_paths

@@ -10,7 +10,6 @@ import UIKit
 import Nuke
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 import Toaster
 import SwiftDate
 
@@ -51,7 +50,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     var leftButtonImageView : UIImageView!
     var leftButtonLabel     : UILabel!
     var rightButton : UIButton!
-    var loadingIndicator : NVActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,20 +108,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         rightButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
         rightButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
         self.view.addSubview(rightButton)
- 
-        /* Loading inidcator */
-        let screenCenterX = UIScreen.main.bounds.width / 2
-        let screenCenterY = UIScreen.main.bounds.height / 2
-        let indicatorViewLeft = screenCenterX - VillimValues.loadingIndicatorSize / 2
-        let indicatorViweRIght = screenCenterY - VillimValues.loadingIndicatorSize / 2
-        let loadingIndicatorFrame = CGRect(x:indicatorViewLeft, y:indicatorViweRIght,
-                                           width:VillimValues.loadingIndicatorSize, height: VillimValues.loadingIndicatorSize)
-        loadingIndicator = NVActivityIndicatorView(
-            frame: loadingIndicatorFrame,
-            type: .orbit,
-            color: VillimValues.themeColor)
-        self.view.addSubview(loadingIndicator)
-        
+
         makeConstraints()
         
         sendHouseInfoRequest()
@@ -174,7 +159,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     @objc private func sendHouseInfoRequest() {
         
-        showLoadingIndicator()
+        VillimUtils.showLoadingIndicator()
         
         let parameters = [VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
                           VillimKeys.KEY_HOUSE_ID : house.houseId] as [String : Any]
@@ -217,7 +202,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
             }
-            self.hideLoadingIndicator()
+            VillimUtils.hideLoadingIndicator()
         }
     }
     
@@ -279,15 +264,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         // Dispose of any resources that can be recreated.
     }
     
-
-    private func showLoadingIndicator() {
-        loadingIndicator.startAnimating()
-    }
-    
-    private func hideLoadingIndicator() {
-        loadingIndicator.stopAnimating()
-    }
-    
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
@@ -304,6 +280,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
+        VillimUtils.hideLoadingIndicator()
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -33,6 +33,8 @@ class VillimValues {
     
     public static let dialogMargin         : CGFloat = 15.0
     
+    public static let loaderSize           : CGFloat = 50.0
+    
     
     /* Colors */
     
