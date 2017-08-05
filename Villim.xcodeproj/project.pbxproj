@@ -41,6 +41,7 @@
 		3E956A031F348DF4001B7091 /* LocationFilterSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */; };
 		3E956A051F34FA41001B7091 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A041F34FA41001B7091 /* CustomTextField.swift */; };
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
+		3EA017E61F354BA6005557D1 /* VerificationCodeField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */; };
 		3EB0512C1F28801500EBBBCE /* HouseDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */; };
 		3EB0512E1F28C60C00EBBBCE /* HouseDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */; };
 		3EB051301F28F13400EBBBCE /* HostInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB0512F1F28F13400EBBBCE /* HostInfoTableViewCell.swift */; };
@@ -71,6 +72,8 @@
 		3EDC13A91F2D11A900BA4077 /* RateHouseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */; };
 		3EDC13AB1F2D11BA00BA4077 /* RateHouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC13AA1F2D11BA00BA4077 /* RateHouseTableViewCell.swift */; };
 		3EDC276B1F35117D00228C1F /* ChangePasscodeSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276A1F35117D00228C1F /* ChangePasscodeSuccessViewController.swift */; };
+		3EDC276D1F35329A00228C1F /* AddPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276C1F35329A00228C1F /* AddPhoneViewController.swift */; };
+		3EDC276F1F3537B200228C1F /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */; };
 		3EDE4CD01F32A1E200FDB275 /* AmenityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */; };
 		3EDE4CD21F32A88500FDB275 /* AmenityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD11F32A88500FDB275 /* AmenityTableViewController.swift */; };
 		3EDE4CD41F32AAE700FDB275 /* ViewReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */; };
@@ -158,6 +161,7 @@
 		3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterSearchField.swift; sourceTree = "<group>"; };
 		3E956A041F34FA41001B7091 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
+		3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerificationCodeField.swift; sourceTree = "<group>"; };
 		3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDetailViewController.swift; sourceTree = "<group>"; };
 		3EB0512D1F28C60C00EBBBCE /* HouseDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseDetailTableViewController.swift; sourceTree = "<group>"; };
 		3EB0512F1F28F13400EBBBCE /* HostInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HostInfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -188,6 +192,8 @@
 		3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateHouseTableViewController.swift; sourceTree = "<group>"; };
 		3EDC13AA1F2D11BA00BA4077 /* RateHouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateHouseTableViewCell.swift; sourceTree = "<group>"; };
 		3EDC276A1F35117D00228C1F /* ChangePasscodeSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasscodeSuccessViewController.swift; sourceTree = "<group>"; };
+		3EDC276C1F35329A00228C1F /* AddPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhoneViewController.swift; sourceTree = "<group>"; };
+		3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
 		3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityViewController.swift; sourceTree = "<group>"; };
 		3EDE4CD11F32A88500FDB275 /* AmenityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityTableViewController.swift; sourceTree = "<group>"; };
 		3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewReviewViewController.swift; sourceTree = "<group>"; };
@@ -278,6 +284,7 @@
 				3E0F067E1F1E017B0023E229 /* AppDelegate.swift */,
 				3E0F06801F1E017B0023E229 /* ViewController.swift */,
 				3EB051481F2AF57200EBBBCE /* ApplicationShortcut.swift */,
+				3E0F06B11F1E02CE0023E229 /* TabBarController.swift */,
 				3E0F06821F1E017B0023E229 /* Main.storyboard */,
 				3E0F06851F1E017B0023E229 /* Assets.xcassets */,
 				3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */,
@@ -307,13 +314,15 @@
 				3EDC139E1F2C33A500BA4077 /* FindPasswordViewController.swift */,
 				3EDC13A01F2C390400BA4077 /* FindPasswordSuccessViewController.swift */,
 				3EDE4CED1F33A13F00FDB275 /* ViewProfileViewController.swift */,
-				3E0F06B11F1E02CE0023E229 /* TabBarController.swift */,
+				3EDC276C1F35329A00228C1F /* AddPhoneViewController.swift */,
+				3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */,
 				3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */,
 				3EDC139A1F2C0B1A00BA4077 /* VillimValues.swift */,
 				3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
 				3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */,
 				3E956A041F34FA41001B7091 /* CustomTextField.swift */,
+				3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */,
 				3EDC139C1F2C295200BA4077 /* WebViewController.swift */,
 			);
 			path = Villim;
@@ -508,7 +517,7 @@
 				TargetAttributes = {
 					3E0F067A1F1E017B0023E229 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = Y94Q5K4MU7;
+						DevelopmentTeam = MZYDBTXKN8;
 						ProvisioningStyle = Automatic;
 					};
 					3E0F068E1F1E017B0023E229 = {
@@ -749,6 +758,7 @@
 				3EDC13A51F2CD4F400BA4077 /* ReviewHouseViewController.swift in Sources */,
 				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
 				3E5F98841F2E6D0F003AAF8F /* CalendarViewController.swift in Sources */,
+				3EDC276F1F3537B200228C1F /* VerifyPhoneViewController.swift in Sources */,
 				3EB051451F2A780800EBBBCE /* SlideButton.swift in Sources */,
 				3EDE4CF41F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift in Sources */,
 				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,
@@ -760,6 +770,7 @@
 				3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */,
 				3EDE4CDE1F32FB6E00FDB275 /* HousePolicyViewController.swift in Sources */,
 				3E5F98861F2E87C9003AAF8F /* LocationSuggestionTableViewController.swift in Sources */,
+				3EA017E61F354BA6005557D1 /* VerificationCodeField.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
 				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,
 				3EDE4CEE1F33A13F00FDB275 /* ViewProfileViewController.swift in Sources */,
@@ -771,6 +782,7 @@
 				3EDE4CD61F32B42800FDB275 /* ViewReviewTableViewController.swift in Sources */,
 				3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */,
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
+				3EDC276D1F35329A00228C1F /* AddPhoneViewController.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
 				3EDE4CEA1F337BBA00FDB275 /* ReservationDatesTableViewCell.swift in Sources */,
 				3EDE4CE81F337BA500FDB275 /* ReservationHeaderTableViewCell.swift in Sources */,
@@ -948,10 +960,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y94Q5K4MU7;
+				DEVELOPMENT_TEAM = MZYDBTXKN8;
 				INFOPLIST_FILE = Villim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seongminnpark.Villim;
+				PRODUCT_BUNDLE_IDENTIFIER = test.villim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -964,10 +976,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = Y94Q5K4MU7;
+				DEVELOPMENT_TEAM = MZYDBTXKN8;
 				INFOPLIST_FILE = Villim/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.seongminnpark.Villim;
+				PRODUCT_BUNDLE_IDENTIFIER = test.villim;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

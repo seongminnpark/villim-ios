@@ -18,6 +18,8 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     private var profileImageView : UIImageView!
     private var profileTableViewController : ProfileTableViewController!
     
+    var dimView : UIView!
+    
     private let loggedOutTableViewItems = [NSLocalizedString("login", comment: ""),
                                            NSLocalizedString("faq", comment: ""),
                                            NSLocalizedString("settings", comment: ""),
@@ -136,7 +138,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
             launchLoginViewController()
             break
         case NSLocalizedString("logout", comment: ""):
-            logout()
+            showLogoutConfirmAlert()
             break
         case NSLocalizedString("faq", comment: ""):
             self.tabBarController?.tabBar.isHidden = true
@@ -159,6 +161,91 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         }
     }
     
+    func showLogoutConfirmAlert() {
+        dimView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+        dimView.alpha = 0.6
+        self.view.addSubview(dimView)
+        
+        let dialogView = UIView()
+        dialogView.backgroundColor = UIColor.white
+        self.view.addSubview(dialogView)
+        
+        let dialogTitleLabel = UILabel()
+        dialogTitleLabel.font = UIFont(name: "NotoSansCJKkr-Medium", size: 20)
+        dialogTitleLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        dialogTitleLabel.textAlignment = .center
+        dialogTitleLabel.text = NSLocalizedString("logout", comment: "")
+        dialogView.addSubview(dialogTitleLabel)
+        
+        let dialogMainLabel = UILabel()
+        dialogMainLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        dialogMainLabel.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        dialogMainLabel.textAlignment = .center
+        dialogMainLabel.text = String(format:NSLocalizedString("logout_confirm_format", comment: ""),
+                                      VillimSession.getFullName())
+        dialogView.addSubview(dialogMainLabel)
+        
+        let dismissButton = UIButton()
+        dismissButton.setImage(#imageLiteral(resourceName: "button_close"), for: .normal)
+        dismissButton.adjustsImageWhenHighlighted = true
+        dismissButton.addTarget(self, action: #selector(self.dismissDialog), for: .touchUpInside)
+        dialogView.addSubview(dismissButton)
+        
+        let confirmButton = UIButton()
+        confirmButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        confirmButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
+        confirmButton.adjustsImageWhenHighlighted = true
+        confirmButton.titleLabel?.font = VillimValues.bottomButtonFont
+        confirmButton.setTitleColor(UIColor.white, for: .normal)
+        confirmButton.setTitleColor(VillimValues.whiteHighlightedColor, for: .highlighted)
+        confirmButton.setTitle(NSLocalizedString("confirm", comment: ""), for: .normal)
+        confirmButton.addTarget(self, action: #selector(self.logout), for: .touchUpInside)
+        dialogView.addSubview(confirmButton)
+        
+        dialogView.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(VillimValues.dialogWidth)
+            make.height.equalTo(VillimValues.dialogHeight)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
+        dialogTitleLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.dialogMargin)
+            make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
+            make.top.equalToSuperview()
+            make.height.equalTo(VillimValues.dialogHeaderHeight)
+        }
+        
+        dismissButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(VillimValues.dialogMargin)
+            make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
+            make.height.equalTo(VillimValues.dialogHeaderHeight - VillimValues.dialogMargin * 2)
+            make.width.equalTo(VillimValues.dialogHeaderHeight - VillimValues.dialogMargin * 2)
+        }
+        
+        dialogMainLabel.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.dialogMargin)
+            make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
+            make.top.equalTo(dialogTitleLabel.snp.bottom).offset(10)
+            make.bottom.equalTo(confirmButton.snp.bottom).offset(-10)
+        }
+        
+        confirmButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.dialogMargin)
+            make.right.equalToSuperview().offset(-VillimValues.dialogMargin)
+            make.height.equalTo(VillimValues.dialogHeaderHeight)
+            make.bottom.equalToSuperview().offset(-VillimValues.dialogMargin)
+         }
+        
+
+    }
+    
+    func dismissDialog() {
+        if dimView != nil {
+            dimView.removeFromSuperview()
+        }
+    }
+    
     public func launchLoginViewController() {
         let loginViewController = LoginViewController()
         loginViewController.isRootView = false
@@ -169,6 +256,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     public func logout() {
         VillimSession.setLoggedIn(loggedIn: false)
+        dismissDialog()
         populateViews()
     }
     
@@ -201,5 +289,10 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
             populateViews()
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        dismissDialog()
+    }
+    
     
 }

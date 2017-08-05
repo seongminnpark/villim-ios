@@ -212,3 +212,5 @@
 
 "verify_phone_title" = "인증번호를 입력해주세요";
 "verify_phone_instruction" = "핸드폰으로 전송된 인증번호를 입력해주세요.";
+
+"logout_confirm_format" = "%@님, 로그아웃 하시겠습니까?";

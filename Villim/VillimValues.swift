@@ -25,6 +25,14 @@ class VillimValues {
     
     public static let titleOffset          : CGFloat = 100.0
     
+    public static let dialogWidth          : CGFloat = 280.0
+    
+    public static let dialogHeight         : CGFloat = 200.0
+    
+    public static let dialogHeaderHeight   : CGFloat = 50.0
+    
+    public static let dialogMargin         : CGFloat = 15.0
+    
     
     /* Colors */
     
