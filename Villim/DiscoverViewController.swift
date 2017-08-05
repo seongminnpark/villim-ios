@@ -436,7 +436,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
             filterOpen = true
         } else {
             filterOpen = true
-            navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
+            navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
             navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
         }
         searchFilter?.snp.updateConstraints { (make) -> Void in
@@ -446,7 +446,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     }
     
     func collapseFilter() {
-        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: 0)
+//        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: 0)
         navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
         navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
         
@@ -460,8 +460,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     }
     
     func openFilter() {
-        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilterMaxHeight)
-        navbarIcon.setImage(#imageLiteral(resourceName: "up_arrow"), for: .normal)
+//        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilterMaxHeight)
+        navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
         navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
         
         UIView.animate(withDuration: 0.5, animations: {
