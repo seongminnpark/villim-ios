@@ -218,24 +218,31 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     func onScroll(contentOffset:CGPoint) {
         let contentVector = contentOffset.y - prevContentOffset
-        prevContentOffset = contentOffset.y
+        
         var newHeight = houseImageView.bounds.height - contentVector
         
         if newHeight <= topOffset {
+            prevContentOffset = contentOffset.y
             newHeight = topOffset
             navBarOpen = false
             collapse()
+        
         } else if newHeight > houseImageViewMaxHeight {
+            prevContentOffset = contentOffset.y
             newHeight = houseImageViewMaxHeight
+        
         } else {
             navBarOpen = true
             open()
+            self.houseDetailTableViewController.tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
         }
         
         houseImageView?.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(newHeight)
         }
+        
 
+        
     }
     
     func collapse() {

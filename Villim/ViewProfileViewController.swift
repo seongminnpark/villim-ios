@@ -11,7 +11,6 @@ import SnapKit
 import Alamofire
 import SwiftyJSON
 import Toaster
-import NVActivityIndicatorView
 import PhoneNumberKit
 
 class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImagePickerControllerDelegate, AddPhoneDelegate, UINavigationControllerDelegate {

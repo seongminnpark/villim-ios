@@ -10,7 +10,6 @@ import UIKit
 import SnapKit
 import Alamofire
 import SwiftyJSON
-import NVActivityIndicatorView
 
 protocol SignupListener {
     func onSignup(success:Bool)

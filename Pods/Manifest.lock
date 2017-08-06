@@ -8,9 +8,6 @@ PODS:
   - GoogleMaps/Maps (2.3.1):
     - GoogleMaps/Base
   - Nuke (5.1.1)
-  - NVActivityIndicatorView (3.7.0):
-    - NVActivityIndicatorView/Presenter (= 3.7.0)
-  - NVActivityIndicatorView/Presenter (3.7.0)
   - PhoneNumberKit (1.3.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 1.3.0)
     - PhoneNumberKit/UIKit (= 1.3.0)
@@ -29,7 +26,6 @@ DEPENDENCIES:
   - FSCalendar (~> 2.7)
   - GoogleMaps
   - Nuke (~> 5.0)
-  - NVActivityIndicatorView
   - PhoneNumberKit (~> 1.3)
   - pop (~> 1.0)
   - SnapKit (~> 3.2.0)
@@ -43,7 +39,6 @@ SPEC CHECKSUMS:
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   Nuke: 0a2ddb4bd13d75782964bf598a159ca2a836d826
-  NVActivityIndicatorView: d3738df7e2e476aca0ba6bf32a8c9fbcfc33d64b
   PhoneNumberKit: 08aaf1968ea41a114327e9223cbb0391d76ae145
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
@@ -51,6 +46,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: f13031c636ef065281bc11857be9a16c7659e04f
 
-PODFILE CHECKSUM: cc745e3aa2fad8d1f9ac40b85ad240b5cee331c3
+PODFILE CHECKSUM: 9f83e654ca950fddb0ab2a68be9aba1402480132
 
 COCOAPODS: 1.2.1

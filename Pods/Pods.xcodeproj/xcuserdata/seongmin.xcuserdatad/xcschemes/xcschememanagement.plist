@@ -19,11 +19,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>NVActivityIndicatorView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>Nuke.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -77,12 +72,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>0CDBE3F51B648FC10E3E39F1A51AF5E4</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>1DAA18A816A91EDD46EAC0830D398CD7</key>
+		<key>1E01989002FEE67440130320B03E8EF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3EDFE4052B5DE7D509935AC0774CB135</key>
+		<key>41003E5674FCEAFA3C211F1E29416154</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -112,17 +102,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9CC31A35EF05806C40CD47993D263820</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>ACD50BA4E61B760FAFF88D4BBF66EE62</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>BBF1BFCB7D510F175DF5844F822CADD7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF4747F0206B84D733BB52F1D01DC3B3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -132,17 +117,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>E17FA6349D63CBDD60BED6EBD80AD957</key>
+		<key>D7485BE439D668C2EB934B4120F7BAD9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D7837BBB9AD57AA045B68A25D78B88CD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F104C403125CDE6DD2F44F1C33AE2CA3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>F22DF210EAF2891D844420B05AC0FC06</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F3FEFBFAC14080F15812D0253AE20E20</key>
 		<dict>
 			<key>primary</key>
 			<true/>
