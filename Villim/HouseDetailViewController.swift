@@ -292,10 +292,13 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
             houseDetailDelegate.onOpen()
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController!.navigationBar.barTintColor = UIColor.clear
+            self.navigationController!.navigationBar.tintColor = UIColor.white
         } else {
             houseDetailDelegate.onCollapse()
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController!.navigationBar.tintColor = UIColor.black
+
         }
     }
 }
