@@ -224,18 +224,12 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         if newHeight <= topOffset {
             newHeight = topOffset
             navBarOpen = false
-            houseDetailDelegate.onCollapse()
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController?.navigationBar.tintColor = UIColor.black
+            collapse()
         } else if newHeight > houseImageViewMaxHeight {
             newHeight = houseImageViewMaxHeight
         } else {
             navBarOpen = true
-            houseDetailDelegate.onOpen()
-            self.navigationController?.navigationBar.isTranslucent = true
-            self.navigationController!.navigationBar.barTintColor = UIColor.clear
-            self.navigationController?.navigationBar.tintColor = UIColor.white
+            open()
         }
         
         houseImageView?.snp.updateConstraints { (make) -> Void in
@@ -244,13 +238,29 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
 
     }
     
+    func collapse() {
+        houseDetailDelegate.onCollapse()
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        self.navigationController?.navigationBar.tintColor = UIColor.black
+        self.title = NSLocalizedString("house_detail", comment: "")
+    }
+    
+    func open() {
+        houseDetailDelegate.onOpen()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.clear
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
+        self.title = ""
+    }
+    
     func launchViewController(viewController:UIViewController, animated:Bool) {
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(viewController, animated: animated)
     }
 
     func launchReservationViewController() {
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         let reservationViewController = ReservationViewController()
         reservationViewController.house = self.house
         reservationViewController.dateSet = self.dateSet
@@ -291,16 +301,9 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         if navBarOpen {
             /* Make navbar transparent */
-            houseDetailDelegate.onOpen()
-            self.navigationController?.navigationBar.isTranslucent = true
-            self.navigationController!.navigationBar.barTintColor = UIColor.clear
-            self.navigationController!.navigationBar.tintColor = UIColor.white
+            open()
         } else {
-            houseDetailDelegate.onCollapse()
-            self.navigationController?.navigationBar.isTranslucent = false
-            self.navigationController?.navigationBar.barTintColor = UIColor.white
-            self.navigationController!.navigationBar.tintColor = UIColor.black
-
+            collapse()
         }
     }
 }
