@@ -57,7 +57,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         super.viewDidAppear(animated)
         
         // Pre-load mapview.
-        self.tableView(self.tableView, cellForRowAt: IndexPath(row: 7, section: 0))
+        self.tableView(self.tableView, cellForRowAt: IndexPath(row: HouseDetailTableViewController.MAP, section: 0))
     }
     
     override func didReceiveMemoryWarning() {

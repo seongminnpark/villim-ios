@@ -227,6 +227,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
             houseDetailDelegate.onCollapse()
             self.navigationController?.navigationBar.isTranslucent = false
             self.navigationController?.navigationBar.barTintColor = UIColor.white
+            self.navigationController?.navigationBar.tintColor = UIColor.black
         } else if newHeight > houseImageViewMaxHeight {
             newHeight = houseImageViewMaxHeight
         } else {
@@ -234,6 +235,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
             houseDetailDelegate.onOpen()
             self.navigationController?.navigationBar.isTranslucent = true
             self.navigationController!.navigationBar.barTintColor = UIColor.clear
+            self.navigationController?.navigationBar.tintColor = UIColor.white
         }
         
         houseImageView?.snp.updateConstraints { (make) -> Void in
