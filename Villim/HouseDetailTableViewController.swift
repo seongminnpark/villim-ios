@@ -260,12 +260,12 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
     }
     
     override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        // scrolling has stopped
+        houseDetailDelegate.onStopDecelerate(contentOffset: scrollView.contentOffset)
     }
     
     override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if !decelerate {
-            // scrolling has stopped
+            houseDetailDelegate.onEndDrag(contentOffset: scrollView.contentOffset)
         }
     }
     

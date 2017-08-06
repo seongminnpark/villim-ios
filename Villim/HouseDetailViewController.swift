@@ -265,10 +265,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
                 
             }
         }
-        
-        
-        
-
     }
     
     func onEndDrag(contentOffset:CGPoint) {
@@ -284,24 +280,24 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         let midPoint = topOffset + (range / 2)
         
         if self.houseImageView.bounds.height > midPoint {
-//            expandHouseImage()
+            expandHouseImage()
+            open()
         } else {
-//            collapseHouseImage()
+            collapseHouseImage()
+            collapse()
         }
     }
     
     func collapseHouseImage() {
-        self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.2, animations: {
             self.houseImageView?.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(0)
+                make.height.equalTo(self.topOffset)
             }
             self.view.layoutIfNeeded()
         })
     }
     
     func expandHouseImage() {
-        self.view.layoutIfNeeded()
         UIView.animate(withDuration: 0.2, animations: {
             self.houseImageView?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.houseImageViewMaxHeight)
@@ -327,6 +323,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.title = ""
     }
     
+
     func launchViewController(viewController:UIViewController, animated:Bool) {
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(viewController, animated: animated)
