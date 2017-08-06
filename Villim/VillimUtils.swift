@@ -256,6 +256,7 @@ class VillimUtils {
         
         if loadingIndicator != nil {
             loadingIndicator.pop_removeAllAnimations()
+            loadingIndicator.removeFromSuperview()
         }
         
         let window = UIApplication.shared.keyWindow!

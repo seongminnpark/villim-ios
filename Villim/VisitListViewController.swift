@@ -234,6 +234,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         if VillimSession.getLoggedIn() {
             sendVisitListRequest()
