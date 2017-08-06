@@ -48,14 +48,19 @@ class VisitDetailViewController: UIViewController {
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = "방문 정보"
 
-        self.extendedLayoutIncludesOpaqueBars = true
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
+//        self.extendedLayoutIncludesOpaqueBars = true
+//        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem
+
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
         
         /* Text buttons */
         locationButton = UIButton()
@@ -298,6 +303,9 @@ class VisitDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
     }
     
 }

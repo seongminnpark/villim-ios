@@ -19,11 +19,13 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
         self.navigationController?.navigationBar.isTranslucent = true
+        self.edgesForExtendedLayout = UIRectEdge.all
         self.extendedLayoutIncludesOpaqueBars = true
+
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
         
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.extendedLayoutIncludesOpaqueBars = true
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         
         let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 17.0)

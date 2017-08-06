@@ -33,10 +33,14 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         /* Prevent overlap with navigation controller */
         let navControllerHeight = self.navigationController!.navigationBar.frame.height
@@ -234,6 +238,9 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         if VillimSession.getLoggedIn() {
