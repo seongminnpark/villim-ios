@@ -65,6 +65,7 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
         numberField.returnKeyType = .done
         numberField.clearButtonMode = .whileEditing
         numberField.delegate = self
+        numberField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         self.view.addSubview(numberField)
         
         numberField.leftView = UIImageView(image: #imageLiteral(resourceName: "icon_phone"))
@@ -141,7 +142,7 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
     
     
     @objc private func verifyInput() {
-        let phoneInput        : String = (numberField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!
+        let phoneInput        : String = VillimUtils.decodePhoneString(phoneString: (numberField.text?.trimmingCharacters(in: .whitespacesAndNewlines))!)
         
         let allFieldsFilledOut : Bool = !phoneInput.isEmpty
         let tooLong   : Bool = phoneInput.characters.count > 11
@@ -179,6 +180,24 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
         self.view.endEditing(true)
     }
     
+    /* Text field listeners */
+    func textFieldDidChange(_ textField: UITextField) {
+        
+        textField.text = VillimUtils.formatPhoneNumber(numberString: VillimUtils.decodePhoneString(phoneString: textField.text!))
+    }
+
+    func keyboardInputShouldDelete(_ textField: UITextField) -> Bool {
+        
+        let currString = textField.text!
+        
+        if currString.characters.last! == ")" {
+            textField.text = String(currString.characters.dropLast())
+        }
+        
+        return true
+    }
+    
+    
     @objc private func sendSendVerificationPhoneRequest() {
         
         VillimUtils.showLoadingIndicator()
@@ -193,7 +212,7 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
             case .success:
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
-                    self.phoneNumeber = self.numberField.text!
+                    self.phoneNumeber = VillimUtils.decodePhoneString(phoneString: self.numberField.text!)
                     self.launchVerifyPhoneViewController()
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
@@ -213,7 +232,7 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
     
     func onVerifySuccess() {
         phoneDelegate.onPhoneAdded(number:self.phoneNumeber)
-        self.dismiss(animated:false, completion:nil)
+        self.dismiss(animated:true, completion:nil)
     }
     
     override func didReceiveMemoryWarning() {

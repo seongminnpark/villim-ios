@@ -195,7 +195,8 @@ class VillimUtils {
     public static func formatPhoneNumber(numberString:String) -> String {
         
         var formattedString = ""
-        let chars = Array(numberString.characters)
+        let trimmedString = numberString.trimmingCharacters(in: .whitespacesAndNewlines)
+        let chars = Array(trimmedString.characters)
         
         if chars.count == 0 {
             
@@ -203,13 +204,13 @@ class VillimUtils {
             
         } else if chars.count <= 3 {
             
-            formattedString = "(" + numberString + ")"
+            formattedString = "(" + trimmedString + ")"
         
         } else if chars.count <= 6 {
         
             formattedString = "(" + String(chars[0]) + String(chars[1])
             formattedString += String(chars[2]) + ")" + " "
-            for char in chars[2 ..< chars.count] {
+            for char in chars[3 ..< chars.count] {
                 formattedString += String(char)
             }
         
@@ -233,8 +234,9 @@ class VillimUtils {
             formattedString += String(chars[9]) + String(chars[10])
         
         } else {
-        
-            formattedString = ""
+            
+            /* Ooooooh recursion! */
+            formattedString = self.formatPhoneNumber(numberString: String(trimmedString.characters.prefix(11)))
             
         }
 
@@ -248,7 +250,8 @@ class VillimUtils {
                 decodedString += String(char)
             }
         }
-        return decodedString
+        return phoneString.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()
+        //return decodedString
         
     }
 

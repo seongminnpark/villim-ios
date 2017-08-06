@@ -190,15 +190,14 @@ class ViewProfileTableViewController: UITableViewController {
 //            
 //        }
         
-        cell.content.text = VillimUtils.formatPhoneNumber(numberString: self.phoneNumber)
-        
         if self.inEditMode {
             cell.layoutEditMode()
             cell.addButton.addTarget(self, action: #selector(self.launchAddPhoneViewController), for: .touchUpInside)
         } else {
-            self.phoneNumber = VillimUtils.decodePhoneString(phoneString: cell.content.text!)
             cell.layoutNonEditMode()
         }
+        
+        cell.content.text = VillimUtils.formatPhoneNumber(numberString: self.phoneNumber)
         
         return cell
     }
