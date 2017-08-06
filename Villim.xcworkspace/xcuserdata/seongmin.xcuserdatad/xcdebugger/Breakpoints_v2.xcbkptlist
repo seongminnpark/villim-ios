@@ -28,11 +28,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "523695115.217651"
+            timestampString = "523749050.526652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "273"
-            endingLineNumber = "273"
+            startingLineNumber = "337"
+            endingLineNumber = "337"
             landmarkName = "launchReservationViewController()"
             landmarkType = "7">
          </BreakpointContent>
@@ -44,11 +44,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "523686766.386373"
+            timestampString = "523742768.234415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "219"
-            endingLineNumber = "219"
+            startingLineNumber = "220"
+            endingLineNumber = "220"
             landmarkName = "onScroll(contentOffset:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -60,28 +60,28 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "523686767.898348"
+            timestampString = "523749050.526652"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
-            landmarkName = "onScroll(contentOffset:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "523695115.217651"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "collapse()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/HouseDetailViewController.swift"
+            timestampString = "523748770.449598"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
+            landmarkName = "onScroll(contentOffset:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

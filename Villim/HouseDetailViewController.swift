@@ -217,32 +217,96 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func onScroll(contentOffset:CGPoint) {
-        let contentVector = contentOffset.y - prevContentOffset
         
-        var newHeight = houseImageView.bounds.height - contentVector
         
-        if newHeight <= topOffset {
-            prevContentOffset = contentOffset.y
-            newHeight = topOffset
-            navBarOpen = false
-            collapse()
+        let tableView = self.houseDetailTableViewController.tableView!
         
-        } else if newHeight > houseImageViewMaxHeight {
-            prevContentOffset = contentOffset.y
-            newHeight = houseImageViewMaxHeight
-        
-        } else {
-            navBarOpen = true
-            open()
-            self.houseDetailTableViewController.tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+        /* Bottom bounce */
+        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height
+        if tableView.contentOffset.y >= maxContentOffset {
+            tableView.bounds.origin = CGPoint(x:0, y:maxContentOffset)
+            return
         }
         
-        houseImageView?.snp.updateConstraints { (make) -> Void in
-            make.height.equalTo(newHeight)
+        let contentVector = contentOffset.y - prevContentOffset // > 0 if scrolling down, < 0 if scrolling up.
+        let newHeight = houseImageView.bounds.height - contentVector
+        
+        if prevContentOffset == 0 && contentVector < 0 { // Expand.
+            
+            if newHeight <= houseImageViewMaxHeight {
+                
+                houseImageView?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(newHeight)
+                }
+        
+                open()
+            }
+            
+            tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+            
+        } else if prevContentOffset == 0 && contentVector > 0 { // Collapse.
+            
+            if newHeight >= topOffset {
+            
+                houseImageView?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(newHeight)
+                }
+                
+                tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+                
+            } else {
+                
+                houseImageView?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(topOffset)
+                }
+                
+                collapse()
+                
+            }
         }
+        
+        
         
 
+    }
+    
+    func onEndDrag(contentOffset:CGPoint) {
+        scrollViewDidStopScrolling()
+    }
+    
+    func onStopDecelerate(contentOffset:CGPoint) {
+        scrollViewDidStopScrolling()
+    }
+    
+    func scrollViewDidStopScrolling() {
+        let range = houseImageViewMaxHeight - topOffset
+        let midPoint = topOffset + (range / 2)
         
+        if self.houseImageView.bounds.height > midPoint {
+//            expandHouseImage()
+        } else {
+//            collapseHouseImage()
+        }
+    }
+    
+    func collapseHouseImage() {
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.houseImageView?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(0)
+            }
+            self.view.layoutIfNeeded()
+        })
+    }
+    
+    func expandHouseImage() {
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.2, animations: {
+            self.houseImageView?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.houseImageViewMaxHeight)
+            }
+            self.view.layoutIfNeeded()
+        })
     }
     
     func collapse() {

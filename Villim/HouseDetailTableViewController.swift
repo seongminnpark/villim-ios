@@ -11,6 +11,8 @@ import Nuke
 
 protocol HouseDetailTableViewDelegate {
     func onScroll(contentOffset:CGPoint)
+    func onEndDrag(contentOffset:CGPoint)
+    func onStopDecelerate(contentOffset:CGPoint)
     func launchViewController(viewController:UIViewController, animated:Bool)
 }
 
@@ -46,8 +48,9 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
         self.tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.allowsSelection = false
-        self.tableView.bounces = false
+        self.tableView.bounces = true
         self.tableView.separatorInset = UIEdgeInsets.zero
+        self.tableView.showsVerticalScrollIndicator = false
         self.tableView.contentInset =
             UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
 
@@ -254,6 +257,16 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         houseDetailDelegate.onScroll(contentOffset: scrollView.contentOffset)
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        // scrolling has stopped
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            // scrolling has stopped
+        }
     }
     
     func onPricePolicySeeMore() {
