@@ -219,7 +219,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     func onScroll(contentOffset:CGPoint) {
         
-        
         let tableView = self.houseDetailTableViewController.tableView!
         
         /* Bottom bounce */

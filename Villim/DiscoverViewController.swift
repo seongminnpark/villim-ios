@@ -407,56 +407,110 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
     
-    func onScroll(contentOffset:CGPoint) {
-        let contentVector = contentOffset.y - prevContentOffset
-        prevContentOffset = contentOffset.y
-        var newHeight = searchFilter.bounds.height - contentVector
-
-        if newHeight <= 0 {
-            newHeight = 0
-            filterOpen = false
-            navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
-            navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
-        } else if newHeight > searchFilterMaxHeight {
-            newHeight = searchFilterMaxHeight
-            filterOpen = true
-        } else {
-            filterOpen = true
-            navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
-            navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
-        }
-        searchFilter?.snp.updateConstraints { (make) -> Void in
-            make.height.equalTo(newHeight)
-        }
+//    func onScroll(contentOffset:CGPoint) {
+//        let contentVector = contentOffset.y - prevContentOffset
+//        prevContentOffset = contentOffset.y
+//        var newHeight = searchFilter.bounds.height - contentVector
+//
+//        if newHeight <= 0 {
+//            newHeight = 0
+//                    } else if newHeight > searchFilterMaxHeight {
+//            newHeight = searchFilterMaxHeight
+//            filterOpen = true
+//        } else {
+//            f
+//        }
+//        searchFilter?.snp.updateConstraints { (make) -> Void in
+//            make.height.equalTo(newHeight)
+//        }
+//    
+//    }
     
+    func onScroll(contentOffset:CGPoint) {
+        
+        let tableView = self.discoverTableViewController.tableView!
+        
+        /* Bottom bounce */
+        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height
+        if tableView.contentOffset.y >= maxContentOffset {
+            tableView.bounds.origin = CGPoint(x:0, y:maxContentOffset)
+            return
+        }
+        
+        let contentVector = contentOffset.y - prevContentOffset // > 0 if scrolling down, < 0 if scrolling up.
+        let newHeight = searchFilter.bounds.height - contentVector
+        
+        if prevContentOffset == 0 && contentVector < 0 { // Expand.
+            
+            if newHeight <= searchFilterMaxHeight {
+                
+                searchFilter?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(newHeight)
+                }
+                
+                open()
+            }
+            
+            tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+            
+        } else if prevContentOffset == 0 && contentVector > 0 { // Collapse.
+            
+            if newHeight >= 0 {
+                
+                searchFilter?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(newHeight)
+                }
+                
+                tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+                
+            } else {
+                
+                searchFilter?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(0)
+                }
+
+                collapse()
+                
+            }
+        }
+    }
+
+    
+    func open() {
+        filterOpen = true
+        navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
+        navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
+    }
+    
+    func collapse() {
+        filterOpen = false
+        navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
+        navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
     }
     
     func collapseFilter() {
-//        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: 0)
-        navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
-        navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
+        collapse()
         
         UIView.animate(withDuration: 0.5, animations: {
             self.searchFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(0)
             }
-            
-            self.searchFilter.superview?.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         })
+       
     }
     
     func openFilter() {
-//        self.navigationController!.navigationBar.barTintColor = calculateNavBarColor(offset: searchFilterMaxHeight)
-        navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
-        navbarIcon.addTarget(self, action: #selector(self.collapseFilter), for: .touchUpInside)
+        open()
         
         UIView.animate(withDuration: 0.5, animations: {
             self.searchFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.searchFilterMaxHeight)
             }
-            
-            self.searchFilter.superview?.layoutIfNeeded()
+            self.view.layoutIfNeeded()
         })
+        
+        
     }
 
 //    func calculateNavBarColor(offset:CGFloat) -> UIColor {

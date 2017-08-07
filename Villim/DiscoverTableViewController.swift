@@ -30,7 +30,7 @@ class DiscoverTableViewController: UITableViewController {
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
         self.tableView.rowHeight = 150
-        self.tableView.bounces = false
+        self.tableView.bounces = true
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.showsVerticalScrollIndicator = false
     }
