@@ -115,7 +115,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         
         switch row {
         case HouseDetailTableViewController.HOST:
-            return 90.0
+            return 70.0
         case HouseDetailTableViewController.HEADER:
             return 80.0
         case HouseDetailTableViewController.INFOGRAPHIC:
@@ -155,6 +155,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         cell.hostReviewCount.text = String(format: NSLocalizedString("review_count_format", comment: ""), house.hostReviewCount)
         
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+
         
         cell.makeConstraints()
         return cell

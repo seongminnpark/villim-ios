@@ -11,7 +11,7 @@ import Cosmos
 
 class HostInfoTableViewCell: UITableViewCell {
 
-    let hostImageSize   : CGFloat! = 50.0
+    let hostImageSize   : CGFloat! = 40.0
     
     var hostImage       : UIImageView!
     var hostName        : UILabel!
@@ -27,21 +27,21 @@ class HostInfoTableViewCell: UITableViewCell {
         self.contentView.addSubview(hostImage)
         
         hostName = UILabel()
-        hostName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        hostName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
         hostName.textColor = UIColor(red:0.02, green:0.05, blue:0.08, alpha:1.0)
         self.contentView.addSubview(hostName)
         
         hostRating = CosmosView()
         hostRating.settings.updateOnTouch = false
         hostRating.settings.fillMode = .precise
-        hostRating.settings.starSize = 15
+        hostRating.settings.starSize = 13
         hostRating.settings.starMargin = 5
         hostRating.settings.filledImage = UIImage(named: "icon_star_on")
         hostRating.settings.emptyImage = UIImage(named: "icon_star_off")
         self.contentView.addSubview(hostRating)
         
         hostReviewCount = UILabel()
-        hostReviewCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        hostReviewCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
         hostReviewCount.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
         self.contentView.addSubview(hostReviewCount)
     }

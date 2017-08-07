@@ -64,6 +64,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         /* House ImageView */
         houseImageView = UIImageView()
+        houseImageView.clipsToBounds = true
         houseImageView.contentMode = .scaleAspectFill
         self.view.addSubview(houseImageView!)
         
@@ -299,6 +300,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func collapse() {
+        navBarOpen = false
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -306,6 +308,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func open() {
+        navBarOpen = true
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white
