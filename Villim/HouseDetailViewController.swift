@@ -215,7 +215,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         let tableView = self.houseDetailTableViewController.tableView!
         
         /* Bottom bounce */
-        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height
+        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height + VillimValues.BOTTOM_BUTTON_HEIGHT
         if tableView.contentOffset.y >= maxContentOffset {
             tableView.bounds.origin = CGPoint(x:0, y:maxContentOffset)
             return
