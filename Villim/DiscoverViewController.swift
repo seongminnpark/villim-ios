@@ -178,7 +178,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.tabBarController?.tabBar.isHidden = true
         let locationFilterViewController = LocationFilterViewController()
         locationFilterViewController.locationDelegate = self
-//        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(locationFilterViewController, animated: true)
     }
     
@@ -189,7 +188,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         calendarViewController.dateSet = self.dateFilterSet
         calendarViewController.checkIn = self.checkIn
         calendarViewController.checkOut = self.checkOut
-//        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(calendarViewController, animated: true)
     }
     
@@ -397,34 +395,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
     func discoverItemSelected(position: Int) {
         let houseDetailViewController = HouseDetailViewController()
-//        houseDetailViewController.houseDetailDelegate = self
         houseDetailViewController.house = houses[position]
         houseDetailViewController.dateSet = self.dateFilterSet
         houseDetailViewController.checkIn = self.checkIn
         houseDetailViewController.checkOut = self.checkOut
         self.tabBarController?.tabBar.isHidden = true
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
-    
-//    func onScroll(contentOffset:CGPoint) {
-//        let contentVector = contentOffset.y - prevContentOffset
-//        prevContentOffset = contentOffset.y
-//        var newHeight = searchFilter.bounds.height - contentVector
-//
-//        if newHeight <= 0 {
-//            newHeight = 0
-//                    } else if newHeight > searchFilterMaxHeight {
-//            newHeight = searchFilterMaxHeight
-//            filterOpen = true
-//        } else {
-//            f
-//        }
-//        searchFilter?.snp.updateConstraints { (make) -> Void in
-//            make.height.equalTo(newHeight)
-//        }
-//    
-//    }
     
     func onScroll(contentOffset:CGPoint) {
         

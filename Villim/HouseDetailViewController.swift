@@ -19,8 +19,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     var navBarOpen = true
     
-//    var houseDetailDelegate : HouseDetailDelegate!
-    
     var house : VillimHouse! = nil
     var lastReviewContent : String = ""
     var lastReviewReviewer : String = ""
@@ -301,7 +299,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func collapse() {
-//        houseDetailDelegate.onCollapse()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -309,7 +306,6 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func open() {
-//        houseDetailDelegate.onOpen()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white
