@@ -13,18 +13,13 @@ import SwiftyJSON
 import Toaster
 import SwiftDate
 
-protocol HouseDetailDelegate {
-    func onCollapse()
-    func onOpen()
-}
-
 class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate {
     
     static let MAX_AMENITY_ICONS = 6
     
     var navBarOpen = true
     
-    var houseDetailDelegate : HouseDetailDelegate!
+//    var houseDetailDelegate : HouseDetailDelegate!
     
     var house : VillimHouse! = nil
     var lastReviewContent : String = ""
@@ -280,14 +275,13 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         if self.houseImageView.bounds.height > midPoint {
             expandHouseImage()
-            open()
         } else {
             collapseHouseImage()
-            collapse()
         }
     }
     
     func collapseHouseImage() {
+        collapse()
         UIView.animate(withDuration: 0.2, animations: {
             self.houseImageView?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.topOffset)
@@ -297,6 +291,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func expandHouseImage() {
+        open()
         UIView.animate(withDuration: 0.2, animations: {
             self.houseImageView?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.houseImageViewMaxHeight)
@@ -306,7 +301,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func collapse() {
-        houseDetailDelegate.onCollapse()
+//        houseDetailDelegate.onCollapse()
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor.black
@@ -314,7 +309,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
     func open() {
-        houseDetailDelegate.onOpen()
+//        houseDetailDelegate.onOpen()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white

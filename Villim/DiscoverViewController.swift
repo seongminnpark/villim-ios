@@ -12,7 +12,7 @@ import SwiftyJSON
 import Toaster
 import SwiftDate
 
-class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate, HouseDetailDelegate {
+class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate {
     
     var filterOpen : Bool = false
     
@@ -397,7 +397,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
     func discoverItemSelected(position: Int) {
         let houseDetailViewController = HouseDetailViewController()
-        houseDetailViewController.houseDetailDelegate = self
+//        houseDetailViewController.houseDetailDelegate = self
         houseDetailViewController.house = houses[position]
         houseDetailViewController.dateSet = self.dateFilterSet
         houseDetailViewController.checkIn = self.checkIn
@@ -512,26 +512,23 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         
         
     }
-
-//    func calculateNavBarColor(offset:CGFloat) -> UIColor {
-//        let openColorComponents = VillimValues.searchFilterOpenColor.cgColor.components
-//        let openR = openColorComponents?[0]
-//        let openG = openColorComponents?[1]
-//        let openB = openColorComponents?[2]
-//        let diff = searchFilterMaxHeight - offset
-//        let r = openR! + diff/searchFilterMaxHeight  * (1 - openR!)
-//        let g = openR! + diff/searchFilterMaxHeight  * (1 - openG!)
-//        let b = openR! + diff/searchFilterMaxHeight  * (1 - openB!)
-//        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
-//    }
     
-    
-    func onCollapse() {
-//        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+    func onEndDrag(contentOffset:CGPoint) {
+        scrollViewDidStopScrolling()
     }
     
-    func onOpen() {
-//        self.navigationController?.navigationBar.tintColor = UIColor.white
+    func onStopDecelerate(contentOffset:CGPoint) {
+        scrollViewDidStopScrolling()
+    }
+    
+    func scrollViewDidStopScrolling() {
+        let midPoint = searchFilterMaxHeight / 2
+        
+        if self.searchFilter.bounds.height > midPoint {
+            openFilter()
+        } else {
+            collapseFilter()
+        }
     }
     
     override func didReceiveMemoryWarning() {

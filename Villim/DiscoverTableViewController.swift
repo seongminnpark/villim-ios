@@ -12,6 +12,8 @@ import Nuke
 protocol DiscoverTableViewDelegate {
     func discoverItemSelected(position:Int)
     func onScroll(contentOffset:CGPoint)
+    func onEndDrag(contentOffset:CGPoint)
+    func onStopDecelerate(contentOffset:CGPoint)
 }
 
 class DiscoverTableViewController: UITableViewController {
@@ -77,6 +79,16 @@ class DiscoverTableViewController: UITableViewController {
     
     override func scrollViewDidScroll(_ scrollView: UIScrollView) {
         discoverDelegate.onScroll(contentOffset: scrollView.contentOffset)
+    }
+    
+    override func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        discoverDelegate.onStopDecelerate(contentOffset: scrollView.contentOffset)
+    }
+    
+    override func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if !decelerate {
+            discoverDelegate.onEndDrag(contentOffset: scrollView.contentOffset)
+        }
     }
 
 }
