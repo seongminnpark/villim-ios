@@ -52,16 +52,15 @@ class HouseReviewTableViewCell: UITableViewCell {
         if houseReviewCount <= 0 {
             
             let noReviewLabel : UILabel = UILabel()
-            noReviewLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 11)
+            noReviewLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
             noReviewLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
             noReviewLabel.text = NSLocalizedString("no_review", comment: "")
             self.contentView.addSubview(noReviewLabel)
             
             noReviewLabel.snp.makeConstraints { (make) -> Void in
                 make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
-                make.right.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
-                make.top.equalTo(title.snp.bottom).offset(HouseDetailTableViewController.SIDE_MARGIN * 0.5)
-                make.bottom.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN * 0.75)
+                make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
+                make.bottom.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN * 3)
             }
 
             
