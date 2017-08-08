@@ -84,7 +84,7 @@ class HouseTableViewCell: UITableViewCell {
         houseName?.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(houseThumbnail.snp.right).offset(10)
             make.right.equalToSuperview().offset(-10)
-            make.top.equalToSuperview().offset(10)
+            make.top.equalToSuperview().offset(20)
         }
         
         houseRating.snp.makeConstraints{ (make) -> Void in
@@ -100,7 +100,7 @@ class HouseTableViewCell: UITableViewCell {
         houseRent.snp.makeConstraints{ (make) -> Void in
             make.left.equalTo(houseThumbnail.snp.right).offset(10)
             make.right.equalToSuperview().offset(-10)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-20)
         }
         
         imageDim.snp.makeConstraints{ (make) -> Void in
