@@ -15,7 +15,6 @@
 		3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06801F1E017B0023E229 /* ViewController.swift */; };
 		3E0F06841F1E017B0023E229 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06821F1E017B0023E229 /* Main.storyboard */; };
 		3E0F06861F1E017B0023E229 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06851F1E017B0023E229 /* Assets.xcassets */; };
-		3E0F06891F1E017B0023E229 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */; };
 		3E0F06941F1E017B0023E229 /* VillimTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06931F1E017B0023E229 /* VillimTests.swift */; };
 		3E0F069F1F1E017B0023E229 /* VillimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F069E1F1E017B0023E229 /* VillimUITests.swift */; };
 		3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */; };
@@ -42,6 +41,7 @@
 		3E8543881F21DF9200525F7A /* VillimHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543871F21DF9200525F7A /* VillimHouse.swift */; };
 		3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E8543891F21E0F700525F7A /* VillimReservation.swift */; };
 		3E92EAD31F39C15400AC6FF3 /* ReservationSuccessTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E92EAD21F39C15400AC6FF3 /* ReservationSuccessTableViewController.swift */; };
+		3E92EAD71F3A3E5300AC6FF3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E92EAD61F3A3E5300AC6FF3 /* LaunchScreen.storyboard */; };
 		3E956A031F348DF4001B7091 /* LocationFilterSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */; };
 		3E956A051F34FA41001B7091 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A041F34FA41001B7091 /* CustomTextField.swift */; };
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
@@ -131,7 +131,6 @@
 		3E0F06801F1E017B0023E229 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		3E0F06831F1E017B0023E229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3E0F06851F1E017B0023E229 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3E0F06881F1E017B0023E229 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E0F068A1F1E017B0023E229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E0F068F1F1E017B0023E229 /* VillimTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VillimTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E0F06931F1E017B0023E229 /* VillimTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillimTests.swift; sourceTree = "<group>"; };
@@ -163,6 +162,7 @@
 		3E8543871F21DF9200525F7A /* VillimHouse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimHouse.swift; sourceTree = "<group>"; };
 		3E8543891F21E0F700525F7A /* VillimReservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimReservation.swift; sourceTree = "<group>"; };
 		3E92EAD21F39C15400AC6FF3 /* ReservationSuccessTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationSuccessTableViewController.swift; sourceTree = "<group>"; };
+		3E92EAD61F3A3E5300AC6FF3 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ../LaunchScreen.storyboard; sourceTree = "<group>"; };
 		3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterSearchField.swift; sourceTree = "<group>"; };
 		3E956A041F34FA41001B7091 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 				3E0F06B11F1E02CE0023E229 /* TabBarController.swift */,
 				3E0F06821F1E017B0023E229 /* Main.storyboard */,
 				3E0F06851F1E017B0023E229 /* Assets.xcassets */,
-				3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */,
+				3E92EAD61F3A3E5300AC6FF3 /* LaunchScreen.storyboard */,
 				3E0F068A1F1E017B0023E229 /* Info.plist */,
 				3EB051461F2AF3CE00EBBBCE /* InfoPlist.strings */,
 				3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */,
@@ -568,7 +568,7 @@
 				3ED0DE771F340E2E00C89908 /* NotoSansCJKkr-DemiLight.otf in Resources */,
 				3ED0DE781F340E2E00C89908 /* NotoSansCJKkr-Medium.otf in Resources */,
 				3ED0DE791F340E2E00C89908 /* NotoSansCJKkr-Regular.otf in Resources */,
-				3E0F06891F1E017B0023E229 /* LaunchScreen.storyboard in Resources */,
+				3E92EAD71F3A3E5300AC6FF3 /* LaunchScreen.storyboard in Resources */,
 				3E0F06C31F1E05100023E229 /* Localizable.strings in Resources */,
 				3E0F06861F1E017B0023E229 /* Assets.xcassets in Resources */,
 				3E0F06841F1E017B0023E229 /* Main.storyboard in Resources */,
@@ -854,14 +854,6 @@
 				3E0F06831F1E017B0023E229 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		3E0F06871F1E017B0023E229 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				3E0F06881F1E017B0023E229 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
