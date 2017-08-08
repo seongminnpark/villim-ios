@@ -84,12 +84,12 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         /* Add navbar logo */
         navbarLogo = UIImageView()
         /* Original image is 725 by 400, hence the 1.8 */
-        navbarLogo.frame = CGRect(x: 0, y: statusBarHeight, width: 1.8*navControllerHeight, height: navControllerHeight)
+        navbarLogo.frame = CGRect(x: 10, y: statusBarHeight, width: 1.8*navControllerHeight, height: navControllerHeight)
         navbarLogo.image = #imageLiteral(resourceName: "logo_red")
         
         let leftItem = UIBarButtonItem(customView: navbarLogo)
         let negativeSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -16
+        negativeSpacer.width = -6
         self.navigationItem.leftBarButtonItems = [negativeSpacer, leftItem]
         
         /* Set up right button items */

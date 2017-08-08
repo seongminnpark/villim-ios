@@ -189,8 +189,9 @@ class VisitDetailViewController: UIViewController {
         }
     
         if visit.visitTime != nil {
-            houseDateLabel.text = String(format: NSLocalizedString("visit_date_format", comment: ""), visit.visitTime.year, visit.visitTime.month, visit.visitTime.day,
-                                         visit.visitTime.hour, visit.visitTime.minute)
+            houseDateLabel.text = String(format: NSLocalizedString("visit_date_format", comment: ""),
+                                         visit.visitTime!.year, visit.visitTime!.month, visit.visitTime!.day,
+                                         visit.visitTime!.hour, visit.visitTime!.minute)
         }
 
     }

@@ -13,7 +13,7 @@ import SwiftyJSON
 import SwiftDate
 import Toaster
 
-class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginDelegate {
+class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginDelegate, ReservationSuccessDelegate {
 
     var house    : VillimHouse!
     var dateSet  : Bool = false
@@ -115,15 +115,27 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
             VillimKeys.KEY_CHECKOUT : VillimUtils.dateToString(date: self.checkOut)
             ] as [String : Any]
         
-        let url = VillimUtils.buildURL(endpoint: VillimKeys.RESERVE_URL)
+        let url = VillimUtils.buildURL(endpoint: VillimKeys.VISIT_REQUEST_URL)
         
         Alamofire.request(url, method:.post, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
-                    let visit = VillimVisit(visitInfo:responseData[VillimKeys.KEY_VISIT_INFO])
-                    
+                    if responseData[VillimKeys.KEY_VISIT_INFO].exists() {
+                        let visitInfo = responseData[VillimKeys.KEY_VISIT_INFO].exists() ? responseData[VillimKeys.KEY_VISIT_INFO] : nil
+                        let visit = VillimVisit(visitInfo: visitInfo)
+                        
+                        let reservationSuccessViewController = ReservationSuccessViewController()
+                        reservationSuccessViewController.visit = visit
+                        reservationSuccessViewController.successDelegate = self
+                        let newNavBar: UINavigationController = UINavigationController(rootViewController: reservationSuccessViewController)
+                        self.present(newNavBar, animated: true, completion: nil)
+                        
+                    } else {
+                        self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
+                    }
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
@@ -173,6 +185,9 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     }
     */
 
+    func onDismiss() {
+        self.dismiss(animated:true, completion:nil)
+    }
     
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)

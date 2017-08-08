@@ -310,8 +310,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
-        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetPortrait = VillimValues.BOTTOM_BUTTON_HEIGHT + 30
+        ToastView.appearance().bottomOffsetLandscape = VillimValues.BOTTOM_BUTTON_HEIGHT  + 30
         ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
         
         toast.show()

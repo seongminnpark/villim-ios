@@ -18,7 +18,7 @@ class VillimVisit {
     var visitId     : Int
     var houseId     : Int
     var visitorId   : Int
-    var visitTime   : DateInRegion
+    var visitTime   : DateInRegion?
     var visitStatus : Int
     
     init(visitInfo:JSON) {
@@ -26,10 +26,11 @@ class VillimVisit {
         self.houseId = visitInfo[VillimKeys.KEY_HOUSE_ID].exists() ? visitInfo[VillimKeys.KEY_HOUSE_ID].intValue : 0
         self.visitorId = visitInfo[VillimKeys.KEY_VISITOR_ID].exists() ? visitInfo[VillimKeys.KEY_VISITOR_ID].intValue : 0
         let timeString = visitInfo[VillimKeys.KEY_VISIT_TIME].exists() ? visitInfo[VillimKeys.KEY_VISIT_TIME].stringValue : nil
-        if timeString != nil {
+        
+        if timeString != nil && timeString != "" && timeString != "null" {
             self.visitTime = VillimUtils.dateFromString(dateString: timeString!)
         } else  {
-            self.visitTime = DateInRegion()
+            self.visitTime = nil
         }
         self.visitStatus = visitInfo[VillimKeys.KEY_VISIT_STATUS].exists() ? visitInfo[VillimKeys.KEY_VISIT_STATUS].intValue : 0
     }
