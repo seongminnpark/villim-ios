@@ -10,6 +10,7 @@ import UIKit
 
 protocol SettingsDelegate {
     func launchViewController(viewController:UIViewController, animated:Bool)
+    func showPicker(type:Int)
 }
 
 class SettingsTableViewController: UITableViewController {
@@ -93,11 +94,11 @@ class SettingsTableViewController: UITableViewController {
         switch row {
             
         case SettingsTableViewController.CURRENCY:
-            launchCurrencyDialog()
+            launchCurrencyPicker()
             break
             
         case SettingsTableViewController.LANGUAGE:
-            launchLanguageDialog()
+            launchLanguagePicker()
             break
             
         case SettingsTableViewController.LICENSE:
@@ -191,19 +192,20 @@ class SettingsTableViewController: UITableViewController {
     }
     
     /* Dialog and viewcontroller launchers */
-    func launchCurrencyDialog() {
-        
+    func launchCurrencyPicker() {
+        settingsDelegate.showPicker(type: SettingsTableViewController.CURRENCY)
     }
     
-    func launchLanguageDialog() {
-        
+    func launchLanguagePicker() {
+        settingsDelegate.showPicker(type: SettingsTableViewController.LANGUAGE)
     }
-    
     
     func launchLicenseViewController() {
         let licenseViewController = LicenseVIewController()
         settingsDelegate.launchViewController(viewController: licenseViewController, animated: true)
     }
+    
+    
 }
 
 

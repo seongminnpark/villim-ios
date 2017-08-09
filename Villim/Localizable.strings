@@ -182,6 +182,7 @@
 
 "edit" = "수정";
 "done" = "완료";
+"cancel" = "취소";
 
 "phone_number" = "전화번호";
 "city_of_residence" = "거주 도시";

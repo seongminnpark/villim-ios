@@ -332,6 +332,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
         errorMessage.isHidden = true
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
         VillimUtils.hideLoadingIndicator()

@@ -35,6 +35,8 @@ class VillimValues {
     
     public static let loaderSize           : CGFloat = 50.0
     
+    public static let pickerHeight         : CGFloat = 150.0
+    
     
     /* Colors */
     
