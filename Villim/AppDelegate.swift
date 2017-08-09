@@ -16,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        // Manually set push and vibration settings to true at first launch.
+        if !VillimSession.getNotFirstLaunch() {
+            VillimSession.setNotFirstLaunch(notFirstLaunch: true)
+            VillimSession.setPushPref(pushPref: true)
+            VillimSession.setVibrationOnUnlock(vibrationPref: true)
+        }
+        
         GMSServices.provideAPIKey("AIzaSyCKOyK9ajX3YahW1PE23EGcpC1nthF541M")
         
         UITabBar.appearance().tintColor = VillimValues.themeColor

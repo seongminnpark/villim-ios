@@ -10,9 +10,21 @@ import Foundation
 
 class VillimSession {
     
+    /* Device specific keys */
     private static let KEY_LOGGED_IN = "logged_in";
+    private static let KEY_VIBRATION_ON_UNLOCK = "vibration_on_unlock";
+    private static let KEY_NOT_FIRST_LAUNCH = "not_first_launch";
     
     private static let defaults = UserDefaults.standard
+    
+    /* First launch */
+    public static func getNotFirstLaunch() -> Bool {
+        return defaults.bool(forKey: KEY_NOT_FIRST_LAUNCH)
+    }
+    
+    public static func setNotFirstLaunch(notFirstLaunch:Bool) {
+        defaults.set(notFirstLaunch, forKey: KEY_NOT_FIRST_LAUNCH)
+    }
     
     /* Logged in */
     public static func setLoggedIn(loggedIn:Bool) {
@@ -100,6 +112,15 @@ class VillimSession {
     
     public static func getPushPref() -> Bool {
         return defaults.bool(forKey: VillimKeys.KEY_PUSH_NOTIFICATIONS)
+    }
+    
+    /* Vibrations */
+    public static func setVibrationOnUnlock(vibrationPref:Bool) {
+        defaults.set(vibrationPref, forKey: KEY_VIBRATION_ON_UNLOCK)
+    }
+    
+    public static func getVibrationOnUnlock() -> Bool {
+        return defaults.bool(forKey: KEY_VIBRATION_ON_UNLOCK)
     }
     
     /* Currency */

@@ -10,7 +10,7 @@ import Foundation
 
 class VillimKeys {
     /* Version Info */
-    static let APP_VERSION = "0.8.1";
+    static let APP_VERSION = "1.0.0";
     
     /* Server constants */
     static let SERVER_SCHEME = "http";

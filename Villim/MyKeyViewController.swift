@@ -166,11 +166,13 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_OPEN_AUTHORIZED].boolValue && responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     self.showErrorMessage(message: NSLocalizedString("doorlock_open_success", comment: ""))
-                    if #available(iOS 10, *) {
-                        let generator = UINotificationFeedbackGenerator()
-                        generator.notificationOccurred(.success)
-                    } else {
-                        // use another api
+                    if VillimSession.getVibrationOnUnlock() {
+                        if #available(iOS 10, *) {
+                            let generator = UINotificationFeedbackGenerator()
+                            generator.notificationOccurred(.success)
+                        } else {
+                            // use another api
+                        }
                     }
                     
                 } else {

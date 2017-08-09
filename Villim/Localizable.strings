@@ -229,4 +229,12 @@
 
 "no_date_set" = "날짜 미정";
 
+"korean" = "한국어";
+"english" = "English";
 
+"push_notifications" = "푸쉬 알람";
+"vibration_on_doorlock_unlock" = "도어락 잠금 해제 시 진동";
+"currency" = "통화";
+"language" = "언어";
+"version_information" = "버전 정보";
+"license_information" = "라이센스";

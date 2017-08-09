@@ -16,11 +16,11 @@ protocol ReservationTableViewDelegate {
 
 class ReservationTableViewController: UITableViewController, CalendarDelegate {
     
-    static let HEADER              : Int! = 0
-    static let DATES               : Int! = 1
-    static let NUMBER_OF_NIGHTS    : Int! = 2
-    static let PRICE               : Int! = 3
-    static let CANCELLATION_POLICY : Int! = 4
+    static let HEADER              : Int = 0
+    static let DATES               : Int = 1
+    static let NUMBER_OF_NIGHTS    : Int = 2
+    static let PRICE               : Int = 3
+    static let CANCELLATION_POLICY : Int = 4
     
     static let SIDE_MARGIN : CGFloat = 20.0
     

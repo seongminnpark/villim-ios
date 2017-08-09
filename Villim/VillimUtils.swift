@@ -82,6 +82,14 @@ class VillimUtils {
         default: return full ? "KRW (₩)" : "W"
         }
     }
+    
+    public static func languageToString(code:Int) -> String {
+        switch code {
+        case 0: return  NSLocalizedString("korean", comment: "")
+        case 1: return  NSLocalizedString("english", comment: "")
+        default: return NSLocalizedString("korean", comment: "")
+        }
+    }
  
     public static func getCurrencyString(price:Int) -> String{
         let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0

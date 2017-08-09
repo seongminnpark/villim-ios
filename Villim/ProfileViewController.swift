@@ -197,9 +197,8 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     }
     
     func launchSettingsViewController() {
-        let webViewController = WebViewController()
-        webViewController.urlString = VillimKeys.TERMS_OF_SERVICE_URL
-        self.navigationController?.pushViewController(webViewController, animated: true)
+        let settingsViewController = SettingsViewController()
+        self.navigationController?.pushViewController(settingsViewController, animated: true)
     }
     
     func launchPrivacyPolicyWebView() {
