@@ -239,3 +239,5 @@
 "language" = "언어";
 "version_information" = "버전 정보";
 "license_information" = "라이센스 정보";
+
+"close" = "닫기";

@@ -13,6 +13,7 @@ protocol HouseDetailTableViewDelegate {
     func onScroll(contentOffset:CGPoint)
     func onEndDrag(contentOffset:CGPoint)
     func onStopDecelerate(contentOffset:CGPoint)
+    func launchHouseGallery()
     func launchViewController(viewController:UIViewController, animated:Bool)
 }
 
@@ -269,7 +270,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
             houseDetailDelegate.onEndDrag(contentOffset: scrollView.contentOffset)
         }
     }
-    
+
     func onPricePolicySeeMore() {
         let pricePolicyViewController = PricePolicyViewController()
         pricePolicyViewController.cleaningFee = house.cleaningFee

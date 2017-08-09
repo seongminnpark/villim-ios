@@ -12,6 +12,7 @@ import Alamofire
 import SwiftyJSON
 import Toaster
 import SwiftDate
+import Lightbox
 
 class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate {
     
@@ -66,6 +67,9 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         houseImageView = UIImageView()
         houseImageView.clipsToBounds = true
         houseImageView.contentMode = .scaleAspectFill
+        houseImageView.isUserInteractionEnabled = true
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.launchHouseGallery))
+        houseImageView.addGestureRecognizer(tapGestureRecognizer)
         self.view.addSubview(houseImageView!)
         
         /* House Table View */
@@ -317,6 +321,24 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     }
     
 
+    func launchHouseGallery() {
+        var images = [LightboxImage]()
+        
+        for picUrl in house.housePicUrls {
+            let url = URL(string: picUrl)
+            if url != nil {
+                images.append(LightboxImage(imageURL: url!))
+            }
+        }
+        
+        let controller = LightboxController(images: images)
+//        controller.pageDelegate = self
+//        controller.dismissalDelegate = self
+        controller.dynamicBackground = true
+        LightboxConfig.CloseButton.text = NSLocalizedString("close", comment: "")
+        present(controller, animated: true, completion: nil)
+    }
+    
     func launchViewController(viewController:UIViewController, animated:Bool) {
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.pushViewController(viewController, animated: animated)
