@@ -8,22 +8,27 @@
 
 import UIKit
 
-class SettingsViewController: UIViewController {
+class SettingsViewController: UIViewController, SettingsDelegate {
 
     var tableviewController : SettingsTableViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         /* Set up navigation bar */
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
-        
         self.title = NSLocalizedString("settings", comment: "")
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         /* Tableview controller */
         tableviewController = SettingsTableViewController()
+        tableviewController.settingsDelegate = self
         self.view.addSubview(tableviewController.view)
         
         makeConstraints()
@@ -51,14 +56,8 @@ class SettingsViewController: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func launchViewController(viewController:UIViewController, animated:Bool) {
+        self.navigationController?.pushViewController(viewController, animated:animated)
     }
-    */
 
 }

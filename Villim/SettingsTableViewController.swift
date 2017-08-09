@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol SettingsDelegate {
+    func launchViewController(viewController:UIViewController, animated:Bool)
+}
+
 class SettingsTableViewController: UITableViewController {
 
     static let PUSH      : Int = 0
@@ -16,6 +20,8 @@ class SettingsTableViewController: UITableViewController {
     static let LANGUAGE  : Int = 3
     static let VERSION   : Int = 4
     static let LICENSE   : Int = 5
+    
+    var settingsDelegate : SettingsDelegate!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +52,6 @@ class SettingsTableViewController: UITableViewController {
         return 6
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-    }
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         
@@ -80,6 +82,31 @@ class SettingsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        let row = indexPath.row
+        
+        switch row {
+            
+        case SettingsTableViewController.CURRENCY:
+            launchCurrencyDialog()
+            break
+            
+        case SettingsTableViewController.LANGUAGE:
+            launchLanguageDialog()
+            break
+            
+        case SettingsTableViewController.LICENSE:
+            launchLicenseViewController()
+            break
+            
+        default:
+            break
+        }
     }
     
     
@@ -114,9 +141,6 @@ class SettingsTableViewController: UITableViewController {
         cell.button.setTitle(VillimUtils.currencyToString(code: VillimSession.getCurrencyPref(), full: true), for: .normal)
         cell.button.isEnabled = false
         
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.launchCurrencyDialog))
-        cell.addGestureRecognizer(tapGestureRecognizer)
-        
         cell.makeConstraints()
         return cell
     }
@@ -127,9 +151,6 @@ class SettingsTableViewController: UITableViewController {
         cell.title.text = NSLocalizedString("language", comment: "")
         cell.button.setTitle(VillimUtils.languageToString(code: VillimSession.getLanguagePref()), for: .normal)
         cell.button.isEnabled = false
-        
-        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.launchLanguageDialog))
-        cell.addGestureRecognizer(tapGestureRecognizer)
         
         cell.makeConstraints()
         return cell
@@ -160,20 +181,28 @@ class SettingsTableViewController: UITableViewController {
         return cell
     }
     
-    func launchCurrencyDialog() {
-        print("yaay")
-    }
-    
-    func launchLanguageDialog() {
-        print("ho")
-    }
-    
+    /* Switch listeners */
     func onPushChanged(uiSwitch : UISwitch!) {
         VillimSession.setPushPref(pushPref: uiSwitch.isOn)
     }
     
     func onVibrationChanged(uiSwitch : UISwitch!) {
         VillimSession.setVibrationOnUnlock(vibrationPref: uiSwitch.isOn)
+    }
+    
+    /* Dialog and viewcontroller launchers */
+    func launchCurrencyDialog() {
+        
+    }
+    
+    func launchLanguageDialog() {
+        
+    }
+    
+    
+    func launchLicenseViewController() {
+        let licenseViewController = LicenseVIewController()
+        settingsDelegate.launchViewController(viewController: licenseViewController, animated: true)
     }
 }
 

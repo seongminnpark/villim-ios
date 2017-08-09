@@ -45,6 +45,7 @@
 		3E92EAD91F3A9C7900AC6FF3 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E92EAD81F3A9C7900AC6FF3 /* SettingsViewController.swift */; };
 		3E92EADB1F3AA0F400AC6FF3 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E92EADA1F3AA0F400AC6FF3 /* SettingsTableViewController.swift */; };
 		3E92EADD1F3AC8F100AC6FF3 /* SwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E92EADC1F3AC8F100AC6FF3 /* SwitchTableViewCell.swift */; };
+		3E92EADF1F3AD5A500AC6FF3 /* LicenseVIewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E92EADE1F3AD5A500AC6FF3 /* LicenseVIewController.swift */; };
 		3E956A031F348DF4001B7091 /* LocationFilterSearchField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */; };
 		3E956A051F34FA41001B7091 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E956A041F34FA41001B7091 /* CustomTextField.swift */; };
 		3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */; };
@@ -169,6 +170,7 @@
 		3E92EAD81F3A9C7900AC6FF3 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3E92EADA1F3AA0F400AC6FF3 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		3E92EADC1F3AC8F100AC6FF3 /* SwitchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchTableViewCell.swift; sourceTree = "<group>"; };
+		3E92EADE1F3AD5A500AC6FF3 /* LicenseVIewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LicenseVIewController.swift; sourceTree = "<group>"; };
 		3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationFilterSearchField.swift; sourceTree = "<group>"; };
 		3E956A041F34FA41001B7091 /* CustomTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		3E974C7F1F21D7C6001F6456 /* HouseTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HouseTableViewCell.swift; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 				3EDC276C1F35329A00228C1F /* AddPhoneViewController.swift */,
 				3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */,
 				3E92EAD81F3A9C7900AC6FF3 /* SettingsViewController.swift */,
+				3E92EADE1F3AD5A500AC6FF3 /* LicenseVIewController.swift */,
 				3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
 				3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */,
@@ -772,6 +775,7 @@
 				3EDC13A11F2C390400BA4077 /* FindPasswordSuccessViewController.swift in Sources */,
 				3EDC13A51F2CD4F400BA4077 /* ReviewHouseViewController.swift in Sources */,
 				3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */,
+				3E92EADF1F3AD5A500AC6FF3 /* LicenseVIewController.swift in Sources */,
 				3E5F98841F2E6D0F003AAF8F /* CalendarViewController.swift in Sources */,
 				3EDC276F1F3537B200228C1F /* VerifyPhoneViewController.swift in Sources */,
 				3EB051451F2A780800EBBBCE /* SlideButton.swift in Sources */,
