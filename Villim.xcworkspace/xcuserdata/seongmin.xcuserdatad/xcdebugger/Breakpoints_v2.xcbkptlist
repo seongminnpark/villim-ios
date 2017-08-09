@@ -85,53 +85,5 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Villim/SettingsViewController.swift"
-            timestampString = "523964048.42561"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "205"
-            endingLineNumber = "205"
-            landmarkName = "hidePicker()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Villim.SettingsViewController.hidePicker () -&gt; ()"
-                  moduleName = "Villim"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seongmin/Villim/Villim/SettingsViewController.swift"
-                  timestampString = "523956381.048282"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "182"
-                  endingLineNumber = "182"
-                  offsetFromSymbolStart = "15">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Villim.SettingsViewController.(hidePicker () -&gt; ()).(closure #1)"
-                  moduleName = "Villim"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seongmin/Villim/Villim/SettingsViewController.swift"
-                  timestampString = "523956381.050311"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "183"
-                  endingLineNumber = "183"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>

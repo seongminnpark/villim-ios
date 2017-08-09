@@ -202,10 +202,13 @@ class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDe
     }
     
     func hidePicker() {
-        UIView.animate(withDuration: 0.3, animations: {
-            self.picker.alpha = 0
-            self.toolBar.alpha = 0
-        })
+        if self.picker != nil && self.toolBar != nil {
+            UIView.animate(withDuration: 0.3, animations: {
+                self.picker.alpha = 0
+                self.toolBar.alpha = 0
+            })
+        }
+
         if picker != nil {
             picker.removeFromSuperview()
         }
