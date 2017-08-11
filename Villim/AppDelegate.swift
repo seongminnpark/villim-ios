@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Manually set push and vibration settings to true at first launch.
+        Fabric.with([Crashlytics.self])
+        
         if !VillimSession.getNotFirstLaunch() {
             VillimSession.setNotFirstLaunch(notFirstLaunch: true)
             VillimSession.setPushPref(pushPref: true)

@@ -49,7 +49,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = VillimValues.backgroundColor
+        self.view.backgroundColor = UIColor.white
         navControllerHeight = self.navigationController!.navigationBar.frame.height
         statusBarHeight = UIApplication.shared.statusBarFrame.height
         topOffset = navControllerHeight + statusBarHeight

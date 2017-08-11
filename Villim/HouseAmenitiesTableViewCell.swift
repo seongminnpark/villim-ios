@@ -26,7 +26,7 @@ class HouseAmenitiesTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.backgroundColor = VillimValues.backgroundColor
+        self.contentView.backgroundColor = UIColor.white
         
         title = UILabel()
         title.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)

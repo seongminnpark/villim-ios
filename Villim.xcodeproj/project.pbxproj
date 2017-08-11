@@ -471,6 +471,7 @@
 				3E0F06791F1E017B0023E229 /* Resources */,
 				F71F06DD6791BB688C799E59 /* [CP] Embed Pods Frameworks */,
 				8857A6EBBFCD5C98623671AB /* [CP] Copy Pods Resources */,
+				3E92EAE21F3B1B1E00AC6FF3 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -619,6 +620,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VillimTests/Pods-VillimTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		3E92EAE21F3B1B1E00AC6FF3 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 133e2c4df8b5edde7dd7f4a6a4e8adbb6cfba09d d95dc6a7a709324faec52096c679924579da75456d95ea285e8c69a947f9fe44";
 		};
 		4EC2D0F082A5B31B8D9C86FC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -980,7 +994,7 @@
 				INFOPLIST_FILE = Villim/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.villim;
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.deploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
@@ -997,7 +1011,7 @@
 				INFOPLIST_FILE = Villim/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.villim;
+				PRODUCT_BUNDLE_IDENTIFIER = net.villim.deploy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;

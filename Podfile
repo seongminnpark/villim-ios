@@ -18,6 +18,9 @@ target 'Villim' do
   pod 'PhoneNumberKit', '~> 1.3'
   pod 'pop', '~> 1.0'
   pod 'Lightbox'
+  
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'VillimTests' do
     inherit! :search_paths
