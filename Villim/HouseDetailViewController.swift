@@ -39,11 +39,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     var houseDetailTableViewController : HouseDetailTableViewController!
     var houseImageView : UIImageView!
-    var leftButton : UIButton!
-    var leftButtonStackView : UIStackView!
-    var leftButtonImageView : UIImageView!
-    var leftButtonLabel     : UILabel!
-    var rightButton : UIButton!
+    var bottomBar : UIView!
+    var bookButton : UIButton!
+    var priceValueLabel : UILabel!
+    var priceUnitLabel : UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,34 +78,51 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.view.addSubview(houseDetailTableViewController.view)
         
         /* Bottom Buttons */
-        leftButton = UIButton()
-        leftButton.setBackgroundColor(color: VillimValues.darkBottomButtonColor, forState: .normal)
-        self.view.addSubview(leftButton)
+        bottomBar = UIView()
+        bottomBar.backgroundColor = UIColor.white
+        self.view.addSubview(bottomBar)
         
-        leftButtonStackView = UIStackView()
-        leftButtonStackView.axis = UILayoutConstraintAxis.horizontal
-        leftButtonStackView.distribution = UIStackViewDistribution.fillProportionally
-        leftButtonStackView.alignment = UIStackViewAlignment.center
-        leftButtonStackView.spacing = 10.0
+        bookButton = UIButton()
+        bookButton.setTitleColor(UIColor.white, for: .normal)
+        bookButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+        bookButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
+        bookButton.setTitle(NSLocalizedString("book", comment: ""), for: .normal)
+        bottomBar.addSubview(bookButton)
         
-        leftButtonImageView = UIImageView()
-        leftButtonImageView.image = #imageLiteral(resourceName: "icon_coin")
-        leftButtonStackView.addArrangedSubview(leftButtonImageView)
+        priceValueLabel = UILabel()
+        priceUnitLabel = UILabel()
+        bottomBar.addSubview(priceValueLabel)
+        bottomBar.addSubview(priceUnitLabel)
         
-        leftButtonLabel = UILabel()
-        leftButtonLabel.textColor = UIColor.white
-        leftButtonLabel.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
-        leftButtonStackView.addArrangedSubview(leftButtonLabel)
-        
-        leftButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
-        leftButton.addSubview(leftButtonStackView)
-    
-        rightButton = UIButton.init(type: .custom)
-        rightButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
-        rightButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
-        rightButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
-        rightButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
-        self.view.addSubview(rightButton)
+//        
+//        leftButton = UIButton()
+//        leftButton.setBackgroundColor(color: VillimValues.darkBottomButtonColor, forState: .normal)
+//        self.view.addSubview(leftButton)
+//        
+//        leftButtonStackView = UIStackView()
+//        leftButtonStackView.axis = UILayoutConstraintAxis.horizontal
+//        leftButtonStackView.distribution = UIStackViewDistribution.fillProportionally
+//        leftButtonStackView.alignment = UIStackViewAlignment.center
+//        leftButtonStackView.spacing = 10.0
+//        
+//        leftButtonImageView = UIImageView()
+//        leftButtonImageView.image = #imageLiteral(resourceName: "icon_coin")
+//        leftButtonStackView.addArrangedSubview(leftButtonImageView)
+//        
+//        leftButtonLabel = UILabel()
+//        leftButtonLabel.textColor = UIColor.white
+//        leftButtonLabel.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
+//        leftButtonStackView.addArrangedSubview(leftButtonLabel)
+//        
+//        leftButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
+//        leftButton.addSubview(leftButtonStackView)
+//    
+//        rightButton = UIButton.init(type: .custom)
+//        rightButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
+//        rightButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
+//        rightButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
+//        rightButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
+//        self.view.addSubview(rightButton)
 
         makeConstraints()
         
@@ -135,24 +151,28 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         let leftButtonWidth = screenWidth * 0.63
         let rightButtonWidth = screenWidth * 0.37
         
-        leftButton.snp.makeConstraints{ (make) -> Void in
-            make.width.equalTo(leftButtonWidth)
+        bottomBar.snp.makeConstraints{ (make) -> Void in
+            make.width.equalToSuperview()
             make.height.equalTo(VillimValues.BOTTOM_BUTTON_HEIGHT)
             make.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
         
-        leftButtonStackView.snp.makeConstraints{ (make) -> Void in
+        bookButton.snp.makeConstraints{ (make) -> Void in
+            make.right.equalToSuperview().offset(-VillimValues.sideMargin)
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
         }
         
-        rightButton.snp.makeConstraints{ (make) -> Void in
-            make.width.equalTo(rightButtonWidth)
-            make.height.equalTo(VillimValues.BOTTOM_BUTTON_HEIGHT)
-            make.right.equalToSuperview()
-            make.bottom.equalToSuperview()
+        priceValueLabel.snp.makeConstraints{ (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.centerY.equalToSuperview()
+        }
+        
+        priceUnitLabel.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(priceValueLabel.snp.right).offset(10)
+            make.centerY.equalToSuperview()
         }
     }
     
@@ -211,7 +231,20 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         Nuke.loadImage(with: url!, into: self.houseImageView)
         
         /* Populate bottom button */
-        leftButtonLabel.text = VillimUtils.getRentString(rent: house.ratePerMonth)
+        if dateSet {
+            let (base, util) = VillimUtils.calculatePrice(checkIn: checkIn, checkOut: checkOut, rent: house.ratePerMonth)
+            priceValueLabel.text = String(base+util)
+            
+            let dateFormatString = NSLocalizedString("date_format_client", comment: "")
+            let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)
+            let checkOutString = String(format:dateFormatString, checkOut.month, checkOut.day)
+            priceUnitLabel.text =
+                String(format:NSLocalizedString("date_filter_format", comment: ""), checkInString, checkOutString)
+            
+        } else {
+            priceValueLabel.text = VillimUtils.getCurrencyString(price: house.ratePerNight)
+            priceUnitLabel.text = NSLocalizedString("per_night", comment: "")
+        }
         
     }
     
