@@ -24,7 +24,7 @@ class LocationSuggestionTableViewCell: UITableViewCell {
         self.contentView.addSubview(locationName)
         
         locationDetail = UILabel()
-        locationDetail.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
+        locationDetail.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12        )
         locationDetail.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(locationDetail)
         

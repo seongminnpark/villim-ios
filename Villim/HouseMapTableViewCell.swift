@@ -15,6 +15,8 @@ protocol MapDelegate {
 
 class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
 
+    let markerSize = 80.0
+    
     var mapDelegate : MapDelegate!
     
     var container : UIView!
@@ -44,8 +46,16 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
         container.addSubview(mapView)
         
         // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        let marker = GMSMarker(position: position)
+        
+        /* Create custom marker iamge. */
+        let circle = UIImage(named: "custom_marker")!
+        let markerView = UIImageView(image: circle)
+        markerView.frame = CGRect(x:0, y:0, width:markerSize, height:markerSize)
+        markerView.clipsToBounds = false
+        marker.iconView = markerView
+        marker.tracksViewChanges = true
         marker.map = mapView
         
         makeConstraints()
