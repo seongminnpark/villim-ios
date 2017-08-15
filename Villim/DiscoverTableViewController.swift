@@ -31,7 +31,7 @@ class DiscoverTableViewController: UITableViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
         self.tableView.tableFooterView = UIView(frame: CGRect.zero) // Get rid of unnecessary cells stretching to the bottom.
-        self.tableView.rowHeight = 150
+        self.tableView.rowHeight = 330
         self.tableView.bounces = true
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.showsVerticalScrollIndicator = false
@@ -58,7 +58,7 @@ class DiscoverTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let house = houses[indexPath.row]
         
-        let cell : HouseTableViewCell = HouseTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"cell")
+        let cell : DiscoverTableViewCell = DiscoverTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"discover")
         
         let url = URL(string: house.houseThumbnailUrl)
         if url != nil {
@@ -66,8 +66,8 @@ class DiscoverTableViewController: UITableViewController {
         }
         cell.houseName.text = house.houseName
         cell.houseRating.rating = Double(house.houseRating)
-        cell.houseReviewCount.text = String(format:NSLocalizedString("review_count_format", comment: ""), house.houseReviewCount)
-        cell.houseRent.text = VillimUtils.getRentString(rent: house.ratePerMonth)
+        cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
+        cell.dailyRent.text = VillimUtils.getRentString(rent: house.ratePerNight, month: false)
         cell.makeConstraints()
         return cell
     }

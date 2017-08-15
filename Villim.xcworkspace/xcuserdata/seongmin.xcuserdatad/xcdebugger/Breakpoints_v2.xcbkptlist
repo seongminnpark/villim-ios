@@ -92,11 +92,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/HouseDetailViewController.swift"
-            timestampString = "524363411.096161"
+            timestampString = "524474368.870581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "368"
-            endingLineNumber = "368"
+            startingLineNumber = "338"
+            endingLineNumber = "338"
             landmarkName = "launchHouseGallery()"
             landmarkType = "7">
          </BreakpointContent>

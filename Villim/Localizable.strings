@@ -158,6 +158,7 @@
 
 "currency_format" = "%@ %@";
 "monthly_rent_format" = "%@ %@ / 월";
+"daily_rent_format" = "%@ %@ / 박";
 
 "request_visit" = "방문 신청하기";
 
@@ -242,4 +243,5 @@
 
 "close" = "닫기";
 
-"per_night" = "/밤";
+"per_night" = " / 박";
+

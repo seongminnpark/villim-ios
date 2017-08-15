@@ -64,7 +64,7 @@ class VisitTableViewController: UITableViewController {
         cell.houseName.text = house.houseName
         cell.houseRating.rating = Double(house.houseRating)
         cell.houseReviewCount.text = String(format:NSLocalizedString("review_count_format", comment: ""), house.houseReviewCount)
-        cell.houseRent.text = VillimUtils.getRentString(rent: house.ratePerMonth)
+        cell.houseRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month:true)
         cell.makeConstraints()
         return cell
     }

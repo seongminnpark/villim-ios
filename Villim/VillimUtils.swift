@@ -102,15 +102,18 @@ class VillimUtils {
                       VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
     }
     
-    public static func getRentString(rent:Int) -> String {
+    /* Formats price into [int]/month or [int]/day */
+    public static func getRentString(rent:Int, month:Bool) -> String {
         let currencyCode = VillimSession.getLoggedIn() ? VillimSession.getCurrencyPref() : 0
         
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
         let formattedNumber = numberFormatter.string(from: NSNumber(value:rent))
         
-        return String(format:NSLocalizedString("monthly_rent_format", comment: ""),
-                      VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
+        let priceFormat = month ? NSLocalizedString("monthly_rent_format", comment: "") :
+                                    NSLocalizedString("daily_rent_format", comment: "")
+        
+        return String(format:priceFormat, VillimUtils.currencyToString(code: currencyCode, full: false), formattedNumber!)
     }
     
     // Calculates and returns (base price, utitlity) in a tuple.
