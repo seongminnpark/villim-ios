@@ -50,13 +50,13 @@ class DiscoverTableViewCell: UITableViewCell {
         container.addSubview(houseRating)
         
         monthlyRent = UILabel()
-        monthlyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        monthlyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
         monthlyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         container.addSubview(monthlyRent)
         
         dailyRent = UILabel()
-        dailyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
-        dailyRent.textColor = UIColor(red:0.67, green:0.67, blue:0.67, alpha:1.0)
+        dailyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        dailyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         container.addSubview(dailyRent)
         
         imageDim = UIView()
@@ -83,14 +83,15 @@ class DiscoverTableViewCell: UITableViewCell {
             make.left.equalToSuperview()
         }
         
-        houseName?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
+        houseRating.snp.makeConstraints{ (make) -> Void in
+            make.right.equalToSuperview()
             make.top.equalTo(houseThumbnail.snp.bottom).offset(10)
         }
         
-        houseRating.snp.makeConstraints{ (make) -> Void in
-            make.right.equalToSuperview()
-            make.centerY.equalTo(houseName)
+        houseName?.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview()
+            make.right.equalTo(houseRating.snp.left).offset(10)
+            make.centerY.equalTo(houseRating)
         }
         
         monthlyRent.snp.makeConstraints{ (make) -> Void in
@@ -100,7 +101,7 @@ class DiscoverTableViewCell: UITableViewCell {
         
         dailyRent.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview()
-            make.top.equalTo(monthlyRent.snp.bottom)
+            make.top.equalTo(monthlyRent.snp.bottom).offset(5)
         }
         
         imageDim.snp.makeConstraints{ (make) -> Void in
