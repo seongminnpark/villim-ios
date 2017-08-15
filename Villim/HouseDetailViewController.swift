@@ -83,6 +83,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.view.addSubview(bottomBar)
         
         bookButton = UIButton()
+        bookButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 17)
         bookButton.setTitleColor(UIColor.white, for: .normal)
         bookButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         bookButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
@@ -90,40 +91,12 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         bottomBar.addSubview(bookButton)
         
         priceValueLabel = UILabel()
+        priceValueLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
         priceUnitLabel = UILabel()
+        priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Regular2w", size: 17)
         bottomBar.addSubview(priceValueLabel)
         bottomBar.addSubview(priceUnitLabel)
         
-//        
-//        leftButton = UIButton()
-//        leftButton.setBackgroundColor(color: VillimValues.darkBottomButtonColor, forState: .normal)
-//        self.view.addSubview(leftButton)
-//        
-//        leftButtonStackView = UIStackView()
-//        leftButtonStackView.axis = UILayoutConstraintAxis.horizontal
-//        leftButtonStackView.distribution = UIStackViewDistribution.fillProportionally
-//        leftButtonStackView.alignment = UIStackViewAlignment.center
-//        leftButtonStackView.spacing = 10.0
-//        
-//        leftButtonImageView = UIImageView()
-//        leftButtonImageView.image = #imageLiteral(resourceName: "icon_coin")
-//        leftButtonStackView.addArrangedSubview(leftButtonImageView)
-//        
-//        leftButtonLabel = UILabel()
-//        leftButtonLabel.textColor = UIColor.white
-//        leftButtonLabel.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
-//        leftButtonStackView.addArrangedSubview(leftButtonLabel)
-//        
-//        leftButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
-//        leftButton.addSubview(leftButtonStackView)
-//    
-//        rightButton = UIButton.init(type: .custom)
-//        rightButton.setTitle(NSLocalizedString("request_visit", comment: ""), for: .normal)
-//        rightButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
-//        rightButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Medium", size: 17)
-//        rightButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
-//        self.view.addSubview(rightButton)
-
         makeConstraints()
         
         sendHouseInfoRequest()
