@@ -20,6 +20,8 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     var displayBottomBar = false
     
+    let bookButtonSize = 120.0
+    
     var navBarOpen = true
     
     var house : VillimHouse! = nil
@@ -81,21 +83,25 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         /* Bottom Buttons */
         bottomBar = UIView()
-        bottomBar.backgroundColor = UIColor.white
+        bottomBar.backgroundColor = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0)
         self.view.addSubview(bottomBar)
         
         bookButton = UIButton()
         bookButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 17)
+        bookButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         bookButton.setTitleColor(UIColor.white, for: .normal)
         bookButton.setBackgroundColor(color: VillimValues.themeColor, forState: .normal)
         bookButton.setBackgroundColor(color: VillimValues.themeColorHighlighted, forState: .highlighted)
         bookButton.setTitle(NSLocalizedString("book", comment: ""), for: .normal)
+        bookButton.addTarget(self, action: #selector(self.launchReservationViewController), for: .touchUpInside)
         bottomBar.addSubview(bookButton)
         
         priceValueLabel = UILabel()
         priceValueLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        priceValueLabel.textColor = UIColor.black
         priceUnitLabel = UILabel()
-        priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Regular2w", size: 17)
+        priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        priceUnitLabel.textColor = UIColor.black
         bottomBar.addSubview(priceValueLabel)
         bottomBar.addSubview(priceUnitLabel)
         
@@ -142,6 +148,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
             make.top.equalToSuperview()
             make.bottom.equalToSuperview()
             make.centerY.equalToSuperview()
+            make.width.equalTo(bookButtonSize)
         }
         
         priceValueLabel.snp.makeConstraints{ (make) -> Void in
@@ -150,7 +157,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         }
         
         priceUnitLabel.snp.makeConstraints{ (make) -> Void in
-            make.left.equalTo(priceValueLabel.snp.right).offset(10)
+            make.left.equalTo(priceValueLabel.snp.right)
             make.centerY.equalToSuperview()
         }
     }
