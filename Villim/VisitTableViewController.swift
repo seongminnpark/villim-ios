@@ -31,7 +31,7 @@ class VisitTableViewController: UITableViewController {
         
         /* Initialize tableview */
         self.tableView = UITableView()
-        self.tableView.register(HouseTableViewCell.self, forCellReuseIdentifier: "cell")
+        self.tableView.register(VisitListTableViewCell.self, forCellReuseIdentifier: "visit")
         self.tableView.backgroundColor = VillimValues.backgroundColor
         self.tableView.delegate = self
         self.tableView.dataSource = self
@@ -72,7 +72,7 @@ class VisitTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell : VisitListTableViewCell = VisitListTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"cell")
+        let cell : VisitListTableViewCell = VisitListTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"visit")
         
         var house : VillimHouse
         var visit : VillimVisit

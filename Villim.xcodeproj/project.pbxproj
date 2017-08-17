@@ -30,6 +30,9 @@
 		3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */; };
 		3E0F06C31F1E05100023E229 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06C21F1E05100023E229 /* Localizable.strings */; };
 		3E5043EC1F4546960064B773 /* VisitListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043EB1F4546960064B773 /* VisitListTableViewCell.swift */; };
+		3E5043EE1F45ABD10064B773 /* MyRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043ED1F45ABD10064B773 /* MyRoomViewController.swift */; };
+		3E5043F01F45B0560064B773 /* MyRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043EF1F45B0560064B773 /* MyRoomTableViewController.swift */; };
+		3E5043F21F45B3600064B773 /* MyRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043F11F45B3600064B773 /* MyRoomTableViewCell.swift */; };
 		3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */; };
 		3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */; };
 		3E52413A1F3999BE007854FA /* ReservationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */; };
@@ -157,6 +160,9 @@
 		3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitListViewController.swift; sourceTree = "<group>"; };
 		3E0F06C21F1E05100023E229 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		3E5043EB1F4546960064B773 /* VisitListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitListTableViewCell.swift; sourceTree = "<group>"; };
+		3E5043ED1F45ABD10064B773 /* MyRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRoomViewController.swift; sourceTree = "<group>"; };
+		3E5043EF1F45B0560064B773 /* MyRoomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRoomTableViewController.swift; sourceTree = "<group>"; };
+		3E5043F11F45B3600064B773 /* MyRoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRoomTableViewCell.swift; sourceTree = "<group>"; };
 		3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailViewController.swift; sourceTree = "<group>"; };
 		3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationSuccessViewController.swift; sourceTree = "<group>"; };
@@ -321,13 +327,14 @@
 				3E5F98831F2E6D0F003AAF8F /* CalendarViewController.swift */,
 				3EB0512B1F28801500EBBBCE /* HouseDetailViewController.swift */,
 				3EDE4CDB1F32E7CA00FDB275 /* PricePolicyViewController.swift */,
-				3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */,
 				3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */,
+				3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */,
 				3EDE4CE11F33016F00FDB275 /* MapViewController.swift */,
 				3EDE4CDD1F32FB6E00FDB275 /* HousePolicyViewController.swift */,
 				3EDE4CDF1F32FB8400FDB275 /* CancellationPolicyViewController.swift */,
 				3EDE4CE31F3307B500FDB275 /* ReservationViewController.swift */,
 				3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */,
+				3E5043ED1F45ABD10064B773 /* MyRoomViewController.swift */,
 				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
 				3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */,
 				3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */,
@@ -395,6 +402,7 @@
 				3EDE4CE71F337BA500FDB275 /* ReservationHeaderTableViewCell.swift */,
 				3EDE4CE91F337BBA00FDB275 /* ReservationDatesTableViewCell.swift */,
 				3EDE4CEB1F337BC800FDB275 /* ReservationPriceTableViewCell.swift */,
+				3E5043F11F45B3600064B773 /* MyRoomTableViewCell.swift */,
 				3E5043EB1F4546960064B773 /* VisitListTableViewCell.swift */,
 				3EDE4CF11F33AD1800FDB275 /* ViewProfileTableViewCell.swift */,
 				3EDE4CF71F33B79900FDB275 /* ViewProfileNameTableViewCell.swift */,
@@ -415,6 +423,7 @@
 				3EDE4CD51F32B42800FDB275 /* ViewReviewTableViewController.swift */,
 				3EDE4CE51F33753A00FDB275 /* ReservationTableViewController.swift */,
 				3E92EAD21F39C15400AC6FF3 /* ReservationSuccessTableViewController.swift */,
+				3E5043EF1F45B0560064B773 /* MyRoomTableViewController.swift */,
 				3EDC13A81F2D11A900BA4077 /* RateHouseTableViewController.swift */,
 				3E0954081F274B2D000240FA /* VisitTableViewController.swift */,
 				3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */,
@@ -782,6 +791,7 @@
 				3EDE4CF81F33B79900FDB275 /* ViewProfileNameTableViewCell.swift in Sources */,
 				3EB051491F2AF57200EBBBCE /* ApplicationShortcut.swift in Sources */,
 				3E85438A1F21E0F700525F7A /* VillimReservation.swift in Sources */,
+				3E5043F21F45B3600064B773 /* MyRoomTableViewCell.swift in Sources */,
 				3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */,
 				3EB051431F292ADB00EBBBCE /* VillimAmenity.swift in Sources */,
 				3E09540B1F27683A000240FA /* VillimVisit.swift in Sources */,
@@ -812,6 +822,7 @@
 				3EA017E61F354BA6005557D1 /* VerificationCodeField.swift in Sources */,
 				3E0F06811F1E017B0023E229 /* ViewController.swift in Sources */,
 				3EB051411F28F25B00EBBBCE /* HouseMapTableViewCell.swift in Sources */,
+				3E5043EE1F45ABD10064B773 /* MyRoomViewController.swift in Sources */,
 				3EDE4CEE1F33A13F00FDB275 /* ViewProfileViewController.swift in Sources */,
 				3EB051301F28F13400EBBBCE /* HostInfoTableViewCell.swift in Sources */,
 				3E92EADD1F3AC8F100AC6FF3 /* SwitchTableViewCell.swift in Sources */,
@@ -850,6 +861,7 @@
 				3E92EADB1F3AA0F400AC6FF3 /* SettingsTableViewController.swift in Sources */,
 				3E974C801F21D7C6001F6456 /* HouseTableViewCell.swift in Sources */,
 				3EDE4CD21F32A88500FDB275 /* AmenityTableViewController.swift in Sources */,
+				3E5043F01F45B0560064B773 /* MyRoomTableViewController.swift in Sources */,
 				3E0F06BD1F1E02CE0023E229 /* VillimKeys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

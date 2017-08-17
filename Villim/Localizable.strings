@@ -8,6 +8,7 @@
 
 "discover" = "숙소 찾기";
 "my_key" = "내 열쇠";
+"my_room" = "내 방";
 "visit_list" = "방문 목록";
 "profile" = "프로필";
 
@@ -251,3 +252,7 @@
 "past_reservations" = "과거 예약";
 "payment_pending" = "결제 대기";
 "checkin_checkout_format" = "체크인: %d년 %d월 %d일\n체크아웃: %d년 %d월 %d일";
+
+"request_cleaning_service" = "청소 서비스 요청";
+"request_chauffuer_service" = "기사 서비스 요청";
+"local_amusements" = "주변 볼거리";

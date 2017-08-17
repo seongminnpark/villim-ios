@@ -59,7 +59,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         // Do any additional setup after loading the view, typically from a nib.
         
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.tabBarItem.title = "숙소 찾기"
+        self.tabBarItem.title = NSLocalizedString("discover", comment: "")
         
         filterOffset = (searchFilterMaxHeight - individualFilterHeight*2) / 3.0
         
