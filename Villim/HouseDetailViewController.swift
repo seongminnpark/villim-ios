@@ -97,10 +97,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         bottomBar.addSubview(bookButton)
         
         priceValueLabel = UILabel()
-        priceValueLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        priceValueLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
         priceValueLabel.textColor = UIColor.black
         priceUnitLabel = UILabel()
-        priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 17)
+        priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
         priceUnitLabel.textColor = UIColor.black
         bottomBar.addSubview(priceValueLabel)
         bottomBar.addSubview(priceUnitLabel)
@@ -156,7 +156,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         }
         
         priceValueLabel.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview().offset(VillimValues.sideMargin)
+            make.left.equalToSuperview().offset(VillimValues.sideMargin*3)
             make.centerY.equalToSuperview()
         }
         
@@ -221,21 +221,22 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         Nuke.loadImage(with: url!, into: self.houseImageView)
         
         /* Populate bottom button */
-        if dateSet {
-            let (base, util) = VillimUtils.calculatePrice(checkIn: checkIn, checkOut: checkOut, rent: house.ratePerMonth)
-            priceValueLabel.text = VillimUtils.getCurrencyString(price: base + util)
-            
-            let dateFormatString = NSLocalizedString("date_format_client", comment: "")
-            let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)
-            let checkOutString = String(format:dateFormatString, checkOut.month, checkOut.day)
-            priceUnitLabel.text =
-                String(format:NSLocalizedString("date_filter_format", comment: ""), checkInString, checkOutString)
-            
-        } else {
-            priceValueLabel.text = VillimUtils.getCurrencyString(price: house.ratePerNight)
-            priceUnitLabel.text = NSLocalizedString("per_night", comment: "")
-        }
-        
+//        if dateSet {
+//            let (base, util) = VillimUtils.calculatePrice(checkIn: checkIn, checkOut: checkOut, rent: house.ratePerMonth)
+//            priceValueLabel.text = VillimUtils.getCurrencyString(price: base + util)
+//            
+//            let dateFormatString = NSLocalizedString("date_format_client", comment: "")
+//            let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)
+//            let checkOutString = String(format:dateFormatString, checkOut.month, checkOut.day)
+//            priceUnitLabel.text =
+//                String(format:NSLocalizedString("date_filter_format", comment: ""), checkInString, checkOutString)
+//            
+//        } else {
+//            priceValueLabel.text = VillimUtils.getCurrencyString(price: house.ratePerNight)
+//            priceUnitLabel.text = NSLocalizedString("per_night", comment: "")
+//        }
+        priceValueLabel.text = VillimUtils.getCurrencyString(price: house.ratePerNight)
+        priceUnitLabel.text = NSLocalizedString("per_night", comment: "")
     }
     
     func onScroll(contentOffset:CGPoint) {

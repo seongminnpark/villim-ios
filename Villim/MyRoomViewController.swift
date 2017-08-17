@@ -130,28 +130,23 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             container.removeFromSuperview()
         }
         
-        /* Prevent overlap with navigation controller */
-        let navControllerHeight = self.navigationController!.navigationBar.frame.height
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let topOffset = navControllerHeight + statusBarHeight
-        
         /* House Imageview */
         houseImage = UIImageView()
         houseImage.clipsToBounds = true
         houseImage.contentMode = .scaleAspectFill
         houseImage.isUserInteractionEnabled = false
         self.view.addSubview(houseImage!)
-
+        
+        houseImage?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
+            make.height.equalToSuperview()
+            make.top.equalTo(topOffset)
+        }
+        
         /* House TableView */
         myRoomTableViewController = MyRoomTableViewController()
         myRoomTableViewController.myRoomDelegate = self
         self.view.addSubview(myRoomTableViewController.view)
-        
-        houseImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(houseImageSize)
-            make.top.equalTo(topOffset)
-        }
     
         /* House TableView */
         myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
@@ -290,6 +285,7 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
         VillimUtils.hideLoadingIndicator()
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -300,6 +296,7 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = false
+        self.navigationController?.isNavigationBarHidden = true
         
         if VillimSession.getLoggedIn() {
             sendMyHouseRequest()
