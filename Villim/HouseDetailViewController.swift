@@ -83,7 +83,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         /* Bottom Buttons */
         bottomBar = UIView()
-        bottomBar.backgroundColor = UIColor(red:0.91, green:0.91, blue:0.91, alpha:1.0)
+        bottomBar.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
         self.view.addSubview(bottomBar)
         
         bookButton = UIButton()
@@ -98,10 +98,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         priceValueLabel = UILabel()
         priceValueLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
-        priceValueLabel.textColor = UIColor.black
+        priceValueLabel.textColor = UIColor.white
         priceUnitLabel = UILabel()
         priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
-        priceUnitLabel.textColor = UIColor.black
+        priceUnitLabel.textColor = UIColor.white
         bottomBar.addSubview(priceValueLabel)
         bottomBar.addSubview(priceUnitLabel)
         
