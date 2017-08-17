@@ -52,9 +52,6 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         self.tableView.bounces = true
         self.tableView.separatorInset = UIEdgeInsets.zero
         self.tableView.showsVerticalScrollIndicator = false
-        self.tableView.contentInset =
-            UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
-
     }
     
     override func viewDidAppear(_ animated: Bool) {

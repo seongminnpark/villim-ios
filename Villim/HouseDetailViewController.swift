@@ -109,6 +109,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         if !displayBottomBar {
             bottomBar.isHidden = true
+        } else {
+            bottomBar.isHidden = false
+            houseDetailTableViewController.tableView.contentInset =
+                UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
         }
         
         sendHouseInfoRequest()
