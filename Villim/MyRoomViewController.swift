@@ -133,38 +133,32 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         /* Prevent overlap with navigation controller */
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
-        /* House Imageview */
-        houseImage = UIImageView()
-        houseImage.clipsToBounds = true
-        houseImage.contentMode = .scaleAspectFill
-        houseImage.isUserInteractionEnabled = false
-        self.view.addSubview(houseImage!)
-        
-        houseImage?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(houseImageSize)
-            make.top.equalTo(statusBarHeight)
-        }
+//        /* House Imageview */
+//        houseImage = UIImageView()
+//        houseImage.clipsToBounds = true
+//        houseImage.contentMode = .scaleAspectFill
+//        houseImage.isUserInteractionEnabled = false
+//        self.view.addSubview(houseImage!)
+//        
+//        houseImage?.snp.makeConstraints { (make) -> Void in
+//            make.width.equalToSuperview()
+//            make.height.equalTo(houseImageSize)
+//            make.top.equalTo(statusBarHeight)
+//        }
         
         /* House TableView */
         myRoomTableViewController = MyRoomTableViewController()
         myRoomTableViewController.myRoomDelegate = self
+        myRoomTableViewController.houseName = self.houseName
+        myRoomTableViewController.houseThumbnailUrl = self.houseThumbnailUrl
         self.view.addSubview(myRoomTableViewController.view)
     
         /* House TableView */
         myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(houseImage.snp.bottom)
+            make.top.equalTo(statusBarHeight)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
             make.bottom.equalToSuperview()
-        }
-            
-        
-        if houseThumbnailUrl.isEmpty {
-            houseImage.image = #imageLiteral(resourceName: "img_default")
-        } else {
-            let url = URL(string:houseThumbnailUrl)
-            Nuke.loadImage(with: url!, into: houseImage)
         }
         
     }

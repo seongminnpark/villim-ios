@@ -256,3 +256,5 @@
 "request_cleaning_service" = "청소 서비스 요청";
 "request_chauffuer_service" = "기사 서비스 요청";
 "local_amusements" = "주변 볼거리";
+
+"my_room_header_instructions" = "메뉴를 선택해 빌림 서비스를 이용하세요";
