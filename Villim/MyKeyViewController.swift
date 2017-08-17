@@ -132,13 +132,6 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
                     self.houseThumbnailUrl = responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].exists() ? responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].stringValue : ""
                     
                     self.setUpKeyLayout()
-                    self.reviewButton.isEnabled = true
-                    self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
-                    self.reviewButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
-                    
-                    self.changePasscodeButton.isEnabled = true
-                    self.changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
-                    self.changePasscodeButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
                     
 //                    self.populateViews()
                 } else {
@@ -266,10 +259,26 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         } else {
             houseDateLabel.text = ""
         }
+        
+         /* Top buttons */
+        self.reviewButton.isEnabled = true
+        self.reviewButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        self.reviewButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+        
+        self.changePasscodeButton.isEnabled = true
+        self.changePasscodeButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        self.changePasscodeButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
 
     }
     
     func setUpNoKeyLayout() {
+        
+        /* Top buttons */
+        self.reviewButton.isEnabled = false
+        self.reviewButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
+        
+        self.changePasscodeButton.isEnabled = false
+        self.changePasscodeButton.setTitleColor(VillimValues.inactiveButtonColor, for: .normal)
     
         /* Find room button */
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
