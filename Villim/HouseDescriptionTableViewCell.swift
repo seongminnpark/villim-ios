@@ -12,6 +12,7 @@ class HouseDescriptionTableViewCell: UITableViewCell {
 
     var title            : UILabel!
     var houseDescription : UILabel!
+    var instructions     : InsetLabel!
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
@@ -29,6 +30,15 @@ class HouseDescriptionTableViewCell: UITableViewCell {
         houseDescription.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
         self.contentView.addSubview(houseDescription)
         
+        instructions = InsetLabel(dx: 10.0, dy: 10.0)
+        instructions.font = UIFont(name: "NotoSansCJKkr-DemiLight", size: 14)
+        instructions.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
+        instructions.numberOfLines = 3
+        instructions.layer.borderWidth = 0.5
+        instructions.layer.borderColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0).cgColor
+        instructions.lineBreakMode = .byWordWrapping
+        instructions.text = NSLocalizedString("house_description_instructions", comment: "")
+        self.contentView.addSubview(instructions)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -45,7 +55,14 @@ class HouseDescriptionTableViewCell: UITableViewCell {
         
         houseDescription?.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
             make.top.equalTo(title.snp.bottom).offset(HouseDetailTableViewController.SIDE_MARGIN*0.75)
+        }
+        
+        instructions?.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(HouseDetailTableViewController.SIDE_MARGIN)
+            make.right.equalToSuperview().offset(-HouseDetailTableViewController.SIDE_MARGIN)
+            make.top.equalTo(houseDescription.snp.bottom).offset(HouseDetailTableViewController.SIDE_MARGIN*0.75)
         }
         
     }

@@ -34,6 +34,7 @@
 		3E5043F01F45B0560064B773 /* MyRoomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043EF1F45B0560064B773 /* MyRoomTableViewController.swift */; };
 		3E5043F21F45B3600064B773 /* MyRoomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043F11F45B3600064B773 /* MyRoomTableViewCell.swift */; };
 		3E5043F41F45C1300064B773 /* MyRoomHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043F31F45C1300064B773 /* MyRoomHeaderView.swift */; };
+		3E5043F61F45D1720064B773 /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043F51F45D1720064B773 /* InsetLabel.swift */; };
 		3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */; };
 		3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */; };
 		3E52413A1F3999BE007854FA /* ReservationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */; };
@@ -165,6 +166,7 @@
 		3E5043EF1F45B0560064B773 /* MyRoomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRoomTableViewController.swift; sourceTree = "<group>"; };
 		3E5043F11F45B3600064B773 /* MyRoomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRoomTableViewCell.swift; sourceTree = "<group>"; };
 		3E5043F31F45C1300064B773 /* MyRoomHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyRoomHeaderView.swift; sourceTree = "<group>"; };
+		3E5043F51F45D1720064B773 /* InsetLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailViewController.swift; sourceTree = "<group>"; };
 		3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationSuccessViewController.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				3E92EADE1F3AD5A500AC6FF3 /* LicenseVIewController.swift */,
 				3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */,
 				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
+				3E5043F51F45D1720064B773 /* InsetLabel.swift */,
 				3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */,
 				3E956A041F34FA41001B7091 /* CustomTextField.swift */,
 				3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */,
@@ -804,6 +807,7 @@
 				3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */,
 				3EDE4CD01F32A1E200FDB275 /* AmenityViewController.swift in Sources */,
 				3E0954091F274B2D000240FA /* VisitTableViewController.swift in Sources */,
+				3E5043F61F45D1720064B773 /* InsetLabel.swift in Sources */,
 				3EDE4CF21F33AD1800FDB275 /* ViewProfileTableViewCell.swift in Sources */,
 				3EB0513B1F28F20900EBBBCE /* HouseGenericTableViewCell.swift in Sources */,
 				3EDC13A11F2C390400BA4077 /* FindPasswordSuccessViewController.swift in Sources */,

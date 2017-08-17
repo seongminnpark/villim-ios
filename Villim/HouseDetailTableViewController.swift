@@ -119,7 +119,7 @@ class HouseDetailTableViewController: UITableViewController, AmenityDelegate, Re
         case HouseDetailTableViewController.INFOGRAPHIC:
             return 100.0
         case HouseDetailTableViewController.DESCRIPTION:
-            return 100.0
+            return 200.0
         case HouseDetailTableViewController.PRICE_POLICY:
             return 70.0
         case HouseDetailTableViewController.AMENITY:
