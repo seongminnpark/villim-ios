@@ -1,24 +1,21 @@
 //
-//  DiscoverTableViewCell.swift
+//  VisitListTableViewCell.swift
 //  Villim
 //
-//  Created by Seongmin Park on 8/15/17.
+//  Created by Seongmin Park on 8/16/17.
 //  Copyright © 2017 Villim. All rights reserved.
 //
 
 import UIKit
-import Cosmos
 
-class DiscoverTableViewCell: UITableViewCell {
+class VisitListTableViewCell: UITableViewCell {
 
-    let houseThumbnailHeight : CGFloat = 200.0
-    
     var container      : UIView!
     var houseThumbnail : UIImageView!
     var houseName      : UILabel!
-    var houseRating    : CosmosView!
-    var monthlyRent    : UILabel!
-    var dailyRent      : UILabel!
+    var housePrice     : UILabel!
+    var dateCount      : UILabel!
+    var dateLabel      : UILabel!
     var imageDim       : UIView!
     
     
@@ -36,28 +33,25 @@ class DiscoverTableViewCell: UITableViewCell {
         
         houseName = UILabel()
         houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
-        houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         houseName.numberOfLines = 2
+        houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         container.addSubview(houseName)
         
-        houseRating = CosmosView()
-        houseRating.settings.updateOnTouch = false
-        houseRating.settings.fillMode = .precise
-        houseRating.settings.starSize = 20
-        houseRating.settings.starMargin = 5
-        houseRating.settings.filledImage = UIImage(named: "icon_star_on")
-        houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
-        container.addSubview(houseRating)
+        housePrice = UILabel()
+        housePrice.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
+        housePrice.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
+        container.addSubview(housePrice)
         
-        monthlyRent = UILabel()
-        monthlyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
-        monthlyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
-        container.addSubview(monthlyRent)
+        dateCount = UILabel()
+        dateCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        dateCount.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        container.addSubview(dateCount)
         
-        dailyRent = UILabel()
-        dailyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
-        dailyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
-        container.addSubview(dailyRent)
+        dateLabel = UILabel()
+        dateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        dateLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        dateLabel.numberOfLines = 2
+        container.addSubview(dateLabel)
         
         imageDim = UIView()
         imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
@@ -77,31 +71,34 @@ class DiscoverTableViewCell: UITableViewCell {
         }
         
         houseThumbnail?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.height.equalTo(houseThumbnailHeight)
+            make.width.equalToSuperview().dividedBy(2)
             make.top.equalToSuperview()
+            make.bottom.equalToSuperview()
             make.left.equalToSuperview()
-        }
-        
-        houseRating.snp.makeConstraints{ (make) -> Void in
-            make.right.equalToSuperview()
-            make.top.equalTo(houseThumbnail.snp.bottom).offset(10)
         }
         
         houseName?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalTo(houseRating.snp.left).offset(10)
-            make.centerY.equalTo(houseRating)
+            make.left.equalTo(houseThumbnail.snp.right).offset(VillimValues.sideMargin)
+            make.right.equalToSuperview()
+            make.top.equalTo(houseThumbnail)
         }
         
-        monthlyRent.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview()
+        housePrice.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(houseName)
             make.top.equalTo(houseName.snp.bottom).offset(10)
+            make.right.equalToSuperview()
         }
         
-        dailyRent.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview()
-            make.top.equalTo(monthlyRent.snp.bottom).offset(5)
+        dateCount.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(housePrice.snp.right).offset(10)
+            make.right.equalToSuperview()
+            make.top.equalTo(housePrice)
+        }
+        
+        dateLabel.snp.makeConstraints{ (make) -> Void in
+            make.left.equalTo(houseName)
+            make.right.equalToSuperview()
+            make.bottom.equalTo(houseThumbnail)
         }
         
         imageDim.snp.makeConstraints{ (make) -> Void in
@@ -126,5 +123,6 @@ class DiscoverTableViewCell: UITableViewCell {
             imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         }
     }
+
 
 }

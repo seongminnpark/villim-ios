@@ -8,6 +8,7 @@
 
 import UIKit
 import Nuke
+import SwiftDate
 
 protocol VisitTableViewItemSelectedListener {
     func visitItemSelected(position:Int)
@@ -16,8 +17,10 @@ protocol VisitTableViewItemSelectedListener {
 class VisitTableViewController: UITableViewController {
 
     var itemSelectedListener : VisitTableViewItemSelectedListener!
-    var visits : [VillimVisit] = []
-    var houses : [VillimHouse] = []
+    var pendingVisits   : [VillimVisit] = []
+    var confirmedVisits : [VillimVisit] = []
+    var pendingHouses   : [VillimHouse] = []
+    var confirmedHouses : [VillimHouse] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,30 +46,80 @@ class VisitTableViewController: UITableViewController {
     
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return 3
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return visits.count
+        switch section {
+        case 0:
+            return confirmedVisits.count
+        case 1:
+            return pendingVisits.count
+        case 2:
+            return 0
+        default:
+            return 0
+        }
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let house = houses[indexPath.row]
         
-        let cell : HouseTableViewCell = HouseTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"cell")
+        let cell : VisitListTableViewCell = VisitListTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"cell")
+        
+        var house : VillimHouse
+        var visit : VillimVisit
+        
+        let checkIn = DateInRegion()
+        let checkOut = DateInRegion()
+        
+        switch indexPath.section {
+        case 0:
+            house = confirmedHouses[indexPath.row]
+            visit = confirmedVisits[indexPath.row]
+            cell.dateLabel.text = String(format:NSLocalizedString("checkin_checkout_format", comment: ""),
+                                         checkIn.year, checkIn.month, checkIn.day,
+                                         checkOut.year, checkOut.month, checkOut.day)
+            break
+        case 1, 2:
+            house = pendingHouses[indexPath.row]
+            visit = pendingVisits[indexPath.row]
+            cell.dateLabel.text = NSLocalizedString("payment_pending", comment:"")
+            break
+        default:
+            house = pendingHouses[indexPath.row]
+            visit = pendingVisits[indexPath.row]
+            cell.dateLabel.text = NSLocalizedString("payment_pending", comment:"")
+            break
+        }
         
         let url = URL(string: house.houseThumbnailUrl)
         if url != nil {
             Nuke.loadImage(with: url!, into: cell.houseThumbnail)
         }
+        
         cell.houseName.text = house.houseName
-        cell.houseRating.rating = Double(house.houseRating)
-        cell.houseReviewCount.text = String(format:NSLocalizedString("review_count_format", comment: ""), house.houseReviewCount)
-        cell.houseRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month:true)
+        let (base, util) = VillimUtils.calculatePrice(checkIn: checkIn, checkOut: checkOut, rent: house.ratePerMonth)
+        cell.housePrice.text = VillimUtils.getCurrencyString(price: base + util)
+        cell.dateCount.text = String(format: NSLocalizedString("for_x_nights_format", comment: ""),
+                                        checkIn - checkOut)
+        
         cell.makeConstraints()
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        switch section {
+        case 0:
+            return NSLocalizedString("completed_reservations", comment: "")
+        case 1:
+            return NSLocalizedString("reservations_in_progress", comment: "")
+        case 2:
+            return NSLocalizedString("past_reservations", comment: "")
+        default:
+            return ""
+        }
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -29,6 +29,7 @@
 		3E0F06C01F1E02CE0023E229 /* VillimUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */; };
 		3E0F06C11F1E02CE0023E229 /* VisitListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */; };
 		3E0F06C31F1E05100023E229 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E0F06C21F1E05100023E229 /* Localizable.strings */; };
+		3E5043EC1F4546960064B773 /* VisitListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5043EB1F4546960064B773 /* VisitListTableViewCell.swift */; };
 		3E50C8AD1F2B99F300308D4E /* VisitDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */; };
 		3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */; };
 		3E52413A1F3999BE007854FA /* ReservationSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */; };
@@ -155,6 +156,7 @@
 		3E0F06B51F1E02CE0023E229 /* VillimUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimUtils.swift; sourceTree = "<group>"; };
 		3E0F06B61F1E02CE0023E229 /* VisitListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitListViewController.swift; sourceTree = "<group>"; };
 		3E0F06C21F1E05100023E229 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		3E5043EB1F4546960064B773 /* VisitListTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitListTableViewCell.swift; sourceTree = "<group>"; };
 		3E50C8AC1F2B99F300308D4E /* VisitDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisitDetailViewController.swift; sourceTree = "<group>"; };
 		3E50C8AE1F2C085A00308D4E /* SignupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupViewController.swift; sourceTree = "<group>"; };
 		3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReservationSuccessViewController.swift; sourceTree = "<group>"; };
@@ -393,6 +395,7 @@
 				3EDE4CE71F337BA500FDB275 /* ReservationHeaderTableViewCell.swift */,
 				3EDE4CE91F337BBA00FDB275 /* ReservationDatesTableViewCell.swift */,
 				3EDE4CEB1F337BC800FDB275 /* ReservationPriceTableViewCell.swift */,
+				3E5043EB1F4546960064B773 /* VisitListTableViewCell.swift */,
 				3EDE4CF11F33AD1800FDB275 /* ViewProfileTableViewCell.swift */,
 				3EDE4CF71F33B79900FDB275 /* ViewProfileNameTableViewCell.swift */,
 				3EDE4CF31F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift */,
@@ -825,6 +828,7 @@
 				3EDE4CEA1F337BBA00FDB275 /* ReservationDatesTableViewCell.swift in Sources */,
 				3EDE4CE81F337BA500FDB275 /* ReservationHeaderTableViewCell.swift in Sources */,
 				3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */,
+				3E5043EC1F4546960064B773 /* VisitListTableViewCell.swift in Sources */,
 				3EDE4CE01F32FB8400FDB275 /* CancellationPolicyViewController.swift in Sources */,
 				3E92EAD91F3A9C7900AC6FF3 /* SettingsViewController.swift in Sources */,
 				3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */,

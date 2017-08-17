@@ -206,7 +206,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         /* Populate bottom button */
         if dateSet {
             let (base, util) = VillimUtils.calculatePrice(checkIn: checkIn, checkOut: checkOut, rent: house.ratePerMonth)
-            priceValueLabel.text = String(base+util)
+            priceValueLabel.text = VillimUtils.getCurrencyString(price: base + util)
             
             let dateFormatString = NSLocalizedString("date_format_client", comment: "")
             let checkInString  = String(format:dateFormatString, checkIn.month, checkIn.day)

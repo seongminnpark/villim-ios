@@ -245,3 +245,9 @@
 
 "per_night" = " / 박";
 
+"for_x_nights_format" = "%d일 예약";
+"completed_reservations" = "예약 완료";
+"reservations_in_progress" = "결제 대기";
+"past_reservations" = "과거 예약";
+"payment_pending" = "결제 대기";
+"checkin_checkout_format" = "체크인: %d년 %d월 %d일\n체크아웃: %d년 %d월 %d일";

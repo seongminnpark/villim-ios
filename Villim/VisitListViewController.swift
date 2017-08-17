@@ -18,8 +18,10 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     let slideButtonWidth     : CGFloat = 300.0
     let slideButtonHeight    : CGFloat = 60.0
     
-    var visits : [VillimVisit] = []
-    var houses : [VillimHouse] = []
+    var pendingVisits   : [VillimVisit] = []
+    var confirmedVisits : [VillimVisit] = []
+    var pendingHouses   : [VillimHouse] = []
+    var confirmedHouses : [VillimHouse] = []
     
     var visitTableViewController : VisitTableViewController!
     
@@ -70,8 +72,10 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         /* Visit list */
         self.visitTableViewController = VisitTableViewController()
         self.visitTableViewController.itemSelectedListener = self
-        self.visitTableViewController.visits = self.visits
-        self.visitTableViewController.houses = self.houses
+        self.visitTableViewController.pendingVisits = self.pendingVisits
+        self.visitTableViewController.confirmedVisits = self.confirmedVisits
+        self.visitTableViewController.pendingHouses = self.pendingHouses
+        self.visitTableViewController.confirmedHouses = self.confirmedHouses
         self.visitTableViewController.tableView.reloadData()
         visitTableViewController.tableView.reloadData()
         self.view.addSubview(visitTableViewController.view)
@@ -181,12 +185,16 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
-                    let visitArray : [JSON] = responseData[VillimKeys.KEY_CONFIRMED_VISITS].arrayValue
+                    let confirmedVisitArray : [JSON] = responseData[VillimKeys.KEY_CONFIRMED_VISITS].arrayValue
+                    let pendingVisitArray   : [JSON] = responseData[VillimKeys.KEY_PENDING_VISITS].arrayValue
                     
-                    self.visits = VillimVisit.visitArrayFromJsonArray(jsonVisits: visitArray)
-                    self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: visitArray)
+                    self.confirmedVisits = VillimVisit.visitArrayFromJsonArray(jsonVisits: confirmedVisitArray)
+                    self.pendingVisits   = VillimVisit.visitArrayFromJsonArray(jsonVisits: confirmedVisitArray)
+                    
+                    self.confirmedHouses = VillimHouse.houseArrayFromJsonArray(jsonHouses: confirmedVisitArray)
+                    self.pendingHouses   = VillimHouse.houseArrayFromJsonArray(jsonHouses: pendingVisitArray)
              
-                    if self.visits.count > 0 {
+                    if self.confirmedVisits.count > 0 || self.pendingVisits.count > 0 {
                         self.setUpVisitListLayout()
                     } else {
                         self.setUpNovisitLayout()
@@ -205,10 +213,10 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     }
     
     func visitItemSelected(position: Int) {
-        let visitDetailViewController = VisitDetailViewController()
-        visitDetailViewController.visit = visits[position]
-        visitDetailViewController.house = houses[position]
-        self.navigationController?.pushViewController(visitDetailViewController, animated: true)
+//        let visitDetailViewController = VisitDetailViewController()
+//        visitDetailViewController.visit = visits[position]
+//        visitDetailViewController.house = houses[position]
+//        self.navigationController?.pushViewController(visitDetailViewController, animated: true)
     }
     
     override func didReceiveMemoryWarning() {
