@@ -84,23 +84,23 @@ class DiscoverTableViewCell: UITableViewCell {
         }
         
         houseRating.snp.makeConstraints{ (make) -> Void in
-            make.right.equalToSuperview()
+            make.right.equalToSuperview().offset(-10)
             make.top.equalTo(houseThumbnail.snp.bottom).offset(10)
         }
         
         houseName?.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalTo(houseRating.snp.left).offset(10)
+            make.left.equalToSuperview().offset(10)
+            make.width.equalToSuperview().dividedBy(2)
             make.centerY.equalTo(houseRating)
         }
         
         monthlyRent.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview()
-            make.top.equalTo(houseName.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(20)
+            make.top.equalTo(houseName.snp.bottom).offset(20)
         }
         
         dailyRent.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
             make.top.equalTo(monthlyRent.snp.bottom).offset(5)
         }
         
