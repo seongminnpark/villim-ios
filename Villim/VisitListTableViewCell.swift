@@ -32,23 +32,23 @@ class VisitListTableViewCell: UITableViewCell {
         container.addSubview(houseThumbnail)
         
         houseName = UILabel()
-        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
+        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         houseName.numberOfLines = 2
         houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         container.addSubview(houseName)
         
         housePrice = UILabel()
-        housePrice.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
+        housePrice.font = UIFont(name: "NotoSansCJKkr-Bold", size: 15)
         housePrice.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         container.addSubview(housePrice)
         
         dateCount = UILabel()
-        dateCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        dateCount.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
         dateCount.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         container.addSubview(dateCount)
         
         dateLabel = UILabel()
-        dateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        dateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 12)
         dateLabel.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         dateLabel.numberOfLines = 2
         container.addSubview(dateLabel)
@@ -67,7 +67,7 @@ class VisitListTableViewCell: UITableViewCell {
         container?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview()
             make.top.equalToSuperview().offset(VillimValues.tableMargin)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-10)
         }
         
         houseThumbnail?.snp.makeConstraints { (make) -> Void in
@@ -86,13 +86,11 @@ class VisitListTableViewCell: UITableViewCell {
         housePrice.snp.makeConstraints{ (make) -> Void in
             make.left.equalTo(houseName)
             make.top.equalTo(houseName.snp.bottom).offset(10)
-            make.right.equalToSuperview()
         }
         
         dateCount.snp.makeConstraints{ (make) -> Void in
             make.left.equalTo(housePrice.snp.right).offset(10)
-            make.right.equalToSuperview()
-            make.top.equalTo(housePrice)
+            make.centerY.equalTo(housePrice)
         }
         
         dateLabel.snp.makeConstraints{ (make) -> Void in
