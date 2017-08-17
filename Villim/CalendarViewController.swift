@@ -279,16 +279,17 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
     
     @objc private func verifyInput() {
         let differentDates : Bool = self.checkIn != self.checkOut
-        let monthApart     : Bool = self.checkIn + 1.month <= checkOut
-        let validInput : Bool = differentDates && monthApart
+//        let monthApart     : Bool = self.checkIn + 1.month <= checkOut
+        let validInput : Bool = differentDates
         if validInput {
             self.navigationController?.popViewController(animated: true)
             calendarDelegate.onDateSet(checkIn: self.checkIn, checkOut: self.checkOut)
         } else if !differentDates {
             showErrorMessage(message: NSLocalizedString("select_different_dates", comment: ""))
-        } else if !monthApart {
-            showErrorMessage(message: NSLocalizedString("book_at_least_a_month", comment: ""))
         }
+//        else if !monthApart {
+//            showErrorMessage(message: NSLocalizedString("book_at_least_a_month", comment: ""))
+//        }
     }
     
     override func didReceiveMemoryWarning() {
