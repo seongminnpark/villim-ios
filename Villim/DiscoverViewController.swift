@@ -85,7 +85,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         navbarLogo = UIImageView()
         /* Original image is 725 by 400, hence the 1.8 */
         navbarLogo.frame = CGRect(x: 10, y: statusBarHeight, width: 1.8*navControllerHeight, height: navControllerHeight)
-        navbarLogo.image = #imageLiteral(resourceName: "logo_red")
+        navbarLogo.image = #imageLiteral(resourceName: "logo")
         
         let leftItem = UIBarButtonItem(customView: navbarLogo)
         let negativeSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
@@ -396,6 +396,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
 
     func discoverItemSelected(position: Int) {
         let houseDetailViewController = HouseDetailViewController()
+        houseDetailViewController.displayBottomBar = true
         houseDetailViewController.house = houses[position]
         houseDetailViewController.dateSet = self.dateFilterSet
         houseDetailViewController.checkIn = self.checkIn

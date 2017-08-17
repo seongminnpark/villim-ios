@@ -18,6 +18,8 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     
     static let MAX_AMENITY_ICONS = 6
     
+    var displayBottomBar = false
+    
     var navBarOpen = true
     
     var house : VillimHouse! = nil
@@ -98,6 +100,10 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         bottomBar.addSubview(priceUnitLabel)
         
         makeConstraints()
+        
+        if !displayBottomBar {
+            bottomBar.isHidden = true
+        }
         
         sendHouseInfoRequest()
     }

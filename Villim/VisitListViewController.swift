@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Toaster
+import SwiftDate
 
 class VisitListViewController: ViewController, VisitTableViewItemSelectedListener {
 
@@ -212,11 +213,44 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         }
     }
     
-    func visitItemSelected(position: Int) {
-//        let visitDetailViewController = VisitDetailViewController()
-//        visitDetailViewController.visit = visits[position]
-//        visitDetailViewController.house = houses[position]
-//        self.navigationController?.pushViewController(visitDetailViewController, animated: true)
+    func visitItemSelected(row:Int, section:Int, checkIn:DateInRegion, checkOut:DateInRegion) {
+        
+        var house : VillimHouse
+        var displayBottomBar : Bool
+        var dateSet :  Bool
+        
+        switch section {
+        case VisitTableViewController.CONFIRMED:
+            house = confirmedHouses[row]
+            displayBottomBar = false
+            dateSet = false
+            break
+        case VisitTableViewController.PENDING:
+            house = pendingHouses[row]
+            displayBottomBar = false
+            dateSet = false
+            break
+        case VisitTableViewController.DONE:
+            house = confirmedHouses[row]
+            displayBottomBar = false
+            dateSet = false
+            break
+        default:
+            house = confirmedHouses[row]
+            displayBottomBar = false
+            dateSet = false
+            break
+        }
+        
+        let houseDetailViewController = HouseDetailViewController()
+        houseDetailViewController.displayBottomBar = displayBottomBar
+        houseDetailViewController.house = house
+        houseDetailViewController.dateSet = dateSet
+        houseDetailViewController.checkIn = checkIn
+        houseDetailViewController.checkOut = checkOut
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.pushViewController(houseDetailViewController, animated: true)
+
     }
     
     override func didReceiveMemoryWarning() {

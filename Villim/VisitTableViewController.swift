@@ -11,11 +11,15 @@ import Nuke
 import SwiftDate
 
 protocol VisitTableViewItemSelectedListener {
-    func visitItemSelected(position:Int)
+    func visitItemSelected(row:Int, section:Int, checkIn:DateInRegion, checkOut:DateInRegion)
 }
 
 class VisitTableViewController: UITableViewController {
 
+    static let CONFIRMED = 0
+    static let PENDING   = 1
+    static let DONE      = 2
+    
     var itemSelectedListener : VisitTableViewItemSelectedListener!
     var pendingVisits   : [VillimVisit] = []
     var confirmedVisits : [VillimVisit] = []
@@ -52,11 +56,11 @@ class VisitTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
-        case 0:
+        case VisitTableViewController.CONFIRMED:
             return confirmedVisits.count
-        case 1:
+        case VisitTableViewController.PENDING:
             return pendingVisits.count
-        case 2:
+        case VisitTableViewController.DONE:
             return 0
         default:
             return 0
@@ -76,14 +80,14 @@ class VisitTableViewController: UITableViewController {
         checkOut = checkOut + 3.day
         
         switch indexPath.section {
-        case 0:
+        case VisitTableViewController.CONFIRMED, VisitTableViewController.DONE:
             house = confirmedHouses[indexPath.row]
             visit = confirmedVisits[indexPath.row]
             cell.dateLabel.text = String(format:NSLocalizedString("checkin_checkout_format", comment: ""),
                                          checkIn.year, checkIn.month, checkIn.day,
                                          checkOut.year, checkOut.month, checkOut.day)
             break
-        case 1, 2:
+        case VisitTableViewController.PENDING:
             house = pendingHouses[indexPath.row]
             visit = pendingVisits[indexPath.row]
             cell.dateLabel.text = NSLocalizedString("payment_pending", comment:"")
@@ -112,11 +116,11 @@ class VisitTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
-        case 0:
+        case VisitTableViewController.CONFIRMED:
             return NSLocalizedString("completed_reservations", comment: "")
-        case 1:
+        case VisitTableViewController.PENDING:
             return NSLocalizedString("reservations_in_progress", comment: "")
-        case 2:
+        case VisitTableViewController.DONE:
             return NSLocalizedString("past_reservations", comment: "")
         default:
             return ""
@@ -125,6 +129,35 @@ class VisitTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        itemSelectedListener.visitItemSelected(position: indexPath.row)
+        
+        var checkIn  = DateInRegion()
+        var checkOut = DateInRegion()
+        
+        switch indexPath.section {
+        case VisitTableViewController.CONFIRMED:
+            let checkInDummy = DateInRegion()
+            var checkOutDummy = DateInRegion()
+            checkOutDummy = checkOutDummy + 3.day
+            checkIn = checkInDummy
+            checkOut = checkOutDummy
+            break
+        case VisitTableViewController.PENDING:
+            break
+        case VisitTableViewController.DONE:
+            let checkInDummy = DateInRegion()
+            var checkOutDummy = DateInRegion()
+            checkOutDummy = checkOutDummy + 3.day
+            checkIn = checkInDummy
+            checkOut = checkOutDummy
+            break
+        default:
+            break
+        }
+
+        
+        itemSelectedListener.visitItemSelected(row:indexPath.row,
+                                               section:indexPath.section,
+                                               checkIn:checkIn,
+                                               checkOut:checkOut)
     }
 }
