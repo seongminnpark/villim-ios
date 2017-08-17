@@ -130,6 +130,9 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             container.removeFromSuperview()
         }
         
+        /* Prevent overlap with navigation controller */
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        
         /* House Imageview */
         houseImage = UIImageView()
         houseImage.clipsToBounds = true
@@ -139,8 +142,8 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         
         houseImage?.snp.makeConstraints { (make) -> Void in
             make.width.equalToSuperview()
-            make.height.equalToSuperview()
-            make.top.equalTo(topOffset)
+            make.height.equalTo(houseImageSize)
+            make.top.equalTo(statusBarHeight)
         }
         
         /* House TableView */
