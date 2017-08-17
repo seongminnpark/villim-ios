@@ -61,7 +61,7 @@ class ReservationTableViewController: UITableViewController, CalendarDelegate {
         case ReservationTableViewController.NUMBER_OF_NIGHTS:
 
             let daysString = dateSet ?
-                String(format:NSLocalizedString("number_of_dates_format", comment: ""), (checkOut - checkIn).in(.day)!) :
+                String(format:NSLocalizedString("number_of_dates_format", comment: ""), (checkIn - checkOut).in(.day)!) :
                 NSLocalizedString("not_selected", comment: "")
             
             return setupHouseGenericCell(row:row, title: NSLocalizedString("number_of_nights", comment: ""), content: daysString)

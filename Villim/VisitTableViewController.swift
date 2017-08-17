@@ -72,7 +72,8 @@ class VisitTableViewController: UITableViewController {
         var visit : VillimVisit
         
         let checkIn = DateInRegion()
-        let checkOut = DateInRegion()
+        var checkOut = DateInRegion()
+        checkOut = checkOut + 3.day
         
         switch indexPath.section {
         case 0:
@@ -103,7 +104,7 @@ class VisitTableViewController: UITableViewController {
         let (base, util) = VillimUtils.calculatePrice(checkIn: checkIn, checkOut: checkOut, rent: house.ratePerMonth)
         cell.housePrice.text = VillimUtils.getCurrencyString(price: base + util)
         cell.dateCount.text = String(format: NSLocalizedString("for_x_nights_format", comment: ""),
-                                        checkIn - checkOut)
+                                     (checkIn - checkOut).in(.day)!)
         
         cell.makeConstraints()
         return cell
