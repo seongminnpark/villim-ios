@@ -9,7 +9,7 @@
 import Foundation
 
 enum TouchActions: String {
-    case key = "key"
+    case room = "room"
     case visit = "visit"
     case discover = "discover"
     
@@ -17,7 +17,7 @@ enum TouchActions: String {
         switch  self {
         case .discover:
             return 0
-        case .key:
+        case .room:
             return 1
         case .visit:
             return 2

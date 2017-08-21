@@ -50,11 +50,11 @@
 	<array>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>icon_my_key</string>
+			<string>icon_my_room</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>my_key</string>
+			<string>my_room</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>key</string>
+			<string>room</string>
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
