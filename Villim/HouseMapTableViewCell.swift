@@ -15,7 +15,7 @@ protocol MapDelegate {
 
 class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
 
-    let markerSize = 80.0
+    let markerSize = 100.0
     
     var mapDelegate : MapDelegate!
     
@@ -50,10 +50,10 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
         let marker = GMSMarker(position: position)
         
         /* Create custom marker iamge. */
-        let circle = UIImage(named: "custom_marker")!
-        let markerView = UIImageView(image: circle)
-        markerView.frame = CGRect(x:0, y:0, width:markerSize, height:markerSize)
-        markerView.clipsToBounds = false
+        let circleImage = UIImage(named: "custom_marker")!
+        let markerView = UIImageView(image: circleImage)
+        markerView.frame = CGRect(x:0, y:markerSize, width:markerSize, height:markerSize)
+        marker.groundAnchor = CGPoint(x:0.5, y:0.5)
         marker.iconView = markerView
         marker.tracksViewChanges = true
         marker.map = mapView
