@@ -52,7 +52,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = UIColor.white
+        self.view.backgroundColor = VillimValues.backgroundColor
         navControllerHeight = self.navigationController!.navigationBar.frame.height
         statusBarHeight = UIApplication.shared.statusBarFrame.height
         topOffset = navControllerHeight + statusBarHeight
@@ -83,7 +83,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         /* Bottom Buttons */
         bottomBar = UIView()
-        bottomBar.backgroundColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
+        bottomBar.backgroundColor = UIColor.white
         self.view.addSubview(bottomBar)
         
         bookButton = UIButton()
@@ -98,7 +98,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         
         priceValueLabel = UILabel()
         priceValueLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
-        priceValueLabel.textColor = UIColor.white
+        priceValueLabel.textColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
         priceUnitLabel = UILabel()
         priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
         priceUnitLabel.textColor = UIColor.white

@@ -35,7 +35,7 @@ class HouseInfographicTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = VillimValues.backgroundColor
         
         /* Number of guests */
         guestContainer = UIView()

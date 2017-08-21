@@ -16,7 +16,7 @@ class HouseHeaderTableViewCell: UITableViewCell {
     override init(style: UITableViewCellStyle, reuseIdentifier: String!) {
         super.init(style: UITableViewCellStyle.value1, reuseIdentifier: reuseIdentifier)
         
-        self.contentView.backgroundColor = UIColor.white
+        self.contentView.backgroundColor = VillimValues.backgroundColor
         
         houseName = UILabel()
         houseName.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
