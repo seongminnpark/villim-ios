@@ -166,11 +166,8 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     
     func setUpNoRoomLayout() {
         
-        if houseImage != nil {
-            houseImage.removeFromSuperview()
-        }
-        
         if myRoomTableViewController != nil {
+            myRoomTableViewController.tableView.tableHeaderView?.removeFromSuperview()
             myRoomTableViewController.tableView.removeFromSuperview()
         }
         

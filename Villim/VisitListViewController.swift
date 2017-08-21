@@ -51,7 +51,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         topOffset = navControllerHeight + statusBarHeight
         
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.title = NSLocalizedString("visit_list", comment: "")
+        self.title = NSLocalizedString("reservation_list", comment: "")
         self.tabBarItem.title = self.title
     }
     
