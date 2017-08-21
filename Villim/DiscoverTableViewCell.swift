@@ -96,7 +96,7 @@ class DiscoverTableViewCell: UITableViewCell {
         
         monthlyRent.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview().offset(20)
-            make.top.equalTo(houseName.snp.bottom).offset(20)
+            make.top.equalTo(houseName.snp.bottom).offset(10)
         }
         
         dailyRent.snp.makeConstraints{ (make) -> Void in

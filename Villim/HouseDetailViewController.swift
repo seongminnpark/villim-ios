@@ -101,7 +101,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         priceValueLabel.textColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
         priceUnitLabel = UILabel()
         priceUnitLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 17)
-        priceUnitLabel.textColor = UIColor.white
+        priceUnitLabel.textColor = UIColor(red:0.16, green:0.17, blue:0.20, alpha:1.0)
         bottomBar.addSubview(priceValueLabel)
         bottomBar.addSubview(priceUnitLabel)
         
