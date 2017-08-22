@@ -11,6 +11,9 @@ import GoogleMaps
 
 class MapViewController: UIViewController {
 
+    let markerSize : CGFloat = 200.0
+    
+    var mapMarkerExact : Bool = false
     var mapView   : GMSMapView!
     var latitude  : Double = 0.0
     var longitude : Double = 0.0
@@ -34,6 +37,16 @@ class MapViewController: UIViewController {
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
         marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+        
+        if !mapMarkerExact {
+            let circleImage = UIImage(named: "custom_marker")!
+            let markerView = UIImageView(image: circleImage)
+            markerView.frame = CGRect(x:0, y:markerSize, width:markerSize, height:markerSize)
+            marker.groundAnchor = CGPoint(x:0.5, y:0.5)
+            marker.iconView = markerView
+            marker.tracksViewChanges = true
+        }
+        
         marker.map = mapView
         
         self.view.addSubview(mapView)

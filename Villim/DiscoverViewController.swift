@@ -402,6 +402,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         houseDetailViewController.dateSet = self.dateFilterSet
         houseDetailViewController.checkIn = self.checkIn
         houseDetailViewController.checkOut = self.checkOut
+        houseDetailViewController.mapMarkerExact = false
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }

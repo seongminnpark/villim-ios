@@ -218,27 +218,32 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         var house : VillimHouse
         var displayBottomBar : Bool
         var dateSet :  Bool
+        var mapMarkerExact : Bool
         
         switch section {
         case VisitTableViewController.CONFIRMED:
             house = confirmedHouses[row]
             displayBottomBar = false
             dateSet = false
+            mapMarkerExact = true
             break
         case VisitTableViewController.PENDING:
             house = pendingHouses[row]
             displayBottomBar = false
             dateSet = false
+            mapMarkerExact = false
             break
         case VisitTableViewController.DONE:
             house = confirmedHouses[row]
             displayBottomBar = false
             dateSet = false
+            mapMarkerExact = true
             break
         default:
             house = confirmedHouses[row]
             displayBottomBar = false
             dateSet = false
+            mapMarkerExact = false
             break
         }
         
@@ -248,6 +253,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         houseDetailViewController.dateSet = dateSet
         houseDetailViewController.checkIn = checkIn
         houseDetailViewController.checkOut = checkOut
+        houseDetailViewController.mapMarkerExact = mapMarkerExact
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
 

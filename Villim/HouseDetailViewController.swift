@@ -19,6 +19,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
     static let MAX_AMENITY_ICONS = 6
     
     var displayBottomBar = false
+    var mapMarkerExact : Bool = false
     
     let bookButtonSize = 120.0
     
@@ -79,6 +80,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         houseDetailTableViewController = HouseDetailTableViewController()
         houseDetailTableViewController.houseDetailDelegate = self
         houseDetailTableViewController.house = self.house
+        houseDetailTableViewController.mapMarkerExact = self.mapMarkerExact
         self.view.addSubview(houseDetailTableViewController.view)
         
         /* Bottom Buttons */
