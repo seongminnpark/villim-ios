@@ -28,10 +28,10 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     let slideButtonWidth     : CGFloat = 300.0
     let slideButtonHeight    : CGFloat = 60.0
     
+    var headerView           : MyRoomHeaderView!
     var myRoomTableViewController : MyRoomTableViewController!
     
     var container            : UIView!
-    
     var houseImage           : UIImageView!
     var noRoomLabel          : UILabel!
     
@@ -133,19 +133,23 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         /* Prevent overlap with navigation controller */
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         
-//        /* House Imageview */
-//        houseImage = UIImageView()
-//        houseImage.clipsToBounds = true
-//        houseImage.contentMode = .scaleAspectFill
-//        houseImage.isUserInteractionEnabled = false
-//        self.view.addSubview(houseImage!)
-//        
-//        houseImage?.snp.makeConstraints { (make) -> Void in
-//            make.width.equalToSuperview()
-//            make.height.equalTo(houseImageSize)
-//            make.top.equalTo(statusBarHeight)
-//        }
+        /* Set up headerview */
+        headerView = MyRoomHeaderView()
+        if houseThumbnailUrl.isEmpty {
+            headerView.houseImage.image = #imageLiteral(resourceName: "img_default")
+        } else {
+            let url = URL(string:houseThumbnailUrl)
+            Nuke.loadImage(with: url!, into: headerView.houseImage)
+        }
+        headerView.houseName.text = houseName
+        self.view.addSubview(headerView)
         
+        headerView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(statusBarHeight)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+        }
+
         /* House TableView */
         myRoomTableViewController = MyRoomTableViewController()
         myRoomTableViewController.myRoomDelegate = self
@@ -155,7 +159,7 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     
         /* House TableView */
         myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(statusBarHeight)
+            make.top.equalTo(headerView.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
             make.bottom.equalToSuperview()
@@ -167,8 +171,11 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     func setUpNoRoomLayout() {
         
         if myRoomTableViewController != nil {
-            myRoomTableViewController.tableView.tableHeaderView = nil
             myRoomTableViewController.tableView.removeFromSuperview()
+        }
+        
+        if headerView != nil {
+            headerView.removeFromSuperview()
         }
         
         /* Info container */
