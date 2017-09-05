@@ -17,6 +17,10 @@ import SwiftDate
 
 class MyRoomViewController: UIViewController, MyRoomDelegate {
 
+    let STATE_PAY = 0
+    let STATE_PASSCODE = 1
+    let STATE_SERVICE = 2
+    
     let houseImageSize       : CGFloat = 200.0
     let CONTAINER_WIDTH      = 80.0
     let ICON_HEIGHT          = 30
@@ -44,6 +48,7 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     var serviceContainer     : UIView!
     var serviceLabel         : UILabel!
     var serviceImage         : UIImageView!
+    var menuContent          : UIView!
     
     /* When there is no room to display */
     var container            : UIView!
@@ -162,6 +167,8 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         
         /* Pay button */
         payContainer = UIView()
+        let payGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector (self.selectPay))
+        payContainer.addGestureRecognizer(payGestureRecognizer)
         menu.addSubview(payContainer)
         
         payLabel = UILabel()
@@ -176,6 +183,8 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         
         /* Passcode button */
         passcodeContainer = UIView()
+        let passcodeGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector (self.selectPasscode))
+        passcodeContainer.addGestureRecognizer(passcodeGestureRecognizer)
         menu.addSubview(passcodeContainer)
         
         passcodeLabel = UILabel()
@@ -190,6 +199,8 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         
         /* Service button */
         serviceContainer = UIView()
+        let serviceGestureRecognizer = UITapGestureRecognizer(target: self, action:  #selector (self.selectService))
+        serviceContainer.addGestureRecognizer(serviceGestureRecognizer)
         menu.addSubview(serviceContainer)
         
         serviceLabel = UILabel()
@@ -202,15 +213,13 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         serviceImage.image = #imageLiteral(resourceName: "service_black")
         serviceContainer.addSubview(serviceImage)
 
-        
-        /* House TableView */
-        myRoomTableViewController = MyRoomTableViewController()
-        myRoomTableViewController.myRoomDelegate = self
-        myRoomTableViewController.houseName = self.houseName
-        myRoomTableViewController.houseThumbnailUrl = self.houseThumbnailUrl
-        self.view.addSubview(myRoomTableViewController.view)
+        /* Menu Content */
+        menuContent = UIView()
+        self.view.addSubview(menuContent)
     
         makeRoomConstraints()
+        
+        selectPay()
     }
     
     func makeRoomConstraints() {
@@ -276,7 +285,7 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             make.bottom.equalToSuperview()
         }
         
-        myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
+        menuContent.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(menu.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
@@ -296,6 +305,10 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         
         if menu != nil {
             menu.removeFromSuperview()
+        }
+        
+        if menuContent != nil {
+            menuContent.removeFromSuperview()
         }
         
         /* Info container */
@@ -350,6 +363,70 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             make.height.equalTo(houseImage)
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview().offset(-slideButtonHeight)
+        }
+    }
+    
+    /* Menu items callback */
+    func selectPay() {
+       updateMenuState(state:STATE_PAY)
+    }
+    
+    func selectPasscode() {
+        updateMenuState(state:STATE_PASSCODE)
+    }
+    
+    func selectService() {
+        updateMenuState(state:STATE_SERVICE)
+
+        /* Add tableview */
+        myRoomTableViewController = MyRoomTableViewController()
+        myRoomTableViewController.myRoomDelegate = self
+        myRoomTableViewController.houseName = self.houseName
+        myRoomTableViewController.houseThumbnailUrl = self.houseThumbnailUrl
+        menuContent.addSubview(myRoomTableViewController.view)
+        
+        myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
+            make.top.bottom.left.right.equalToSuperview()
+        }
+    }
+    
+    func updateMenuState(state:Int) {
+        switch state {
+        case STATE_PAY:
+             /* Set image color */
+            payImage.image = #imageLiteral(resourceName: "creditcard_red")
+            passcodeImage.image = #imageLiteral(resourceName: "doorlock_black")
+            serviceImage.image = #imageLiteral(resourceName: "service_black")
+            /* Set text color */
+            payLabel.textColor = VillimValues.themeColor
+            passcodeLabel.textColor = UIColor.black
+            serviceLabel.textColor = UIColor.black
+            break
+            
+        case STATE_PASSCODE:
+            /* Set image color */
+            payImage.image = #imageLiteral(resourceName: "creditcard_black")
+            passcodeImage.image = #imageLiteral(resourceName: "doorlock_red")
+            serviceImage.image = #imageLiteral(resourceName: "service_black")
+            /* Set text color */
+            payLabel.textColor = UIColor.black
+            passcodeLabel.textColor = VillimValues.themeColor
+            serviceLabel.textColor = UIColor.black
+            break
+            
+        case STATE_SERVICE:
+            /* Set image color */
+            payImage.image = #imageLiteral(resourceName: "creditcard_black")
+            passcodeImage.image = #imageLiteral(resourceName: "doorlock_black")
+            serviceImage.image = #imageLiteral(resourceName: "service_red")
+            /* Set text color */
+            payLabel.textColor = UIColor.black
+            passcodeLabel.textColor = UIColor.black
+            serviceLabel.textColor = VillimValues.themeColor
+            break
+            
+        default:
+            break
         }
     }
     
