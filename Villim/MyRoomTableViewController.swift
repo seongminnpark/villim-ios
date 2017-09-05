@@ -41,6 +41,7 @@ class MyRoomTableViewController: UITableViewController {
         self.tableView.showsVerticalScrollIndicator = false
         self.tableView.contentInset =
             UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
+        self.tableView.isScrollEnabled = false
 
 //        /* Set up headerview */
 //        let headerView = MyRoomHeaderView()

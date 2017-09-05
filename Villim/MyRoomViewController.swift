@@ -15,16 +15,22 @@ import Toaster
 import AudioToolbox
 import SwiftDate
 
-class MyRoomViewController: UIViewController, MyRoomDelegate {
+class MyRoomViewController: UIViewController {
 
     let STATE_PAY = 0
     let STATE_PASSCODE = 1
     let STATE_SERVICE = 2
     
+    let CHANGE_PASSCODE   = 0
+    let REQUEST_CLEANING  = 1
+    let LOCAL_AMUSEMENTS  = 2
+    let LEAVE_REVIEW      = 3
+    
     let houseImageSize       : CGFloat = 200.0
     let CONTAINER_WIDTH      = 80.0
     let ICON_HEIGHT          = 30
     let MENU_HEIGHT          = 100
+    let BUTTON_HEIGHT        = 80.0
     
     var houseId              : Int!    = 0
     var houseName            : String! = ""
@@ -36,6 +42,7 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     let slideButtonHeight    : CGFloat = 60.0
     
     /* When room info exists */
+    var scrollView           : UIScrollView!
     var headerView           : MyRoomHeaderView!
     var myRoomTableViewController : MyRoomTableViewController!
     var menu                 : UIView!
@@ -49,6 +56,9 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     var serviceLabel         : UILabel!
     var serviceImage         : UIImageView!
     var menuContent          : UIView!
+    var cleaningButton       : UIButton!
+    var localButton          : UIButton!
+    var reviewButton         : UIButton!
     
     /* When there is no room to display */
     var container            : UIView!
@@ -150,6 +160,13 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             container.removeFromSuperview()
         }
         
+        if findRoomButton != nil {
+            findRoomButton.removeFromSuperview()
+        }
+        
+        scrollView = UIScrollView()
+        self.view.addSubview(scrollView)
+        
         /* Set up headerview */
         headerView = MyRoomHeaderView()
         if houseThumbnailUrl.isEmpty {
@@ -159,11 +176,12 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             Nuke.loadImage(with: url!, into: headerView.houseImage)
         }
         headerView.houseName.text = houseName
-        self.view.addSubview(headerView)
+        headerView.clipsToBounds = true
+        scrollView.addSubview(headerView)
         
         /* Menu */
         menu = UIView()
-        self.view.addSubview(menu)
+        scrollView.addSubview(menu)
         
         /* Pay button */
         payContainer = UIView()
@@ -212,11 +230,10 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         serviceImage = UIImageView()
         serviceImage.image = #imageLiteral(resourceName: "service_black")
         serviceContainer.addSubview(serviceImage)
-
-        /* Menu Content */
+        
         menuContent = UIView()
-        self.view.addSubview(menuContent)
-    
+        scrollView.addSubview(menuContent)
+        
         makeRoomConstraints()
         
         selectPay()
@@ -228,10 +245,19 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let screenWidth = UIScreen.main.bounds.width
         
-        headerView.snp.makeConstraints { (make) -> Void in
+        scrollView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(statusBarHeight)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
+            make.width.equalToSuperview()
+            make.bottom.equalToSuperview()
+        }
+        
+        headerView.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.width.equalToSuperview()
         }
         
         menu?.snp.makeConstraints { (make) -> Void in
@@ -284,13 +310,14 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             make.top.equalTo(serviceImage.snp.bottom).offset(10)
             make.bottom.equalToSuperview()
         }
-        
+    
         menuContent.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(menu.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
-            make.bottom.equalToSuperview()
+            //            make.bottom.equalToSuperview()
         }
+        
     }
     
     func setUpNoRoomLayout() {
@@ -376,18 +403,46 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     }
     
     func selectService() {
-        updateMenuState(state:STATE_SERVICE)
-
-        /* Add tableview */
-        myRoomTableViewController = MyRoomTableViewController()
-        myRoomTableViewController.myRoomDelegate = self
-        myRoomTableViewController.houseName = self.houseName
-        myRoomTableViewController.houseThumbnailUrl = self.houseThumbnailUrl
-        menuContent.addSubview(myRoomTableViewController.view)
         
-        myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
-            make.top.bottom.left.right.equalToSuperview()
+        /* Set up buttons */
+        cleaningButton = UIButton()
+        cleaningButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        cleaningButton.setTitleColor(UIColor.black, for: .normal)
+        cleaningButton.setTitle(NSLocalizedString("request_cleaning_service", comment: ""), for: .normal)
+        menuContent.addSubview(cleaningButton)
+        
+        localButton = UIButton()
+        localButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        localButton.setTitleColor(UIColor.black, for: .normal)
+        localButton.setTitle(NSLocalizedString("local_amusements", comment: ""), for: .normal)
+        menuContent.addSubview(localButton)
+        
+        reviewButton = UIButton()
+        reviewButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
+        reviewButton.setTitleColor(UIColor.black, for: .normal)
+        reviewButton.setTitle(NSLocalizedString("review_house", comment: ""), for: .normal)
+        menuContent.addSubview(reviewButton)
+        
+        cleaningButton.snp.makeConstraints { (make) -> Void in
+            make.height.equalTo(BUTTON_HEIGHT)
+            make.top.left.right.equalToSuperview()
         }
+        
+        localButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(cleaningButton.snp.bottom)
+            make.height.equalTo(BUTTON_HEIGHT)
+            make.left.right.equalToSuperview()
+        }
+        reviewButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(localButton.snp.bottom)
+            make.height.equalTo(BUTTON_HEIGHT)
+            make.left.right.equalToSuperview()
+        }
+        
+        menuContent.setNeedsLayout()
+        menuContent.updateFocusIfNeeded()
+        
+        updateMenuState(state:STATE_SERVICE)
     }
     
     func updateMenuState(state:Int) {
@@ -428,16 +483,25 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         default:
             break
         }
+        
+        /* Adjust content size of scrollview */
+        print(menuContent.bounds.height)
+        print(menuContent.frame.origin.y)
+        print(scrollView.contentSize.height)
+        let contentOrigin = menuContent.frame.origin.y
+        let contentHeight = menuContent.frame.size.height
+        scrollView.contentSize = CGSize(width:scrollView.frame.size.width, height: contentOrigin + contentHeight)
+        print(scrollView.contentSize.height)
+        print("------")
     }
+
     
-    func myRoomItemSelected(item:Int) {
+    func serviceItemSelected(item:Int) {
         switch item {
         case MyRoomTableViewController.CHANGE_PASSCODE:
             launcChangePasscodeViewController()
             break
         case MyRoomTableViewController.REQUEST_CLEANING:
-            break
-        case MyRoomTableViewController.REQUEST_CHAUFFUER:
             break
         case MyRoomTableViewController.LOCAL_AMUSEMENTS:
             break
