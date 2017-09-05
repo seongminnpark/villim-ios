@@ -18,6 +18,9 @@ import SwiftDate
 class MyRoomViewController: UIViewController, MyRoomDelegate {
 
     let houseImageSize       : CGFloat = 200.0
+    let CONTAINER_WIDTH      = 80.0
+    let ICON_HEIGHT          = 30
+    let MENU_HEIGHT          = 100
     
     var houseId              : Int!    = 0
     var houseName            : String! = ""
@@ -28,9 +31,21 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
     let slideButtonWidth     : CGFloat = 300.0
     let slideButtonHeight    : CGFloat = 60.0
     
+    /* When room info exists */
     var headerView           : MyRoomHeaderView!
     var myRoomTableViewController : MyRoomTableViewController!
+    var menu                 : UIView!
+    var payContainer         : UIView!
+    var payLabel             : UILabel!
+    var payImage             : UIImageView!
+    var passcodeContainer    : UIView!
+    var passcodeLabel        : UILabel!
+    var passcodeImage        : UIImageView!
+    var serviceContainer     : UIView!
+    var serviceLabel         : UILabel!
+    var serviceImage         : UIImageView!
     
+    /* When there is no room to display */
     var container            : UIView!
     var houseImage           : UIImageView!
     var noRoomLabel          : UILabel!
@@ -130,9 +145,6 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
             container.removeFromSuperview()
         }
         
-        /* Prevent overlap with navigation controller */
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        
         /* Set up headerview */
         headerView = MyRoomHeaderView()
         if houseThumbnailUrl.isEmpty {
@@ -144,12 +156,53 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         headerView.houseName.text = houseName
         self.view.addSubview(headerView)
         
-        headerView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(statusBarHeight)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
-        }
+        /* Menu */
+        menu = UIView()
+        self.view.addSubview(menu)
+        
+        /* Pay button */
+        payContainer = UIView()
+        menu.addSubview(payContainer)
+        
+        payLabel = UILabel()
+        payLabel.text = NSLocalizedString("pay_rent", comment: "")
+        payLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        payLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
+        payContainer.addSubview(payLabel)
+        
+        payImage = UIImageView()
+        payImage.image = #imageLiteral(resourceName: "creditcard_black")
+        payContainer.addSubview(payImage)
+        
+        /* Passcode button */
+        passcodeContainer = UIView()
+        menu.addSubview(passcodeContainer)
+        
+        passcodeLabel = UILabel()
+        passcodeLabel.text = NSLocalizedString("doorlock_passcode", comment: "")
+        passcodeLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        passcodeLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
+        passcodeContainer.addSubview(passcodeLabel)
+        
+        passcodeImage = UIImageView()
+        passcodeImage.image = #imageLiteral(resourceName: "doorlock_black")
+        passcodeContainer.addSubview(passcodeImage)
+        
+        /* Service button */
+        serviceContainer = UIView()
+        menu.addSubview(serviceContainer)
+        
+        serviceLabel = UILabel()
+        serviceLabel.text = NSLocalizedString("services", comment: "")
+        serviceLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        serviceLabel.textColor = UIColor(red:0.35, green:0.34, blue:0.34, alpha:1.0)
+        serviceContainer.addSubview(serviceLabel)
+        
+        serviceImage = UIImageView()
+        serviceImage.image = #imageLiteral(resourceName: "service_black")
+        serviceContainer.addSubview(serviceImage)
 
+        
         /* House TableView */
         myRoomTableViewController = MyRoomTableViewController()
         myRoomTableViewController.myRoomDelegate = self
@@ -157,16 +210,79 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         myRoomTableViewController.houseThumbnailUrl = self.houseThumbnailUrl
         self.view.addSubview(myRoomTableViewController.view)
     
-        /* House TableView */
-        myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
+        makeRoomConstraints()
+    }
+    
+    func makeRoomConstraints() {
+        
+        /* Prevent overlap with navigation controller */
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let screenWidth = UIScreen.main.bounds.width
+        
+        headerView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(statusBarHeight)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+        }
+        
+        menu?.snp.makeConstraints { (make) -> Void in
+            make.width.equalToSuperview()
             make.top.equalTo(headerView.snp.bottom)
+            make.height.equalTo(MENU_HEIGHT)
+        }
+        
+        payContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.centerY.equalToSuperview()
+            make.centerX.equalTo(screenWidth / 6.0)
+        }
+        payImage?.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        payLabel?.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(payImage.snp.bottom).offset(10)
+            make.bottom.equalToSuperview()
+        }
+        
+        passcodeContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        passcodeImage?.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        passcodeLabel?.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(passcodeImage.snp.bottom).offset(10)
+            make.bottom.equalToSuperview()
+        }
+        
+        serviceContainer?.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(CONTAINER_WIDTH)
+            make.centerY.equalToSuperview()
+            make.centerX.equalTo(screenWidth * 5 / 6.0)
+        }
+        serviceImage?.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+        }
+        serviceLabel?.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.top.equalTo(serviceImage.snp.bottom).offset(10)
+            make.bottom.equalToSuperview()
+        }
+        
+        myRoomTableViewController.tableView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(menu.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
             make.bottom.equalToSuperview()
         }
-        
     }
-
     
     func setUpNoRoomLayout() {
         
@@ -176,6 +292,10 @@ class MyRoomViewController: UIViewController, MyRoomDelegate {
         
         if headerView != nil {
             headerView.removeFromSuperview()
+        }
+        
+        if menu != nil {
+            menu.removeFromSuperview()
         }
         
         /* Info container */
