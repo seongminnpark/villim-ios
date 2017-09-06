@@ -410,17 +410,24 @@ class MyRoomViewController: UIViewController {
     }
     
     /* Menu items callback */
+    func clearMenuContent() {
+        menuContent.subviews.forEach { $0.removeFromSuperview() }
+    }
+    
     func selectPay() {
+        clearMenuContent()
         state = STATE_PAY
         updateMenuState()
     }
     
     func selectPasscode() {
+        clearMenuContent()
         state = STATE_PASSCODE
         updateMenuState()
     }
     
     func selectService() {
+        clearMenuContent()
         
         /* Set up buttons */
         cleaningButton = UIButton()
@@ -506,7 +513,6 @@ class MyRoomViewController: UIViewController {
         scrollView.contentSize = CGSize(width:scrollView.frame.size.width, height: contentOrigin + contentHeight)
     }
 
-    
     func serviceItemSelected(item:Int) {
         switch item {
         case MyRoomTableViewController.CHANGE_PASSCODE:
@@ -523,7 +529,7 @@ class MyRoomViewController: UIViewController {
             break
         }
     }
-
+    
     func launchReviewHouseViewController() {
         self.tabBarController?.tabBar.isHidden = true
         let reviewHouseViewController = ReviewHouseViewController()

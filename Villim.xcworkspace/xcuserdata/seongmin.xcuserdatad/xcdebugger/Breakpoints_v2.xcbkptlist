@@ -76,11 +76,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526403762.810718"
+            timestampString = "526430140.385944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "554"
-            endingLineNumber = "554"
+            startingLineNumber = "560"
+            endingLineNumber = "560"
             landmarkName = "hideErrorMessage()"
             landmarkType = "7">
          </BreakpointContent>
@@ -92,11 +92,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526403762.810718"
+            timestampString = "526430140.385944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "557"
-            endingLineNumber = "557"
+            startingLineNumber = "563"
+            endingLineNumber = "563"
             landmarkName = "MyRoomViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -108,11 +108,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526403762.810718"
+            timestampString = "526430140.385944"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "558"
-            endingLineNumber = "558"
+            startingLineNumber = "564"
+            endingLineNumber = "564"
             landmarkName = "viewWillDisappear(_:)"
             landmarkType = "7">
          </BreakpointContent>
