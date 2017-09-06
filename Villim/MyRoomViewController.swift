@@ -17,9 +17,10 @@ import SwiftDate
 
 class MyRoomViewController: UIViewController {
 
-    let STATE_PAY = 0
-    let STATE_PASSCODE = 1
-    let STATE_SERVICE = 2
+    let STATE_NONE     = 0
+    let STATE_PAY      = 1
+    let STATE_PASSCODE = 2
+    let STATE_SERVICE  = 3
     
     let CHANGE_PASSCODE   = 0
     let REQUEST_CLEANING  = 1
@@ -31,6 +32,8 @@ class MyRoomViewController: UIViewController {
     let ICON_HEIGHT          = 30
     let MENU_HEIGHT          = 100
     let BUTTON_HEIGHT        = 80.0
+    
+    var state                : Int!
     
     var houseId              : Int!    = 0
     var houseName            : String! = ""
@@ -71,6 +74,8 @@ class MyRoomViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        
+        state = STATE_NONE
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -156,6 +161,11 @@ class MyRoomViewController: UIViewController {
     
     func setUpRoomLayout() {
         
+        if state != STATE_NONE {
+            return
+        }
+        
+        /* Get rid of all views */
         if container != nil {
             container.removeFromSuperview()
         }
@@ -321,6 +331,13 @@ class MyRoomViewController: UIViewController {
     
     func setUpNoRoomLayout() {
         
+        if state == STATE_NONE {
+            return
+        } else {
+            state = STATE_NONE
+        }
+        
+        /* Get rid of all views */
         if myRoomTableViewController != nil {
             myRoomTableViewController.tableView.removeFromSuperview()
         }
@@ -394,11 +411,13 @@ class MyRoomViewController: UIViewController {
     
     /* Menu items callback */
     func selectPay() {
-       updateMenuState(state:STATE_PAY)
+        state = STATE_PAY
+        updateMenuState()
     }
     
     func selectPasscode() {
-        updateMenuState(state:STATE_PASSCODE)
+        state = STATE_PASSCODE
+        updateMenuState()
     }
     
     func selectService() {
@@ -438,10 +457,11 @@ class MyRoomViewController: UIViewController {
             make.left.right.equalToSuperview()
         }
         
-        updateMenuState(state:STATE_SERVICE)
+        state = STATE_SERVICE
+        updateMenuState()
     }
     
-    func updateMenuState(state:Int) {
+    func updateMenuState() {
         switch state {
         case STATE_PAY:
              /* Set image color */
@@ -481,16 +501,9 @@ class MyRoomViewController: UIViewController {
         }
         
         /* Adjust content size of scrollview */
-        print("menu content height:", menuContent.bounds.height)
-        print("menu content origin y:",menuContent.frame.origin.y)
-        print("scrollview content size height:", scrollView.contentSize.height)
         let contentOrigin = menuContent.frame.origin.y
         let contentHeight = menuContent.frame.size.height
         scrollView.contentSize = CGSize(width:scrollView.frame.size.width, height: contentOrigin + contentHeight)
-        print("operated")
-        print("menu content height:", menuContent.bounds.height)
-        print("scrollview content size height:", scrollView.contentSize.height)
-        print("------")
     }
 
     
