@@ -315,9 +315,8 @@ class MyRoomViewController: UIViewController {
             make.top.equalTo(menu.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
-            //            make.bottom.equalToSuperview()
+            make.height.equalTo(BUTTON_HEIGHT * 3)
         }
-        
     }
     
     func setUpNoRoomLayout() {
@@ -439,9 +438,6 @@ class MyRoomViewController: UIViewController {
             make.left.right.equalToSuperview()
         }
         
-        menuContent.setNeedsLayout()
-        menuContent.updateFocusIfNeeded()
-        
         updateMenuState(state:STATE_SERVICE)
     }
     
@@ -485,13 +481,15 @@ class MyRoomViewController: UIViewController {
         }
         
         /* Adjust content size of scrollview */
-        print(menuContent.bounds.height)
-        print(menuContent.frame.origin.y)
-        print(scrollView.contentSize.height)
+        print("menu content height:", menuContent.bounds.height)
+        print("menu content origin y:",menuContent.frame.origin.y)
+        print("scrollview content size height:", scrollView.contentSize.height)
         let contentOrigin = menuContent.frame.origin.y
         let contentHeight = menuContent.frame.size.height
         scrollView.contentSize = CGSize(width:scrollView.frame.size.width, height: contentOrigin + contentHeight)
-        print(scrollView.contentSize.height)
+        print("operated")
+        print("menu content height:", menuContent.bounds.height)
+        print("scrollview content size height:", scrollView.contentSize.height)
         print("------")
     }
 
