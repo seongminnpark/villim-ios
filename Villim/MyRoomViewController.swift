@@ -325,7 +325,7 @@ class MyRoomViewController: UIViewController {
             make.top.equalTo(menu.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
-            make.height.equalTo(BUTTON_HEIGHT * 3)
+            make.height.equalTo(BUTTON_HEIGHT * 4)
         }
     }
     
