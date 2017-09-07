@@ -81,7 +81,11 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "547"
             endingLineNumber = "547"
+<<<<<<< Updated upstream
             landmarkName = "selectService()"
+=======
+            landmarkName = "showErrorMessage(message:)"
+>>>>>>> Stashed changes
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -97,7 +101,11 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "550"
             endingLineNumber = "550"
+<<<<<<< Updated upstream
             landmarkName = "selectService()"
+=======
+            landmarkName = "showErrorMessage(message:)"
+>>>>>>> Stashed changes
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -113,8 +121,13 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "551"
             endingLineNumber = "551"
+<<<<<<< Updated upstream
             landmarkName = "MyRoomViewController"
             landmarkType = "3">
+=======
+            landmarkName = "showErrorMessage(message:)"
+            landmarkType = "7">
+>>>>>>> Stashed changes
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
