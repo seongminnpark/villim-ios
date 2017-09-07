@@ -76,12 +76,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526442699.450857"
+            timestampString = "526403836.899265"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "643"
-            endingLineNumber = "643"
-            landmarkName = "hideErrorMessage()"
+            startingLineNumber = "547"
+            endingLineNumber = "547"
+            landmarkName = "selectService()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -92,109 +92,29 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526442699.450857"
+            timestampString = "526403836.899265"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "646"
-            endingLineNumber = "646"
+            startingLineNumber = "550"
+            endingLineNumber = "550"
+            landmarkName = "selectService()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Villim/MyRoomViewController.swift"
+            timestampString = "526403836.899265"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "551"
+            endingLineNumber = "551"
             landmarkName = "MyRoomViewController"
             landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526442699.450857"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "647"
-            endingLineNumber = "647"
-            landmarkName = "viewWillDisappear(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526439697.593714"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "341"
-            endingLineNumber = "341"
-            landmarkName = "makeRoomConstraints()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526440934.640252"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "343"
-            endingLineNumber = "343"
-            landmarkName = "makeRoomConstraints()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Villim.MyRoomViewController.makeRoomConstraints () -&gt; ()"
-                  moduleName = "Villim"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seongmin/Villim/Villim/MyRoomViewController.swift"
-                  timestampString = "526440823.379319"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "342"
-                  endingLineNumber = "342"
-                  offsetFromSymbolStart = "3768">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Villim.MyRoomViewController.(makeRoomConstraints () -&gt; ()).(closure #13)"
-                  moduleName = "Villim"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/seongmin/Villim/Villim/MyRoomViewController.swift"
-                  timestampString = "526440823.380737"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "342"
-                  endingLineNumber = "342"
-                  offsetFromSymbolStart = "804">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Villim/MyRoomViewController.swift"
-            timestampString = "526442699.450857"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "595"
-            endingLineNumber = "595"
-            landmarkName = "updateMenuState()"
-            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
