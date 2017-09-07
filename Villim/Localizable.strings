@@ -264,3 +264,6 @@
 "pay_rent" = "임대료 납부";
 "doorlock_passcode" = "도어락 비밀번호";
 "services" = "부가서비스";
+
+"next_pay_date" = "다음 임대료 납부기간";
+"pay_rent_button_text" = "임대료 납부하기 >";

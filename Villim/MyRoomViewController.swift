@@ -39,6 +39,8 @@ class MyRoomViewController: UIViewController {
     var houseName            : String! = ""
     var checkIn              : DateInRegion!
     var checkOut             : DateInRegion!
+    var nextPayStart         : DateInRegion!
+    var nextPayEnd           : DateInRegion!
     var houseThumbnailUrl    : String! = ""
     
     let slideButtonWidth     : CGFloat = 300.0
@@ -59,6 +61,14 @@ class MyRoomViewController: UIViewController {
     var serviceLabel         : UILabel!
     var serviceImage         : UIImageView!
     var menuContent          : UIView!
+    
+    var payTitle             : UILabel!
+    var payDateLabel         : UILabel!
+    var payButton            : UIButton!
+    
+    var doorlockTitle        : UILabel!
+    var doorlockPasscode     : UILabel!
+    
     var cleaningButton       : UIButton!
     var localButton          : UIButton!
     var reviewButton         : UIButton!
@@ -110,6 +120,8 @@ class MyRoomViewController: UIViewController {
                     self.checkIn           = VillimUtils.dateFromString(dateString: checkInString)
                     let checkOutString     = responseData[VillimKeys.KEY_CHECKOUT].exists() ? responseData[VillimKeys.KEY_CHECKOUT].stringValue : ""
                     self.checkOut          = VillimUtils.dateFromString(dateString: checkOutString)
+                    self.nextPayStart = self.checkIn
+                    self.nextPayEnd = self.nextPayStart + 1.month
                     self.houseThumbnailUrl = responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].exists() ? responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].stringValue : ""
                     
                     self.setUpRoomLayout()
@@ -175,6 +187,7 @@ class MyRoomViewController: UIViewController {
         }
         
         scrollView = UIScrollView()
+        scrollView.bounces = false
         self.view.addSubview(scrollView)
         
         /* Set up headerview */
@@ -325,9 +338,9 @@ class MyRoomViewController: UIViewController {
             make.top.equalTo(menu.snp.bottom)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
-            make.height.equalTo(BUTTON_HEIGHT * 4)
+            make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
         }
-    }
+        self.view.layoutIfNeeded()    }
     
     func setUpNoRoomLayout() {
         
@@ -416,12 +429,72 @@ class MyRoomViewController: UIViewController {
     
     func selectPay() {
         clearMenuContent()
+        
+        payTitle = UILabel()
+        payTitle.textAlignment = .center
+        payTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 18)
+        payTitle.textColor = UIColor.black
+        payTitle.text = NSLocalizedString("next_pay_date", comment: "")
+        menuContent.addSubview(payTitle)
+        
+        payDateLabel = UILabel()
+        payDateLabel.textAlignment = .center
+        payDateLabel.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
+        payDateLabel.textColor = UIColor.black
+        let dateFormatString = NSLocalizedString("date_format_client_year_month_day", comment: "")
+        let startString  = String(format:dateFormatString,
+                                  nextPayStart.year, nextPayStart.month, nextPayStart.day)
+        let endString = String(format:dateFormatString,
+                               nextPayEnd.year, nextPayEnd.month, nextPayEnd.day)
+        payDateLabel.text =
+            String(format:NSLocalizedString("date_filter_format", comment: ""), startString, endString)
+        menuContent.addSubview(payDateLabel)
+        
+        payButton = UIButton()
+        payButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: 15)
+        payButton.setTitleColor(VillimValues.themeColor, for: .normal)
+        payButton.setTitleColor(VillimValues.themeColorHighlighted, for: .highlighted)
+        payButton.setTitle(NSLocalizedString("pay_rent_button_text", comment: ""), for: .normal)
+        menuContent.addSubview(payButton)
+        
+        payTitle.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(10)
+            make.width.equalToSuperview()
+        }
+        
+        payDateLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(payTitle.snp.bottom).offset(10)
+            make.width.equalToSuperview()
+        }
+        
+        payButton.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(payDateLabel.snp.bottom)
+            make.width.equalToSuperview()
+        }
+        
+        menuContent.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(menu.snp.bottom)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
+        }
+        self.view.layoutIfNeeded()
+        
         state = STATE_PAY
         updateMenuState()
     }
     
     func selectPasscode() {
         clearMenuContent()
+        
+        menuContent.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(menu.snp.bottom)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
+        }
+        self.view.layoutIfNeeded()
+        
         state = STATE_PASSCODE
         updateMenuState()
     }
@@ -464,6 +537,14 @@ class MyRoomViewController: UIViewController {
             make.left.right.equalToSuperview()
         }
         
+        menuContent.snp.updateConstraints { (make) -> Void in
+            make.top.equalTo(menu.snp.bottom)
+            make.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.height.equalTo(BUTTON_HEIGHT * 4) // 하단 패딩을 위해 임의로 정한 수.
+        }
+        self.view.layoutIfNeeded()
+
         state = STATE_SERVICE
         updateMenuState()
     }
@@ -511,8 +592,10 @@ class MyRoomViewController: UIViewController {
         let contentOrigin = menuContent.frame.origin.y
         let contentHeight = menuContent.frame.size.height
         scrollView.contentSize = CGSize(width:scrollView.frame.size.width, height: contentOrigin + contentHeight)
+        
     }
 
+    
     func serviceItemSelected(item:Int) {
         switch item {
         case MyRoomTableViewController.CHANGE_PASSCODE:
