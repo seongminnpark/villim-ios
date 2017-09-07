@@ -335,12 +335,14 @@ class MyRoomViewController: UIViewController {
         }
     
         menuContent.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(menu.snp.bottom)
+            make.top.equalTo(menu.snp.bottom).offset(20)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
             make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
         }
-        self.view.layoutIfNeeded()    }
+        self.view.layoutIfNeeded()
+        
+    }
     
     func setUpNoRoomLayout() {
         
@@ -422,12 +424,42 @@ class MyRoomViewController: UIViewController {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if state != STATE_NONE {
+            if menu != nil {
+                let width = CGFloat(1.0)
+                
+                let topMenuBorder = CALayer()
+                topMenuBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+                topMenuBorder.frame = CGRect(x: 0, y: 0,
+                                             width:  menu.frame.size.width, height: width)
+                topMenuBorder.backgroundColor = UIColor.clear.cgColor
+                topMenuBorder.borderWidth = width
+                menu.layer.addSublayer(topMenuBorder)
+                menu.layer.masksToBounds = true
+                
+                let bottomMenuBorder = CALayer()
+                bottomMenuBorder.borderColor = VillimValues.searchFilterContentColor.cgColor
+                bottomMenuBorder.frame = CGRect(x: 0, y: menu.frame.size.height - width,
+                                                width:  menu.frame.size.width, height: menu.frame.size.height)
+                bottomMenuBorder.backgroundColor = UIColor.clear.cgColor
+                bottomMenuBorder.borderWidth = width
+                menu.layer.addSublayer(bottomMenuBorder)
+                menu.layer.masksToBounds = true
+            }
+        }
+    }
+    
     /* Menu items callback */
     func clearMenuContent() {
         menuContent.subviews.forEach { $0.removeFromSuperview() }
     }
     
     func selectPay() {
+        state = STATE_PAY
+        
         clearMenuContent()
         
         payTitle = UILabel()
@@ -473,33 +505,29 @@ class MyRoomViewController: UIViewController {
         }
         
         menuContent.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(menu.snp.bottom)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
             make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
         }
         self.view.layoutIfNeeded()
         
-        state = STATE_PAY
         updateMenuState()
     }
     
     func selectPasscode() {
+        state = STATE_PASSCODE
+        
         clearMenuContent()
         
         menuContent.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(menu.snp.bottom)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
             make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
         }
         self.view.layoutIfNeeded()
         
-        state = STATE_PASSCODE
         updateMenuState()
     }
     
     func selectService() {
+        state = STATE_SERVICE
+        
         clearMenuContent()
         
         /* Set up buttons */
@@ -538,14 +566,10 @@ class MyRoomViewController: UIViewController {
         }
         
         menuContent.snp.updateConstraints { (make) -> Void in
-            make.top.equalTo(menu.snp.bottom)
-            make.right.equalToSuperview()
-            make.left.equalToSuperview()
             make.height.equalTo(BUTTON_HEIGHT * 4) // 하단 패딩을 위해 임의로 정한 수.
         }
         self.view.layoutIfNeeded()
 
-        state = STATE_SERVICE
         updateMenuState()
     }
     
