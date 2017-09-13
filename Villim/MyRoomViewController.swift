@@ -42,6 +42,7 @@ class MyRoomViewController: UIViewController {
     var nextPayStart         : DateInRegion!
     var nextPayEnd           : DateInRegion!
     var houseThumbnailUrl    : String! = ""
+    var passcode             : String! = "000000"
     
     let slideButtonWidth     : CGFloat = 300.0
     let slideButtonHeight    : CGFloat = 60.0
@@ -67,7 +68,7 @@ class MyRoomViewController: UIViewController {
     var payButton            : UIButton!
     
     var doorlockTitle        : UILabel!
-    var doorlockPasscode     : UILabel!
+    var doorlockPasscode     : InsetLabel!
     
     var cleaningButton       : UIButton!
     var localButton          : UIButton!
@@ -123,7 +124,9 @@ class MyRoomViewController: UIViewController {
                     self.nextPayStart = self.checkIn
                     self.nextPayEnd = self.nextPayStart + 1.month
                     self.houseThumbnailUrl = responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].exists() ? responseData[VillimKeys.KEY_HOUSE_THUMBNAIL_URL].stringValue : ""
-                    
+                    self.passcode = responseData[VillimKeys.KEY_PASSCODE].exists() ?
+                        responseData[VillimKeys.KEY_PASSCODE].stringValue : "000000"
+
                     self.setUpRoomLayout()
                     
                     //                    self.populateViews()
@@ -516,6 +519,33 @@ class MyRoomViewController: UIViewController {
         state = STATE_PASSCODE
         
         clearMenuContent()
+        
+        doorlockTitle = UILabel()
+        doorlockTitle.textAlignment = .center
+        doorlockTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 18)
+        doorlockTitle.textColor = UIColor.black
+        doorlockTitle.text = NSLocalizedString("doorlock_passcode", comment: "")
+        menuContent.addSubview(doorlockTitle)
+        
+        doorlockPasscode = InsetLabel()
+        doorlockPasscode = InsetLabel(dx: 10.0, dy: 10.0)
+        doorlockPasscode.textAlignment = .center
+        doorlockPasscode.font = UIFont(name: "NotoSansCJKkr-Regular", size: 18)
+        doorlockPasscode.textColor = UIColor.black
+        doorlockPasscode.text = passcode
+        doorlockPasscode.layer.borderWidth = 1
+        doorlockPasscode.layer.borderColor = UIColor.black.cgColor
+        menuContent.addSubview(doorlockPasscode)
+        
+        doorlockTitle.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(10)
+            make.width.equalToSuperview()
+        }
+        
+        doorlockPasscode.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(doorlockTitle.snp.bottom).offset(10)
+            make.centerX.equalToSuperview()
+        }
         
         menuContent.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(BUTTON_HEIGHT * 2) // 임의로 정한 수.
