@@ -15,7 +15,7 @@ import Toaster
 import AudioToolbox
 import SwiftDate
 
-class MyRoomViewController: UIViewController {
+class MyRoomViewController: UIViewController, UIScrollViewDelegate {
 
     let STATE_NONE     = 0
     let STATE_PAY      = 1
@@ -33,7 +33,11 @@ class MyRoomViewController: UIViewController {
     let MENU_HEIGHT          = 100
     let BUTTON_HEIGHT        = 80.0
     
+    let statusBarHeight = UIApplication.shared.statusBarFrame.height
+    
     var state                : Int!
+    
+    var prevContentOffset    : CGFloat!
     
     var houseId              : Int!    = 0
     var houseName            : String! = ""
@@ -87,6 +91,7 @@ class MyRoomViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         
         state = STATE_NONE
+        prevContentOffset = 0
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -268,7 +273,6 @@ class MyRoomViewController: UIViewController {
     func makeRoomConstraints() {
         
         /* Prevent overlap with navigation controller */
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let screenWidth = UIScreen.main.bounds.width
         
         scrollView.snp.makeConstraints { (make) -> Void in
@@ -380,6 +384,8 @@ class MyRoomViewController: UIViewController {
         /* House picture */
         houseImage = UIImageView()
         houseImage.layer.cornerRadius = houseImageSize / 2
+        houseImage.clipsToBounds = true
+        houseImage.contentMode = .scaleAspectFill
         houseImage.layer.masksToBounds = true
         container.addSubview(houseImage)
         
@@ -682,6 +688,50 @@ class MyRoomViewController: UIViewController {
     
     func showDiscoverTab() {
         self.tabBarController?.selectedIndex = 0;
+    }
+    
+    /* Scrollview delegate */
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let contentOffset : CGPoint = scrollView.contentOffset
+        
+        let contentVector = contentOffset.y - prevContentOffset // > 0 if scrolling down, < 0 if scrolling up.
+        let newHeight = houseImage.bounds.height - contentVector
+        
+        if contentVector < 0 { // Expand.
+            
+            if newHeight <= houseImageSize {
+                
+                houseImage?.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(houseImageSize)
+                }
+            }
+            
+        } else if contentVector > 0 { // Collapse.
+            
+            houseImage?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(newHeight)
+            }
+            
+        }
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+//        scrollViewDidStopScrolling()
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+//        scrollViewDidStopScrolling()
+    }
+    
+    func scrollViewDidStopScrolling() {
+        let range = houseImageSize
+        let midPoint = range / 2
+        
+        if self.houseImage.bounds.height > midPoint {
+//            expandHouseImage()
+        } else {
+//            collapseHouseImage()
+        }
     }
     
     private func showErrorMessage(message:String) {
