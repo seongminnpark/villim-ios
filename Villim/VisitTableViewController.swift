@@ -59,9 +59,9 @@ class VisitTableViewController: UITableViewController {
         // #warning Incomplete implementation, return the number of rows
         switch section {
         case VisitTableViewController.CONFIRMED:
-            return confirmedVisits.count
+            return min(confirmedVisits.count, confirmedHouses.count)
         case VisitTableViewController.PENDING:
-            return pendingVisits.count
+            return min(pendingVisits.count, pendingHouses.count)
         case VisitTableViewController.DONE:
             return 0
         default:
