@@ -23,7 +23,7 @@ class TabBarController: UITabBarController {
         myRoomController.tabBarItem = UITabBarItem(title: NSLocalizedString("my_room", comment: ""), image: #imageLiteral(resourceName: "icon_my_room"), tag: 0)
         
         let visitListController = VisitListViewController()
-        visitListController.tabBarItem = UITabBarItem(title: NSLocalizedString("reservation_list", comment: ""), image: #imageLiteral(resourceName: "icon_visit_list"), tag: 0)
+        visitListController.tabBarItem = UITabBarItem(title: NSLocalizedString("visit_list", comment: ""), image: #imageLiteral(resourceName: "icon_visit_list"), tag: 0)
         
         let profileController = ProfileViewController()
         profileController.tabBarItem = UITabBarItem(title: NSLocalizedString("profile", comment: ""), image: #imageLiteral(resourceName: "icon_profile"), tag: 0)
