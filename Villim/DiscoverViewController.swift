@@ -328,7 +328,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                print(responseData)
+                
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
@@ -456,7 +456,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         cell.houseName.text = house.houseName
         cell.houseRating.rating = Double(house.houseRating)
         cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
-        cell.dailyRent.text = VillimUtils.getRentString(rent: house.ratePerNight, month: false)
+        cell.address.text = "서울시 종로구"
         cell.makeConstraints()
         return cell
         

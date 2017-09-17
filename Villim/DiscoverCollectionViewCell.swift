@@ -19,7 +19,7 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     var houseName      : UILabel!
     var houseRating    : CosmosView!
     var monthlyRent    : UILabel!
-    var dailyRent      : UILabel!
+    var address        : UILabel!
     var imageDim       : UIView!
     
     override init(frame: CGRect) {
@@ -58,10 +58,10 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         monthlyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         container.addSubview(monthlyRent)
         
-        dailyRent = UILabel()
-        dailyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
-        dailyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
-        container.addSubview(dailyRent)
+        address = UILabel()
+        address.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
+        address.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
+        container.addSubview(address)
         
         imageDim = UIView()
         imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
@@ -100,13 +100,13 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         }
         
         monthlyRent.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.top.equalTo(houseName.snp.bottom).offset(10)
+            make.left.equalToSuperview().offset(10)
+            make.top.equalTo(houseName.snp.bottom).offset(5)
         }
         
-        dailyRent.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.top.equalTo(monthlyRent.snp.bottom).offset(5)
+        address.snp.makeConstraints{ (make) -> Void in
+            make.right.equalToSuperview().offset(-10)
+            make.centerY.equalTo(monthlyRent)
         }
         
         imageDim.snp.makeConstraints{ (make) -> Void in
