@@ -15,7 +15,7 @@ import Nuke
 import ScalingCarousel
 import GoogleMaps
 
-class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GMSMapViewDelegate {
     
     var filterOpen : Bool = false
     let CAROUSEL_HEIGHT : CGFloat! = 360.0
@@ -168,8 +168,10 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         /* Map */
         mapView = GMSMapView()
+        mapView.delegate = self
         self.view.addSubview(mapView)
         
+        /* Carousel */
         let carouselFrame = CGRect(x: 0,
                                    y: UIScreen.main.bounds.height - CAROUSEL_HEIGHT -
                                       self.tabBarController!.tabBar.bounds.height,
@@ -577,6 +579,18 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         } else {
             collapseFilter()
         }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        launchMapView()
+    }
+    
+    func launchMapView() {
+        let mapViewController = MapViewController()
+        mapViewController.latitude = 0.0
+        mapViewController.longitude = 0.0
+        mapViewController.mapMarkerExact = false
+        self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     
     func updateMap() {
