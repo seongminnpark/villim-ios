@@ -11,12 +11,13 @@ import Alamofire
 import SwiftyJSON
 import Toaster
 import SwiftDate
+import Nuke
 import ScalingCarousel
 
-class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate {
+class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var filterOpen : Bool = false
-    let CAROUSEL_HEIGHT : CGFloat! = 300.0
+    let CAROUSEL_HEIGHT : CGFloat! = 330.0
     
     var houses : [VillimHouse] = []
     
@@ -54,10 +55,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     var dateFilterLabel : UILabel!
     var dateFilterClearButton : UIButton!
     
-    var carousel : ScalingCarousel!
+    var carousel : ScalingCarouselView!
     
-//    var discoverTableViewController : DiscoverTableViewController!
-
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -163,11 +162,6 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
         let dateGesture = UITapGestureRecognizer(target: self, action:  #selector (self.launchDateFilterViewController(sender:)))
         self.dateFilter.addGestureRecognizer(dateGesture)
-    
-        /* Featured houses list */
-//        discoverTableViewController = DiscoverTableViewController()
-//        discoverTableViewController.discoverDelegate = self
-//        self.view.addSubview(discoverTableViewController.view)
         
         let carouselFrame = CGRect(x: 0,
                                    y: UIScreen.main.bounds.height - CAROUSEL_HEIGHT -
@@ -175,21 +169,14 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
                                    width: UIScreen.main.bounds.height,
                                    height: CAROUSEL_HEIGHT)
         
-        carousel = ScalingCarouselView(withFrame: frame, andInset: 20)
+        carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 0)
         carousel.dataSource = self
         carousel.translatesAutoresizingMaskIntoConstraints = false
         
         // Register our custom cell for dequeueing
-        carousel.register(DiscoverCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        carousel.register(DiscoverCollectionViewCell.self, forCellWithReuseIdentifier: "discover")
+        self.view.addSubview(carousel)
         
-        // Add our carousel as a subview
-        view.addSubview(carousel)
-        
-        // Add Constraints
-        carousel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
-        carousel.heightAnchor.constraint(equalToConstant: 300).isActive = true
-        carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        carousel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         
         populateViews()
         makeConstraints()
@@ -281,13 +268,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
             make.right.equalToSuperview()
         }
         
-//        /* Tableview */
-//        discoverTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-//            make.left.equalToSuperview().offset(VillimValues.tableMargin)
-//            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
-//            make.top.equalTo(searchFilter.snp.bottom)
-//            make.bottom.equalToSuperview()
-//        }
+        /* CollectionView */
+        carousel.snp.makeConstraints{ (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.tableMargin)
+            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
+            make.top.equalTo(self.view.snp.bottom).offset(-CAROUSEL_HEIGHT)
+            make.bottom.equalToSuperview().offset(-self.tabBarController!.tabBar.bounds.height - VillimValues.tableMargin)
+        }
         
     }
     
@@ -433,53 +420,78 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
     
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return houses.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell : DiscoverCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "discover", for: indexPath) as! DiscoverCollectionViewCell
+        
+        let house = self.houses[indexPath.row]
+        
+        let url = URL(string: house.houseThumbnailUrl)
+        if url != nil {
+            Nuke.loadImage(with: url!, into: cell.houseThumbnail)
+        }
+        cell.houseName.text = house.houseName
+        cell.houseRating.rating = Double(house.houseRating)
+        cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
+        cell.dailyRent.text = VillimUtils.getRentString(rent: house.ratePerNight, month: false)
+        cell.makeConstraints()
+        return cell
+        
+    }
+    
     func onScroll(contentOffset:CGPoint) {
         
 //        let tableView = self.discoverTableViewController.tableView!
         
         /* Bottom bounce */
-        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height
-        if tableView.contentOffset.y >= maxContentOffset {
-            tableView.bounds.origin = CGPoint(x:0, y:maxContentOffset)
-            return
-        }
-        
-        let contentVector = contentOffset.y - prevContentOffset // > 0 if scrolling down, < 0 if scrolling up.
-        let newHeight = searchFilter.bounds.height - contentVector
-        
-        if prevContentOffset == 0 && contentVector < 0 { // Expand.
-            
-            if newHeight <= searchFilterMaxHeight {
-                
-                searchFilter?.snp.updateConstraints { (make) -> Void in
-                    make.height.equalTo(newHeight)
-                }
-                
-                open()
-            }
-            
-            tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
-            
-        } else if prevContentOffset == 0 && contentVector > 0 { // Collapse.
-            
-            if newHeight >= 0 {
-                
-                searchFilter?.snp.updateConstraints { (make) -> Void in
-                    make.height.equalTo(newHeight)
-                }
-                
-                tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
-                
-            } else {
-                
-                searchFilter?.snp.updateConstraints { (make) -> Void in
-                    make.height.equalTo(0)
-                }
-
-                collapse()
-                
-            }
-        }
+//        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height
+//        if tableView.contentOffset.y >= maxContentOffset {
+//            tableView.bounds.origin = CGPoint(x:0, y:maxContentOffset)
+//            return
+//        }
+//        
+//        let contentVector = contentOffset.y - prevContentOffset // > 0 if scrolling down, < 0 if scrolling up.
+//        let newHeight = searchFilter.bounds.height - contentVector
+//        
+//        if prevContentOffset == 0 && contentVector < 0 { // Expand.
+//            
+//            if newHeight <= searchFilterMaxHeight {
+//                
+//                searchFilter?.snp.updateConstraints { (make) -> Void in
+//                    make.height.equalTo(newHeight)
+//                }
+//                
+//                open()
+//            }
+//            
+//            tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+//            
+//        } else if prevContentOffset == 0 && contentVector > 0 { // Collapse.
+//            
+//            if newHeight >= 0 {
+//                
+//                searchFilter?.snp.updateConstraints { (make) -> Void in
+//                    make.height.equalTo(newHeight)
+//                }
+//                
+//                tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
+//                
+//            } else {
+//                
+//                searchFilter?.snp.updateConstraints { (make) -> Void in
+//                    make.height.equalTo(0)
+//                }
+//
+//                collapse()
+//                
+//            }
+//        }
     }
 
     
