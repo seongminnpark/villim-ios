@@ -20,7 +20,8 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     var filterOpen : Bool = false
     let CAROUSEL_HEIGHT : CGFloat! = 360.0
     
-    var houses : [VillimHouse] = []
+    var houses  : [VillimHouse] = []
+    var markers : [GMSMarker] = []
     
     var locationQuery : String = ""
     var checkIn  : DateInRegion! = nil
@@ -166,15 +167,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.dateFilter.addGestureRecognizer(dateGesture)
         
         /* Map */
-        let camera = GMSCameraPosition.camera(withLatitude: 0.0, longitude:  0.0, zoom: 17.0)
-        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
-        
-        // Creates a marker in the center of the map.
-        let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude:  0.0, longitude:  0.0)
-        
-        marker.map = mapView
-        
+        mapView = GMSMapView()
         self.view.addSubview(mapView)
         
         let carouselFrame = CGRect(x: 0,
@@ -335,11 +328,13 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
+                print(responseData)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
 
                     self.carousel.reloadData()
+                    self.updateMap()
                     
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
@@ -582,6 +577,27 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         } else {
             collapseFilter()
         }
+    }
+    
+    func updateMap() {
+        for house in houses {
+            let marker = GMSMarker()
+//            marker.position = CLLocationCoordinate2D(latitude: house.latitude, longitude: house.longitude)
+            marker.position = CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9790)
+            marker.map = mapView
+            self.markers.append(marker)
+        }
+        
+        var initialLatitude = 0.0
+        var initialLongitude = 0.0
+        
+        if markers.count > 0 {
+            initialLatitude = markers[0].position.latitude
+            initialLongitude = markers[0].position.longitude
+        }
+      
+        let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 17.0)
+        mapView.camera = camera
     }
     
     override func didReceiveMemoryWarning() {
