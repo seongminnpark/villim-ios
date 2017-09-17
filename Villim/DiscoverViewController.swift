@@ -519,9 +519,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     
     func launchMapView() {
         let mapViewController = MapViewController()
-        let indexPath = carousel.indexPathsForVisibleItems.first.row
-        mapViewController.latitude = 0.0
-        mapViewController.longitude = 0.0
+        let index = carousel.indexPathsForVisibleItems.first?.row
+        mapViewController.latitude  = index == nil ? 0.0 : houses[index!].latitude
+        mapViewController.longitude = index == nil ? 0.0 : houses[index!].longitude
         mapViewController.mapMarkerExact = false
         self.navigationController?.pushViewController(mapViewController, animated: true)
     }
