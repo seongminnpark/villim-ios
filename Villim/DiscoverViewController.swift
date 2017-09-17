@@ -13,11 +13,12 @@ import Toaster
 import SwiftDate
 import Nuke
 import ScalingCarousel
+import GoogleMaps
 
 class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var filterOpen : Bool = false
-    let CAROUSEL_HEIGHT : CGFloat! = 370.0
+    let CAROUSEL_HEIGHT : CGFloat! = 360.0
     
     var houses : [VillimHouse] = []
     
@@ -55,6 +56,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     var dateFilterLabel : UILabel!
     var dateFilterClearButton : UIButton!
     
+    var mapView   : GMSMapView!
     var carousel : ScalingCarouselView!
     
     override func viewDidLoad() {
@@ -163,6 +165,18 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         let dateGesture = UITapGestureRecognizer(target: self, action:  #selector (self.launchDateFilterViewController(sender:)))
         self.dateFilter.addGestureRecognizer(dateGesture)
         
+        /* Map */
+        let camera = GMSCameraPosition.camera(withLatitude: 0.0, longitude:  0.0, zoom: 17.0)
+        mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
+        
+        // Creates a marker in the center of the map.
+        let marker = GMSMarker()
+        marker.position = CLLocationCoordinate2D(latitude:  0.0, longitude:  0.0)
+        
+        marker.map = mapView
+        
+        self.view.addSubview(mapView)
+        
         let carouselFrame = CGRect(x: 0,
                                    y: UIScreen.main.bounds.height - CAROUSEL_HEIGHT -
                                       self.tabBarController!.tabBar.bounds.height,
@@ -266,12 +280,22 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             make.right.equalToSuperview()
         }
         
+        /* Map */
+        mapView.snp.makeConstraints{ (make) -> Void in
+            make.left.equalToSuperview().offset(VillimValues.tableMargin)
+            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
+            make.top.equalTo(searchFilter.snp.bottom).offset(VillimValues.tableMargin)
+            make.height.equalTo(UIScreen.main.bounds.height
+                - CAROUSEL_HEIGHT
+                - self.tabBarController!.tabBar.bounds.height)
+        }
+        
         /* CollectionView */
         carousel.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview().offset(VillimValues.tableMargin)
             make.right.equalToSuperview().offset(-VillimValues.tableMargin)
-            make.top.equalTo(self.view.snp.bottom).offset(-CAROUSEL_HEIGHT)
-            make.bottom.equalToSuperview().offset(-self.tabBarController!.tabBar.bounds.height - VillimValues.tableMargin)
+            make.top.equalTo(mapView.snp.bottom)
+            make.height.equalTo(CAROUSEL_HEIGHT)
         }
         
     }
