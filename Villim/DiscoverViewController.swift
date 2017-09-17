@@ -178,13 +178,10 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         carousel.register(DiscoverCollectionViewCell.self, forCellWithReuseIdentifier: "discover")
         self.view.addSubview(carousel)
         
-        
         populateViews()
         makeConstraints()
         
-        self.searchFilter?.snp.updateConstraints { (make) -> Void in
-            make.height.equalTo(0)
-        }
+        collapseFilter()
         
         sendFeaturedHousesRequest()
         
@@ -515,6 +512,12 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             self.searchFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(0)
             }
+            self.locationFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(0)
+            }
+            self.dateFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(0)
+            }
             self.view.layoutIfNeeded()
         })
        
@@ -526,6 +529,12 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         UIView.animate(withDuration: 0.5, animations: {
             self.searchFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.searchFilterMaxHeight)
+            }
+            self.locationFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.individualFilterHeight)
+            }
+            self.dateFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.individualFilterHeight)
             }
             self.view.layoutIfNeeded()
         })
