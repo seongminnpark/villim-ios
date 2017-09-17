@@ -11,10 +11,12 @@ import Alamofire
 import SwiftyJSON
 import Toaster
 import SwiftDate
+import ScalingCarousel
 
 class DiscoverViewController: ViewController, DiscoverTableViewDelegate, LocationFilterDelegate, CalendarDelegate {
     
     var filterOpen : Bool = false
+    let CAROUSEL_HEIGHT : CGFloat! = 300.0
     
     var houses : [VillimHouse] = []
     
@@ -52,7 +54,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     var dateFilterLabel : UILabel!
     var dateFilterClearButton : UIButton!
     
-    var discoverTableViewController : DiscoverTableViewController!
+    var carousel : ScalingCarousel!
+    
+//    var discoverTableViewController : DiscoverTableViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -161,9 +165,31 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
         self.dateFilter.addGestureRecognizer(dateGesture)
     
         /* Featured houses list */
-        discoverTableViewController = DiscoverTableViewController()
-        discoverTableViewController.discoverDelegate = self
-        self.view.addSubview(discoverTableViewController.view)
+//        discoverTableViewController = DiscoverTableViewController()
+//        discoverTableViewController.discoverDelegate = self
+//        self.view.addSubview(discoverTableViewController.view)
+        
+        let carouselFrame = CGRect(x: 0,
+                                   y: UIScreen.main.bounds.height - CAROUSEL_HEIGHT -
+                                      self.tabBarController!.tabBar.bounds.height,
+                                   width: UIScreen.main.bounds.height,
+                                   height: CAROUSEL_HEIGHT)
+        
+        carousel = ScalingCarouselView(withFrame: frame, andInset: 20)
+        carousel.dataSource = self
+        carousel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Register our custom cell for dequeueing
+        carousel.register(DiscoverCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        
+        // Add our carousel as a subview
+        view.addSubview(carousel)
+        
+        // Add Constraints
+        carousel.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 1).isActive = true
+        carousel.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        carousel.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        carousel.topAnchor.constraint(equalTo: view.topAnchor, constant: 50).isActive = true
         
         populateViews()
         makeConstraints()
@@ -194,8 +220,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     }
     
     func populateViews() {
-        discoverTableViewController.houses = self.houses
-        discoverTableViewController.tableView.reloadData()
+//        discoverTableViewController.houses = self.houses
+//        discoverTableViewController.tableView.reloadData()
     }
     
     func makeConstraints() {
@@ -255,13 +281,13 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
             make.right.equalToSuperview()
         }
         
-        /* Tableview */
-        discoverTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview().offset(VillimValues.tableMargin)
-            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
-            make.top.equalTo(searchFilter.snp.bottom)
-            make.bottom.equalToSuperview()
-        }
+//        /* Tableview */
+//        discoverTableViewController.tableView.snp.makeConstraints{ (make) -> Void in
+//            make.left.equalToSuperview().offset(VillimValues.tableMargin)
+//            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
+//            make.top.equalTo(searchFilter.snp.bottom)
+//            make.bottom.equalToSuperview()
+//        }
         
     }
     
@@ -303,9 +329,9 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
+
+                    self.carousel.reloadData()
                     
-                    self.discoverTableViewController.houses = self.houses
-                    self.discoverTableViewController.tableView.reloadData()
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
@@ -343,8 +369,8 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
                     
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
                     
-                    self.discoverTableViewController.houses = self.houses
-                    self.discoverTableViewController.tableView.reloadData()
+//                    self.discoverTableViewController.houses = self.houses
+//                    self.discoverTableViewController.tableView.reloadData()
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
@@ -409,7 +435,7 @@ class DiscoverViewController: ViewController, DiscoverTableViewDelegate, Locatio
     
     func onScroll(contentOffset:CGPoint) {
         
-        let tableView = self.discoverTableViewController.tableView!
+//        let tableView = self.discoverTableViewController.tableView!
         
         /* Bottom bounce */
         let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height

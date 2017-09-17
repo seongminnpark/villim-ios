@@ -18,6 +18,7 @@ target 'Villim' do
   pod 'PhoneNumberKit', '~> 1.3'
   pod 'pop', '~> 1.0'
   pod 'Lightbox'
+  pod 'ScalingCarousel'
   
   pod 'Fabric'
   pod 'Crashlytics'

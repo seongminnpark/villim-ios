@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double SwiftyIamportVersionNumber;
-FOUNDATION_EXPORT const unsigned char SwiftyIamportVersionString[];
+FOUNDATION_EXPORT double ScalingCarouselVersionNumber;
+FOUNDATION_EXPORT const unsigned char ScalingCarouselVersionString[];
 
