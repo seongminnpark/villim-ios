@@ -27,9 +27,13 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         
         self.contentView.backgroundColor = VillimValues.backgroundColor
         
+        // Initialize the mainView property and add it to the cell's contentView
+        mainView = UIView(frame: contentView.bounds)
+        contentView.addSubview(mainView)
+        
         container = UIView()
         container.backgroundColor = UIColor.white
-        self.contentView.addSubview(container)
+        mainView.addSubview(container)
         
         houseThumbnail = UIImageView()
         container.addSubview(houseThumbnail)

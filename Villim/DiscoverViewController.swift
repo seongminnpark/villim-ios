@@ -17,7 +17,7 @@ import ScalingCarousel
 class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var filterOpen : Bool = false
-    let CAROUSEL_HEIGHT : CGFloat! = 330.0
+    let CAROUSEL_HEIGHT : CGFloat! = 370.0
     
     var houses : [VillimHouse] = []
     
@@ -172,6 +172,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 0)
         carousel.dataSource = self
         carousel.translatesAutoresizingMaskIntoConstraints = false
+        carousel.backgroundColor = UIColor.clear
         
         // Register our custom cell for dequeueing
         carousel.register(DiscoverCollectionViewCell.self, forCellWithReuseIdentifier: "discover")
