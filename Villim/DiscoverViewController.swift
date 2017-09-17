@@ -464,56 +464,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
     }
     
-    func onScroll(contentOffset:CGPoint) {
-        
-//        let tableView = self.discoverTableViewController.tableView!
-        
-        /* Bottom bounce */
-//        let maxContentOffset = tableView.contentSize.height - tableView.bounds.size.height
-//        if tableView.contentOffset.y >= maxContentOffset {
-//            tableView.bounds.origin = CGPoint(x:0, y:maxContentOffset)
-//            return
-//        }
-//        
-//        let contentVector = contentOffset.y - prevContentOffset // > 0 if scrolling down, < 0 if scrolling up.
-//        let newHeight = searchFilter.bounds.height - contentVector
-//        
-//        if prevContentOffset == 0 && contentVector < 0 { // Expand.
-//            
-//            if newHeight <= searchFilterMaxHeight {
-//                
-//                searchFilter?.snp.updateConstraints { (make) -> Void in
-//                    make.height.equalTo(newHeight)
-//                }
-//                
-//                open()
-//            }
-//            
-//            tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
-//            
-//        } else if prevContentOffset == 0 && contentVector > 0 { // Collapse.
-//            
-//            if newHeight >= 0 {
-//                
-//                searchFilter?.snp.updateConstraints { (make) -> Void in
-//                    make.height.equalTo(newHeight)
-//                }
-//                
-//                tableView.bounds.origin = CGPoint(x:0, y:prevContentOffset)
-//                
-//            } else {
-//                
-//                searchFilter?.snp.updateConstraints { (make) -> Void in
-//                    make.height.equalTo(0)
-//                }
-//
-//                collapse()
-//                
-//            }
-//        }
-    }
-
-    
     func open() {
         filterOpen = true
         navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
@@ -563,30 +513,13 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
     }
     
-    func onEndDrag(contentOffset:CGPoint) {
-        scrollViewDidStopScrolling()
-    }
-    
-    func onStopDecelerate(contentOffset:CGPoint) {
-        scrollViewDidStopScrolling()
-    }
-    
-    func scrollViewDidStopScrolling() {
-        let midPoint = searchFilterMaxHeight / 2
-        
-        if self.searchFilter.bounds.height > midPoint {
-            openFilter()
-        } else {
-            collapseFilter()
-        }
-    }
-    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         launchMapView()
     }
     
     func launchMapView() {
         let mapViewController = MapViewController()
+        let indexPath = carousel.indexPathsForVisibleItems.first.row
         mapViewController.latitude = 0.0
         mapViewController.longitude = 0.0
         mapViewController.mapMarkerExact = false
