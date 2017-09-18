@@ -512,6 +512,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         carousel.didScroll()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         scrollMap()
     }
     
@@ -564,7 +567,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             initialLatitude = newCameraCoordinate.latitude
             initialLongitude = newCameraCoordinate.longitude
         }
-        print(initialLatitude, initialLongitude)
+        
         let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 17.0)
 
         mapView.camera = camera

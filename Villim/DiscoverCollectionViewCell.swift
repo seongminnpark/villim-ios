@@ -47,15 +47,15 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         container.addSubview(houseThumbnail)
         
         houseName = UILabel()
-        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
+        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 18)
         houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
-        houseName.numberOfLines = 2
+        houseName.numberOfLines = 1
         container.addSubview(houseName)
         
         houseRating = CosmosView()
         houseRating.settings.updateOnTouch = false
         houseRating.settings.fillMode = .precise
-        houseRating.settings.starSize = 20
+        houseRating.settings.starSize = 18
         houseRating.settings.starMargin = 5
         houseRating.settings.filledImage = UIImage(named: "icon_star_on")
         houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
