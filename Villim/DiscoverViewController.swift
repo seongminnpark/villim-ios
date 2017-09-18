@@ -169,6 +169,8 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         /* Map */
         mapView = GMSMapView()
         mapView.delegate = self
+        let camera = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 17.0)
+        mapView.camera = camera
         self.view.addSubview(mapView)
         
         /* Carousel */
@@ -538,9 +540,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         /* Delete this for loop */
         for _ in houses {
             let marker = GMSMarker()
-            let random = (Double(arc4random()) / Double(UInt32.max)) * 2 - 1
-            let latitude = 37.5665 + random  / 100
-            let longitude = 126.9790 + random  / 100
+            let random = (Double(arc4random()) / Double(UInt32.max)) * 5 - 10
+            let latitude = 37.5665 + (random  / 100)
+            let longitude = 126.9790 + (random  / 100)
             marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             marker.map = mapView
             self.markers.append(marker)
@@ -562,7 +564,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             initialLatitude = newCameraCoordinate.latitude
             initialLongitude = newCameraCoordinate.longitude
         }
-      
+        print(initialLatitude, initialLongitude)
         let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 17.0)
 
         mapView.camera = camera
