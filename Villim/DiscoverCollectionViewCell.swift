@@ -25,17 +25,25 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.contentView.backgroundColor = VillimValues.backgroundColor
+        self.contentView.backgroundColor = UIColor.clear
         
         // Initialize the mainView property and add it to the cell's contentView
         mainView = UIView(frame: contentView.bounds)
-        contentView.addSubview(mainView)
+        mainView.clipsToBounds = true
+        mainView.backgroundColor = UIColor.clear
+        self.contentView.addSubview(mainView)
         
         container = UIView()
-        container.backgroundColor = UIColor.white
+        container.backgroundColor = VillimValues.backgroundColor
+        container.layer.cornerRadius = 30
+        container.layer.borderWidth = 1.0
+        container.layer.borderColor = UIColor.clear.cgColor
+        container.layer.masksToBounds = true
+        container.clipsToBounds = true
         mainView.addSubview(container)
         
         houseThumbnail = UIImageView()
+        houseThumbnail.clipsToBounds = true
         container.addSubview(houseThumbnail)
         
         houseName = UILabel()
@@ -76,9 +84,10 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     func makeConstraints() {
         
         container?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
-            make.top.equalToSuperview().offset(VillimValues.tableMargin)
-            make.bottom.equalToSuperview()
+            make.width.equalTo(300)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.equalToSuperview().offset(-VillimValues.tableMargin*2)
         }
         
         houseThumbnail?.snp.makeConstraints { (make) -> Void in

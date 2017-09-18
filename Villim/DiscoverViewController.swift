@@ -18,7 +18,7 @@ import GoogleMaps
 class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GMSMapViewDelegate {
     
     var filterOpen : Bool = false
-    let CAROUSEL_HEIGHT : CGFloat! = 360.0
+    let CAROUSEL_HEIGHT : CGFloat! = 290.0
     
     var houses  : [VillimHouse] = []
     var markers : [GMSMarker] = []
@@ -172,13 +172,8 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.view.addSubview(mapView)
         
         /* Carousel */
-        let carouselFrame = CGRect(x: 0,
-                                   y: UIScreen.main.bounds.height - CAROUSEL_HEIGHT -
-                                      self.tabBarController!.tabBar.bounds.height,
-                                   width: UIScreen.main.bounds.height,
-                                   height: CAROUSEL_HEIGHT)
-        
-        carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 0)
+        let carouselFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
+        carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 20)
         carousel.dataSource = self
         carousel.translatesAutoresizingMaskIntoConstraints = false
         carousel.backgroundColor = UIColor.clear
@@ -193,7 +188,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         collapseFilter()
         
         sendFeaturedHousesRequest()
-        
+    
     }
     
     func launchLocationFilterViewController(sender : UITapGestureRecognizer) {
@@ -277,19 +272,17 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         /* Map */
         mapView.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview().offset(VillimValues.tableMargin)
-            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
-            make.top.equalTo(searchFilter.snp.bottom).offset(VillimValues.tableMargin)
-            make.height.equalTo(UIScreen.main.bounds.height
-                - CAROUSEL_HEIGHT
-                - self.tabBarController!.tabBar.bounds.height)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalTo(searchFilter.snp.bottom)
+            make.bottom.equalToSuperview().offset(-self.tabBarController!.tabBar.bounds.height)
         }
         
         /* CollectionView */
         carousel.snp.makeConstraints{ (make) -> Void in
-            make.left.equalToSuperview().offset(VillimValues.tableMargin)
-            make.right.equalToSuperview().offset(-VillimValues.tableMargin)
-            make.top.equalTo(mapView.snp.bottom)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview()
+            make.top.equalTo(mapView.snp.bottom).offset(-CAROUSEL_HEIGHT)
             make.height.equalTo(CAROUSEL_HEIGHT)
         }
         
@@ -464,6 +457,10 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
     }
     
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        carousel.didScroll()
+    }
+    
     func open() {
         filterOpen = true
         navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
@@ -489,9 +486,10 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             self.dateFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(0)
             }
+            
             self.view.layoutIfNeeded()
         })
-       
+        
     }
     
     func openFilter() {
@@ -507,9 +505,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             self.dateFilter?.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(self.individualFilterHeight)
             }
+            
             self.view.layoutIfNeeded()
         })
-        
         
     }
     
