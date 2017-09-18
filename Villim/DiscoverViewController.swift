@@ -527,23 +527,44 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     }
     
     func updateMap() {
-        for house in houses {
-            let marker = GMSMarker()
+        // Create markers
+//        for house in houses {
+//            let marker = GMSMarker()
 //            marker.position = CLLocationCoordinate2D(latitude: house.latitude, longitude: house.longitude)
-            marker.position = CLLocationCoordinate2D(latitude: 37.5665, longitude: 126.9790)
+//            marker.map = mapView
+//            self.markers.append(marker)
+//        }
+        
+        /* Delete this for loop */
+        for _ in houses {
+            let marker = GMSMarker()
+            let random = (Double(arc4random()) / Double(UInt32.max)) * 2 - 1
+            let latitude = 37.5665 + random  / 100
+            let longitude = 126.9790 + random  / 100
+            marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
             marker.map = mapView
             self.markers.append(marker)
         }
         
+        /* Adjust camera to first marker */
         var initialLatitude = 0.0
         var initialLongitude = 0.0
         
         if markers.count > 0 {
-            initialLatitude = markers[0].position.latitude
-            initialLongitude = markers[0].position.longitude
+            let markerPoint = mapView.projection.point(for: markers[0].position)
+            
+            let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT
+            let mapViewTop = mapView.frame.origin.y
+            let cameraOffsetY = (carouselTop - mapViewTop) / 2.0
+            let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
+            
+            let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
+            initialLatitude = newCameraCoordinate.latitude
+            initialLongitude = newCameraCoordinate.longitude
         }
       
         let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 17.0)
+
         mapView.camera = camera
     }
     
