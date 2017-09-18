@@ -175,6 +175,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         let carouselFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
         carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 20)
         carousel.dataSource = self
+        carousel.delegate = self
         carousel.translatesAutoresizingMaskIntoConstraints = false
         carousel.backgroundColor = UIColor.clear
         
@@ -420,47 +421,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         sendSearchRequest()
     }
 
-    func discoverItemSelected(position: Int) {
-        let houseDetailViewController = HouseDetailViewController()
-        houseDetailViewController.displayBottomBar = true
-        houseDetailViewController.house = houses[position]
-        houseDetailViewController.dateSet = self.dateFilterSet
-        houseDetailViewController.checkIn = self.checkIn
-        houseDetailViewController.checkOut = self.checkOut
-        houseDetailViewController.mapMarkerExact = false
-        self.tabBarController?.tabBar.isHidden = true
-        self.navigationController?.pushViewController(houseDetailViewController, animated: true)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        numberOfItemsInSection section: Int) -> Int {
-        return houses.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell : DiscoverCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "discover", for: indexPath) as! DiscoverCollectionViewCell
-        
-        let house = self.houses[indexPath.row]
-        
-        let url = URL(string: house.houseThumbnailUrl)
-        if url != nil {
-            Nuke.loadImage(with: url!, into: cell.houseThumbnail)
-        }
-        cell.houseName.text = house.houseName
-        cell.houseRating.rating = Double(house.houseRating)
-        cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
-        cell.address.text = "서울시 종로구"
-        cell.makeConstraints()
-        return cell
-        
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        carousel.didScroll()
-    }
-    
     func open() {
         filterOpen = true
         navbarIcon.setImage(#imageLiteral(resourceName: "up_caret_black"), for: .normal)
@@ -511,6 +471,48 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
     }
     
+    func discoverItemSelected(position: Int) {
+        let houseDetailViewController = HouseDetailViewController()
+        houseDetailViewController.displayBottomBar = true
+        houseDetailViewController.house = houses[position]
+        houseDetailViewController.dateSet = self.dateFilterSet
+        houseDetailViewController.checkIn = self.checkIn
+        houseDetailViewController.checkOut = self.checkOut
+        houseDetailViewController.mapMarkerExact = false
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.pushViewController(houseDetailViewController, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
+        return houses.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell : DiscoverCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "discover", for: indexPath) as! DiscoverCollectionViewCell
+        
+        let house = self.houses[indexPath.row]
+        
+        let url = URL(string: house.houseThumbnailUrl)
+        if url != nil {
+            Nuke.loadImage(with: url!, into: cell.houseThumbnail)
+        }
+        cell.houseName.text = house.houseName
+        cell.houseRating.rating = Double(house.houseRating)
+        cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
+        cell.address.text = "서울시 종로구"
+        cell.makeConstraints()
+        return cell
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        carousel.didScroll()
+        scrollMap()
+    }
+    
     func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
         launchMapView()
     }
@@ -543,6 +545,28 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
       
         let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 17.0)
         mapView.camera = camera
+    }
+    
+    func scrollMap() {
+        
+        let index = carousel.indexPathsForVisibleItems.first?.row
+    
+        if index == nil {
+            return
+        }
+        
+        let marker = markers[index!]
+        let markerPoint = mapView.projection.point(for: marker.position)
+        
+        let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT
+        let mapViewTop = mapView.frame.origin.y
+        let cameraOffsetY = (carouselTop - mapViewTop) / 2.0
+        let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
+        
+        let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
+        
+        let camera = GMSCameraPosition.camera(withLatitude: newCameraCoordinate.latitude, longitude: newCameraCoordinate.longitude, zoom: 17.0)
+        mapView.animate(to: camera)
     }
     
     override func didReceiveMemoryWarning() {
