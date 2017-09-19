@@ -19,6 +19,7 @@ target 'Villim' do
   pod 'pop', '~> 1.0'
   pod 'Lightbox'
   pod 'ScalingCarousel'
+  pod 'SideMenu'
   
   pod 'Fabric'
   pod 'Crashlytics'
