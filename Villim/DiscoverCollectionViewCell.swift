@@ -84,7 +84,7 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     func makeConstraints() {
         
         container?.snp.makeConstraints { (make) -> Void in
-            make.width.equalTo(300)
+            make.width.equalToSuperview()
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
             make.height.equalToSuperview().offset(-VillimValues.tableMargin*2)

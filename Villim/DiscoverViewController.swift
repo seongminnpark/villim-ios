@@ -175,7 +175,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         /* Carousel */
         let carouselFrame = CGRect(x: 0, y: 0, width: 0, height: 0)
-        carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 20)
+        carousel = ScalingCarouselView(withFrame: carouselFrame, andInset: 30)
         carousel.dataSource = self
         carousel.delegate = self
         carousel.translatesAutoresizingMaskIntoConstraints = false
