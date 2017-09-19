@@ -13,6 +13,9 @@ PODS:
   - Hue (2.0.1)
   - Lightbox (1.0.0):
     - Hue
+  - Material (2.10.2):
+    - Material/Core (= 2.10.2)
+  - Material/Core (2.10.2)
   - Nuke (5.1.1)
   - PhoneNumberKit (1.3.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 1.3.0)
@@ -22,7 +25,6 @@ PODS:
     - PhoneNumberKit/PhoneNumberKitCore
   - pop (1.0.10)
   - ScalingCarousel (1.0.3)
-  - SideMenu (2.3.3)
   - SnapKit (3.2.0)
   - SwiftDate (4.1.7)
   - SwiftyJSON (3.1.4)
@@ -36,11 +38,11 @@ DEPENDENCIES:
   - FSCalendar (~> 2.7)
   - GoogleMaps
   - Lightbox
+  - Material (~> 2.0)
   - Nuke (~> 5.0)
   - PhoneNumberKit (~> 1.3)
   - pop (~> 1.0)
   - ScalingCarousel
-  - SideMenu
   - SnapKit (~> 3.2.0)
   - SwiftDate (~> 4.0)
   - SwiftyJSON
@@ -55,16 +57,16 @@ SPEC CHECKSUMS:
   GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
   Lightbox: 13f55a0a840f7945dc5ac87931564e7fe569fca9
+  Material: 8265a77332acfb7872a7fd0f4f2023f080d25d1f
   Nuke: 0a2ddb4bd13d75782964bf598a159ca2a836d826
   PhoneNumberKit: 08aaf1968ea41a114327e9223cbb0391d76ae145
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   ScalingCarousel: c1ce9b7f97c423614773328b762b5b723ed9ff7e
-  SideMenu: a447554ae5c982e8077666389e1c8b0c8656e065
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftDate: 029be76691ee89176da3a46c7df3415b6734bc5b
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: f13031c636ef065281bc11857be9a16c7659e04f
 
-PODFILE CHECKSUM: 62845f90a2ac447524d6e0ba9dc4b647723db2da
+PODFILE CHECKSUM: a9db605a66d22eae30e8b8a5d3ade986cd0c8c82
 
 COCOAPODS: 1.2.1
