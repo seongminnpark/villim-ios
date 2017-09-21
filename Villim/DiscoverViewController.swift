@@ -530,11 +530,10 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         if url != nil {
             Nuke.loadImage(with: url!, into: cell.houseThumbnail)
         }
-        cell.houseName.text = house.houseName
+        cell.toolbar.title = house.houseName
+        cell.toolbar.detail = "서울시 종로구"
         cell.houseRating.rating = Double(house.houseRating)
         cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
-        cell.address.text = "서울시 종로구"
-        cell.makeConstraints()
         return cell
         
     }
