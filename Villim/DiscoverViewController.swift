@@ -658,14 +658,19 @@ extension DiscoverViewController: GMSMapViewDelegate {
         let index = markers.index(of: marker)
         
         if index != nil {
+            /* Bring selected marker forward */
+            markers.map { $0.zIndex = 0 }
+            markers[index!].zIndex = 1
+            
             scrollToMarker(index:index!)
             
             /* Scroll to appropriate card */
             carousel.scrollToItem(at: IndexPath(item: index!, section: 0),
                                   at: .right,
                                   animated: true)
-            return true
         }
+        
+        return true
     }
     
     func scrollToMarker(index:Int) {
