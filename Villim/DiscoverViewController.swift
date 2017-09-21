@@ -16,7 +16,7 @@ import ScalingCarousel
 import GoogleMaps
 import Material
 
-class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GMSMapViewDelegate {
+class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
     var filterOpen : Bool = false
     let CAROUSEL_HEIGHT : CGFloat! = 250.0
@@ -545,11 +545,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     }
     
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        scrollMap()
-    }
-    
-    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
-        launchMapView()
+        let index = carousel.indexPathsForVisibleItems.first?.row
+        print(index!)
+        scrollToMarker(index:index!)
     }
     
     func launchMapView() {
@@ -613,27 +611,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         mapView.camera = camera
     }
     
-    func scrollMap() {
-        
-        let index = carousel.indexPathsForVisibleItems.first?.row
-    
-        if index == nil {
-            return
-        }
-        
-        let marker = markers[index!]
-        let markerPoint = mapView.projection.point(for: marker.position)
-        
-        let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT - bottomOffset
-        let mapViewTop = mapView.frame.origin.y
-        let cameraOffsetY = (carouselTop - mapViewTop) / 2.0
-        let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
-        
-        let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
-        
-        let camera = GMSCameraPosition.camera(withLatitude: newCameraCoordinate.latitude, longitude: newCameraCoordinate.longitude, zoom: 14.0)
-        mapView.animate(to: camera)
-    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -666,6 +643,45 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.navigationController?.navigationBar.tintColor = UIColor.black
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
+    }
+    
+}
+
+extension DiscoverViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, didTapAt coordinate: CLLocationCoordinate2D) {
+        //        launchMapView()
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        
+        let index = markers.index(of: marker)
+        
+        if index != nil {
+            scrollToMarker(index:index!)
+            
+            /* Scroll to appropriate card */
+            carousel.scrollToItem(at: IndexPath(item: index!, section: 0),
+                                  at: .right,
+                                  animated: true)
+            return true
+        }
+    }
+    
+    func scrollToMarker(index:Int) {
+        
+        let marker = markers[index]
+        let markerPoint = mapView.projection.point(for: marker.position)
+        
+        let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT - bottomOffset
+        let mapViewTop = mapView.frame.origin.y
+        let cameraOffsetY = (carouselTop - mapViewTop) / 2.0
+        let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
+        
+        let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
+        
+        let camera = GMSCameraPosition.camera(withLatitude: newCameraCoordinate.latitude, longitude: newCameraCoordinate.longitude, zoom: 14.0)
+        mapView.animate(to: camera)
     }
     
 }
