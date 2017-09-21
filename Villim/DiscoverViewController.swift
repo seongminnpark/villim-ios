@@ -314,7 +314,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         carousel.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.top.equalTo(mapView.snp.bottom).offset(-CAROUSEL_HEIGHT-bottomOffset)
+            make.bottom.equalTo(mapView).offset(-bottomOffset)
             make.height.equalTo(CAROUSEL_HEIGHT)
         }
         
