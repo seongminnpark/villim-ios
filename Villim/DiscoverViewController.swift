@@ -20,6 +20,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     
     var filterOpen : Bool = false
     let CAROUSEL_HEIGHT : CGFloat! = 290.0
+    let bottomOffset : CGFloat! = 50.0
     
     var houses  : [VillimHouse] = []
     var markers : [GMSMarker] = []
@@ -142,8 +143,21 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         /* Map */
         mapView = GMSMapView()
         mapView.delegate = self
+        mapView.mapType = .normal
+        do {
+            // Set the map style by passing the URL of the local file.
+            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+                mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
+            } else {
+                NSLog("Unable to find style.json")
+            }
+        } catch {
+            NSLog("One or more of the map styles failed to load. \(error)")
+        }
+        
         let camera = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 14.0)
         mapView.camera = camera
+        
         self.view.addSubview(mapView)
         
         /* Carousel */
@@ -184,7 +198,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         /* Add navbar logo */
         let navBarLogoHeight = self.navControllerHeight - 20
-        print(navBarLogoHeight)
         navbarLogo = UIImageView()
         navbarLogo.contentMode = .scaleAspectFit
         /* Original image is 375 by 140, hence the 2.68 */
@@ -300,7 +313,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         carousel.snp.makeConstraints{ (make) -> Void in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
-            make.top.equalTo(mapView.snp.bottom).offset(-CAROUSEL_HEIGHT)
+            make.top.equalTo(mapView.snp.bottom).offset(-CAROUSEL_HEIGHT-bottomOffset)
             make.height.equalTo(CAROUSEL_HEIGHT)
         }
         
@@ -342,7 +355,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                print(responseData)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
@@ -601,7 +613,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         let marker = markers[index!]
         let markerPoint = mapView.projection.point(for: marker.position)
         
-        let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT
+        let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT - bottomOffset
         let mapViewTop = mapView.frame.origin.y
         let cameraOffsetY = (carouselTop - mapViewTop) / 2.0
         let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
