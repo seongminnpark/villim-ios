@@ -20,7 +20,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     
     var filterOpen : Bool = false
     let CAROUSEL_HEIGHT : CGFloat! = 290.0
-    let bottomOffset : CGFloat! = 50.0
+    let bottomOffset : CGFloat! = 30.0
     
     var houses  : [VillimHouse] = []
     var markers : [GMSMarker] = []
