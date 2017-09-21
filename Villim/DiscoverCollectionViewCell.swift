@@ -15,7 +15,7 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     
     let houseThumbnailHeight : CGFloat = 100.0
 
-    var imageDim       : UIView!
+    var imageDim : UIView!
     
     var card: PresenterCard!
     
@@ -109,18 +109,15 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         houseRating.settings.starMargin = 5
         houseRating.settings.filledImage = UIImage(named: "icon_star_on")
         houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
-        
-        houseRating?.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalToSuperview()
-        }
     }
     
 
     fileprivate func prepareToolbar() {
         toolbar = Toolbar()
+        toolbar.backgroundColor = Color.grey.lighten5
+        
         toolbar.titleLabel.textAlignment = .left
         
-        toolbar.detail = "Build Beautiful Software"
         toolbar.detailLabel.textAlignment = .left
         toolbar.detailLabel.textColor = Color.grey.base
     }
@@ -128,12 +125,14 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     fileprivate func prepareContentView() {
         houseThumbnail = UIImageView()
         houseThumbnail.contentMode = .scaleAspectFill
+        houseThumbnail.image = #imageLiteral(resourceName: "img_default").resize(toHeight: houseThumbnailHeight)
         houseThumbnail.clipsToBounds = true
     }
     
     fileprivate func prepareBottomBar() {
         bottomBar = Bar()
-        
+        bottomBar.backgroundColor = Color.grey.lighten5
+        bottomBar.contentViewAlignment = .center
         bottomBar.leftViews = [houseRating]
         bottomBar.rightViews = [monthlyRent]
     }
@@ -141,16 +140,16 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     fileprivate func prepareImageCard() {
         card = PresenterCard()
         card.backgroundColor = Color.grey.lighten5
+        
         card.toolbar = toolbar
-        card.toolbarEdgeInsetsPreset = .square3
-        card.toolbarEdgeInsets.bottom = 0
-        card.toolbarEdgeInsets.right = 8
+        card.toolbarEdgeInsetsPreset = .wideRectangle2
         
         card.presenterView = houseThumbnail
         card.contentViewEdgeInsetsPreset = .wideRectangle3
         
         card.bottomBar = bottomBar
         card.bottomBarEdgeInsetsPreset = .wideRectangle2
+//        card.bottomBarEdgeInsets.left =
         card.depthPreset = .depth3
         
         mainView.layout(card).horizontally(left: 0, right: 0).center()

@@ -19,7 +19,7 @@ import Material
 class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GMSMapViewDelegate {
     
     var filterOpen : Bool = false
-    let CAROUSEL_HEIGHT : CGFloat! = 230.0
+    let CAROUSEL_HEIGHT : CGFloat! = 250.0
     let bottomOffset : CGFloat! = 30.0
     
     var houses  : [VillimHouse] = []
@@ -534,6 +534,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         cell.toolbar.detail = "서울시 종로구"
         cell.houseRating.rating = Double(house.houseRating)
         cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
+        
         return cell
         
     }
