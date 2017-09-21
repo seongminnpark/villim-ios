@@ -142,7 +142,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         /* Map */
         mapView = GMSMapView()
         mapView.delegate = self
-        let camera = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: 0.0, longitude: 0.0, zoom: 14.0)
         mapView.camera = camera
         self.view.addSubview(mapView)
         
@@ -585,7 +585,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             initialLongitude = newCameraCoordinate.longitude
         }
         
-        let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 14.0)
 
         mapView.camera = camera
     }
@@ -608,7 +608,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
         
-        let camera = GMSCameraPosition.camera(withLatitude: newCameraCoordinate.latitude, longitude: newCameraCoordinate.longitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: newCameraCoordinate.latitude, longitude: newCameraCoordinate.longitude, zoom: 14.0)
         mapView.animate(to: camera)
     }
     

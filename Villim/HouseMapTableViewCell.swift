@@ -41,7 +41,7 @@ class HouseMapTableViewCell: UITableViewCell, GMSMapViewDelegate {
     }
     
     func populateView() {
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 14.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
         mapView.delegate = self
         container.addSubview(mapView)

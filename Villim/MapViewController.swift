@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
         self.view.backgroundColor = VillimValues.backgroundColor
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         
-        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 17.0)
+        let camera = GMSCameraPosition.camera(withLatitude: latitude, longitude: longitude, zoom: 14.0)
         mapView = GMSMapView.map(withFrame: CGRect.zero, camera: camera)
 
         // Creates a marker in the center of the map.
