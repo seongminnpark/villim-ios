@@ -307,7 +307,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.top.equalTo(searchFilter.snp.bottom)
-            make.bottom.equalToSuperview()
+            make.height.equalTo(UIScreen.main.bounds.height - self.topOffset)
         }
         
         /* CollectionView */
