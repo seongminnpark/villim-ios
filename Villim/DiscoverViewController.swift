@@ -19,7 +19,7 @@ import Material
 class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GMSMapViewDelegate {
     
     var filterOpen : Bool = false
-    let CAROUSEL_HEIGHT : CGFloat! = 290.0
+    let CAROUSEL_HEIGHT : CGFloat! = 230.0
     let bottomOffset : CGFloat! = 30.0
     
     var houses  : [VillimHouse] = []

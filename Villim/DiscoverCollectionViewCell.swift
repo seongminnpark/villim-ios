@@ -9,11 +9,13 @@
 import UIKit
 import ScalingCarousel
 import Cosmos
+import Material
 
 class DiscoverCollectionViewCell: ScalingCarouselCell {
     
-    let houseThumbnailHeight : CGFloat = 200.0
+    let houseThumbnailHeight : CGFloat = 100.0
     
+    var card: Card!
     var container      : UIView!
     var houseThumbnail : UIImageView!
     var houseName      : UILabel!
@@ -35,19 +37,15 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         
         container = UIView()
         container.backgroundColor = VillimValues.backgroundColor
-        container.layer.cornerRadius = 30
-        container.layer.borderWidth = 1.0
-        container.layer.borderColor = UIColor.clear.cgColor
-        container.layer.masksToBounds = true
         container.clipsToBounds = true
-        mainView.addSubview(container)
         
         houseThumbnail = UIImageView()
+        houseThumbnail.contentMode = .scaleAspectFill
         houseThumbnail.clipsToBounds = true
         container.addSubview(houseThumbnail)
         
         houseName = UILabel()
-        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 18)
+        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 13)
         houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
         houseName.numberOfLines = 1
         container.addSubview(houseName)
@@ -55,14 +53,14 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         houseRating = CosmosView()
         houseRating.settings.updateOnTouch = false
         houseRating.settings.fillMode = .precise
-        houseRating.settings.starSize = 18
+        houseRating.settings.starSize = 13
         houseRating.settings.starMargin = 5
         houseRating.settings.filledImage = UIImage(named: "icon_star_on")
         houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
         container.addSubview(houseRating)
         
         monthlyRent = UILabel()
-        monthlyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 16)
+        monthlyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
         monthlyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
         container.addSubview(monthlyRent)
         
@@ -74,6 +72,12 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         imageDim = UIView()
         imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
         container.addSubview(imageDim)
+        
+        card = Card()
+        card.contentView = container
+        card.depthPreset = .depth3
+        mainView.addSubview(container)
+        mainView.layout(card).center()
 
     }
     
@@ -91,10 +95,10 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         }
         
         houseThumbnail?.snp.makeConstraints { (make) -> Void in
-            make.width.equalToSuperview()
             make.height.equalTo(houseThumbnailHeight)
-            make.top.equalToSuperview()
-            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.left.equalToSuperview().offset(10)
+            make.right.equalToSuperview().offset(-10)
         }
         
         houseRating.snp.makeConstraints{ (make) -> Void in
