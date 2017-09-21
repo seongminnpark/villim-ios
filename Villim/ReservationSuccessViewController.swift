@@ -19,7 +19,7 @@ class ReservationSuccessViewController: UIViewController {
     
     var titleMain : UILabel!
     var instructions : UILabel!
-    var tableViewController : ReservationSuccessTableViewController!
+    var reservationTableViewController : ReservationSuccessTableViewController!
     
     
     override func viewDidLoad() {
@@ -58,9 +58,9 @@ class ReservationSuccessViewController: UIViewController {
         self.view.addSubview(instructions)
         
         /* Tableview controller */
-        tableViewController = ReservationSuccessTableViewController()
-        tableViewController.visit = self.visit
-        self.view.addSubview(tableViewController.view)
+        reservationTableViewController = ReservationSuccessTableViewController()
+        reservationTableViewController.visit = self.visit
+        self.view.addSubview(reservationTableViewController.view)
         
         makeConstraints()
 
@@ -87,7 +87,7 @@ class ReservationSuccessViewController: UIViewController {
         }
         
         /* Tableview */
-        tableViewController?.tableView.snp.makeConstraints { (make) -> Void in
+        reservationTableViewController?.tableView.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.top.equalTo(instructions.snp.bottom).offset(VillimValues.sideMargin * 2)

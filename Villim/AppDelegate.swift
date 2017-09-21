@@ -31,9 +31,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UITabBar.appearance().tintColor = VillimValues.themeColor
         
+//        window = UIWindow(frame: UIScreen.main.bounds)
+//        self.window!.rootViewController = TabBarController()
+//        self.window!.makeKeyAndVisible()
+        
+        let appNavigationController = AppNavigationController(rootViewController: DiscoverViewController())
+        let leftViewController = MenuViewController()
+        
         window = UIWindow(frame: UIScreen.main.bounds)
-        self.window!.rootViewController = TabBarController()
-        self.window!.makeKeyAndVisible()
+        window!.rootViewController = AppNavigationDrawerController(rootViewController: appNavigationController, leftViewController: leftViewController)
+        window!.makeKeyAndVisible()
         return true
     }
     

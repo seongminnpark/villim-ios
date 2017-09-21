@@ -14,6 +14,7 @@ import SwiftDate
 import Nuke
 import ScalingCarousel
 import GoogleMaps
+import Material
 
 class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate, GMSMapViewDelegate {
     
@@ -39,6 +40,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     let filterPadding  : CGFloat! = 25.0
     let navbarIconSize : CGFloat! = 25.0
     
+    var menuButton : UIButton!
     var navbarLogo : UIImageView!
     var navbarIcon : UIButton!
 
@@ -57,7 +59,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     var dateFilterLabel : UILabel!
     var dateFilterClearButton : UIButton!
     
-    var mapView   : GMSMapView!
+    var mapView  : GMSMapView!
     var carousel : ScalingCarouselView!
     
     override func viewDidLoad() {
@@ -78,37 +80,8 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         topOffset = navControllerHeight + statusBarHeight
         prevContentOffset = 0
         
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.extendedLayoutIncludesOpaqueBars = true
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
-        
-        /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = UIColor.white
-        
-        /* Add navbar logo */
-        navbarLogo = UIImageView()
-        let navBarLogoHeight = navControllerHeight - 20
-        /* Original image is 375 by 140, hence the 2.68 */
-        navbarLogo.frame = CGRect(x: 10, y: statusBarHeight, width: 2.68*navBarLogoHeight, height: navBarLogoHeight)
-        navbarLogo.image = #imageLiteral(resourceName: "logo_lowercase")
-        
-        let leftItem = UIBarButtonItem(customView: navbarLogo)
-        let negativeSpacer:UIBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.fixedSpace, target: nil, action: nil)
-        negativeSpacer.width = -6
-        self.navigationItem.leftBarButtonItems = [negativeSpacer, leftItem]
-        
-        /* Set up right button items */
-        navbarIcon = UIButton()
-        navbarIcon.frame = CGRect(x: 0, y: 0, width: navbarIconSize, height: navbarIconSize)
-        navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
-        navbarIcon.sizeToFit()
-        navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
-        let rightItem = UIBarButtonItem(customView: navbarIcon)
-        
-        self.navigationItem.rightBarButtonItem = rightItem
-        
+        setUpNavigationBar()
+            
         /* Search filter container */
         searchFilter = UIView()
         searchFilter.backgroundColor = UIColor.white
@@ -194,6 +167,48 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     
     }
     
+    func setUpNavigationBar() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        /* Add menu button */
+        menuButton = UIButton()
+        menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
+        
+        /* Add navbar logo */
+        let navBarLogoHeight = self.navControllerHeight - 20
+        print(navBarLogoHeight)
+        navbarLogo = UIImageView()
+        navbarLogo.contentMode = .scaleAspectFit
+        /* Original image is 375 by 140, hence the 2.68 */
+        navbarLogo.frame = CGRect(x: 0, y: 0, width: 2.68*navBarLogoHeight, height: navBarLogoHeight)
+        navbarLogo.image = #imageLiteral(resourceName: "logo_lowercase")
+        
+        /* Set up right button items */
+        navbarIcon = UIButton()
+        navbarIcon.frame = CGRect(x: 0, y: 0, width: navbarIconSize, height: navbarIconSize)
+        navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
+        navbarIcon.sizeToFit()
+        navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
+        
+//        self.navigationItem.leftViews = [menuButton, navbarLogo]
+        self.navigationItem.leftViews = [menuButton]
+        self.navigationItem.centerViews = [navbarLogo]
+        self.navigationItem.rightViews = [navbarIcon]
+    }
+    
+    func handleMenuButton() {
+        self.navigationDrawerController?.toggleLeftView()
+    }
+
+    
     func launchLocationFilterViewController(sender : UITapGestureRecognizer) {
         self.tabBarController?.tabBar.isHidden = true
         let locationFilterViewController = LocationFilterViewController()
@@ -278,7 +293,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             make.left.equalToSuperview()
             make.right.equalToSuperview()
             make.top.equalTo(searchFilter.snp.bottom)
-            make.bottom.equalToSuperview().offset(-self.tabBarController!.tabBar.bounds.height)
+            make.bottom.equalToSuperview()
         }
         
         /* CollectionView */
@@ -481,7 +496,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         houseDetailViewController.checkIn = self.checkIn
         houseDetailViewController.checkOut = self.checkOut
         houseDetailViewController.mapMarkerExact = false
-        self.tabBarController?.tabBar.isHidden = true
+//        self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.pushViewController(houseDetailViewController, animated: true)
     }
     
@@ -603,8 +618,8 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
-        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetPortrait = 30
+        ToastView.appearance().bottomOffsetLandscape = 30
         ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
             
         toast.show()
