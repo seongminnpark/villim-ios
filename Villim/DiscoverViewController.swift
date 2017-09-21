@@ -143,13 +143,13 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         /* Map */
         mapView = GMSMapView()
         mapView.delegate = self
-        mapView.mapType = .normal
+        mapView.mapType = .normal        
         do {
             // Set the map style by passing the URL of the local file.
-            if let styleURL = Bundle.main.url(forResource: "style", withExtension: "json") {
+            if let styleURL = Bundle.main.url(forResource: "styles", withExtension: "json") {
                 mapView.mapStyle = try GMSMapStyle(contentsOfFileURL: styleURL)
             } else {
-                NSLog("Unable to find style.json")
+                NSLog("Unable to find styles.json")
             }
         } catch {
             NSLog("One or more of the map styles failed to load. \(error)")

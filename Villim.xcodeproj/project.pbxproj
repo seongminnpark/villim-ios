@@ -76,7 +76,7 @@
 		3ED0AC2D1F732D36005A7D22 /* AppNavigationDrawerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0AC2C1F732D36005A7D22 /* AppNavigationDrawerController.swift */; };
 		3ED0AC2F1F73318E005A7D22 /* AppNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0AC2E1F73318E005A7D22 /* AppNavigationController.swift */; };
 		3ED0AC331F733426005A7D22 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED0AC321F733426005A7D22 /* MenuViewController.swift */; };
-		3ED0AC351F734EBC005A7D22 /* style.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0AC341F734EBC005A7D22 /* style.json */; };
+		3ED0AC351F734EBC005A7D22 /* styles.json in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0AC341F734EBC005A7D22 /* styles.json */; };
 		3ED0DE761F340E2E00C89908 /* NotoSansCJKkr-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0DE701F340E0300C89908 /* NotoSansCJKkr-Bold.otf */; };
 		3ED0DE771F340E2E00C89908 /* NotoSansCJKkr-DemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0DE711F340E0300C89908 /* NotoSansCJKkr-DemiLight.otf */; };
 		3ED0DE781F340E2E00C89908 /* NotoSansCJKkr-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 3ED0DE721F340E0300C89908 /* NotoSansCJKkr-Medium.otf */; };
@@ -213,7 +213,7 @@
 		3ED0AC2C1F732D36005A7D22 /* AppNavigationDrawerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationDrawerController.swift; sourceTree = "<group>"; };
 		3ED0AC2E1F73318E005A7D22 /* AppNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppNavigationController.swift; sourceTree = "<group>"; };
 		3ED0AC321F733426005A7D22 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
-		3ED0AC341F734EBC005A7D22 /* style.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = style.json; sourceTree = "<group>"; };
+		3ED0AC341F734EBC005A7D22 /* styles.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = styles.json; sourceTree = "<group>"; };
 		3ED0DE701F340E0300C89908 /* NotoSansCJKkr-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Bold.otf"; sourceTree = "<group>"; };
 		3ED0DE711F340E0300C89908 /* NotoSansCJKkr-DemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-DemiLight.otf"; sourceTree = "<group>"; };
 		3ED0DE721F340E0300C89908 /* NotoSansCJKkr-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansCJKkr-Medium.otf"; sourceTree = "<group>"; };
@@ -339,7 +339,7 @@
 				3E92EAD61F3A3E5300AC6FF3 /* LaunchScreen.storyboard */,
 				3E0F068A1F1E017B0023E229 /* Info.plist */,
 				3EB051461F2AF3CE00EBBBCE /* InfoPlist.strings */,
-				3ED0AC341F734EBC005A7D22 /* style.json */,
+				3ED0AC341F734EBC005A7D22 /* styles.json */,
 				3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */,
 				3E5F98811F2E6CB6003AAF8F /* LocationFilterViewController.swift */,
 				3E5F98831F2E6D0F003AAF8F /* CalendarViewController.swift */,
@@ -612,7 +612,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3ED0AC351F734EBC005A7D22 /* style.json in Resources */,
+				3ED0AC351F734EBC005A7D22 /* styles.json in Resources */,
 				3EC65CBE1F7179D00025AC6D /* BMDOHYEON.ttf in Resources */,
 				3ED0DE761F340E2E00C89908 /* NotoSansCJKkr-Bold.otf in Resources */,
 				3ED0DE771F340E2E00C89908 /* NotoSansCJKkr-DemiLight.otf in Resources */,

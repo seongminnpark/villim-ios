@@ -13,11 +13,11 @@ import Material
 
 class DiscoverCollectionViewCell: ScalingCarouselCell {
     
-    let houseThumbnailHeight : CGFloat = 150.0
+    let houseThumbnailHeight : CGFloat = 200.0
 
     var imageDim : UIView!
     
-    var card: PresenterCard!
+    var card: ImageCard!
     
     var toolbar: Toolbar!
     
@@ -37,51 +37,7 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         mainView.clipsToBounds = true
         mainView.backgroundColor = UIColor.clear
         self.contentView.addSubview(mainView)
-        
-//        container = UIView()
-//        container.backgroundColor = VillimValues.backgroundColor
-//        container.clipsToBounds = true
-//        
-//        houseThumbnail = UIImageView()
-//        houseThumbnail.contentMode = .scaleAspectFill
-//        houseThumbnail.clipsToBounds = true
-//        container.addSubview(houseThumbnail)
-//        
-//        houseName = UILabel()
-//        houseName.font = UIFont(name: "NotoSansCJKkr-Bold", size: 13)
-//        houseName.textColor = UIColor(red:0.02, green:0.02, blue:0.04, alpha:1.0)
-//        houseName.numberOfLines = 1
-//        container.addSubview(houseName)
-//        
-//        houseRating = CosmosView()
-//        houseRating.settings.updateOnTouch = false
-//        houseRating.settings.fillMode = .precise
-//        houseRating.settings.starSize = 13
-//        houseRating.settings.starMargin = 5
-//        houseRating.settings.filledImage = UIImage(named: "icon_star_on")
-//        houseRating.settings.emptyImage = UIImage(named: "icon_star_off")
-//        container.addSubview(houseRating)
-//        
-//        monthlyRent = UILabel()
-//        monthlyRent.font = UIFont(name: "NotoSansCJKkr-Regular", size: 13)
-//        monthlyRent.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
-//        container.addSubview(monthlyRent)
-//        
-//        address = UILabel()
-//        address.font = UIFont(name: "NotoSansCJKkr-Regular", size: 14)
-//        address.textColor = UIColor(red:0.20, green:0.20, blue:0.20, alpha:1.0)
-//        container.addSubview(address)
-//        
-//        imageDim = UIView()
-//        imageDim.backgroundColor = UIColor.black.withAlphaComponent(0.0)
-//        container.addSubview(imageDim)
-//        
-//        card = Card()
-//        card.contentView = container
-//        card.depthPreset = .depth3
-//        mainView.addSubview(container)
-//        mainView.layout(card).center()
-//
+
         prepareRent()
         prepareRating()
         prepareToolbar()
@@ -114,12 +70,14 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
 
     fileprivate func prepareToolbar() {
         toolbar = Toolbar()
-        toolbar.backgroundColor = Color.grey.lighten5
+//        toolbar.backgroundColor = Color.grey.lighten5
+        toolbar.backgroundColor = UIColor.clear
         
         toolbar.titleLabel.textAlignment = .left
+        toolbar.titleLabel.textColor = UIColor.white
         
         toolbar.detailLabel.textAlignment = .left
-        toolbar.detailLabel.textColor = Color.grey.base
+        toolbar.detailLabel.textColor = UIColor.white
     }
     
     fileprivate func prepareContentView() {
@@ -127,6 +85,7 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         houseThumbnail.contentMode = .scaleAspectFill
         houseThumbnail.image = #imageLiteral(resourceName: "img_default").resize(toHeight: houseThumbnailHeight)
         houseThumbnail.clipsToBounds = true
+
     }
     
     fileprivate func prepareBottomBar() {
@@ -138,13 +97,13 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
     }
     
     fileprivate func prepareImageCard() {
-        card = PresenterCard()
+        card = ImageCard()
         card.backgroundColor = Color.grey.lighten5
         
         card.toolbar = toolbar
         card.toolbarEdgeInsetsPreset = .wideRectangle2
         
-        card.presenterView = houseThumbnail
+        card.imageView = houseThumbnail
         card.contentViewEdgeInsetsPreset = .wideRectangle3
         
         card.bottomBar = bottomBar
@@ -154,6 +113,17 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         card.depthPreset = .depth3
         
         mainView.layout(card).horizontally(left: 0, right: 0).center()
+        
+        /* Dim image to make title more legible */
+        imageDim = UIView()
+        imageDim.backgroundColor = UIColor.gray
+        imageDim.alpha = 0.2
+        houseThumbnail.addSubview(imageDim)
+        
+        imageDim.snp.makeConstraints{ (make) -> Void in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(houseThumbnailHeight)
+        }
     }
 
 
