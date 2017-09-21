@@ -75,6 +75,7 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         
         toolbar.titleLabel.textAlignment = .left
         toolbar.titleLabel.textColor = UIColor.white
+        toolbar.titleLabel.font = UIFont(name: "NotoSansCJKkr-Bold", size: 20)
         
         toolbar.detailLabel.textAlignment = .left
         toolbar.detailLabel.textColor = UIColor.white
