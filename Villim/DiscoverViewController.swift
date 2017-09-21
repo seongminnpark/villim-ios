@@ -565,7 +565,12 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         // Create markers
 //        for house in houses {
 //            let marker = GMSMarker()
+//            marker.tracksViewChanges = false
 //            marker.position = CLLocationCoordinate2D(latitude: house.latitude, longitude: house.longitude)
+//            let markerView = CustomMarkerView(frame:
+//                CGRect(x:0, y:0, width: 100, height:50))
+//            markerView.content = VillimUtils.getCurrencyString(price: house.ratePerMonth)
+//            marker.iconView = markerView
 //            marker.map = mapView
 //            self.markers.append(marker)
 //        }
@@ -573,10 +578,15 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         /* Delete this for loop */
         for _ in houses {
             let marker = GMSMarker()
+            marker.tracksViewChanges = false
             let random = (Double(arc4random()) / Double(UInt32.max)) * 5 - 10
             let latitude = 37.5665 + (random  / 100)
             let longitude = 126.9790 + (random  / 100)
             marker.position = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+            let markerView = CustomMarkerView(frame:
+                CGRect(x:0, y:0, width: 100, height:50))
+            markerView.content = VillimUtils.getCurrencyString(price: 30405)
+            marker.iconView = markerView
             marker.map = mapView
             self.markers.append(marker)
         }
