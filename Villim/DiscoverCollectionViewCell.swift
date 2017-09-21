@@ -13,7 +13,7 @@ import Material
 
 class DiscoverCollectionViewCell: ScalingCarouselCell {
     
-    let houseThumbnailHeight : CGFloat = 100.0
+    let houseThumbnailHeight : CGFloat = 150.0
 
     var imageDim : UIView!
     
@@ -149,7 +149,8 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         
         card.bottomBar = bottomBar
         card.bottomBarEdgeInsetsPreset = .wideRectangle2
-//        card.bottomBarEdgeInsets.left =
+        card.bottomBar?.height = 20.0
+        
         card.depthPreset = .depth3
         
         mainView.layout(card).horizontally(left: 0, right: 0).center()

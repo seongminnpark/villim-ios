@@ -198,11 +198,13 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         /* Add navbar logo */
         let navBarLogoHeight = self.navControllerHeight - 20
+        /* Original image is 375 by 140, hence the 2.68 */
+        let navBarLogoWidth = 2.68*navBarLogoHeight
         navbarLogo = UIImageView()
         navbarLogo.contentMode = .scaleAspectFit
-        /* Original image is 375 by 140, hence the 2.68 */
-        navbarLogo.frame = CGRect(x: 0, y: 0, width: 2.68*navBarLogoHeight, height: navBarLogoHeight)
-        navbarLogo.image = #imageLiteral(resourceName: "logo_lowercase")
+//        navbarLogo.frame = CGRect(x: 0, y: 0, width: navBarLogoWidth, height: navBarLogoHeight)
+        navbarLogo.image = #imageLiteral(resourceName: "logo_resized").resize(toWidth: navBarLogoWidth)
+    
         
         /* Set up right button items */
         navbarIcon = UIButton()
@@ -211,7 +213,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         navbarIcon.sizeToFit()
         navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
         
-//        self.navigationItem.leftViews = [menuButton, navbarLogo]
         self.navigationItem.leftViews = [menuButton]
         self.navigationItem.centerViews = [navbarLogo]
         self.navigationItem.rightViews = [navbarIcon]
