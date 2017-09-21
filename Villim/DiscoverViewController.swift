@@ -335,13 +335,14 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             VillimKeys.KEY_PREFERENCE_CURRENCY : VillimSession.getCurrencyPref(),
             ] as [String : Any]
         
-        let url = VillimUtils.buildURL(endpoint: VillimKeys.FEATURED_HOUSES_URL)
+//        let url = VillimUtils.buildURL(endpoint: VillimKeys.FEATURED_HOUSES_URL)
+        let url = URL(string: "http://mockbin.org/bin/ec538a2c-cad8-4a7b-b30b-923fb55e655f?foo=bar&foo=baz")!
 
         Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
                 let responseData = JSON(data: response.data!)
-                
+                print(responseData)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
@@ -354,6 +355,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                 }
             case .failure(let error):
                 self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+                print(error)
             }
             VillimUtils.hideLoadingIndicator()
         }
