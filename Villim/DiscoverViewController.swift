@@ -648,7 +648,7 @@ extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewData
         let centerPoint = CGPoint(x: self.carousel.frame.size.width/2 + scrollView.contentOffset.x,
                                   y: self.carousel.frame.size.height/2 + scrollView.contentOffset.y)
         let index = carousel.indexPathForItem(at: centerPoint)?.row
-        print(centerPoint)
+    
         if index != nil {
             scrollToMarker(index:index!)
         }
@@ -667,9 +667,7 @@ extension DiscoverViewController: GMSMapViewDelegate {
         let index = markers.index(of: marker)
         
         if index != nil {
-            /* Bring selected marker forward */
-            markers.map { $0.zIndex = 0 }
-            markers[index!].zIndex = 1
+            bringMarkerForward(index: index!)
             
             scrollToMarker(index:index!)
             
@@ -684,6 +682,8 @@ extension DiscoverViewController: GMSMapViewDelegate {
     
     func scrollToMarker(index:Int) {
         
+        bringMarkerForward(index: index)
+        
         let marker = markers[index]
         let markerPoint = mapView.projection.point(for: marker.position)
         
@@ -693,9 +693,15 @@ extension DiscoverViewController: GMSMapViewDelegate {
         let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
         
         let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
-        
+    
         let camera = GMSCameraPosition.camera(withLatitude: newCameraCoordinate.latitude, longitude: newCameraCoordinate.longitude, zoom: 14.0)
         mapView.animate(to: camera)
+    }
+    
+    func bringMarkerForward(index:Int) {
+        /* Bring selected marker forward */
+        markers.map { $0.zIndex = 0 }
+        markers[index].zIndex = 1
     }
     
 }

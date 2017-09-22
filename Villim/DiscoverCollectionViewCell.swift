@@ -117,7 +117,8 @@ class DiscoverCollectionViewCell: ScalingCarouselCell {
         
         /* Dim image to make title more legible */
         imageDim = UIView()
-        imageDim.backgroundColor = UIColor.gray
+//        imageDim.backgroundColor = UIColor.gray
+        imageDim.backgroundColor = UIColor.clear
         imageDim.alpha = 0.2
         houseThumbnail.addSubview(imageDim)
         
