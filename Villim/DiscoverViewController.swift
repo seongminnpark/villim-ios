@@ -16,7 +16,7 @@ import ScalingCarousel
 import GoogleMaps
 import Material
 
-class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
+class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDelegate {
     
     var filterOpen : Bool = false
     let CAROUSEL_HEIGHT : CGFloat! = 250.0
@@ -339,6 +339,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         dateBorder.borderWidth = width
         dateFilter.layer.addSublayer(dateBorder)
         dateFilter.layer.masksToBounds = true
+        
     }
     
     @objc private func sendFeaturedHousesRequest() {
@@ -361,7 +362,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                     self.houses = VillimHouse.houseArrayFromJsonArray(jsonHouses: responseData[VillimKeys.KEY_HOUSES].arrayValue)
 
                     self.carousel.reloadData()
-                    self.updateMap()
+                    self.initializeMap()
                     
                 } else {
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
@@ -520,36 +521,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         return houses.count
     }
     
-    func collectionView(_ collectionView: UICollectionView,
-                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        let cell : DiscoverCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "discover", for: indexPath) as! DiscoverCollectionViewCell
-        
-        let house = self.houses[indexPath.row]
-        
-        let url = URL(string: house.houseThumbnailUrl)
-        if url != nil {
-            Nuke.loadImage(with: url!, into: cell.houseThumbnail)
-        }
-        cell.toolbar.title = house.houseName
-        cell.toolbar.detail = "서울시 종로구"
-        cell.houseRating.rating = Double(house.houseRating)
-        cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
-        
-        return cell
-        
-    }
-    
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        carousel.didScroll()
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        let index = carousel.indexPathsForVisibleItems.first?.row
-        print(index!)
-        scrollToMarker(index:index!)
-    }
-    
     func launchMapView() {
         let mapViewController = MapViewController()
         let index = carousel.indexPathsForVisibleItems.first?.row
@@ -559,7 +530,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.navigationController?.pushViewController(mapViewController, animated: true)
     }
     
-    func updateMap() {
+    func initializeMap() {
         // Create markers
 //        for house in houses {
 //            let marker = GMSMarker()
@@ -645,6 +616,44 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.extendedLayoutIncludesOpaqueBars = true
     }
     
+}
+
+extension DiscoverViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let cell : DiscoverCollectionViewCell = collectionView.dequeueReusableCell(withReuseIdentifier: "discover", for: indexPath) as! DiscoverCollectionViewCell
+        
+        let house = self.houses[indexPath.row]
+        
+        let url = URL(string: house.houseThumbnailUrl)
+        if url != nil {
+            Nuke.loadImage(with: url!, into: cell.houseThumbnail)
+        }
+        cell.toolbar.title = house.houseName
+        cell.toolbar.detail = "서울시 종로구"
+        cell.houseRating.rating = Double(house.houseRating)
+        cell.monthlyRent.text = VillimUtils.getRentString(rent: house.ratePerMonth, month: true)
+        
+        return cell
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        carousel.didScroll()
+    }
+    
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        let centerPoint = CGPoint(x: self.carousel.frame.size.width/2 + scrollView.contentOffset.x,
+                                  y: self.carousel.frame.size.height/2 + scrollView.contentOffset.y)
+        let index = carousel.indexPathForItem(at: centerPoint)?.row
+        print(centerPoint)
+        if index != nil {
+            scrollToMarker(index:index!)
+        }
+        
+    }
 }
 
 extension DiscoverViewController: GMSMapViewDelegate {
