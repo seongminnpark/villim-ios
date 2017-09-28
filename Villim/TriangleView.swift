@@ -11,6 +11,8 @@ import Material
 
 class TriangleView : UIView {
     
+    var color : UIColor!
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -28,7 +30,11 @@ class TriangleView : UIView {
         context.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
         context.addLine(to: CGPoint(x: (rect.maxX / 2.0), y: rect.maxY))
         context.closePath()
-        Color.grey.lighten4.setFill()
+        if color != nil {
+            color.setFill()
+        } else {
+            Color.grey.lighten4.setFill()
+        }
         context.fillPath()
     }
 }

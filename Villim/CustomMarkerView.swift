@@ -11,14 +11,20 @@ import Material
 
 class CustomMarkerView: UIView {
     
-    var content  : String! = "" {
+    var content : String! = "" {
         didSet{
             setLabel()
         }
     }
     
+    var color : UIColor = Color.grey.lighten4 {
+        didSet{
+            setColor()
+        }
+    }
+    
     var label    : InsetLabel!
-    var triangle : UIView!
+    var triangle : TriangleView!
 
     override init (frame : CGRect) {
         super.init(frame : frame)
@@ -38,6 +44,7 @@ class CustomMarkerView: UIView {
         triangle = TriangleView()
         triangle.depthPreset = .depth3
         triangle.backgroundColor = .clear
+        triangle.color = Color.grey.lighten4
         self.addSubview(triangle)
         
         label.snp.makeConstraints { (make) -> Void in
@@ -67,7 +74,16 @@ class CustomMarkerView: UIView {
             label.sizeToFit()
             self.sizeToFit()
         }
-
+    }
+    
+    func setColor() {
+        if label != nil {
+            label.backgroundColor = color
+            triangle = TriangleView()
+            triangle.depthPreset = .depth3
+            triangle.backgroundColor = .clear
+            triangle.color = color
+        }
     }
 
 }

@@ -700,8 +700,14 @@ extension DiscoverViewController: GMSMapViewDelegate {
     
     func bringMarkerForward(index:Int) {
         /* Bring selected marker forward */
-        markers.map { $0.zIndex = 0 }
+        markers.map {
+            $0.zIndex = 0
+            let markerView = markers[index].iconView as! CustomMarkerView
+            markerView.color = Color.grey.lighten4
+        }
         markers[index].zIndex = 1
+        let markerView = markers[index].iconView as! CustomMarkerView
+        markerView.color = Color.teal.base
     }
     
 }
