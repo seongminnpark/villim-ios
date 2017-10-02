@@ -142,7 +142,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         
         /* Find room button */
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2
+        let buttonTop = UIScreen.main.bounds.height - slideButtonHeight * 2
         findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
         findRoomButton.backgroundColor = VillimValues.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
