@@ -26,6 +26,8 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     
     var visitTableViewController : VisitTableViewController!
     
+    var menuButton : UIButton!
+    
     var container            : UIView!
     var houseImage           : UIImageView!
     var houseNameLabel       : UILabel!
@@ -36,8 +38,23 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
+        /* Prevent overlap with navigation controller */
+        let navControllerHeight = self.navigationController!.navigationBar.frame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        topOffset = navControllerHeight + statusBarHeight
+        
+        setUpNavigationBar()
+        
+        self.view.backgroundColor = VillimValues.backgroundColor
+        self.title = NSLocalizedString("visit_list", comment: "")
+        self.tabBarItem.title = self.title
+    }
+    
+    func setUpNavigationBar() {
+        
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -45,16 +62,17 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
-        /* Prevent overlap with navigation controller */
-        let navControllerHeight = self.navigationController!.navigationBar.frame.height
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        topOffset = navControllerHeight + statusBarHeight
+        /* Add menu button */
+        menuButton = UIButton()
+        menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
         
-        self.view.backgroundColor = VillimValues.backgroundColor
-        self.title = NSLocalizedString("visit_list", comment: "")
-        self.tabBarItem.title = self.title
+        self.navigationItem.leftViews = [menuButton]
     }
     
+    func handleMenuButton() {
+        self.navigationDrawerController?.toggleLeftView()
+    }
     
     func setUpVisitListLayout() {
         
