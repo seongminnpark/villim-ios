@@ -17,10 +17,11 @@ import SwiftDate
 
 class MyRoomViewController: UIViewController, UIScrollViewDelegate {
 
-    let STATE_NONE     = 0
-    let STATE_PAY      = 1
-    let STATE_PASSCODE = 2
-    let STATE_SERVICE  = 3
+    let STATE_INITIAL  = 0
+    let STATE_NO_ROOM  = 1
+    let STATE_PAY      = 2
+    let STATE_PASSCODE = 3
+    let STATE_SERVICE  = 4
     
     let CHANGE_PASSCODE   = 0
     let REQUEST_CLEANING  = 1
@@ -91,7 +92,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        state = STATE_NONE
+        state = STATE_INITIAL
         prevContentOffset = 0
         
         self.view.backgroundColor = VillimValues.backgroundColor
@@ -197,7 +198,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     
     func setUpRoomLayout() {
         
-        if state != STATE_NONE {
+        if state != STATE_INITIAL && state != STATE_NO_ROOM {
             return
         }
         
@@ -369,10 +370,10 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     
     func setUpNoRoomLayout() {
         
-        if state == STATE_NONE {
+        if state == STATE_NO_ROOM {
             return
         } else {
-            state = STATE_NONE
+            state = STATE_NO_ROOM
         }
         
         /* Get rid of all views */
@@ -427,7 +428,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
         
         /* Find room button */
         let buttonLeft = UIScreen.main.bounds.width/2 - slideButtonWidth/2
-        let buttonTop = UIScreen.main.bounds.height - tabBarController!.tabBar.bounds.height - slideButtonHeight * 2
+        let buttonTop = UIScreen.main.bounds.height - slideButtonHeight * 2
         findRoomButton = UIButton(frame:CGRect(x:buttonLeft,y:buttonTop, width:slideButtonWidth, height:slideButtonHeight))
         findRoomButton.backgroundColor = VillimValues.themeColor
         findRoomButton.setTitle(NSLocalizedString("find_house", comment: ""), for: .normal)
@@ -452,7 +453,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if state != STATE_NONE {
+        if state != STATE_INITIAL && state != STATE_NO_ROOM {
             if menu != nil {
                 let width = CGFloat(1.0)
                 
