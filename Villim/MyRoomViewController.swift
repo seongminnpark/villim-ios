@@ -51,6 +51,8 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     let slideButtonWidth     : CGFloat = 300.0
     let slideButtonHeight    : CGFloat = 60.0
     
+    var menuButton : UIButton!
+    
     /* When room info exists */
     var scrollView           : UIScrollView!
     var headerView           : MyRoomHeaderView!
@@ -89,21 +91,13 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
         state = STATE_NONE
         prevContentOffset = 0
-        
-        /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
-        
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.extendedLayoutIncludesOpaqueBars = true
         
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = NSLocalizedString("my_room", comment: "")
         
+        setUpNavigationBar()
     }
     
     @objc private func sendMyHouseRequest() {
@@ -177,6 +171,28 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
             }
             VillimUtils.hideLoadingIndicator()
         }
+    }
+    
+    func setUpNavigationBar() {
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        
+        /* Add menu button */
+        menuButton = UIButton()
+        menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
+        
+        self.navigationItem.leftViews = [menuButton]
+    }
+    
+    func handleMenuButton() {
+        self.navigationDrawerController?.toggleLeftView()
     }
     
     func setUpRoomLayout() {
