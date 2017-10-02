@@ -122,22 +122,34 @@ extension MenuViewController {
     
     @objc
     fileprivate func handleDiscoverButton() {
+        let appNavigationController = AppNavigationController(rootViewController: DiscoverViewController())
+        
         navigationDrawerController?.closeLeftView()
+        navigationDrawerController?.transition(to: appNavigationController)
     }
     
     @objc
     fileprivate func handleMyRoomButton() {
+        let appNavigationController = AppNavigationController(rootViewController: MyRoomViewController())
+        
         navigationDrawerController?.closeLeftView()
+        navigationDrawerController?.transition(to: appNavigationController)
     }
     
     @objc
     fileprivate func handleMyReservationsButton() {
+        let appNavigationController = AppNavigationController(rootViewController: VisitListViewController())
+        
         navigationDrawerController?.closeLeftView()
+        navigationDrawerController?.transition(to: appNavigationController)
     }
     
     @objc
     fileprivate func handleProfileButton() {
+        let appNavigationController = AppNavigationController(rootViewController: ProfileViewController())
+        
         navigationDrawerController?.closeLeftView()
+        navigationDrawerController?.transition(to: appNavigationController)
     }
 }
 

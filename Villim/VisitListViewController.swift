@@ -60,7 +60,6 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
-        self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         /* Add menu button */
         menuButton = UIButton()

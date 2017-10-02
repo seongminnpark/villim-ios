@@ -28,15 +28,15 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     let LOCAL_AMUSEMENTS  = 2
     let LEAVE_REVIEW      = 3
     
+    var state                : Int!
+    
+    var topOffset            : CGFloat = 0
+    var statusBarHeight      : CGFloat = 0
     let houseImageSize       : CGFloat = 200.0
     let CONTAINER_WIDTH      = 80.0
     let ICON_HEIGHT          = 30
     let MENU_HEIGHT          = 100
     let BUTTON_HEIGHT        = 80.0
-    
-    let statusBarHeight = UIApplication.shared.statusBarFrame.height
-    
-    var state                : Int!
     
     var prevContentOffset    : CGFloat!
     
@@ -97,6 +97,11 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
         
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = NSLocalizedString("my_room", comment: "")
+        
+        /* Prevent overlap with navigation controller */
+        let navControllerHeight = self.navigationController!.navigationBar.frame.height
+        statusBarHeight = UIApplication.shared.statusBarFrame.height
+        topOffset = navControllerHeight + statusBarHeight
         
         setUpNavigationBar()
     }
@@ -293,7 +298,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
         let screenWidth = UIScreen.main.bounds.width
         
         scrollView.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(statusBarHeight)
+            make.top.equalTo(topOffset)
             make.right.equalToSuperview()
             make.left.equalToSuperview()
             make.width.equalToSuperview()
