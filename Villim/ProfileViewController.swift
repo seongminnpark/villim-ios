@@ -14,6 +14,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     let profileImageViewSize : CGFloat! = 100.0
     
+    private var menuButton : UIButton!
     private var profileTitle : UILabel!
     private var profileImageView : UIImageView!
     private var profileTableViewController : ProfileTableViewController!
@@ -37,14 +38,6 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         self.view.backgroundColor = VillimValues.backgroundColor
         self.title = NSLocalizedString("profile", comment: "")
         
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.extendedLayoutIncludesOpaqueBars = true
-        
-        /* Set back button */
-        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        self.navigationItem.backBarButtonItem = backItem
-        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
-        
         /* Add Title */
         profileTitle = UILabel()
         profileTitle.font = UIFont(name: "NotoSansCJKkr-Regular", size: 20)
@@ -62,9 +55,34 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         profileTableViewController.itemSelectedListener = self
         self.view.addSubview(profileTableViewController.view)
         
+        setUpNavigationBar()
         populateViews()
         makeConstraints()
         
+    }
+    
+    func setUpNavigationBar() {
+        
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.extendedLayoutIncludesOpaqueBars = true
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        /* Set back button */
+        let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = backItem
+        self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
+        self.navigationController?.navigationBar.barTintColor = UIColor.white
+        
+        /* Add menu button */
+        menuButton = UIButton()
+        menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
+        
+        self.navigationItem.leftViews = [menuButton]
+    }
+    
+    func handleMenuButton() {
+        self.navigationDrawerController?.toggleLeftView()
     }
     
     func populateViews() {
