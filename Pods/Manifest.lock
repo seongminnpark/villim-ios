@@ -1,9 +1,6 @@
 PODS:
   - Alamofire (4.5.0)
   - Cosmos (11.0.3)
-  - Crashlytics (3.8.5):
-    - Fabric (~> 1.6.3)
-  - Fabric (1.6.12)
   - FSCalendar (2.7.9)
   - GoogleMaps (2.3.1):
     - GoogleMaps/Maps (= 2.3.1)
@@ -27,8 +24,6 @@ PODS:
 DEPENDENCIES:
   - Alamofire (~> 4.4)
   - Cosmos (~> 11.0)
-  - Crashlytics
-  - Fabric
   - FSCalendar (~> 2.7)
   - GoogleMaps
   - Lightbox
@@ -44,8 +39,6 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   Cosmos: eb506859929f4add2d2aec822a27efb2f718a95d
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
-  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
   FSCalendar: a04b09f16f811bc92e82f3cf852a15225233b9d5
   GoogleMaps: c66a71058b9b1294bcdd5463a68e357fa50c079f
   Hue: 354caec055fdc9d38b5ef33ca2e7224721843baf
@@ -59,6 +52,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toaster: f13031c636ef065281bc11857be9a16c7659e04f
 
-PODFILE CHECKSUM: 150ea22b4a896e40374d0a14d603c32d8fb6c698
+PODFILE CHECKSUM: 0ef353d66f3b868b2a4afced9bfdf73b4412c5d8
 
 COCOAPODS: 1.2.1

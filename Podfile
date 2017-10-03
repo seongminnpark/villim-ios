@@ -19,9 +19,6 @@ target 'Villim' do
   pod 'Lightbox'
   pod 'ScalingCarousel'
   pod 'Material', '~> 2.0'
-  
-  pod 'Fabric'
-  pod 'Crashlytics'
 
   target 'VillimTests' do
     inherit! :search_paths
