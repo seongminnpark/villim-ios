@@ -14,6 +14,8 @@ class MenuViewController: UIViewController {
     
     let PROFILE_IMAGE_SIZE = 150.0
     let MENU_OFFSET = 20.0
+    let PULSE_COLOR = Material.Color.grey.base
+    let BUTTON_INSET : CGFloat = 10.0
     
     fileprivate var profileInfo: UIImageView!
     fileprivate var discoverButton: FlatButton!
@@ -66,49 +68,73 @@ extension MenuViewController {
     
     fileprivate func prepareDiscoverButton() {
         discoverButton = FlatButton(title: NSLocalizedString("discover", comment: ""), titleColor: .black)
-        discoverButton.pulseColor = .white
+        discoverButton.setImage(#imageLiteral(resourceName: "icon_discover"), for: .normal)
+        discoverButton.pulseColor = PULSE_COLOR
+        discoverButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
+        discoverButton.imageEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET, 0, 0)
+        discoverButton.titleEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET*2, 0, 0)
+        discoverButton.contentHorizontalAlignment = .left
         discoverButton.addTarget(self, action: #selector(handleDiscoverButton), for: .touchUpInside)
         
         self.view.addSubview(discoverButton)
         
         discoverButton.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
             make.top.equalTo(profileInfo.snp.bottom).offset(MENU_OFFSET)
         }
     }
     
     fileprivate func prepareMyRoomButton() {
         myRoomButton = FlatButton(title: NSLocalizedString("my_room", comment: ""), titleColor: .black)
-        myRoomButton.pulseColor = .white
+        myRoomButton.setImage(#imageLiteral(resourceName: "icon_my_room"), for: .normal)
+        myRoomButton.pulseColor = PULSE_COLOR
+        myRoomButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
+        myRoomButton.imageEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET, 0, 0)
+        myRoomButton.titleEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET*2, 0, 0)
+        myRoomButton.contentHorizontalAlignment = .left
         myRoomButton.addTarget(self, action: #selector(handleMyRoomButton), for: .touchUpInside)
         
         self.view.addSubview(myRoomButton)
         myRoomButton.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
             make.top.equalTo(discoverButton.snp.bottom).offset(MENU_OFFSET)
         }
     }
     
     fileprivate func prepareMyReservationsButton() {
         myReservationsButton = FlatButton(title: NSLocalizedString("reservation_list", comment: ""), titleColor: .black)
-        myReservationsButton.pulseColor = .white
+        myReservationsButton.setImage(#imageLiteral(resourceName: "icon_visit_list"), for: .normal)
+        myReservationsButton.pulseColor = PULSE_COLOR
+        myReservationsButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
+        myReservationsButton.imageEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET, 0, 0)
+        myReservationsButton.titleEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET*2, 0, 0)
+        myReservationsButton.contentHorizontalAlignment = .left
         myReservationsButton.addTarget(self, action: #selector(handleMyReservationsButton), for: .touchUpInside)
         
         self.view.addSubview(myReservationsButton)
         myReservationsButton.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
             make.top.equalTo(myRoomButton.snp.bottom).offset(MENU_OFFSET)
         }
     }
     
     fileprivate func prepareProfileButton() {
         profileButton = FlatButton(title: NSLocalizedString("profile", comment: ""), titleColor: .black)
-        profileButton.pulseColor = .white
+        profileButton.setImage(#imageLiteral(resourceName: "icon_view_profile"), for: .normal)
+        profileButton.pulseColor = PULSE_COLOR
+        profileButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
+        profileButton.imageEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET, 0, 0)
+        profileButton.titleEdgeInsets = UIEdgeInsetsMake(0, BUTTON_INSET*2, 0, 0)
+        profileButton.contentHorizontalAlignment = .left
         profileButton.addTarget(self, action: #selector(handleProfileButton), for: .touchUpInside)
         
         self.view.addSubview(profileButton)
         profileButton.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
             make.top.equalTo(myReservationsButton.snp.bottom).offset(MENU_OFFSET)
         }
     }
