@@ -16,6 +16,7 @@ class MenuViewController: UIViewController {
     let MENU_OFFSET = 20.0
     let PULSE_COLOR = Material.Color.grey.base
     let BUTTON_INSET : CGFloat = 10.0
+    let BUTTON_TITLE_SIZE: CGFloat = 15.0
     
     fileprivate var profileInfo: UIImageView!
     fileprivate var discoverButton: FlatButton!
@@ -68,6 +69,7 @@ extension MenuViewController {
     
     fileprivate func prepareDiscoverButton() {
         discoverButton = FlatButton(title: NSLocalizedString("discover", comment: ""), titleColor: .black)
+        discoverButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: BUTTON_TITLE_SIZE)
         discoverButton.setImage(#imageLiteral(resourceName: "icon_discover"), for: .normal)
         discoverButton.pulseColor = PULSE_COLOR
         discoverButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
@@ -87,6 +89,7 @@ extension MenuViewController {
     
     fileprivate func prepareMyRoomButton() {
         myRoomButton = FlatButton(title: NSLocalizedString("my_room", comment: ""), titleColor: .black)
+        myRoomButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: BUTTON_TITLE_SIZE)
         myRoomButton.setImage(#imageLiteral(resourceName: "icon_my_room"), for: .normal)
         myRoomButton.pulseColor = PULSE_COLOR
         myRoomButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
@@ -105,6 +108,7 @@ extension MenuViewController {
     
     fileprivate func prepareMyReservationsButton() {
         myReservationsButton = FlatButton(title: NSLocalizedString("reservation_list", comment: ""), titleColor: .black)
+        myReservationsButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: BUTTON_TITLE_SIZE)
         myReservationsButton.setImage(#imageLiteral(resourceName: "icon_visit_list"), for: .normal)
         myReservationsButton.pulseColor = PULSE_COLOR
         myReservationsButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
@@ -123,6 +127,7 @@ extension MenuViewController {
     
     fileprivate func prepareProfileButton() {
         profileButton = FlatButton(title: NSLocalizedString("profile", comment: ""), titleColor: .black)
+        profileButton.titleLabel?.font = UIFont(name: "NotoSansCJKkr-Regular", size: BUTTON_TITLE_SIZE)
         profileButton.setImage(#imageLiteral(resourceName: "icon_view_profile"), for: .normal)
         profileButton.pulseColor = PULSE_COLOR
         profileButton.contentEdgeInsets = UIEdgeInsetsMake(BUTTON_INSET, BUTTON_INSET, BUTTON_INSET, BUTTON_INSET)
