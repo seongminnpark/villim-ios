@@ -759,8 +759,8 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     private func showErrorMessage(message:String) {
         let toast = Toast(text: message, duration: Delay.long)
         
-        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
+        ToastView.appearance().bottomOffsetPortrait = 30
+        ToastView.appearance().bottomOffsetLandscape = 30
         ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
         
         toast.show()
@@ -773,7 +773,6 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
         VillimUtils.hideLoadingIndicator()
-        self.navigationController?.isNavigationBarHidden = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -783,8 +782,6 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.tabBarController?.tabBar.isHidden = false
-        self.navigationController?.isNavigationBarHidden = true
         
         if VillimSession.getLoggedIn() {
             sendMyHouseRequest()
