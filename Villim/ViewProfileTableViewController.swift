@@ -8,7 +8,6 @@
 
 import UIKit
 import Nuke
-import PhoneNumberKit
 
 protocol ViewProfileDelegate {
     func launchPhotoPicker()
@@ -179,16 +178,6 @@ class ViewProfileTableViewController: UITableViewController {
         let cell : ViewProfilePhoneNumberTableViewCell = ViewProfilePhoneNumberTableViewCell(style:UITableViewCellStyle.default, reuseIdentifier:"phone_number")
         
         cell.title.text = NSLocalizedString("phone_number", comment:"")
-        
-//        var content = ""
-//        do {
-//            let phoneNumberKit = PhoneNumberKit()
-//            let phoneNumber = try phoneNumberKit.parse(self.phoneNumber)
-//            content = phoneNumberKit.format(phoneNumber, toType: .international)
-//        }
-//        catch {
-//            
-//        }
         
         if self.inEditMode {
             cell.layoutEditMode()

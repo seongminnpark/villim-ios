@@ -15,7 +15,6 @@ target 'Villim' do
   pod 'Cosmos', '~> 11.0'
   pod 'FSCalendar', '~> 2.7'
   pod 'SwiftDate', '~> 4.0'
-  pod 'PhoneNumberKit', '~> 1.3'
   pod 'pop', '~> 1.0'
   pod 'Lightbox'
   pod 'ScalingCarousel'
