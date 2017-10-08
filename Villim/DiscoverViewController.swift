@@ -556,6 +556,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                 CGRect(x:0, y:0, width: 100, height:50))
             markerView.content = VillimUtils.getCurrencyString(price: 30405)
             marker.iconView = markerView
+//            marker.tracksViewChanges = true
             marker.map = mapView
             self.markers.append(marker)
         }

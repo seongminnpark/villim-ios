@@ -556,7 +556,6 @@
 		15DD46518D74F8C813FC7CC28B740333 /* Date+Formatter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Date+Formatter.swift"; path = "Sources/SwiftDate/Date+Formatter.swift"; sourceTree = "<group>"; };
 		15DDFF4163DF62A4AD6183B017BE7FE2 /* DataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DataLoader.swift; path = Sources/DataLoader.swift; sourceTree = "<group>"; };
 		16EC10A0DB65D107421B7478680DADAF /* FSCalendarScopeHandle.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FSCalendarScopeHandle.m; path = FSCalendar/FSCalendarScopeHandle.m; sourceTree = "<group>"; };
-		1705FB7C172E7D24D611AD3341B3DAD4 /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Versions/A/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		171679FA8716517C8E161BEC4688A2FB /* Request.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Request.swift; path = Source/Request.swift; sourceTree = "<group>"; };
 		174115D9DD925321FB873B6B49820CF0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		17745757B39BF0BBDB0CCD40B2DE0C45 /* TransitionController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TransitionController.swift; path = Sources/iOS/TransitionController.swift; sourceTree = "<group>"; };
@@ -693,6 +692,7 @@
 		67DEEB95426125D95C8140588FE6F62D /* Pods-VillimTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-VillimTests.modulemap"; sourceTree = "<group>"; };
 		68AAEFBBE2ACCF55697080B08C4CBA27 /* Pods-VillimUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-VillimUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		68BFFEC9725086C53BE54BB5E6E4C815 /* Motion.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Motion.swift; path = Sources/Frameworks/Motion/Sources/Motion.swift; sourceTree = "<group>"; };
+		68CDB3B6C98E8A77245D2CC85C2BE63A /* GoogleMaps.bundle */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "wrapper.plug-in"; name = GoogleMaps.bundle; path = Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle; sourceTree = "<group>"; };
 		6AE35B10F7F0C1EFCDE07587D8B87B76 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		6B1DE004A812FAC52C353B9ACF461035 /* FSCalendarDynamicHeader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FSCalendarDynamicHeader.h; path = FSCalendar/FSCalendarDynamicHeader.h; sourceTree = "<group>"; };
 		6BDC47B43AC02FA2E5FBC337AA776BAE /* SessionManager.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SessionManager.swift; path = Source/SessionManager.swift; sourceTree = "<group>"; };
@@ -1418,7 +1418,7 @@
 			isa = PBXGroup;
 			children = (
 				A026EC3E951BD9510EF5108509B212D3 /* Frameworks */,
-				E6DDF22E2EF7CFB422AB72E3691D6C2B /* Resources */,
+				91EBEB7F3B1A4D9A70EB109E50D7DD3C /* Resources */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -1479,6 +1479,14 @@
 				A19367212B7F5AF1D3E2AFBF4962DBA1 /* UIKit.framework */,
 			);
 			name = iOS;
+			sourceTree = "<group>";
+		};
+		91EBEB7F3B1A4D9A70EB109E50D7DD3C /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				68CDB3B6C98E8A77245D2CC85C2BE63A /* GoogleMaps.bundle */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		9837E9EBE209DC61BD83EDDE6E214510 /* Frameworks */ = {
@@ -1854,14 +1862,6 @@
 			);
 			name = "Support Files";
 			path = "../Target Support Files/Hue";
-			sourceTree = "<group>";
-		};
-		E6DDF22E2EF7CFB422AB72E3691D6C2B /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				1705FB7C172E7D24D611AD3341B3DAD4 /* GoogleMaps.bundle */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		EB303C2C247C759136E7EAA281813D27 /* Pods-VillimTests */ = {

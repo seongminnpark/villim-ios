@@ -14,7 +14,7 @@ target 'Villim' do
   pod 'GoogleMaps'
   pod 'Cosmos', '~> 11.0'
   pod 'FSCalendar', '~> 2.7'
-  pod 'SwiftDate', '~> 4.0'
+  pod 'SwiftDate', '~> 4.3.0'
   pod 'pop', '~> 1.0'
   pod 'Lightbox'
   pod 'ScalingCarousel'

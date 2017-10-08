@@ -78,6 +78,7 @@ class CustomMarkerView: UIView {
     
     func setColor() {
         if label != nil {
+            print(color)
             label.backgroundColor = color
             triangle = TriangleView()
             triangle.depthPreset = .depth3
