@@ -427,12 +427,18 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     }
     
     func hideNetworkErrorView() {
+        
+        navbarIcon.isEnabled = true
+        
         if networkErrorView != nil {
             networkErrorView.removeFromSuperview()
         }
     }
     
     func showNetworkErrorView() {
+        
+        navbarIcon.isEnabled = false
+        
         if networkErrorView != nil {
             networkErrorView.removeFromSuperview()
         }
