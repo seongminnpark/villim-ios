@@ -485,23 +485,21 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     }
     
     func openFilter() {
-//        open()
-//
-//        UIView.animate(withDuration: 0.5, animations: {
-//            self.searchFilter?.snp.updateConstraints { (make) -> Void in
-//                make.height.equalTo(self.searchFilterMaxHeight)
-//            }
-//            self.locationFilter?.snp.updateConstraints { (make) -> Void in
-//                make.height.equalTo(self.individualFilterHeight)
-//            }
-//            self.dateFilter?.snp.updateConstraints { (make) -> Void in
-//                make.height.equalTo(self.individualFilterHeight)
-//            }
-//
-//            self.view.layoutIfNeeded()
-//        })
-//
-        VillimUtils.showErrorMessage(message: "Test")
+        open()
+
+        UIView.animate(withDuration: 0.5, animations: {
+            self.searchFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.searchFilterMaxHeight)
+            }
+            self.locationFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.individualFilterHeight)
+            }
+            self.dateFilter?.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(self.individualFilterHeight)
+            }
+
+            self.view.layoutIfNeeded()
+        })
     }
     
     func discoverItemSelected(position: Int) {
