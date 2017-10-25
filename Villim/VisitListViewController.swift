@@ -25,7 +25,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     
     var visitTableViewController : VisitTableViewController!
     
-    var menuButton : UIButton!
+    var menuButton : FlatButton!
     
     var container            : UIView!
     var houseImage           : UIImageView!
@@ -64,8 +64,9 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         /* Add menu button */
-        menuButton = UIButton()
+        menuButton = FlatButton()
         menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.pulseAnimation = .center
         menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
         
         self.navigationItem.leftViews = [menuButton]

@@ -40,9 +40,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     let filterPadding  : CGFloat! = 25.0
     let navbarIconSize : CGFloat! = 25.0
     
-    var menuButton : UIButton!
+    var menuButton : FlatButton!
     var navbarLogo : UIImageView!
-    var navbarIcon : UIButton!
+    var navbarIcon : FlatButton!
 
     var locationFilterSet : Bool = false
     var dateFilterSet : Bool = false
@@ -191,8 +191,9 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         /* Add menu button */
-        menuButton = UIButton()
+        menuButton = FlatButton()
         menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.pulseAnimation = .center
         menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
         
         /* Add navbar logo */
@@ -206,9 +207,10 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     
         
         /* Set up right button items */
-        navbarIcon = UIButton()
+        navbarIcon = FlatButton()
         navbarIcon.frame = CGRect(x: 0, y: 0, width: navbarIconSize, height: navbarIconSize)
         navbarIcon.setImage(#imageLiteral(resourceName: "icon_search"), for: .normal)
+        navbarIcon.pulseAnimation = .center
         navbarIcon.sizeToFit()
         navbarIcon.addTarget(self, action: #selector(self.openFilter), for: .touchUpInside)
         

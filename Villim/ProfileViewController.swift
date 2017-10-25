@@ -14,7 +14,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     let profileImageViewSize : CGFloat! = 100.0
     
-    private var menuButton : UIButton!
+    private var menuButton : FlatButton!
     private var profileTitle : UILabel!
     private var profileImageView : UIImageView!
     private var profileTableViewController : ProfileTableViewController!
@@ -78,8 +78,9 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         /* Add menu button */
-        menuButton = UIButton()
+        menuButton = FlatButton()
         menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.pulseAnimation = .center
         menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
         
         self.navigationItem.leftViews = [menuButton]

@@ -51,7 +51,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     let slideButtonWidth     : CGFloat = 300.0
     let slideButtonHeight    : CGFloat = 60.0
     
-    var menuButton : UIButton!
+    var menuButton : FlatButton!
     
     /* When room info exists */
     var scrollView           : UIScrollView!
@@ -192,8 +192,9 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
         self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         
         /* Add menu button */
-        menuButton = UIButton()
+        menuButton = FlatButton()
         menuButton.setImage(#imageLiteral(resourceName: "menu"), for: .normal)
+        menuButton.pulseAnimation = .center
         menuButton.addTarget(self, action: #selector(handleMenuButton), for: .touchUpInside)
         
         self.navigationItem.leftViews = [menuButton]
