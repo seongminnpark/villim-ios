@@ -10,6 +10,7 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import SwiftDate
+import Material
 
 class VisitListViewController: ViewController, VisitTableViewItemSelectedListener {
 
