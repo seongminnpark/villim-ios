@@ -185,7 +185,8 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
     }
     
     func showDiscoverTab() {
-        self.tabBarController?.selectedIndex = 0;
+        let menuController = self.navigationDrawerController?.leftViewController as! MenuViewController
+        menuController.handleDiscoverButton()
     }
     
     

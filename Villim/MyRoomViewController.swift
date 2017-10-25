@@ -712,7 +712,8 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     }
     
     func showDiscoverTab() {
-        self.tabBarController?.selectedIndex = 0;
+        let menuController = self.navigationDrawerController?.leftViewController as! MenuViewController
+        menuController.handleDiscoverButton()
     }
     
     /* Scrollview delegate */

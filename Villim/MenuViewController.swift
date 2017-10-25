@@ -147,12 +147,12 @@ extension MenuViewController {
 
 extension MenuViewController {
     @objc
-    fileprivate func handleProfileInfo() {
+    func handleProfileInfo() {
         navigationDrawerController?.closeLeftView()
     }
     
     @objc
-    fileprivate func handleDiscoverButton() {
+    func handleDiscoverButton() {
         let appNavigationController = AppNavigationController(rootViewController: DiscoverViewController())
         
         navigationDrawerController?.closeLeftView()
@@ -160,7 +160,7 @@ extension MenuViewController {
     }
     
     @objc
-    fileprivate func handleMyRoomButton() {
+    func handleMyRoomButton() {
         let appNavigationController = AppNavigationController(rootViewController: MyRoomViewController())
         
         navigationDrawerController?.closeLeftView()
@@ -168,7 +168,7 @@ extension MenuViewController {
     }
     
     @objc
-    fileprivate func handleMyReservationsButton() {
+    func handleMyReservationsButton() {
         let appNavigationController = AppNavigationController(rootViewController: VisitListViewController())
         
         navigationDrawerController?.closeLeftView()
@@ -176,7 +176,7 @@ extension MenuViewController {
     }
     
     @objc
-    fileprivate func handleProfileButton() {
+    func handleProfileButton() {
         let appNavigationController = AppNavigationController(rootViewController: ProfileViewController())
         
         navigationDrawerController?.closeLeftView()
