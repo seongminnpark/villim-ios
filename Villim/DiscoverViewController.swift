@@ -177,7 +177,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         collapseFilter()
         
-//        sendFeaturedHousesRequest()
+        sendFeaturedHousesRequest()
     
     }
     
@@ -703,7 +703,7 @@ extension DiscoverViewController: GMSMapViewDelegate {
         /* Bring selected marker forward */
         markers.map {
             $0.zIndex = 0
-            let markerView = markers[index].iconView as! CustomMarkerView
+            let markerView = $0.iconView as! CustomMarkerView
             markerView.color = Color.grey.lighten4
         }
         markers[index].zIndex = 1
