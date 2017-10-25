@@ -11,10 +11,12 @@ import UIKit
 import SwiftDate
 import SnapKit
 import pop
+import Material
 
 class VillimUtils {
     
     static var loadingIndicator : UIImageView!
+    static var snackbar : SnackbarController!
     
     public static func buildURL(endpoint:String) -> String {
         return VillimKeys.SERVER_SCHEME + "://" + VillimKeys.SERVER_HOST + "/" + endpoint
@@ -299,6 +301,30 @@ class VillimUtils {
         if loadingIndicator != nil {
             loadingIndicator.pop_removeAllAnimations()
             loadingIndicator.removeFromSuperview()
+        }
+    }
+    
+    public static func showErrorMessage(message:String) {
+        
+        if snackbar != nil {
+            snackbar.view.removeFromSuperview()
+        }
+        
+        let window = UIApplication.shared.keyWindow!
+        snackbar = AppSnackbarController(rootViewController: SnackbarRootViewController())
+        snackbar.title = message
+        window.addSubview(snackbar.view)
+        
+        snackbar.view.snp.makeConstraints { (make) -> Void in
+            make.width.equalTo(UIScreen.main.bounds.width)
+            make.height.equalTo(snackbar.snackbar.bounds.height)
+            make.top.equalTo(UIScreen.main.bounds.height - snackbar.snackbar.bounds.height)
+        }
+    }
+    
+    public static func hideErrorMessage() {
+        if snackbar != nil {
+            (snackbar.rootViewController as! SnackbarRootViewController).dismissSnackbar()
         }
     }
     

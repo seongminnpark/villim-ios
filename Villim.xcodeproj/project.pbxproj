@@ -21,7 +21,6 @@
 		3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */; };
 		3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */; };
 		3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */; };
-		3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B11F1E02CE0023E229 /* TabBarController.swift */; };
 		3E0F06BD1F1E02CE0023E229 /* VillimKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */; };
 		3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B31F1E02CE0023E229 /* VillimSession.swift */; };
 		3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B41F1E02CE0023E229 /* VillimUser.swift */; };
@@ -94,6 +93,8 @@
 		3EDC276B1F35117D00228C1F /* ChangePasscodeSuccessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276A1F35117D00228C1F /* ChangePasscodeSuccessViewController.swift */; };
 		3EDC276D1F35329A00228C1F /* AddPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276C1F35329A00228C1F /* AddPhoneViewController.swift */; };
 		3EDC276F1F3537B200228C1F /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */; };
+		3EDC30161FA028CE00374C41 /* AppSnackbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC30151FA028CE00374C41 /* AppSnackbarController.swift */; };
+		3EDC30181FA030D600374C41 /* SnackbarRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC30171FA030D600374C41 /* SnackbarRootViewController.swift */; };
 		3EDE4CD01F32A1E200FDB275 /* AmenityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */; };
 		3EDE4CD21F32A88500FDB275 /* AmenityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD11F32A88500FDB275 /* AmenityTableViewController.swift */; };
 		3EDE4CD41F32AAE700FDB275 /* ViewReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */; };
@@ -159,7 +160,6 @@
 		3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		3E0F06B11F1E02CE0023E229 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimKeys.swift; sourceTree = "<group>"; };
 		3E0F06B31F1E02CE0023E229 /* VillimSession.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimSession.swift; sourceTree = "<group>"; };
 		3E0F06B41F1E02CE0023E229 /* VillimUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillimUser.swift; sourceTree = "<group>"; };
@@ -232,6 +232,8 @@
 		3EDC276A1F35117D00228C1F /* ChangePasscodeSuccessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChangePasscodeSuccessViewController.swift; sourceTree = "<group>"; };
 		3EDC276C1F35329A00228C1F /* AddPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPhoneViewController.swift; sourceTree = "<group>"; };
 		3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
+		3EDC30151FA028CE00374C41 /* AppSnackbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSnackbarController.swift; sourceTree = "<group>"; };
+		3EDC30171FA030D600374C41 /* SnackbarRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarRootViewController.swift; sourceTree = "<group>"; };
 		3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityViewController.swift; sourceTree = "<group>"; };
 		3EDE4CD11F32A88500FDB275 /* AmenityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityTableViewController.swift; sourceTree = "<group>"; };
 		3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewReviewViewController.swift; sourceTree = "<group>"; };
@@ -335,8 +337,9 @@
 				3EB051481F2AF57200EBBBCE /* ApplicationShortcut.swift */,
 				3ED0AC2E1F73318E005A7D22 /* AppNavigationController.swift */,
 				3ED0AC2C1F732D36005A7D22 /* AppNavigationDrawerController.swift */,
+				3EDC30151FA028CE00374C41 /* AppSnackbarController.swift */,
+				3EDC30171FA030D600374C41 /* SnackbarRootViewController.swift */,
 				3ED0AC321F733426005A7D22 /* MenuViewController.swift */,
-				3E0F06B11F1E02CE0023E229 /* TabBarController.swift */,
 				3E0F06821F1E017B0023E229 /* Main.storyboard */,
 				3E0F06851F1E017B0023E229 /* Assets.xcassets */,
 				3E92EAD61F3A3E5300AC6FF3 /* LaunchScreen.storyboard */,
@@ -820,7 +823,6 @@
 				3E09540B1F27683A000240FA /* VillimVisit.swift in Sources */,
 				3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */,
 				3EDE4CEC1F337BC800FDB275 /* ReservationPriceTableViewCell.swift in Sources */,
-				3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */,
 				3EDE4CD01F32A1E200FDB275 /* AmenityViewController.swift in Sources */,
 				3ED0AC381F746737005A7D22 /* TriangleView.swift in Sources */,
 				3E0954091F274B2D000240FA /* VisitTableViewController.swift in Sources */,
@@ -837,6 +839,7 @@
 				3EDE4CF41F33AD2600FDB275 /* ViewProfileImageTableViewCell.swift in Sources */,
 				3EB0513D1F28F23D00EBBBCE /* HouseAmenitiesTableViewCell.swift in Sources */,
 				3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */,
+				3EDC30161FA028CE00374C41 /* AppSnackbarController.swift in Sources */,
 				3EDE4CE21F33016F00FDB275 /* MapViewController.swift in Sources */,
 				3EB051351F28F19900EBBBCE /* HouseHeaderTableViewCell.swift in Sources */,
 				3EDC139D1F2C295200BA4077 /* WebViewController.swift in Sources */,
@@ -864,6 +867,7 @@
 				3E65CAF51F365C4900DD2A29 /* VillimDialog.swift in Sources */,
 				3EDE4CEA1F337BBA00FDB275 /* ReservationDatesTableViewCell.swift in Sources */,
 				3EDE4CE81F337BA500FDB275 /* ReservationHeaderTableViewCell.swift in Sources */,
+				3EDC30181FA030D600374C41 /* SnackbarRootViewController.swift in Sources */,
 				3E5F988A1F2EA3B6003AAF8F /* LocationSuggestionTableViewCell.swift in Sources */,
 				3E5043EC1F4546960064B773 /* VisitListTableViewCell.swift in Sources */,
 				3EDE4CE01F32FB8400FDB275 /* CancellationPolicyViewController.swift in Sources */,
