@@ -69,7 +69,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         
         /* Set title */
         self.navigationItem.titleLabel.text = NSLocalizedString("profile", comment: "")
-        self.navigationItem.titleLabel.textAlignment = .center
+//        self.navigationItem.titleLabel.textAlignment = .center
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -190,7 +190,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         logoutConfirmDialog.label =
             String(format:NSLocalizedString("logout_confirm_format", comment: ""), VillimSession.getFullName())
         logoutConfirmDialog.onConfirm = { () -> Void in self.logout() }
-        self.tabBarController?.view.addSubview(logoutConfirmDialog)
+        self.navigationController?.view.addSubview(logoutConfirmDialog)
     }
     
     public func launchLoginViewController() {
