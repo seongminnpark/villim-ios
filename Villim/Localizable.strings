@@ -272,3 +272,5 @@
 
 "network_error" = "인터넷에 연결할 수 없습니다.";
 "retry" = "재시도";
+
+"name_format" = "%@님";

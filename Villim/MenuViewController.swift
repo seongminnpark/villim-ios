@@ -18,7 +18,8 @@ class MenuViewController: UIViewController {
     let BUTTON_INSET : CGFloat = 10.0
     let BUTTON_TITLE_SIZE: CGFloat = 15.0
     
-    fileprivate var profileInfo: UIImageView!
+    fileprivate var profilePicture: UIImageView!
+    fileprivate var profileName: UILabel!
     fileprivate var discoverButton: FlatButton!
     fileprivate var myRoomButton: FlatButton!
     fileprivate var myReservationsButton: FlatButton!
@@ -38,31 +39,44 @@ class MenuViewController: UIViewController {
 
 extension MenuViewController {
     fileprivate func prepareProfileInfo() {
-        profileInfo = UIImageView()
+        profilePicture = UIImageView()
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleProfileInfo))
-        profileInfo.isUserInteractionEnabled = true
-        profileInfo.addGestureRecognizer(tap)
+        profilePicture.isUserInteractionEnabled = true
+        profilePicture.addGestureRecognizer(tap)
+        self.view.addSubview(profilePicture)
         
-        self.view.addSubview(profileInfo)
+        profileName = UILabel()
+        profileName.font =  UIFont(name: "NotoSansCJKkr-Regular", size: 20.0)
+        profileName.textAlignment = .center
+        self.view.addSubview(profileName)
         
-        profileInfo.snp.makeConstraints { (make) -> Void in
+        
+        profilePicture.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
             make.width.equalTo(PROFILE_IMAGE_SIZE)
             make.height.equalTo(PROFILE_IMAGE_SIZE)
             make.top.equalTo(50)
         }
         
-        /* Load image */
+        profileName.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(25)
+            make.top.equalTo(profilePicture.snp.bottom).offset(10)
+        }
+        
+        /* Load info */
         if VillimSession.getLoggedIn() {
             let url = URL(string: VillimSession.getProfilePicUrl())
             if url != nil {
-                Nuke.loadImage(with: url!, into: profileInfo)
+                Nuke.loadImage(with: url!, into: profilePicture)
             } else {
-                profileInfo.image = #imageLiteral(resourceName: "img_default")
+                profilePicture.image = #imageLiteral(resourceName: "img_default")
             }
-
+            profileName.text = String(format:NSLocalizedString("name_format", comment: ""), VillimSession.getFullName())
         } else {
-            profileInfo.image = #imageLiteral(resourceName: "img_default")
+            profilePicture.image = #imageLiteral(resourceName: "img_default")
+            profileName.text = ""
         }
         
     }
@@ -83,7 +97,7 @@ extension MenuViewController {
         discoverButton.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
             make.width.equalToSuperview()
-            make.top.equalTo(profileInfo.snp.bottom).offset(MENU_OFFSET)
+            make.top.equalTo(profileName.snp.bottom).offset(MENU_OFFSET)
         }
     }
     
@@ -148,7 +162,7 @@ extension MenuViewController {
 extension MenuViewController {
     @objc
     func handleProfileInfo() {
-        navigationDrawerController?.closeLeftView()
+        handleProfileButton()
     }
     
     @objc
