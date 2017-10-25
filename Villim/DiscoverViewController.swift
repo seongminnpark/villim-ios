@@ -357,6 +357,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
+                self.hideNetworkErrorView()
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
@@ -402,6 +403,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         Alamofire.request(url, method:.get, parameters:parameters,encoding: URLEncoding.default).responseJSON { response in
             switch response.result {
             case .success:
+                self.hideNetworkErrorView()
                 let responseData = JSON(data: response.data!)
                 if responseData[VillimKeys.KEY_SUCCESS].boolValue {
                     
@@ -418,8 +420,15 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                     self.showNetworkErrorView()
                 } else {
                     self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-                }ㅎ            }
+                }
+            }
             VillimUtils.hideLoadingIndicator()
+        }
+    }
+    
+    func hideNetworkErrorView() {
+        if networkErrorView != nil {
+            networkErrorView.removeFromSuperview()
         }
     }
     
