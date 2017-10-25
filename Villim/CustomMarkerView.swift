@@ -11,7 +11,7 @@ import Material
 
 class CustomMarkerView: UIView {
     
-    let COLOR_HIGHLIGHTED = Color.teal.base
+    let COLOR_HIGHLIGHTED = Color.teal.lighten2
     let COLOR_NORMAL      = Color.grey.lighten4
     
     var content : String! = "" {
