@@ -177,7 +177,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
         collapseFilter()
         
-        sendFeaturedHousesRequest()
+//        sendFeaturedHousesRequest()
     
     }
     
@@ -421,7 +421,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         locationFilterLabel.text = location
         locationFilterClearButton.isHidden = false
         locationFilterClearButton.isEnabled = true
-        sendSearchRequest()
+//        sendSearchRequest()
     }
     
     func clearLocationFilter() {
@@ -429,7 +429,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         locationFilterLabel.text = NSLocalizedString("all_locations", comment: "")
         locationFilterClearButton.isHidden = true
         locationFilterClearButton.isEnabled = false
-        sendSearchRequest()
+//        sendSearchRequest()
     }
     
     func onDateSet(checkIn:DateInRegion, checkOut:DateInRegion) {
@@ -443,7 +443,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
             String(format:NSLocalizedString("date_filter_format", comment: ""), checkInString, checkOutString)
         dateFilterClearButton.isHidden = false
         dateFilterClearButton.isEnabled = true
-        sendSearchRequest()
+//        sendSearchRequest()
     }
     
     func clearDateFilter() {
@@ -451,7 +451,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         dateFilterLabel.text = NSLocalizedString("select_date", comment: "")
         dateFilterClearButton.isHidden = true
         dateFilterClearButton.isEnabled = false
-        sendSearchRequest()
+//        sendSearchRequest()
     }
 
     func open() {

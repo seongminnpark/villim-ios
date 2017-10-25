@@ -96,7 +96,7 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     func verifyInput() {
         if VillimSession.getLoggedIn() {
             if self.dateSet {
-                sendVisitRequest()
+//                sendVisitRequest()
             } else {
                 showErrorMessage(message: NSLocalizedString("must_select_date", comment: ""))
             }

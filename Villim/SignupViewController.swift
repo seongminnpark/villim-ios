@@ -284,7 +284,7 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
                 !(passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
         let validInput : Bool = allFieldsFilledOut;
         if validInput {
-            sendSignupRequest();
+//            sendSignupRequest();
         } else {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         }

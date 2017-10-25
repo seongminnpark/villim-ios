@@ -151,7 +151,7 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
         
         let validInput : Bool = allFieldsFilledOut && !tooLong && !tooShort && allDigits
         if validInput {
-            sendSendVerificationPhoneRequest()
+//            sendSendVerificationPhoneRequest()
         } else if !allFieldsFilledOut {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         } else if tooLong {

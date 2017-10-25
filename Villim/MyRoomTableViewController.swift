@@ -42,18 +42,6 @@ class MyRoomTableViewController: UITableViewController {
         self.tableView.contentInset =
             UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
         self.tableView.isScrollEnabled = false
-
-//        /* Set up headerview */
-//        let headerView = MyRoomHeaderView()
-//        if houseThumbnailUrl.isEmpty {
-//            headerView.houseImage.image = #imageLiteral(resourceName: "img_default")
-//        } else {
-//            let url = URL(string:houseThumbnailUrl)
-//            Nuke.loadImage(with: url!, into: headerView.houseImage)
-//        }
-//        headerView.houseName.text = houseName
-//        self.tableView.tableHeaderView = headerView
-
     }
 
     override func didReceiveMemoryWarning() {

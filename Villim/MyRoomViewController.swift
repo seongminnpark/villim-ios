@@ -784,7 +784,7 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
         super.viewWillAppear(animated)
         
         if VillimSession.getLoggedIn() {
-            sendMyHouseRequest()
+//            sendMyHouseRequest()
         } else {
             setUpNoRoomLayout()
         }

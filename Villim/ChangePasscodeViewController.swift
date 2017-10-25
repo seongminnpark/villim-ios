@@ -177,7 +177,7 @@ class ChangePasscodeViewController: UIViewController, UITextFieldDelegate, Chang
 
         let validInput : Bool = allFieldsFilledOut && same && !tooLong && !tooShort && allDigits
         if validInput {
-            sendChangePasscodeRequest();
+//            sendChangePasscodeRequest();
         } else if !allFieldsFilledOut {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         } else if !same {

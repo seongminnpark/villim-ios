@@ -317,7 +317,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
     }
     
     func unLocked() {
-        sendOpenDoorlockRequest()
+//        sendOpenDoorlockRequest()
     }
     
     private func showErrorMessage(message:String) {
@@ -343,7 +343,7 @@ class MyKeyViewController: ViewController, SlideButtonDelegate {
         self.tabBarController?.tabBar.isHidden = false
         
         if VillimSession.getLoggedIn() {
-            sendMyHouseRequest()
+//            sendMyHouseRequest()
         } else {
             setUpNoKeyLayout()
         }

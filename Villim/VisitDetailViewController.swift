@@ -127,7 +127,7 @@ class VisitDetailViewController: UIViewController {
         
         makeConstraints()
         
-        sendVisitInfoRequest()
+//        sendVisitInfoRequest()
 
     }
 

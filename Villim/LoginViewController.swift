@@ -273,7 +273,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
                 !(passwordField.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)!
         let validInput : Bool = allFieldsFilledOut;
         if validInput {
-            sendLoginRequest();
+//            sendLoginRequest();
         } else {
             showErrorMessage(message: NSLocalizedString("empty_field", comment: ""))
         }

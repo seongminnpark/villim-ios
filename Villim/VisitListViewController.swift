@@ -309,7 +309,7 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
         if VillimSession.getLoggedIn() {
-            sendVisitListRequest()
+//            sendVisitListRequest()
         } else {
             setUpNovisitLayout()
         }

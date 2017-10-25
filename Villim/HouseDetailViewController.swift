@@ -117,7 +117,7 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
                 UIEdgeInsets(top: 0, left: 0, bottom: VillimValues.BOTTOM_BUTTON_HEIGHT, right: 0)
         }
         
-        sendHouseInfoRequest()
+//        sendHouseInfoRequest()
     }
     
     func makeConstraints() {

@@ -83,7 +83,7 @@ class ViewReviewViewController: UIViewController {
         populateViews()
         makeConstraints()
         
-        sendHouseReviewRequest()
+//        sendHouseReviewRequest()
     }
 
     func initRatingLabels() {

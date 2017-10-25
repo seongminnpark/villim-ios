@@ -111,7 +111,7 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         self.viewProfileTableViewController.updateProfileInfo()
         
         if !initialLaunch && !self.isEditing {
-            sendUpdateProfileRequest()
+//            sendUpdateProfileRequest()
         }
     }
 
