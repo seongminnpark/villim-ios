@@ -556,7 +556,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                 CGRect(x:0, y:0, width: 100, height:50))
             markerView.content = VillimUtils.getCurrencyString(price: 30405)
             marker.iconView = markerView
-//            marker.tracksViewChanges = true
             marker.map = mapView
             self.markers.append(marker)
         }
@@ -701,14 +700,17 @@ extension DiscoverViewController: GMSMapViewDelegate {
     
     func bringMarkerForward(index:Int) {
         /* Bring selected marker forward */
-        markers.map {
-            $0.zIndex = 0
-            let markerView = $0.iconView as! CustomMarkerView
-            markerView.color = Color.grey.lighten4
+        for i in 0 ..< self.markers.count {
+            
+            let marker = self.markers[i]
+            let markerView = marker.iconView as! CustomMarkerView
+            let markerHighlighted = (i == index)
+            
+            marker.tracksViewChanges = true
+            marker.zIndex = markerHighlighted ? 1 : 0
+            markerView.highlighted = markerHighlighted
+            marker.tracksViewChanges = false
         }
-        markers[index].zIndex = 1
-        let markerView = markers[index].iconView as! CustomMarkerView
-        markerView.color = Color.teal.base
     }
     
 }

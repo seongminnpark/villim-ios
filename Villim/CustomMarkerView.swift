@@ -11,15 +11,18 @@ import Material
 
 class CustomMarkerView: UIView {
     
+    let COLOR_HIGHLIGHTED = Color.teal.base
+    let COLOR_NORMAL      = Color.grey.lighten4
+    
     var content : String! = "" {
         didSet{
             setLabel()
         }
     }
     
-    var color : UIColor = Color.grey.lighten4 {
+    var highlighted : Bool = false {
         didSet{
-            setColor()
+            setHighlighted()
         }
     }
     
@@ -44,7 +47,7 @@ class CustomMarkerView: UIView {
         triangle = TriangleView()
         triangle.depthPreset = .depth3
         triangle.backgroundColor = .clear
-        triangle.color = Color.grey.lighten4
+        triangle.color = COLOR_NORMAL
         self.addSubview(triangle)
         
         label.snp.makeConstraints { (make) -> Void in
@@ -76,13 +79,15 @@ class CustomMarkerView: UIView {
         }
     }
     
-    func setColor() {
+    func setHighlighted() {
         if label != nil {
+            let color = self.highlighted ? COLOR_HIGHLIGHTED : COLOR_NORMAL
             label.backgroundColor = color
             triangle = TriangleView()
             triangle.depthPreset = .depth3
             triangle.backgroundColor = .clear
             triangle.color = color
+            self.addSubview(triangle)
         }
     }
 

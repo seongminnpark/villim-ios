@@ -31,6 +31,7 @@ class TriangleView : UIView {
         context.addLine(to: CGPoint(x: (rect.maxX / 2.0), y: rect.maxY))
         context.closePath()
         if color != nil {
+            print(color)
             color.setFill()
         } else {
             Color.grey.lighten4.setFill()
