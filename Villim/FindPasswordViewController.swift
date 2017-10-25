@@ -29,7 +29,9 @@ class FindPasswordViewController: UIViewController, UITextFieldDelegate, FindPas
         self.extendedLayoutIncludesOpaqueBars = true
         
         self.view.backgroundColor = UIColor.white
-        self.title = NSLocalizedString("find_password", comment: "")
+        
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("find_password", comment: "")
         
         /* Title */
         titleMain = UILabel()

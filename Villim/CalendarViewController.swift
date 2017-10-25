@@ -42,7 +42,8 @@ class CalendarViewController: UIViewController, FSCalendarDelegate, FSCalendarDa
 
         // Do any additional setup after loading the view.
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.title = "날짜 선택"
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("select_date", comment: "")
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true

@@ -30,7 +30,8 @@ class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDe
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
-        self.title = NSLocalizedString("settings", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("settings", comment: "")
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

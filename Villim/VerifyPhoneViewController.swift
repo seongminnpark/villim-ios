@@ -45,7 +45,8 @@ class VerifyPhoneViewController: UIViewController, UITextFieldDelegate{
         self.extendedLayoutIncludesOpaqueBars = true
         
         self.view.backgroundColor = UIColor.white
-        self.title = NSLocalizedString("verify_phone_number", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("verify_phone_number", comment: "")
 
         /* Title */
         titleMain = UILabel()

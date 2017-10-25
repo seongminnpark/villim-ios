@@ -46,7 +46,8 @@ class AddPhoneViewController: UIViewController, UITextFieldDelegate, VerifyPhone
         self.extendedLayoutIncludesOpaqueBars = true
         
         self.view.backgroundColor = UIColor.white
-        self.title = NSLocalizedString("add_phone_number", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("add_phone_number", comment: "")
 
         /* Title */
         titleMain = UILabel()

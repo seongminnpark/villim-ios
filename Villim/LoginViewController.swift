@@ -62,7 +62,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate, SignupListener
             self.navigationController?.navigationBar.tintColor = VillimValues.darkBackButtonColor
         }
         
-        self.title = NSLocalizedString("login", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("login", comment: "")
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

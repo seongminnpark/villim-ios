@@ -184,6 +184,9 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
         self.extendedLayoutIncludesOpaqueBars = true
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
+        /* Set title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("my_room", comment: "")
+        
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem

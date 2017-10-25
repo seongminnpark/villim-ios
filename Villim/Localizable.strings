@@ -128,10 +128,11 @@
 "apply" = "적용";
 
 "all_locations" = "모든 위치";
-"select_date" = "날짜 설정";
+"select_date" = "날짜 선택";
 
 "where_to_go" = "어디로 가세요?";
 "popular_location" = "인기지역";
+"search_location" = "장소 검색";
 
 "time_format" = "yyyy-MM-dd HH:mm:ss";
 "date_format" = "yyyy-MM-dd";
@@ -253,6 +254,7 @@
 "past_reservations" = "과거 예약";
 "payment_pending" = "결제 대기";
 "checkin_checkout_format" = "체크인: %d년 %d월 %d일\n체크아웃: %d년 %d월 %d일";
+"reservation_detail" = "예약 정보";
 
 "request_cleaning_service" = "청소 서비스 요청";
 "request_chauffuer_service" = "기사 서비스 요청";

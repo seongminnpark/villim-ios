@@ -334,7 +334,8 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         self.navigationController?.navigationBar.tintColor = UIColor.black
-        self.title = NSLocalizedString("house_detail", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("house_detail", comment: "")
     }
     
     func open() {
@@ -343,7 +344,8 @@ class HouseDetailViewController: UIViewController, HouseDetailTableViewDelegate 
         self.navigationController?.navigationBar.barTintColor = UIColor.clear
         self.navigationController?.navigationBar.tintColor = UIColor.white
         self.navigationController?.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName : UIColor.black]
-        self.title = ""
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = ""
     }
     
 

@@ -19,7 +19,8 @@ class LicenseVIewController: UIViewController {
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
-        self.title = NSLocalizedString("license_information", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("license_information", comment: "")
     }
 
     override func didReceiveMemoryWarning() {

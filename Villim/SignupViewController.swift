@@ -41,7 +41,9 @@ class SignupViewController: UIViewController, UITextFieldDelegate {
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = UIColor.white
-        self.title = NSLocalizedString("signup", comment: "")
+        
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("signup", comment: "")
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)

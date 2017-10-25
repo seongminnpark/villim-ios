@@ -56,6 +56,9 @@ class VisitListViewController: ViewController, VisitTableViewItemSelectedListene
         self.extendedLayoutIncludesOpaqueBars = true
         self.navigationController?.navigationBar.barTintColor = UIColor.white
         
+        /* Set title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("reservation_list", comment: "")
+        
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         self.navigationItem.backBarButtonItem = backItem

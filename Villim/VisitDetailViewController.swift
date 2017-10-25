@@ -46,7 +46,8 @@ class VisitDetailViewController: UIViewController {
         super.viewDidLoad()
 
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.title = "방문 정보"
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("reservation_detail", comment: "")
 
 //        self.extendedLayoutIncludesOpaqueBars = true
 //        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)

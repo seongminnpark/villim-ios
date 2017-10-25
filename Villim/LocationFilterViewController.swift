@@ -29,7 +29,8 @@ class LocationFilterViewController: UIViewController, UITextFieldDelegate, Locat
         
         // Do any additional setup after loading the view.
         self.view.backgroundColor = VillimValues.backgroundColor
-        self.title = "장소 검색"
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("search_location", comment: "")
         
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true

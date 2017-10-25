@@ -38,7 +38,8 @@ class ViewProfileViewController: UIViewController, ViewProfileDelegate, UIImageP
         self.navigationController?.navigationBar.isTranslucent = false
         self.extendedLayoutIncludesOpaqueBars = true
         
-        self.title = NSLocalizedString("profile", comment: "")
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("profile", comment: "")
         
         firstname   = VillimSession.getFirstName()
         lastName    = VillimSession.getLastName()

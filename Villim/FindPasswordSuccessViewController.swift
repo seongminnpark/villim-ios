@@ -32,7 +32,9 @@ class FindPasswordSuccessViewController: UIViewController {
         self.extendedLayoutIncludesOpaqueBars = true
         
         self.view.backgroundColor = UIColor.white
-        self.title = NSLocalizedString("find_password", comment: "")
+        
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = NSLocalizedString("find_password", comment: "")
         
         /* Lock image */
         planeImage = UIImageView()

@@ -19,7 +19,6 @@
 		3E0F069F1F1E017B0023E229 /* VillimUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F069E1F1E017B0023E229 /* VillimUITests.swift */; };
 		3E0F06B71F1E02CE0023E229 /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */; };
 		3E0F06B81F1E02CE0023E229 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */; };
-		3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */; };
 		3E0F06BA1F1E02CE0023E229 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */; };
 		3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */; };
 		3E0F06BC1F1E02CE0023E229 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E0F06B11F1E02CE0023E229 /* TabBarController.swift */; };
@@ -158,7 +157,6 @@
 		3E0F06A01F1E017B0023E229 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E0F06AC1F1E02CE0023E229 /* DiscoverViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		3E0F06AD1F1E02CE0023E229 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyKeyViewController.swift; sourceTree = "<group>"; };
 		3E0F06AF1F1E02CE0023E229 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		3E0F06B01F1E02CE0023E229 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		3E0F06B11F1E02CE0023E229 /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -359,7 +357,6 @@
 				3E5241391F3999BE007854FA /* ReservationSuccessViewController.swift */,
 				3E5043ED1F45ABD10064B773 /* MyRoomViewController.swift */,
 				3E5043F31F45C1300064B773 /* MyRoomHeaderView.swift */,
-				3E0F06AE1F1E02CE0023E229 /* MyKeyViewController.swift */,
 				3EDC13A41F2CD4F400BA4077 /* ReviewHouseViewController.swift */,
 				3EDC13A61F2D10D400BA4077 /* RateHouseViewController.swift */,
 				3EDC13A21F2C5B2300BA4077 /* ChangePasscodeViewController.swift */,
@@ -872,7 +869,6 @@
 				3EDE4CE01F32FB8400FDB275 /* CancellationPolicyViewController.swift in Sources */,
 				3E92EAD91F3A9C7900AC6FF3 /* SettingsViewController.swift in Sources */,
 				3E0F06BB1F1E02CE0023E229 /* ProfileViewController.swift in Sources */,
-				3E0F06B91F1E02CE0023E229 /* MyKeyViewController.swift in Sources */,
 				3E5F98821F2E6CB6003AAF8F /* LocationFilterViewController.swift in Sources */,
 				3E50C8AF1F2C085A00308D4E /* SignupViewController.swift in Sources */,
 				3E956A031F348DF4001B7091 /* LocationFilterSearchField.swift in Sources */,
