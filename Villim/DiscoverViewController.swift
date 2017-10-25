@@ -62,6 +62,8 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
     var mapView  : GMSMapView!
     var carousel : ScalingCarouselView!
     
+    var networkErrorView : NetworkErrorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -177,7 +179,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         collapseFilter()
         
         sendFeaturedHousesRequest()
-    
     }
     
     func setUpNavigationBar() {
@@ -223,7 +224,6 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         self.navigationDrawerController?.toggleLeftView()
     }
 
-    
     func launchLocationFilterViewController(sender : UITapGestureRecognizer) {
         self.tabBarController?.tabBar.isHidden = true
         let locationFilterViewController = LocationFilterViewController()
@@ -343,7 +343,7 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         
     }
     
-    @objc private func sendFeaturedHousesRequest() {
+    @objc func sendFeaturedHousesRequest() {
         
         VillimUtils.showLoadingIndicator()
         
@@ -369,14 +369,18 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
-                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-                print(error)
+                if let err = error as? URLError, err.code == URLError.Code.notConnectedToInternet {
+                    // no internet connection
+                    self.showNetworkErrorView()
+                } else {
+                    self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+                }
             }
             VillimUtils.hideLoadingIndicator()
         }
     }
     
-    @objc private func sendSearchRequest() {
+    @objc func sendSearchRequest() {
         
         VillimUtils.showLoadingIndicator()
         
@@ -409,10 +413,28 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
                     self.showErrorMessage(message: responseData[VillimKeys.KEY_MESSAGE].stringValue)
                 }
             case .failure(let error):
-                self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
-            }
+                if let err = error as? URLError, err.code == URLError.Code.notConnectedToInternet {
+                    // no internet connection
+                    self.showNetworkErrorView()
+                } else {
+                    self.showErrorMessage(message: NSLocalizedString("server_unavailable", comment: ""))
+                }ㅎ            }
             VillimUtils.hideLoadingIndicator()
         }
+    }
+    
+    func showNetworkErrorView() {
+        if networkErrorView != nil {
+            networkErrorView.removeFromSuperview()
+        }
+        
+        let networkErrorViewFrame = CGRect(x: 0,
+                                           y: self.topOffset,
+                                           width: UIScreen.main.bounds.width,
+                                           height: UIScreen.main.bounds.height - self.topOffset)
+        networkErrorView = NetworkErrorView(frame:networkErrorViewFrame)
+        networkErrorView.delegate = self
+        self.view.addSubview(networkErrorView)
     }
     
     /* Filter delegation methods */
@@ -692,6 +714,13 @@ extension DiscoverViewController: GMSMapViewDelegate {
             markerView.highlighted = markerHighlighted
             marker.tracksViewChanges = false
         }
+    }
+}
+
+extension DiscoverViewController: NetworkErrorViewDelegate {
+    
+    func retry() {
+        self.sendFeaturedHousesRequest()
     }
     
 }
