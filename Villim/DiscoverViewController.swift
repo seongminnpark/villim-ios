@@ -561,25 +561,14 @@ class DiscoverViewController: ViewController, LocationFilterDelegate, CalendarDe
         }
         
         /* Adjust camera to first marker */
-        var initialLatitude = 0.0
-        var initialLongitude = 0.0
-        
         if markers.count > 0 {
-            let markerPoint = mapView.projection.point(for: markers[0].position)
-            
-            let carouselTop = mapView.frame.origin.y + mapView.bounds.height - CAROUSEL_HEIGHT
-            let mapViewTop = mapView.frame.origin.y
-            let cameraOffsetY = (carouselTop - mapViewTop) / 2.0
-            let newCameraPoint = CGPoint(x:markerPoint.x, y: markerPoint.y + cameraOffsetY)
-            
-            let newCameraCoordinate = mapView.projection.coordinate(for: newCameraPoint)
-            initialLatitude = newCameraCoordinate.latitude
-            initialLongitude = newCameraCoordinate.longitude
+            self.mapView(mapView, didTap: markers[0])
+        } else {
+            let initialLatitude = 0.0
+            let initialLongitude = 0.0
+            let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 14.0)
+            mapView.camera = camera
         }
-        
-        let camera = GMSCameraPosition.camera(withLatitude: initialLatitude, longitude: initialLongitude, zoom: 14.0)
-
-        mapView.camera = camera
     }
     
     
@@ -667,8 +656,6 @@ extension DiscoverViewController: GMSMapViewDelegate {
         let index = markers.index(of: marker)
         
         if index != nil {
-            bringMarkerForward(index: index!)
-            
             scrollToMarker(index:index!)
             
             /* Scroll to appropriate card */
