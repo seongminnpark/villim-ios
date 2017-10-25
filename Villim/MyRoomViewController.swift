@@ -11,7 +11,6 @@ import Alamofire
 import SnapKit
 import SwiftyJSON
 import Nuke
-import Toaster
 import AudioToolbox
 import SwiftDate
 
@@ -761,21 +760,15 @@ class MyRoomViewController: UIViewController, UIScrollViewDelegate {
     }
     
     private func showErrorMessage(message:String) {
-        let toast = Toast(text: message, duration: Delay.long)
-        
-        ToastView.appearance().bottomOffsetPortrait = 30
-        ToastView.appearance().bottomOffsetLandscape = 30
-        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
-        
-        toast.show()
+        VillimUtils.showErrorMessage(message: message)
     }
     
     private func hideErrorMessage() {
-        ToastCenter.default.cancelAll()
+        VillimUtils.hideErrorMessage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        hideErrorMessage()
+//        hideErrorMessage()
         VillimUtils.hideLoadingIndicator()
     }
     

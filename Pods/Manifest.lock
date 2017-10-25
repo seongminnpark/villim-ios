@@ -19,7 +19,6 @@ PODS:
   - SnapKit (3.2.0)
   - SwiftDate (4.3.0)
   - SwiftyJSON (3.1.4)
-  - Toaster (2.0.4)
 
 DEPENDENCIES:
   - Alamofire (~> 4.4)
@@ -34,7 +33,6 @@ DEPENDENCIES:
   - SnapKit (~> 3.2.0)
   - SwiftDate (~> 4.3.0)
   - SwiftyJSON
-  - Toaster
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -50,8 +48,7 @@ SPEC CHECKSUMS:
   SnapKit: 1ca44df72cfa543218d177cb8aab029d10d86ea7
   SwiftDate: 64e2312711c5c506f7b51794308ce91f19eb494a
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  Toaster: f13031c636ef065281bc11857be9a16c7659e04f
 
-PODFILE CHECKSUM: 58a4537f4225fb93751a87685a3d46aa712c2b99
+PODFILE CHECKSUM: 83e7266d42cc799d9ebadda515d75cdffc75a1e9
 
 COCOAPODS: 1.2.1

@@ -11,7 +11,6 @@ import Alamofire
 import SnapKit
 import SwiftyJSON
 import Nuke
-import Toaster
 
 class VisitDetailViewController: UIViewController {
 
@@ -294,6 +293,7 @@ class VisitDetailViewController: UIViewController {
     private func hideErrorMessage() {
         errorMessage.isHidden = true
     }
+    
     override func viewWillDisappear(_ animated: Bool) {
         hideErrorMessage()
         VillimUtils.hideLoadingIndicator()

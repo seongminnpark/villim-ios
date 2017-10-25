@@ -10,7 +10,6 @@ target 'Villim' do
   pod 'Alamofire', '~> 4.4'
   pod 'SwiftyJSON'
   pod 'Nuke', '~> 5.0'
-  pod 'Toaster'
   pod 'GoogleMaps'
   pod 'Cosmos', '~> 11.0'
   pod 'FSCalendar', '~> 2.7'

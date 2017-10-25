@@ -11,7 +11,6 @@ import SnapKit
 import Alamofire
 import SwiftyJSON
 import SwiftDate
-import Toaster
 
 class ReservationViewController: UIViewController, ReservationTableViewDelegate, LoginDelegate, ReservationSuccessDelegate {
 
@@ -190,21 +189,15 @@ class ReservationViewController: UIViewController, ReservationTableViewDelegate,
     }
     
     private func showErrorMessage(message:String) {
-        let toast = Toast(text: message, duration: Delay.long)
-        
-        ToastView.appearance().bottomOffsetPortrait = VillimValues.BOTTOM_BUTTON_HEIGHT + 30
-        ToastView.appearance().bottomOffsetLandscape = VillimValues.BOTTOM_BUTTON_HEIGHT + 30
-        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
-        
-        toast.show()
+        VillimUtils.showErrorMessage(message: message)
     }
     
     private func hideErrorMessage() {
-        ToastCenter.default.cancelAll()
+        VillimUtils.hideErrorMessage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        hideErrorMessage()
+//        hideErrorMessage()
         VillimUtils.hideLoadingIndicator()
     }
     

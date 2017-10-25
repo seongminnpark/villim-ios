@@ -10,7 +10,6 @@ import UIKit
 import Cosmos
 import Alamofire
 import SwiftyJSON
-import Toaster
 
 class ViewReviewViewController: UIViewController {
 
@@ -381,21 +380,15 @@ class ViewReviewViewController: UIViewController {
     }
     
     private func showErrorMessage(message:String) {
-        let toast = Toast(text: message, duration: Delay.long)
-        
-        ToastView.appearance().bottomOffsetPortrait = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().bottomOffsetLandscape = (tabBarController?.tabBar.frame.size.height)! + 30
-        ToastView.appearance().font = UIFont.systemFont(ofSize: 17.0)
-        
-        toast.show()
+        VillimUtils.showErrorMessage(message: message)
     }
     
     private func hideErrorMessage() {
-        ToastCenter.default.cancelAll()
+        VillimUtils.hideErrorMessage()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        hideErrorMessage()
+//        hideErrorMessage()
         VillimUtils.hideLoadingIndicator()
     }
     
