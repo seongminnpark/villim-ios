@@ -69,6 +69,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
         
         /* Set title */
         self.navigationItem.titleLabel.text = NSLocalizedString("profile", comment: "")
+        self.navigationItem.titleLabel.textAlignment = .center
         
         /* Set back button */
         let backItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
@@ -213,6 +214,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     func launchFAQWebView() {
         let webViewController = WebViewController()
+        webViewController.webViewTitle = NSLocalizedString("faq", comment: "")
         webViewController.urlString = VillimKeys.FAQ_URL
         self.navigationController?.pushViewController(webViewController, animated: true)
     }
@@ -224,6 +226,7 @@ class ProfileViewController: ViewController, ProfileTableViewItemSelectedListene
     
     func launchPrivacyPolicyWebView() {
         let webViewController = WebViewController()
+        webViewController.webViewTitle = NSLocalizedString("privacy_policy", comment: "")
         webViewController.urlString = VillimKeys.TERMS_OF_SERVICE_URL
         self.navigationController?.pushViewController(webViewController, animated: true)
     }

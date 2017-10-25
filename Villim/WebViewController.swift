@@ -12,10 +12,14 @@ class WebViewController: UIViewController, UIWebViewDelegate {
 
     var webView: UIWebView!
     var urlString : String = ""
+    var webViewTitle : String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        /* Set navigation bar title */
+        self.navigationItem.titleLabel.text = webViewTitle;
+        
         // Do any additional setup after loading the view.
         webView = UIWebView(frame: UIScreen.main.bounds)
         webView.delegate = self
