@@ -95,6 +95,7 @@
 		3EDC276F1F3537B200228C1F /* VerifyPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */; };
 		3EDC30161FA028CE00374C41 /* AppSnackbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC30151FA028CE00374C41 /* AppSnackbarController.swift */; };
 		3EDC30181FA030D600374C41 /* SnackbarRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC30171FA030D600374C41 /* SnackbarRootViewController.swift */; };
+		3EDC301E1FA0CEFA00374C41 /* NetworkErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDC301D1FA0CEFA00374C41 /* NetworkErrorView.swift */; };
 		3EDE4CD01F32A1E200FDB275 /* AmenityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */; };
 		3EDE4CD21F32A88500FDB275 /* AmenityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD11F32A88500FDB275 /* AmenityTableViewController.swift */; };
 		3EDE4CD41F32AAE700FDB275 /* ViewReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */; };
@@ -234,6 +235,7 @@
 		3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerifyPhoneViewController.swift; sourceTree = "<group>"; };
 		3EDC30151FA028CE00374C41 /* AppSnackbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSnackbarController.swift; sourceTree = "<group>"; };
 		3EDC30171FA030D600374C41 /* SnackbarRootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackbarRootViewController.swift; sourceTree = "<group>"; };
+		3EDC301D1FA0CEFA00374C41 /* NetworkErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorView.swift; sourceTree = "<group>"; };
 		3EDE4CCF1F32A1E200FDB275 /* AmenityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityViewController.swift; sourceTree = "<group>"; };
 		3EDE4CD11F32A88500FDB275 /* AmenityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmenityTableViewController.swift; sourceTree = "<group>"; };
 		3EDE4CD31F32AAE700FDB275 /* ViewReviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewReviewViewController.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				3EB051311F28F13F00EBBBCE /* TableViewCells */,
 				3EB051321F28F15400EBBBCE /* TableViewControllers */,
 				3ED0AC361F746701005A7D22 /* Custom Marker */,
+				3EDC301C1FA0CE9B00374C41 /* Custom Views */,
 				3E0F06C21F1E05100023E229 /* Localizable.strings */,
 				3E0F067E1F1E017B0023E229 /* AppDelegate.swift */,
 				3E0F06801F1E017B0023E229 /* ViewController.swift */,
@@ -376,12 +379,6 @@
 				3EDC276E1F3537B200228C1F /* VerifyPhoneViewController.swift */,
 				3E92EAD81F3A9C7900AC6FF3 /* SettingsViewController.swift */,
 				3E92EADE1F3AD5A500AC6FF3 /* LicenseVIewController.swift */,
-				3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */,
-				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
-				3E5043F51F45D1720064B773 /* InsetLabel.swift */,
-				3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */,
-				3E956A041F34FA41001B7091 /* CustomTextField.swift */,
-				3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */,
 				3EDC139C1F2C295200BA4077 /* WebViewController.swift */,
 				3E0F06B21F1E02CE0023E229 /* VillimKeys.swift */,
 				3EDC139A1F2C0B1A00BA4077 /* VillimValues.swift */,
@@ -493,6 +490,20 @@
 				3ED0DE731F340E0300C89908 /* NotoSansCJKkr-Regular.otf */,
 			);
 			name = Fonts;
+			sourceTree = "<group>";
+		};
+		3EDC301C1FA0CE9B00374C41 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E65CAF41F365C4900DD2A29 /* VillimDialog.swift */,
+				3EB051441F2A780800EBBBCE /* SlideButton.swift */,
+				3E5043F51F45D1720064B773 /* InsetLabel.swift */,
+				3E956A021F348DF4001B7091 /* LocationFilterSearchField.swift */,
+				3E956A041F34FA41001B7091 /* CustomTextField.swift */,
+				3EA017E51F354BA6005557D1 /* VerificationCodeField.swift */,
+				3EDC301D1FA0CEFA00374C41 /* NetworkErrorView.swift */,
+			);
+			name = "Custom Views";
 			sourceTree = "<group>";
 		};
 		CD22804159B5B93D14698D7B /* Pods */ = {
@@ -862,6 +873,7 @@
 				3EDE4CD61F32B42800FDB275 /* ViewReviewTableViewController.swift in Sources */,
 				3EB051371F28F1B800EBBBCE /* HouseInfographicTableViewCell.swift in Sources */,
 				3E0F06BF1F1E02CE0023E229 /* VillimUser.swift in Sources */,
+				3EDC301E1FA0CEFA00374C41 /* NetworkErrorView.swift in Sources */,
 				3EDC276D1F35329A00228C1F /* AddPhoneViewController.swift in Sources */,
 				3E0F06BE1F1E02CE0023E229 /* VillimSession.swift in Sources */,
 				3E65CAF51F365C4900DD2A29 /* VillimDialog.swift in Sources */,
