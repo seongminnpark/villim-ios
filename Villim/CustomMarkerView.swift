@@ -44,12 +44,6 @@ class CustomMarkerView: UIView {
 //        label.layer.masksToBounds = true
         self.addSubview(label)
         
-        triangle = TriangleView()
-        triangle.depthPreset = .depth3
-        triangle.backgroundColor = .clear
-        triangle.color = COLOR_NORMAL
-        self.addSubview(triangle)
-        
         label.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
             make.top.equalToSuperview()
@@ -57,13 +51,7 @@ class CustomMarkerView: UIView {
             make.height.equalTo(30)
         }
         
-        triangle.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(label.snp.bottom)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(10)
-            make.width.equalTo(20)
-        }
-
+        setUpTriangleView(color:COLOR_NORMAL)
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -80,14 +68,30 @@ class CustomMarkerView: UIView {
     }
     
     func setHighlighted() {
+        let color = self.highlighted ? COLOR_HIGHLIGHTED : COLOR_NORMAL
+        
         if label != nil {
-            let color = self.highlighted ? COLOR_HIGHLIGHTED : COLOR_NORMAL
             label.backgroundColor = color
-            triangle = TriangleView()
-            triangle.depthPreset = .depth3
-            triangle.backgroundColor = .clear
-            triangle.color = color
-            self.addSubview(triangle)
+            setUpTriangleView(color:color)
+        }
+    }
+    
+    func setUpTriangleView(color:UIColor) {
+        if triangle != nil {
+            triangle.removeFromSuperview()
+        }
+        
+        triangle = TriangleView()
+        triangle.depthPreset = .depth3
+        triangle.backgroundColor = .clear
+        triangle.color = color
+        self.addSubview(triangle)
+        
+        triangle.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(label.snp.bottom)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(10)
+            make.width.equalTo(20)
         }
     }
 
