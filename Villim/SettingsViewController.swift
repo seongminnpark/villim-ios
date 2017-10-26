@@ -166,7 +166,7 @@ class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDe
     
         alertContentView.view.addSubview(picker)
         let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: UIAlertControllerStyle.alert)
-        alert.setValue(alertContentView, forKey: "pickerContent")
+        alert.setValue(alertContentView, forKey: "contentViewController")
         alert.addAction(UIAlertAction(title: NSLocalizedString("done", comment:""), style: .default, handler: nil))
         self.present(alert, animated: true)
     }
