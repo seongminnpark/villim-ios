@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import pop
+import Material
 
 class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDelegate, UIPickerViewDataSource  {
 
@@ -18,6 +20,7 @@ class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDe
     
     var pickerType : Int!
     
+    var alert : UIAlertController!
     var picker : UIPickerView!
     var toolBar : UIToolbar!
     
@@ -134,101 +137,42 @@ class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDe
 
     func showPicker() {
         
-        if picker != nil {
-            picker.removeFromSuperview()
-        }
-        if toolBar != nil {
-            toolBar.removeFromSuperview()
-        }
+        var alertTitle : String
+        
+        let alertContentView = UIViewController()
+        alertContentView.preferredContentSize = CGSize(width: 250,height: 300)
         
         /* Picker */
-        picker = UIPickerView()
-        picker.backgroundColor = UIColor.white
+        picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
+        picker.backgroundColor = Color.grey.lighten4
         picker.delegate = self
         picker.dataSource = self
-        picker.alpha = 0
-        
-        toolBar = UIToolbar()
-        toolBar.barStyle = .default
-        toolBar.isTranslucent = true
-        toolBar.barTintColor = UIColor.darkGray
-        toolBar.tintColor = UIColor.white
-        toolBar.sizeToFit()
-        toolBar.alpha = 0
-        
-        let button  = UIButton()
-        button.setTitle(NSLocalizedString("done", comment:""), for: .normal)
-        button.titleLabel?.textColor = UIColor.white
-        button.addTarget(self, action: #selector(self.hidePicker), for: .touchUpInside)
-        button.sizeToFit()
-
-        let doneButton = UIBarButtonItem(customView: button)
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolBar.setItems([spaceButton, doneButton], animated: false)
-        toolBar.isUserInteractionEnabled = true
-        
-        self.view.addSubview(picker)
-        self.view.addSubview(toolBar)
-        
-        /* Picker */
-        picker.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.top.equalTo(self.view.snp.bottom).offset(-VillimValues.pickerHeight)
-            make.bottom.equalToSuperview()
-        }
-        
-        /* Toolbar */
-        toolBar.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.bottom.equalTo(picker.snp.top)
-        }
+        picker.alpha = 1
     
         /* Show picker */
         switch self.pickerType {
         case SettingsTableViewController.CURRENCY:
             picker.selectRow(VillimSession.getCurrencyPref(), inComponent: 0, animated: false)
+            alertTitle = NSLocalizedString("choose_currency", comment:"")
             break
         case SettingsTableViewController.LANGUAGE:
             picker.selectRow(VillimSession.getLanguagePref(), inComponent: 0, animated: false)
+            alertTitle = NSLocalizedString("choose_language", comment:"")
             break
         default:
+            alertTitle = ""
             break
         }
-        UIView.animate(withDuration: 0.3, animations: {
-            self.picker.alpha = 1
-            self.toolBar.alpha = 1
-        })
-    }
     
-    func hidePicker() {
-        if self.picker != nil && self.toolBar != nil {
-            UIView.animate(withDuration: 0.3, animations: {
-                self.picker.alpha = 0
-                self.toolBar.alpha = 0
-            })
-        }
-
-        if picker != nil {
-            picker.removeFromSuperview()
-        }
-        if toolBar != nil {
-            toolBar.removeFromSuperview()
-        }
+        alertContentView.view.addSubview(picker)
+        let alert = UIAlertController(title: alertTitle, message: "", preferredStyle: UIAlertControllerStyle.alert)
+        alert.setValue(alertContentView, forKey: "pickerContent")
+        alert.addAction(UIAlertAction(title: NSLocalizedString("done", comment:""), style: .default, handler: nil))
+        self.present(alert, animated: true)
     }
-    
     
     func launchViewController(viewController:UIViewController, animated:Bool) {
         self.navigationController?.pushViewController(viewController, animated:animated)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = true
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        hidePicker()
     }
 
 }
