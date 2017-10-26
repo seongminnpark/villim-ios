@@ -140,10 +140,10 @@ class SettingsViewController: UIViewController, SettingsDelegate, UIPickerViewDe
         var alertTitle : String
         
         let alertContentView = UIViewController()
-        alertContentView.preferredContentSize = CGSize(width: 250,height: 150)
+        alertContentView.preferredContentSize = CGSize(width: 250,height: 100)
         
         /* Picker */
-        picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 150))
+        picker = UIPickerView(frame: CGRect(x: 0, y: 0, width: 250, height: 100))
         picker.backgroundColor = Color.grey.lighten4
         picker.delegate = self
         picker.dataSource = self
